@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BF5A3743071F19428EB27AB7C3E3829C046222A3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BF5A3743071F19428EB27AB7C3E3829C046222A3" : 0,
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9629AC75-E561-4812-92AD-CB6E09E18C74",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BF5A3743071F19428EB27AB7C3E3829C046222A3" : "hitch\/",
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "hitch",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "hitch.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tobyapp\/hitch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BF5A3743071F19428EB27AB7C3E3829C046222A3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tobyapp\/test.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DFFD488C1D7EC13C240FB6405B1C687602438AAC"
+    }
+  ]
+}
