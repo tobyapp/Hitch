@@ -142,10 +142,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
 
 
-extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate {
-    
-    var popover: UIPopoverController? = nil
-    
+extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
+        
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
         var longitude: Double = 0.0
@@ -207,8 +205,58 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate {
     }
     
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        print("hello world")
+        let popoverContent = (self.storyboard?.instantiateViewControllerWithIdentifier("Popover"))! as UIViewController
+        let nav = UINavigationController(rootViewController: popoverContent)
+        nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+        let popover = nav.popoverPresentationController
+        popoverContent.preferredContentSize = CGSizeMake(250,300)
+        popover!.delegate = self
+        popover!.sourceView = self.view
+        popover!.sourceRect = CGRectMake(100,100,0,0)
+        //popover?.passthroughViews = GoogleMapsViewController
+        self.presentViewController(nav, animated: true, completion: nil)
+        
+        
+        
+        
+//        let storyboard : UIStoryboard = UIStoryboard(
+//            name: "Main",
+//            bundle: nil)
+//        let menuViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! UIViewController
+//        menuViewController.modalPresentationStyle = .Popover
+//        self.presentViewController(self, animated: true, completion: nil)
+//        let popController: UIPopoverPresentationController = menuViewController.popoverPresentationController!
+//        popController.permittedArrowDirections = .Up
+//        popController.delegate = self
+//        popController.sourceView = self.view!
+//        popController.sourceRect = CGRectMake(30, 50, 10, 10)
+
+        
+        
+
+        
+        
+        // this one is from the latest guide
+//        let popOver = PopoverViewController()
+//        popOver.modalPresentationStyle = UIModalPresentationStyle.None
+//        self.presentViewController(popOver, animated: true, completion: nil)
+//        let popper = popOver.popoverPresentationController
+//        popper?.sourceView = self.view
+//        popper?.delegate = self
+//        //popper?.sourceView = CGRectMake(100,100,0,0)
+        
     }
+    
+//    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+//        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
+//        let nav = UINavigationController(rootViewController: controller.presentedViewController)
+//        nav.topViewController!.navigationItem.leftBarButtonItem = btnDone
+//        return nav
+//    }
+//    
+//    func dismiss() {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
 //    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
 //        
@@ -219,6 +267,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate {
 //    func pressed(sender: UIButton) {
 //        print("hello")
 //    }
-    
+
 
 }
