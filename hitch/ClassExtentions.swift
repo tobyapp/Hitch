@@ -25,7 +25,6 @@ extension UIViewController {
     }
     // Adds side menu to view controllers
     func addSideMenu(menuButton : UIBarButtonItem!) {
-        let purple = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = "revealToggle:"
@@ -35,10 +34,14 @@ extension UIViewController {
             self.revealViewController().frontViewShadowOffset = CGSizeMake(CGFloat(0), CGFloat(5))
             self.revealViewController().frontViewShadowOpacity = CGFloat(1)
             self.revealViewController().frontViewShadowColor = UIColor.darkGrayColor()
-            self.navigationController?.navigationBar.barTintColor = purple
-            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+            changeColorScheme()
         }
+    }
+    
+    func changeColorScheme(){
+        self.navigationController?.navigationBar.barTintColor = purple
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
     }
 }

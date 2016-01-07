@@ -13,7 +13,9 @@ class PopoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        changeColorScheme()
+        
         let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 200, 200, 30))
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
@@ -29,42 +31,20 @@ class PopoverViewController: UIViewController {
         hitchinToButton.addTarget(self, action: "exampleAction:", forControlEvents: UIControlEvents.TouchUpInside)
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
-
-        // Do any additional setup after loading the view.
         
-        let cancelButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 400, 200, 30))
-        cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        cancelButton.titleLabel!.font = UIFont(name: "System", size: 15)
-        cancelButton.addTarget(self, action: "cancel:", forControlEvents: UIControlEvents.TouchUpInside)
-        cancelButton.backgroundColor = MaterialColor.deepPurple.base
-        view.addSubview(hitchinToButton)
+        let backButton:UIBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: "cancel:")
         
-        // Menu button.
-        let menuImage: UIImage? = UIImage(named: "menu")        
-        let backButton: FlatButton = FlatButton()
-        backButton.pulseColor = MaterialColor.white
-        backButton.pulseFill = true
-        backButton.pulseScale = true
-        backButton.setImage(menuImage, forState: .Normal)
-        backButton.setImage(menuImage, forState: .Highlighted)
-        backButton.frame = CGRectMake(0, 0, 55, 44)
-        backButton.tintColor = UIColor.whiteColor()
-        backButton.addTarget(self.revealViewController(), action: "cancel:", forControlEvents: UIControlEvents.TouchUpInside)
-        //        menuButton.target = self.revealViewController()
-        //        menuButton.action = "revealToggle:"
+        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
         
-        
-        let item1 = UIBarButtonItem()
-        item1.customView = backButton
-        self.navigationItem.leftBarButtonItem = item1
-
-        
-        
-        self.navigationController?.navigationBar.barTintColor = purple
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+//        
+//        self.navigationController?.navigationBar.barTintColor = purple
+//        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+//        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
     }
 
     
@@ -89,8 +69,10 @@ class PopoverViewController: UIViewController {
         print("In exampleAction")
     }
 
-    func cancel(sender: FlatButton){
+    func cancel(sender: UIButton){
+        print("before dissmiss")
         self.dismissViewControllerAnimated(true, completion: nil)
+        print("cancle")
     }
     
 }
