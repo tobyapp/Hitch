@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import MK
 
 class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -25,6 +26,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         super.viewDidLoad()
         self.navigationItem.title = "Hitch Map View"
         self.title = "Hitch'n Map!"
+        self.mapView.delegate = self
         
         let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
         mapView.camera = camera
@@ -132,10 +134,18 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.presentViewController(alertController, animated: true, completion: nil)
         })
         }
+    
+
 
 }
 
+
+
+
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate {
+    
+    var popover: UIPopoverController? = nil
+    
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
         var longitude: Double = 0.0
@@ -160,11 +170,55 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate {
         
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         //locationMarker.appearAnimation = kGMSMarkerAnimationPop
-        locationMarker.snippet = "The best place on earth."
+        //locationMarker.snippet = "The best place on earth."
         locationMarker.map = mapView
+        
     }
+    
+//    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+////        let myFirstButton = UIButton()
+////        myFirstButton.setTitle("✸", forState: .Normal)
+////        myFirstButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+////        myFirstButton.frame = CGRectMake(15, -50, 300, 500)
+////        myFirstButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+////        
+////        self.view.addSubview(myFirstButton)
+//        print("hello")
+//        return true
+//    }
     
     func placeViewClosed() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+        infoWindow.frame.size.width = 200
+        infoWindow.frame.size.height = 50
+        
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(5, 5, 190, 40))
+        drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
+        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
+        drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
+        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+        infoWindow.addSubview(drivingToButton)
+
+        return infoWindow
+    }
+    
+    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        print("hello world")
+    }
+    
+//    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+//        
+//        print("hello world")
+//        return true
+//    }
+    
+//    func pressed(sender: UIButton) {
+//        print("hello")
+//    }
+    
+
 }

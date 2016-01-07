@@ -1,23 +1,30 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BF5A3743071F19428EB27AB7C3E3829C046222A3",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3317C23D4F0167F41726F2D5A4A033D969D86BDB",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3317C23D4F0167F41726F2D5A4A033D969D86BDB" : 0,
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : 0,
     "BF5A3743071F19428EB27AB7C3E3829C046222A3" : 0,
-    "491179C05309B2DCDD9EB82847CE187D88189D60" : 0,
-    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : 0
+    "491179C05309B2DCDD9EB82847CE187D88189D60" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "175D49AA-D16A-49D7-B833-0AF148817A94",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3317C23D4F0167F41726F2D5A4A033D969D86BDB" : "Hitch%20-%20Final%20Year%20Project\/",
+    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : "",
     "BF5A3743071F19428EB27AB7C3E3829C046222A3" : "hitch\/",
-    "491179C05309B2DCDD9EB82847CE187D88189D60" : "ios_google_places_autocomplete\/",
-    "DFFD488C1D7EC13C240FB6405B1C687602438AAC" : ""
+    "491179C05309B2DCDD9EB82847CE187D88189D60" : "ios_google_places_autocomplete\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "hitch",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "hitch.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tobyapp\/Hitch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3317C23D4F0167F41726F2D5A4A033D969D86BDB"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/watsonbox\/ios_google_places_autocomplete.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

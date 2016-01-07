@@ -472,7 +472,7 @@
                                     <outlet property="delegate" destination="f9g-ho-6P6" id="lUR-2S-LRB"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="1940D933-2A1C-4A53-833F-423586B29EF2" translatesAutoresizingMaskIntoConstraints="NO" id="04G-aG-fYE">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="576859DA-401C-4132-97A2-4104D989FD6A" translatesAutoresizingMaskIntoConstraints="NO" id="04G-aG-fYE">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -681,7 +681,7 @@
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="24A62616-37E0-4CEA-99EB-0D15973043F1" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="79D43A0A-246A-46C3-9758-B8867688BF31" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -754,7 +754,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1940D933-2A1C-4A53-833F-423586B29EF2" width="200" height="200">
+        <image name="576859DA-401C-4132-97A2-4104D989FD6A" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3493,7 +3493,7 @@ fQACf4IAAn+KAAJ/jQACf5IAAn+aAAJ/nQACf68AAn+yAAJ/twAAAAAAAAQBAAAAAAAAAD4AAAAAAAAA
 AAAAAAAAAn+5A
 </mutableData>
         </image>
-        <image name="24A62616-37E0-4CEA-99EB-0D15973043F1" width="200" height="200">
+        <image name="79D43A0A-246A-46C3-9758-B8867688BF31" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

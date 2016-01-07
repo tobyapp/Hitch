@@ -37,7 +37,9 @@
 		52C434581C2AC07F00D565BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434571C2AC07F00D565BD /* Security.framework */; };
 		52C4345A1C2AC08700D565BD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434591C2AC08700D565BD /* StoreKit.framework */; };
 		52C4345C1C2AC09900D565BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */; };
-		52D91F301C3E9D400093329B /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D91F2F1C3E9D400093329B /* GooglePlacesAutocomplete.xib */; };
+		52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */; };
+		52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */; };
+		52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E317F51C29802A00635E10 /* UserData.xcdatamodeld */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
@@ -84,7 +86,9 @@
 		52C434571C2AC07F00D565BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		52C434591C2AC08700D565BD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		52D91F2F1C3E9D400093329B /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = ../../../../../../GitHub/ios_google_places_autocomplete/GooglePlacesAutocomplete/GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
+		52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = ../../ios_google_places_autocomplete/GooglePlacesAutocomplete/GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
+		52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomInfoWindow.xib; path = ../CustomInfoWindow.xib; sourceTree = "<group>"; };
+		52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317F61C29802A00635E10 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				5206AD911C273B3C00A1EFAD /* Main.storyboard */,
-				52D91F2F1C3E9D400093329B /* GooglePlacesAutocomplete.xib */,
+				52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */,
+				52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */,
 				5223121E1C3B0AB800AF218A /* HitchLaunchScreen.storyboard */,
 			);
 			name = UI;
@@ -225,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */,
+				52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */,
 				5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */,
 				52AA7F3A1C28A5B50099352F /* MapViewController.swift */,
 			);
@@ -345,10 +351,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D91F301C3E9D400093329B /* GooglePlacesAutocomplete.xib in Resources */,
 				5206AD951C273B3C00A1EFAD /* Assets.xcassets in Resources */,
 				5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */,
 				5223121F1C3B0AB800AF218A /* HitchLaunchScreen.storyboard in Resources */,
+				52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */,
+				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +428,7 @@
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */,
+				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */,
 				52AA7F3B1C28A5B50099352F /* MapViewController.swift in Sources */,
 			);
