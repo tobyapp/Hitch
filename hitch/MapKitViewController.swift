@@ -32,20 +32,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.navigationItem.title = "Hitch Map View"
         self.title = "Hitch'n Map!"
         
-
-        
-        //auth from user
-//        if CLLocationManager.authorizationStatus() == .NotDetermined {
-//            print("request always auth")
-//            locationManager.requestAlwaysAuthorization()
-//        }
-        
-        //run in foreground
-        //        if CLLocationManager.authorizationStatus() == .NotDetermined {
-        //            print("request when in use auth")
-        //            locationManager.requestWhenInUseAuthorization()
-        //        }
-        
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .AuthorizedAlways, .AuthorizedWhenInUse:
@@ -81,12 +67,12 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }
     }
     
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    // constantly update locaiton (follow blue dot while it drives round)
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        let locationValue = manager.location!.coordinate
 //        let region = MKCoordinateRegion(center: locationValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 //        self.mapView.setRegion(region, animated: true)
-    }
+//    }
     
     // Function to display an Alert Controller (for test purposes)
     func showAlertController(errorTitle: String, errorMessage: String) {

@@ -11,6 +11,8 @@
 
 
 import Foundation
+import Parse
+import ParseFacebookUtilsV4
 
 class UserAccount {
     
@@ -53,6 +55,7 @@ class UserAccount {
     }
     
     func upLoadData() {
+        
         facebookProfileData.getUserDetails { (nameData, genderData, dobData, educationData, emailData, error) -> Void in
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
@@ -63,13 +66,12 @@ class UserAccount {
             self.userEducation = educationData
             self.userEmail = emailData
             
-            let object = PFObject(className: "UserData")
-            object.setObject(self.userName!, forKey: "userName")
-            object.setObject(Int(self.userDOB!)!, forKey: "userAge")
-            object.setObject(self.userGender!, forKey: "userGender")
-            object.setObject(self.userEmail!, forKey: "userEmailAddress")
-            object.setObject(self.userEducation!, forKey: "userEducation")
-            object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+            PFUser.currentUser()!.setObject(self.userName!, forKey: "userName")
+            PFUser.currentUser()!.setObject(Int(self.userDOB!)!, forKey: "userAge")
+            PFUser.currentUser()!.setObject(self.userGender!, forKey: "userGender")
+            PFUser.currentUser()!.setObject(self.userEmail!, forKey: "userEmailAddress")
+            PFUser.currentUser()!.setObject(self.userEducation!, forKey: "userEducationN")
+            PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print("Save successful")
                 } else {
@@ -77,6 +79,21 @@ class UserAccount {
                     //was error?.userInfo, got rid of ? for ! to get rid of optional in consol
                 }
             }
+            
+//            let object = PFObject(className: "UserData")
+//            object.setObject(self.userName!, forKey: "userName")
+//            object.setObject(Int(self.userDOB!)!, forKey: "userAge")
+//            object.setObject(self.userGender!, forKey: "userGender")
+//            object.setObject(self.userEmail!, forKey: "userEmailAddress")
+//            object.setObject(self.userEducation!, forKey: "userEducation")
+//            object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+//                if succeeded {
+//                    print("Save successful")
+//                } else {
+//                    print("Save unsuccessful: \(error!.userInfo)")
+//                    //was error?.userInfo, got rid of ? for ! to get rid of optional in consol
+//                }
+//            }
         }
     }
 

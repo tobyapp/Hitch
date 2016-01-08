@@ -21,16 +21,30 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         //let permissions = ["email"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
+            
             if ((error) != nil) {
                 print("Error : \(error)")
                 self.showAlertController("\(error)")
                 return
             }
+                
+            else {
+            if let user = user {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                }
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
+            }
+        }
             let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
             self.presentViewController(viewController, animated: true, completion: nil)
             
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,14 +186,41 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         //let permissions = ["email"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
+            
             if ((error) != nil) {
                 print("Error : \(error)")
                 self.showAlertController("\(error)")
                 return
             }
-            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-            
+                
+            else {
+                if let user = user {
+                    if user.isNew {
+                        print("User signed up and logged in through Facebook!")
+                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
+                        let user = UserAccount()
+                        //uncomment when want to add data to Parse
+                        dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
+                            user.upLoadData()
+                        })
+                        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
+                        self.presentViewController(viewController, animated: true, completion: nil)
+                        
+                    } else {
+                        print("User logged in through Facebook!")
+                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
+                        let user = UserAccount()
+                        //uncomment when want to add data to Parse
+                        dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
+                            user.upLoadData()
+                        })
+                        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
+                        self.presentViewController(viewController, animated: true, completion: nil)
+                    }
+                } else {
+                    print("Uh oh. The user cancelled the Facebook login.")
+                }
+            }
         }
     }
 }
