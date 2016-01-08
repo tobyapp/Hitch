@@ -33,6 +33,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         mapView.settings.compassButton = true
         
+        // handles location auth globally and locally (locally as in for app, globally as in for whole phone through locaiotnservicesenabled())
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .AuthorizedAlways, .AuthorizedWhenInUse:
@@ -51,7 +52,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,6 +70,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         //presentViewController(gpaViewController, animated: true, completion: nil)
     }
     
+    //presents search bar for user to search, sets UI for search bar view
     func presentSearchBar(){
         let gpaViewController = GooglePlacesAutocomplete (
             apiKey: "AIzaSyBZM-uX4YyOaMd5Fpas8EPBG-zq_T2kRq8",
@@ -84,6 +85,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         presentViewController(gpaViewController, animated: true, completion: nil)
     }
     
+    // handles when auth for locaiton is changed (see docs)
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .Denied {
             manager.stopUpdatingLocation()
@@ -97,7 +99,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
-    
+    // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -105,10 +107,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
-    
-    // Function to display an Alert Controller (for test purposes)
+    // Function to display an Alert Controller
     func showAlertController(errorTitle: String, errorMessage: String) {
-        
         
         let alertController = UIAlertController(
             title: errorTitle,
@@ -129,21 +129,18 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                     UIApplication.sharedApplication().openURL(url)
                 }
         }
+        
         alertController.addAction(openAction)
         dispatch_async(dispatch_get_main_queue(), { 
-        self.presentViewController(alertController, animated: true, completion: nil)
-        })
+            self.presentViewController(alertController, animated: true, completion: nil)
+            })
         }
-    
+    }
 
-
-}
-
-
-
-
+// Extention of current class to incorportate wrapper for googlePlacesApi
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
-        
+    
+    // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
         var longitude: Double = 0.0
@@ -160,19 +157,18 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
        
     }
     
+    // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D) {
         if locationMarker != nil {
             locationMarker.map = nil
         }
         locationMarker = GMSMarker(position: coordinate)
-        
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         //locationMarker.appearAnimation = kGMSMarkerAnimationPop
-        //locationMarker.snippet = "The best place on earth."
         locationMarker.map = mapView
-        
     }
     
+    // excecutes when user taps on marker
 //    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
 ////        let myFirstButton = UIButton()
 ////        myFirstButton.setTitle("✸", forState: .Normal)
@@ -189,6 +185,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.frame.size.width = 200
@@ -204,6 +201,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         return infoWindow
     }
     
+    // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         let popoverContent = (self.storyboard?.instantiateViewControllerWithIdentifier("Popover"))! as UIViewController
         let nav = UINavigationController(rootViewController: popoverContent)
@@ -215,58 +213,5 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         popover!.sourceRect = CGRectMake(100,100,0,0)
         //popover?.passthroughViews = GoogleMapsViewController
         self.presentViewController(nav, animated: true, completion: nil)
-        
-        
-        
-        
-//        let storyboard : UIStoryboard = UIStoryboard(
-//            name: "Main",
-//            bundle: nil)
-//        let menuViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! UIViewController
-//        menuViewController.modalPresentationStyle = .Popover
-//        self.presentViewController(self, animated: true, completion: nil)
-//        let popController: UIPopoverPresentationController = menuViewController.popoverPresentationController!
-//        popController.permittedArrowDirections = .Up
-//        popController.delegate = self
-//        popController.sourceView = self.view!
-//        popController.sourceRect = CGRectMake(30, 50, 10, 10)
-
-        
-        
-
-        
-        
-        // this one is from the latest guide
-//        let popOver = PopoverViewController()
-//        popOver.modalPresentationStyle = UIModalPresentationStyle.None
-//        self.presentViewController(popOver, animated: true, completion: nil)
-//        let popper = popOver.popoverPresentationController
-//        popper?.sourceView = self.view
-//        popper?.delegate = self
-//        //popper?.sourceView = CGRectMake(100,100,0,0)
-        
     }
-    
-//    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-//        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
-//        let nav = UINavigationController(rootViewController: controller.presentedViewController)
-//        nav.topViewController!.navigationItem.leftBarButtonItem = btnDone
-//        return nav
-//    }
-//    
-//    func dismiss() {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
-    
-//    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-//        
-//        print("hello world")
-//        return true
-//    }
-    
-//    func pressed(sender: UIButton) {
-//        print("hello")
-//    }
-
-
 }

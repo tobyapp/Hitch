@@ -49,26 +49,6 @@ class MapViewController: UIViewController {
             }
         }
 
-        
-//        let heightConstraint = NSLayoutConstraint(item: drivingToButton,
-//            attribute: NSLayoutAttribute.Height,
-//            relatedBy: NSLayoutRelation.Equal,
-//            toItem: mapImage,
-//            attribute: NSLayoutAttribute.Height,
-//            multiplier: 0.33, constant: 0)
-//        self.view.addConstraint(heightConstraint)
-//        
-//        let widthConstraint = NSLayoutConstraint(item: drivingToButton,
-//            attribute: NSLayoutAttribute.Width,
-//            relatedBy: NSLayoutRelation.Equal,
-//            toItem: mapImage,
-//            attribute: NSLayoutAttribute.Width,
-//            multiplier: 0.33, constant: 0)
-//        
-//        self.view.addConstraint(widthConstraint)
-
-        
-        // Do any additional setup after loading the view.
         self.addSideMenu(menuButton) 
     }
 
@@ -77,17 +57,6 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func exampleAction(sender: UIButton){
         print("In exampleAction")
     }
