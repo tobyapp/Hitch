@@ -44,8 +44,6 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             
         }
     }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

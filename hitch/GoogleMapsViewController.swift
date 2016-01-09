@@ -21,6 +21,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     var locationMarker: GMSMarker!
     let locationManager = CLLocationManager()
+    var coordDelegate: CoordsProtocol?
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,15 +143,17 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 // Extention of current class to incorportate wrapper for googlePlacesApi
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
     
+    //var coordDelegate: CoordsProtocol?
+    
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
         var longitude: Double = 0.0
-        print("places: \(place.description)")
         place.getDetails { details in
-            print(details.latitude)
             latitude = details.latitude
             longitude = details.longitude
+            NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "longitude")
+            NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "latitude")
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
@@ -203,7 +208,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        //var coordDelegate: CoordsProtocol?
+         coordDelegate?.recieveCoordsFromPreviousVC("hello world")
+
         let popoverContent = (self.storyboard?.instantiateViewControllerWithIdentifier("Popover"))! as UIViewController
+    
         let nav = UINavigationController(rootViewController: popoverContent)
         nav.modalPresentationStyle = UIModalPresentationStyle.Popover
         let popover = nav.popoverPresentationController
@@ -211,7 +220,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         popover!.delegate = self
         popover!.sourceView = self.view
         popover!.sourceRect = CGRectMake(100,100,0,0)
-        //popover?.passthroughViews = GoogleMapsViewController
+        
+        
         self.presentViewController(nav, animated: true, completion: nil)
     }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .Popover
+    }
+
 }

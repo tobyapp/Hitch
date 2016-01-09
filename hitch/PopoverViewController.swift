@@ -11,10 +11,19 @@ import MK
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
 
-class PopoverViewController: UIViewController {
-
+class PopoverViewController: UIViewController, CoordsProtocol {
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "key")
+        let latitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("latitude") as! Double
+        let longitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("longitude") as! Double
+        print("latitude is \(latitude)")
+        print("longitude is \(longitude)")
+        
+        
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
@@ -24,7 +33,7 @@ class PopoverViewController: UIViewController {
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = UIFont(name: "System", size: 15)
-        drivingToButton.addTarget(self, action: "exampleAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        drivingToButton.addTarget(self, action: "drivingTo:", forControlEvents: UIControlEvents.TouchUpInside)
         drivingToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(drivingToButton)
         
@@ -33,7 +42,7 @@ class PopoverViewController: UIViewController {
         hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = UIFont(name: "System", size: 15)
-        hitchinToButton.addTarget(self, action: "exampleAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        hitchinToButton.addTarget(self, action: "hitchTo:", forControlEvents: UIControlEvents.TouchUpInside)
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
@@ -53,14 +62,36 @@ class PopoverViewController: UIViewController {
     }
     
     // Example action, need to change
-    func exampleAction(sender: UIButton){
+    func exampleAction(sender: UIButton) {
         print("In exampleAction")
     }
     
     // Cancel button to go back to previous view (GoogleMapsViewController)
-    func cancel(sender: UIButton){
+    func cancel(sender: UIButton) {
         print("before dissmiss")
         self.dismissViewControllerAnimated(true, completion: nil)
         print("cancle")
     }
+    
+    func drivingTo(sender: UIButton) {
+    print("hey")
+    }
+    
+    func hitchTo(sender: UIButton) {
+        print("ho")
+    }
+    
+    func recieveCoordsFromPreviousVC(myTestString: String) {
+        print(myTestString)
+    }
+    
 }
+
+protocol CoordsProtocol {
+    func recieveCoordsFromPreviousVC(myTestString: String)
+}
+
+
+
+
+

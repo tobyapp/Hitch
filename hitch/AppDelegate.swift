@@ -41,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //initalises UserAccount class whihc grabs all the facebook data ready for the app
             let user = UserAccount()
             //uncomment when want to add data to Parse
-            dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
-            user.upLoadData()
-                 })
+//            dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
+//            user.upLoadData()
+//                 })
             
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("homePage") as! SWRevealViewController
             initialViewController = vc

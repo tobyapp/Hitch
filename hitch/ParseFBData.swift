@@ -47,6 +47,7 @@ class ParseFBData {
     func getUserDetails(completion: (nameData: String?, genderData: String?, dobData: String?, educationData: String?, emailData: String?, error: NSError?) -> Void) {
         //let moc = self.managedObjectContext
         //print(moc)
+        print("getting data form fb")
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, gender, birthday, education, email"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
