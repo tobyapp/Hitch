@@ -79,24 +79,20 @@ class UserAccount {
                     //was error?.userInfo, got rid of ? for ! to get rid of optional in consol
                 }
             }
-            
-//            let object = PFObject(className: "UserData")
-//            object.setObject(self.userName!, forKey: "userName")
-//            object.setObject(Int(self.userDOB!)!, forKey: "userAge")
-//            object.setObject(self.userGender!, forKey: "userGender")
-//            object.setObject(self.userEmail!, forKey: "userEmailAddress")
-//            object.setObject(self.userEducation!, forKey: "userEducation")
-//            object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
-//                if succeeded {
-//                    print("Save successful")
-//                } else {
-//                    print("Save unsuccessful: \(error!.userInfo)")
-//                    //was error?.userInfo, got rid of ? for ! to get rid of optional in consol
-//                }
-//            }
         }
     }
 
-
+    func addLocationData(route: String, userType: String) {
+        let object = PFObject(className: "UserRoutes")
+        object.setObject(route, forKey: "UserRoute")
+        object.setObject(userType, forKey: "UserType")
+        object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+            if succeeded {
+                print("Save successful")
+            } else {
+                print("Save unsuccessful: \(error!.userInfo)")
+            }
+        }
+    }
 }
 

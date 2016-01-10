@@ -53,3 +53,38 @@ import Foundation
 //            multiplier: 0.33, constant: 0)
 //
 //        self.view.addConstraint(widthConstraint)
+
+
+
+// From UserAcccount()
+
+//            let object = PFObject(className: "UserData")
+//            object.setObject(self.userName!, forKey: "userName")
+//            object.setObject(Int(self.userDOB!)!, forKey: "userAge")
+//            object.setObject(self.userGender!, forKey: "userGender")
+//            object.setObject(self.userEmail!, forKey: "userEmailAddress")
+//            object.setObject(self.userEducation!, forKey: "userEducation")
+//            object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+//                if succeeded {
+//                    print("Save successful")
+//                } else {
+//                    print("Save unsuccessful: \(error!.userInfo)")
+//                    //was error?.userInfo, got rid of ? for ! to get rid of optional in consol
+//                }
+//            }
+
+
+
+// From GoogleMapsViewController (in the extention part which deals with markers and routes and directions etc
+
+// excecutes when user taps on marker
+//    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+////        let myFirstButton = UIButton()
+////        myFirstButton.setTitle("✸", forState: .Normal)
+////        myFirstButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+////        myFirstButton.frame = CGRectMake(15, -50, 300, 500)
+////        myFirstButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+////
+////        self.view.addSubview(myFirstButton)
+//        return true
+//    }

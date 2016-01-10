@@ -19,6 +19,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         presentSearchBar()
     }
     
+    var account = UserAccount()
     var locationMarker: GMSMarker!
     let locationManager = CLLocationManager()           
 
@@ -101,10 +102,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("users location: \(manager.location!.coordinate)")
         if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
-            print("longtiude:")
-            print(locValue.longitude)
             NSUserDefaults.standardUserDefaults().setObject(locValue.longitude, forKey: "originLongitude")
             NSUserDefaults.standardUserDefaults().setObject(locValue.latitude, forKey: "originLatitude")
         }
@@ -147,7 +145,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
 // Extention of current class to incorportate wrapper for googlePlacesApi
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate, SendDataBackProtocol {
-
+    
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
@@ -174,19 +172,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         //locationMarker.appearAnimation = kGMSMarkerAnimationPop
         locationMarker.map = mapView
     }
-    
-    // excecutes when user taps on marker
-//    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-////        let myFirstButton = UIButton()
-////        myFirstButton.setTitle("✸", forState: .Normal)
-////        myFirstButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-////        myFirstButton.frame = CGRectMake(15, -50, 300, 500)
-////        myFirstButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-////        
-////        self.view.addSubview(myFirstButton)
-//        print("hello")
-//        return true
-//    }
     
     func placeViewClosed() {
         dismissViewControllerAnimated(true, completion: nil)
@@ -231,11 +216,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
     func sendRouteBack(route: String, userType: String) {
-        print("route: \(route)")
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location")
             return
         } else {
+        account.addLocationData(route, userType: userType)
         drawRoute(route, userType: userType)
         }
     }
@@ -258,7 +243,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             routePolyline.spans = [GMSStyleSpan(style: standardline)]
         }
         routePolyline.map = mapView
-        print("done with lines")
     }
 
 }
