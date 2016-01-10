@@ -20,11 +20,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     var locationMarker: GMSMarker!
-    let locationManager = CLLocationManager()
-    var coordDelegate: CoordsProtocol?
+    let locationManager = CLLocationManager()           
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Hitch Map View"
@@ -104,6 +101,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
+            NSUserDefaults.standardUserDefaults().setObject(locValue.longitude, forKey: "originLongitude")
+            NSUserDefaults.standardUserDefaults().setObject(locValue.latitude, forKey: "originLatitude")
+        }
+        
         if let location = locations.first {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
@@ -142,9 +145,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
 // Extention of current class to incorportate wrapper for googlePlacesApi
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
-    
-    //var coordDelegate: CoordsProtocol?
-    
+
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
         var latitude: Double = 0.0
@@ -152,14 +153,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         place.getDetails { details in
             latitude = details.latitude
             longitude = details.longitude
-            NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "longitude")
-            NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "latitude")
+            NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "destinationLongitude")
+            NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "destinationLatitude")
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
             self.placeMarker(location)
         }
-       
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
@@ -196,7 +196,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         infoWindow.frame.size.width = 200
         infoWindow.frame.size.height = 50
         
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(5, 5, 190, 40))
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
         drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
@@ -208,11 +208,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        //var coordDelegate: CoordsProtocol?
-         coordDelegate?.recieveCoordsFromPreviousVC("hello world")
 
         let popoverContent = (self.storyboard?.instantiateViewControllerWithIdentifier("Popover"))! as UIViewController
-    
         let nav = UINavigationController(rootViewController: popoverContent)
         nav.modalPresentationStyle = UIModalPresentationStyle.Popover
         let popover = nav.popoverPresentationController
@@ -220,8 +217,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         popover!.delegate = self
         popover!.sourceView = self.view
         popover!.sourceRect = CGRectMake(100,100,0,0)
-        
-        
         self.presentViewController(nav, animated: true, completion: nil)
     }
     

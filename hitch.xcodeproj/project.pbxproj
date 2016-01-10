@@ -43,6 +43,7 @@
 		52CB89F91C3F09EB0020959B /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89F81C3F09EB0020959B /* PopoverViewController.swift */; };
 		52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FA1C3F32720020959B /* OldCodeForFutureUse.swift */; };
 		52CB89FD1C3FFC540020959B /* TravleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FC1C3FFC540020959B /* TravleData.swift */; };
+		52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FE1C4272630020959B /* RouteCalculator.swift */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E317F51C29802A00635E10 /* UserData.xcdatamodeld */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
@@ -95,6 +96,7 @@
 		52CB89F81C3F09EB0020959B /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		52CB89FA1C3F32720020959B /* OldCodeForFutureUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldCodeForFutureUse.swift; sourceTree = "<group>"; };
 		52CB89FC1C3FFC540020959B /* TravleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravleData.swift; sourceTree = "<group>"; };
+		52CB89FE1C4272630020959B /* RouteCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculator.swift; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317F61C29802A00635E10 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				52EC93901C2850E8007CF8F4 /* Bridging-Header.h */,
 				5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */,
 				52E317F51C29802A00635E10 /* UserData.xcdatamodeld */,
+				52CB89FE1C4272630020959B /* RouteCalculator.swift */,
 				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
 				52E296281C39658200C493CC /* Data getting + parsing */,
@@ -437,6 +440,7 @@
 				52EEDF911C333BAF00C64EBF /* UserAccount.swift in Sources */,
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
+				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
 				52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,

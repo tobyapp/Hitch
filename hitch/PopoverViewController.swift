@@ -11,20 +11,34 @@ import MK
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
 
-class PopoverViewController: UIViewController, CoordsProtocol {
+class PopoverViewController: UIViewController {
  
+    var routeCalc = RouteCalculator()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         //NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "key")
-        let latitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("latitude") as! Double
-        let longitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("longitude") as! Double
-        print("latitude is \(latitude)")
-        print("longitude is \(longitude)")
+        let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
+        let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
+        let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
+        let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
+        
+        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
+         
         
         
+            
+         print(results)
+            
+        })
         
+            
+//            resultHandler: (data: String?) -> ()) -> () {
+        
+            
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
@@ -81,17 +95,4 @@ class PopoverViewController: UIViewController, CoordsProtocol {
         print("ho")
     }
     
-    func recieveCoordsFromPreviousVC(myTestString: String) {
-        print(myTestString)
-    }
-    
 }
-
-protocol CoordsProtocol {
-    func recieveCoordsFromPreviousVC(myTestString: String)
-}
-
-
-
-
-
