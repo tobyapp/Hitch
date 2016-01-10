@@ -20,7 +20,7 @@ class PopoverViewController: UIViewController {
     let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
     let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
     let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
-    let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
+    let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLongitude") as! Double
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,5 +89,5 @@ class PopoverViewController: UIViewController {
 
 protocol SendDataBackProtocol
 {
-    func sendRouteBack(value : String, userType: String)
+    func sendRouteBack(route : String, userType: String)
 }

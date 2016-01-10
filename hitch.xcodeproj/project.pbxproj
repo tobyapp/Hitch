@@ -175,8 +175,7 @@
 				52EC93901C2850E8007CF8F4 /* Bridging-Header.h */,
 				5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */,
 				52E317F51C29802A00635E10 /* UserData.xcdatamodeld */,
-				52CB89FE1C4272630020959B /* RouteCalculator.swift */,
-				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
+				52CB8A001C42F9C40020959B /* Modle's */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
 				52E296281C39658200C493CC /* Data getting + parsing */,
 				52E296291C39659C00C493CC /* ViewControllers */,
@@ -208,6 +207,15 @@
 			name = "Old files";
 			sourceTree = "<group>";
 		};
+		52CB8A001C42F9C40020959B /* Modle's */ = {
+			isa = PBXGroup;
+			children = (
+				52CB89FE1C4272630020959B /* RouteCalculator.swift */,
+				5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */,
+			);
+			name = "Modle's";
+			sourceTree = "<group>";
+		};
 		52E296281C39658200C493CC /* Data getting + parsing */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,10 +229,11 @@
 		52E296291C39659C00C493CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
+				52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */,
 				52E317FE1C29B50600635E10 /* profile */,
 				52E2962A1C39661100C493CC /* FB login */,
 				52E2962F1C39BE2D00C493CC /* Map */,
-				52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -243,7 +252,6 @@
 				52CB89F81C3F09EB0020959B /* PopoverViewController.swift */,
 				52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */,
 				52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */,
-				5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */,
 				52AA7F3A1C28A5B50099352F /* MapViewController.swift */,
 			);
 			name = Map;

@@ -101,8 +101,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        print("users location: \(manager.location!.coordinate)")
         if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
+            print("longtiude:")
+            print(locValue.longitude)
             NSUserDefaults.standardUserDefaults().setObject(locValue.longitude, forKey: "originLongitude")
             NSUserDefaults.standardUserDefaults().setObject(locValue.latitude, forKey: "originLatitude")
         }
@@ -208,7 +210,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! PopoverViewController
@@ -228,18 +229,36 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         return .Popover
     }
     
-    func sendRouteBack(value: String, userType: String) {
-        //print(value)
-        //do something with userType
-        //print(userType)
+    // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
+    func sendRouteBack(route: String, userType: String) {
+        print("route: \(route)")
+        if route == "No directions found" {
+            showAlertController("No route found", errorMessage: "No route found, please try another location")
+            return
+        } else {
+        drawRoute(route, userType: userType)
+        }
     }
     
-    func drawRoute(route: String, UserType: String) {
-        //let path = GMSMutablePath()
-        
+    // Draws route on map (colour changes depending on user type)
+    func drawRoute(route: String, userType: String) {
+        mapView.clear()
         let path: GMSPath = GMSPath(fromEncodedPath: route)
         let routePolyline = GMSPolyline(path: path)
+        routePolyline.strokeWidth = 5.0
+        switch userType {
+            case "driver":
+                let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
+                routePolyline.spans = [GMSStyleSpan(style: driverLine)]
+        case "hitcher":
+            let hitcherLine = GMSStrokeStyle.solidColor(purple)
+            routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
+        default:
+            let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
+            routePolyline.spans = [GMSStyleSpan(style: standardline)]
+        }
         routePolyline.map = mapView
+        print("done with lines")
     }
 
 }
