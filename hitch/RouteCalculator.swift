@@ -32,6 +32,7 @@ class RouteCalculator {
                     
                 } else {
                     let routes = json["routes"].array
+                    //print(routes)
                     if routes != nil{
                         let overViewPolyLine = routes![0]["overview_polyline"]["points"].string
                         if overViewPolyLine != nil{

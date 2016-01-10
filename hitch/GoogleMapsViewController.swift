@@ -49,7 +49,18 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         else {
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!")
         }
+        let path = GMSMutablePath()
+        path.addLatitude(-33.866, longitude:151.195) // Sydney
+        path.addLatitude(-18.142, longitude:178.431) // Fiji
+        path.addLatitude(21.291, longitude:-157.821) // Hawaii
+        path.addLatitude(37.423, longitude:-122.091) // Mountain View
         
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeColor = UIColor.blueColor()
+        polyline.strokeWidth = 5.0
+        polyline.map = mapView
+        
+        self.view = mapView
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,7 +155,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
 
 // Extention of current class to incorportate wrapper for googlePlacesApi
-extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
+extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate, SendDataBackProtocol {
 
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
@@ -209,7 +220,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
 
-        let popoverContent = (self.storyboard?.instantiateViewControllerWithIdentifier("Popover"))! as UIViewController
+        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! PopoverViewController
         let nav = UINavigationController(rootViewController: popoverContent)
         nav.modalPresentationStyle = UIModalPresentationStyle.Popover
         let popover = nav.popoverPresentationController
@@ -217,11 +230,36 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         popover!.delegate = self
         popover!.sourceView = self.view
         popover!.sourceRect = CGRectMake(100,100,0,0)
+        //popover!.delegate = self
+        popoverContent.delegate = self
         self.presentViewController(nav, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .Popover
+    }
+    
+    func sendRouteBack(value: String, userType: String) {
+        //print(value)
+        //do something with userType
+        //print(userType)
+    }
+    
+    func drawRoute(route: String, UserType: String) {
+        //let path = GMSMutablePath()
+        
+        let path = GMSMutablePath()
+        path.addLatitude(-33.866, longitude:151.195) // Sydney
+        path.addLatitude(-18.142, longitude:178.431) // Fiji
+        path.addLatitude(21.291, longitude:-157.821) // Hawaii
+        path.addLatitude(37.423, longitude:-122.091) // Mountain View
+        
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeColor = UIColor.blueColor()
+        polyline.strokeWidth = 5.0
+        polyline.map = mapView
+        
+        self.view = mapView
     }
 
 }

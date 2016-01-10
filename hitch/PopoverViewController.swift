@@ -14,29 +14,16 @@ import MK
 class PopoverViewController: UIViewController {
  
     var routeCalc = RouteCalculator()
+    var delegate : SendDataBackProtocol?
     
+    // Origin + Destination Coords, need to change data passing between V/C's by using protocols
+    let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
+    let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
+    let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
+    let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "key")
-        let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
-        let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
-        let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
-        let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
-        
-        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-         
-        
-        
-            
-         print(results)
-            
-        })
-        
-            
-//            resultHandler: (data: String?) -> ()) -> () {
         
             
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
@@ -75,24 +62,32 @@ class PopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Example action, need to change
-    func exampleAction(sender: UIButton) {
-        print("In exampleAction")
-    }
-    
     // Cancel button to go back to previous view (GoogleMapsViewController)
     func cancel(sender: UIButton) {
-        print("before dissmiss")
         self.dismissViewControllerAnimated(true, completion: nil)
-        print("cancle")
+    }
+    
+    func cancel() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func drivingTo(sender: UIButton) {
-    print("hey")
+        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
+            self.delegate?.sendRouteBack(results!, userType: "driver")
+            self.cancel()
+        })
     }
     
     func hitchTo(sender: UIButton) {
-        print("ho")
+        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
+            self.delegate?.sendRouteBack(results!, userType: "hitcher")
+            self.cancel()
+        })
     }
-    
+}
+
+
+protocol SendDataBackProtocol
+{
+    func sendRouteBack(value : String, userType: String)
 }
