@@ -49,18 +49,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         else {
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!")
         }
-        let path = GMSMutablePath()
-        path.addLatitude(-33.866, longitude:151.195) // Sydney
-        path.addLatitude(-18.142, longitude:178.431) // Fiji
-        path.addLatitude(21.291, longitude:-157.821) // Hawaii
-        path.addLatitude(37.423, longitude:-122.091) // Mountain View
         
-        let polyline = GMSPolyline(path: path)
-        polyline.strokeColor = UIColor.blueColor()
-        polyline.strokeWidth = 5.0
-        polyline.map = mapView
-        
-        self.view = mapView
     }
 
     override func didReceiveMemoryWarning() {
@@ -248,18 +237,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     func drawRoute(route: String, UserType: String) {
         //let path = GMSMutablePath()
         
-        let path = GMSMutablePath()
-        path.addLatitude(-33.866, longitude:151.195) // Sydney
-        path.addLatitude(-18.142, longitude:178.431) // Fiji
-        path.addLatitude(21.291, longitude:-157.821) // Hawaii
-        path.addLatitude(37.423, longitude:-122.091) // Mountain View
-        
-        let polyline = GMSPolyline(path: path)
-        polyline.strokeColor = UIColor.blueColor()
-        polyline.strokeWidth = 5.0
-        polyline.map = mapView
-        
-        self.view = mapView
+        let path: GMSPath = GMSPath(fromEncodedPath: route)
+        let routePolyline = GMSPolyline(path: path)
+        routePolyline.map = mapView
     }
 
 }
