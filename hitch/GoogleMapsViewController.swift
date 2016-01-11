@@ -19,6 +19,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         presentSearchBar()
     }
     
+    var userRoutes = RetrieveDataFromBackEnd()
     var account = UserAccount()
     var locationMarker: GMSMarker!
     let locationManager = CLLocationManager()           
@@ -33,6 +34,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         mapView.camera = camera
         
         mapView.settings.compassButton = true
+        
+        userRoutes.retrieveRoutes()
         
         // handles location auth globally and locally (locally as in for app, globally as in for whole phone through locaiotnservicesenabled())
         if CLLocationManager.locationServicesEnabled() {
