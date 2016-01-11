@@ -177,7 +177,7 @@
 				52E317F51C29802A00635E10 /* UserData.xcdatamodeld */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
 				52CB8A001C42F9C40020959B /* Modle's */,
-				52E296281C39658200C493CC /* Data getting + parsing */,
+				52E296281C39658200C493CC /* Parse Data */,
 				52E296291C39659C00C493CC /* ViewControllers */,
 				5257CC3D1C3DABB400B85378 /* Old files */,
 				52E317F91C29B3E500635E10 /* Extrafiles */,
@@ -217,13 +217,13 @@
 			name = "Modle's";
 			sourceTree = "<group>";
 		};
-		52E296281C39658200C493CC /* Data getting + parsing */ = {
+		52E296281C39658200C493CC /* Parse Data */ = {
 			isa = PBXGroup;
 			children = (
 				52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */,
 				52EEDF901C333BAF00C64EBF /* UserAccount.swift */,
 			);
-			name = "Data getting + parsing";
+			name = "Parse Data";
 			sourceTree = "<group>";
 		};
 		52E296291C39659C00C493CC /* ViewControllers */ = {

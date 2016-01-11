@@ -40,6 +40,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             for object in results! {
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
+                
+                //print(userType)
                 self.drawRoute(route, userType: userType)
             }
         })
