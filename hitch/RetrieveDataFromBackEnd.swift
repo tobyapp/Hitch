@@ -40,7 +40,7 @@ class RetrieveDataFromBackEnd {
                             userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
                             userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
                             userRelation.setObject(userName!, forKey: "userName")
-                            userRelation.setObject(userID!, forKey: "userID")
+                            //userRelation.setObject(userID!, forKey: "userID")
                             // Appends all the required info to PFOject array
                         	routeAndUserObjects.append(userRelation)
 

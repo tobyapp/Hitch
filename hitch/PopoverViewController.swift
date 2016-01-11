@@ -73,14 +73,14 @@ class PopoverViewController: UIViewController {
     
     func drivingTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver")
+            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude, destinationLongitude: self.destinationLongitude)
             self.cancel()
         })
     }
     
     func hitchTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher")
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude, destinationLongitude: self.destinationLongitude)
             self.cancel()
         })
     }
@@ -89,5 +89,5 @@ class PopoverViewController: UIViewController {
 
 protocol SendDataBackProtocol
 {
-    func sendRouteBack(route : String, userType: String)
+    func sendRouteBack(route : String, userType: String, destinationLatitude: Double, destinationLongitude: Double)
 }
