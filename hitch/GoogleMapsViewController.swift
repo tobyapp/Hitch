@@ -35,8 +35,15 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         mapView.settings.compassButton = true
         
-        userRoutes.retrieveRoutes()
-        
+        // Draws routes on map from back end database (Parse)
+        userRoutes.retrieveRoutes({results in
+            for object in results! {
+                let userType = ("\(object.objectForKey("UserType")!)")
+                let route = ("\(object.objectForKey("UserRoute")!)")
+                self.drawRoute(route, userType: userType)
+            }
+        })
+    
         // handles location auth globally and locally (locally as in for app, globally as in for whole phone through locaiotnservicesenabled())
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
@@ -230,7 +237,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
-        mapView.clear()
+        //mapView.clear()
         let path: GMSPath = GMSPath(fromEncodedPath: route)
         let routePolyline = GMSPolyline(path: path)
         routePolyline.strokeWidth = 5.0

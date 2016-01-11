@@ -11,31 +11,37 @@ import Parse
 
 class RetrieveDataFromBackEnd {
     
-    func retrieveRoutes() {
+    func retrieveRoutes(resultHandler: (routeObjects: [PFObject]?) -> ()) {
+        //, userObjects: PFObject?
+//resultHandler: (directions: String?) -> ()) -> ()
 
-    
     let query = PFQuery(className:"UserRoutes")
     //query.whereKey("UserType", equalTo:"driver")
     query.findObjectsInBackgroundWithBlock {
         (objects: [PFObject]?, error: NSError?) -> Void in
     
         if error == nil {
-            // The find succeeded.
-            print("Successfully retrieved \(objects!.count) objects.")
-            // Do something with the found objects
+
             if let objects = objects {
                 for object in objects {
                     
-                    print(object.objectForKey("UserType"))
+                    print(object.objectForKey("User"))
+                    let user = object.objectForKey("User")
+                    print(user)
                     
                     
-                    
-                    
-      
+                    let userQuery = object["User"] as! PFObject
+                    userQuery.fetchIfNeededInBackgroundWithBlock {
+                        (users: PFObject?, error: NSError?) -> Void in
+                        let title = user?["userEmailAddress"]
+                        print(title)
+                        resultHandler(routeObjects: objects)
+                    }
                     
                     
                     
                 }
+//                resultHandler(routeObjects: objects, userObjects: users)
             }
         } else {
             // Log details of the failure
