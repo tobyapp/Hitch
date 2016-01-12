@@ -30,10 +30,18 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.title = "Hitch'n Map!"
         self.mapView.delegate = self
         
+//        if let nav_height = self.navigationController?.navigationBar.frame.height
+//        {
+//            let status_height = UIApplication.sharedApplication().statusBarFrame.size.height
+//            
+//            mapView.padding = UIEdgeInsetsMake (nav_height+status_height,0,0,0);
+//        }
+        
         let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
         mapView.camera = camera
         
         mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = true
         
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
