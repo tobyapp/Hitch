@@ -38,22 +38,16 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
             for object in results! {
-                //print(object)
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
-                print("user type is \(userType)")
+                let userName = ("\(object.objectForKey("UserName")!)")
+                let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
+                let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
+
+                let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
-                let destinationLatitude = ("\(object.objectForKey("DestinationLatitude")!)")
-                print("destinationLatitude  :   \(destinationLatitude)")
-                //let destinationLatitude = 10.05
-                let destinationLongitude = ("\(object.objectForKey("DestinationLongitude")!)")
-                 print("destinationLongitude  :   \(destinationLongitude)")
-                //let destinationLongitude = 15.8
-                
-                let location = CLLocationCoordinate2D(latitude: Double(destinationLatitude)!, longitude: Double(destinationLongitude)!)
-                print(object)
                 self.drawRoute(route, userType: userType)
-                self.placeMarker(location, userName: "hello", userType: userType)
+                self.placeMarker(location, userName: userName, userType: userType)
             }
         })
  
@@ -198,22 +192,16 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String) {
-        print("in app user is of type \(coordinate)")
-        
+
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
         case "hitcher":
-            print("in app user is of type \(userType)")
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
         }
-        
-        
-        //locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
-        //locationMarker.appearAnimation = kGMSMarkerAnimationPop
         locationMarker.map = mapView
     }
     
