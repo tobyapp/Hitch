@@ -25,24 +25,32 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
+                        //print(object)
             
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
+                        
+//                        let destinationLatitude = object.objectForKey("DestinationLatitude")
+//                        let destinationLongitude = object.objectForKey("DestinationLongitude")
+//                        print(destinationLongitude)
                         
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
                         
                             let userName = user?["userName"]
-                            let userID = user?["objectId"]
+                            //let userID = user?["objectId"]
                             let userRelation = PFObject (className: "UserRelations")
                         
+                            userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
+                            userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
                             userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
                             userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
                             userRelation.setObject(userName!, forKey: "userName")
                             //userRelation.setObject(userID!, forKey: "userID")
                             // Appends all the required info to PFOject array
                         	routeAndUserObjects.append(userRelation)
+                            print(userRelation)
 
                         	resultHandler(routeObjects: routeAndUserObjects)
                         }
