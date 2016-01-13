@@ -94,8 +94,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         )
         
         gpaViewController.placeDelegate = self
-        
-        //presentViewController(gpaViewController, animated: true, completion: nil)
+
     }
     
     //presents search bar for user to search, sets UI for search bar view
@@ -217,16 +216,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
         }
-        
-        
-        
-        locationMarker.snippet = "click here to see thier profile"
-        //print(locationMarker.title)
+
+        //locationMarker.snippet = "click here to see thier profile"
         locationMarker.map = mapView
 
-        
-        
-        // in here when placing marker, call another function to display info
     }
     
     func placeViewClosed() {
@@ -261,29 +254,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             print(label.text)
             infoWindow.addSubview(label)
         }
-        
-        
-        
-        
-        
-
-        
-        
-//        infoWindow.proCode = marker.snippet
-//        infoWindow.title.text = marker.title
-        //infoWindow.title.layer.cornerRadius = 10
-        //infoWindow.label.text = "hello world"
-        //print(marker.title)
-       
-        
         return infoWindow
-//        }
-//        else if !plottedByUser {
-//            let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
-//            infoWindow.frame.size.width = 200
-//            infoWindow.frame.size.height = 50
-//        }
-//        return
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
@@ -306,6 +277,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         else if !plottedByUser {
             print("not by uer hahahahahaha (insert shit message here)")
+            //need to bring pop up displaying user and details
         }
     }
     
