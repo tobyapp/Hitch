@@ -240,6 +240,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         infoWindow.frame.size.width = 200
         infoWindow.frame.size.height = 50
         infoWindow.layer.cornerRadius = 10
+        infoWindow.backgroundColor = purple
         
         if plottedByUser {
             let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
@@ -252,9 +253,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else if !plottedByUser {
-            let label = UILabel(frame: CGRectMake(0, 0, 200, 50))
+            let label = UILabel(frame: CGRectMake(0, 0, 197, 47))
             label.textAlignment = .Center
             label.text = marker.title
+            label.textColor = UIColor.whiteColor()
+            label.layer.cornerRadius = 10
             print(label.text)
             infoWindow.addSubview(label)
         }
