@@ -44,6 +44,7 @@
 		52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FA1C3F32720020959B /* OldCodeForFutureUse.swift */; };
 		52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FE1C4272630020959B /* RouteCalculator.swift */; };
 		52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */; };
+		52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB8A051C46D8060020959B /* UserInfoWindow.xib */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E317F51C29802A00635E10 /* UserData.xcdatamodeld */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
@@ -97,6 +98,7 @@
 		52CB89FA1C3F32720020959B /* OldCodeForFutureUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldCodeForFutureUse.swift; sourceTree = "<group>"; };
 		52CB89FE1C4272630020959B /* RouteCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculator.swift; sourceTree = "<group>"; };
 		52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveDataFromBackEnd.swift; sourceTree = "<group>"; };
+		52CB8A051C46D8060020959B /* UserInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoWindow.xib; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317F61C29802A00635E10 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				5206AD911C273B3C00A1EFAD /* Main.storyboard */,
 				52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */,
+				52CB8A051C46D8060020959B /* UserInfoWindow.xib */,
 				52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */,
 				5223121E1C3B0AB800AF218A /* HitchLaunchScreen.storyboard */,
 			);
@@ -375,6 +378,7 @@
 				5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */,
 				5223121F1C3B0AB800AF218A /* HitchLaunchScreen.storyboard in Resources */,
 				52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */,
+				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

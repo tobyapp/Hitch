@@ -208,15 +208,18 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
+            locationMarker.title = "Driver  :   \(userName)"
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
+            locationMarker.title = "Hitcher  :   \(userName)"
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+            locationMarker.title = "Driver/Hitcher  :   unkown"
         }
         
         
-        locationMarker.title = "hello world this is from Toby or john"
-        locationMarker.snippet = "test"
+        
+        locationMarker.snippet = "click here to see thier profile"
         //print(locationMarker.title)
         locationMarker.map = mapView
 
@@ -232,10 +235,21 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
 //        if plottedByUser {
-        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("UserInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.frame.size.width = 200
-        infoWindow.frame.size.height = 50
-//        
+        infoWindow.frame.size.height = 100
+        infoWindow.layer.cornerRadius = 10
+        
+        let label = UILabel(frame: CGRectMake(5, 5, 100, 50))
+        label.textAlignment = .Center
+        label.text = marker.title
+        print(label.text)
+        infoWindow.addSubview(label)
+        //self.infoWindow.addSubview(label)
+        
+        
+        
+        
 //        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
 //        drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
 //        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
@@ -247,12 +261,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         
 //        infoWindow.proCode = marker.snippet
 //        infoWindow.title.text = marker.title
-//        infoWindow.title.layer.cornerRadius = 10
+        //infoWindow.title.layer.cornerRadius = 10
         //infoWindow.label.text = "hello world"
-        print(marker.title)
-        infoWindow.layer.cornerRadius = 10
-        //infoWindow.frame = CGRectMake(infoWindow.frame.minX,infoWindow.frame.minY-100,infoWindow.frame.width,infoWindow.frame.height)
-        
+        //print(marker.title)
+       
         
         return infoWindow
 //        }
