@@ -199,6 +199,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         //locationMarker.appearAnimation = kGMSMarkerAnimationPop
         locationMarker.map = mapView
+        plottedByUser = true
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
@@ -208,13 +209,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
-            locationMarker.title = "Driver  :   \(userName)"
+            locationMarker.title = "Driver : \(userName)"
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
-            locationMarker.title = "Hitcher  :   \(userName)"
+            locationMarker.title = "Hitcher : \(userName)"
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
-            locationMarker.title = "Driver/Hitcher  :   unkown"
+            locationMarker.title = "Driver/Hitcher : unkown"
         }
         
         
@@ -234,29 +235,35 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-//        if plottedByUser {
-        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("UserInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+
+        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.frame.size.width = 200
-        infoWindow.frame.size.height = 100
+        infoWindow.frame.size.height = 50
         infoWindow.layer.cornerRadius = 10
         
-        let label = UILabel(frame: CGRectMake(5, 5, 100, 50))
-        label.textAlignment = .Center
-        label.text = marker.title
-        print(label.text)
-        infoWindow.addSubview(label)
-        //self.infoWindow.addSubview(label)
+        if plottedByUser {
+            let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
+            drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
+            drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
+            drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
+            drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+            infoWindow.addSubview(drivingToButton)
+            
+        }
+            
+        else if !plottedByUser {
+            let label = UILabel(frame: CGRectMake(0, 0, 200, 50))
+            label.textAlignment = .Center
+            label.text = marker.title
+            print(label.text)
+            infoWindow.addSubview(label)
+        }
         
         
         
         
-//        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
-//        drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
-//        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-//        drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
-//        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
-//        
-//        infoWindow.addSubview(drivingToButton)
+        
+
         
         
 //        infoWindow.proCode = marker.snippet
@@ -290,7 +297,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         popover!.sourceRect = CGRectMake(100,100,0,0)
         //popover!.delegate = self
         popoverContent.delegate = self
+        plottedByUser = false
         self.presentViewController(nav, animated: true, completion: nil)
+        marker.map = nil
         }
         else if !plottedByUser {
             print("not by uer hahahahahaha (insert shit message here)")
