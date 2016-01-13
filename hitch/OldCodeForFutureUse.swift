@@ -88,3 +88,24 @@ import Foundation
 ////        self.view.addSubview(myFirstButton)
 //        return true
 //    }
+
+
+
+// Presents custom window info box above marker
+//func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+//    //        if plottedByUser {
+//    let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+//    infoWindow.frame.size.width = 200
+//    infoWindow.frame.size.height = 50
+//    
+//    let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
+//    drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
+//    drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
+//    drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
+//    drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+//    
+//    infoWindow.addSubview(drivingToButton)
+//    
+//    return infoWindow
+//    
+//}

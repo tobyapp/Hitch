@@ -22,7 +22,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var userRoutes = RetrieveDataFromBackEnd()
     var account = UserAccount()
     var locationMarker: GMSMarker!
-    let locationManager = CLLocationManager()           
+    let locationManager = CLLocationManager()
+    var plottedByUser = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         self.title = "Hitch'n Map!"
         self.mapView.delegate = self
         
-//        if let nav_height = self.navigationController?.navigationBar.frame.height
-//        {
-//            let status_height = UIApplication.sharedApplication().statusBarFrame.size.height
-//            
-//            mapView.padding = UIEdgeInsetsMake (nav_height+status_height,0,0,0);
-//        }
+        // To make the compas button viewable
+        if let navBarHeight = self.navigationController?.navigationBar.frame.height
+        {
+            let compasButtonHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+            mapView.padding = UIEdgeInsetsMake(navBarHeight+compasButtonHeight,0,0,0);
+        }
         
         let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
         mapView.camera = camera
@@ -55,6 +56,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
+                self.plottedByUser = false
                 self.placeMarker(location, userName: userName, userType: userType)
             }
         })
@@ -183,6 +185,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
+            self.plottedByUser = true
             self.placeMarker(location)
         }
     }
@@ -210,7 +213,16 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
         }
+        
+        
+        locationMarker.title = "hello world this is from Toby or john"
+        locationMarker.snippet = "test"
+        //print(locationMarker.title)
         locationMarker.map = mapView
+
+        
+        
+        // in here when placing marker, call another function to display info
     }
     
     func placeViewClosed() {
@@ -219,23 +231,42 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+//        if plottedByUser {
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.frame.size.width = 200
         infoWindow.frame.size.height = 50
+//        
+//        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
+//        drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
+//        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
+//        drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
+//        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+//        
+//        infoWindow.addSubview(drivingToButton)
         
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
-        drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
-        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
-        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
-        infoWindow.addSubview(drivingToButton)
-
+        
+//        infoWindow.proCode = marker.snippet
+//        infoWindow.title.text = marker.title
+//        infoWindow.title.layer.cornerRadius = 10
+        //infoWindow.label.text = "hello world"
+        print(marker.title)
+        infoWindow.layer.cornerRadius = 10
+        //infoWindow.frame = CGRectMake(infoWindow.frame.minX,infoWindow.frame.minY-100,infoWindow.frame.width,infoWindow.frame.height)
+        
+        
         return infoWindow
+//        }
+//        else if !plottedByUser {
+//            let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+//            infoWindow.frame.size.width = 200
+//            infoWindow.frame.size.height = 50
+//        }
+//        return
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        
+        if plottedByUser {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! PopoverViewController
         let nav = UINavigationController(rootViewController: popoverContent)
@@ -248,6 +279,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         //popover!.delegate = self
         popoverContent.delegate = self
         self.presentViewController(nav, animated: true, completion: nil)
+        }
+        else if !plottedByUser {
+            print("not by uer hahahahahaha (insert shit message here)")
+        }
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -261,6 +296,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             return
         } else {
         account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude)
+        
         drawRoute(route, userType: userType)
         }
     }
