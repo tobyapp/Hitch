@@ -46,3 +46,9 @@ extension UIViewController {
     }
 
 }
+
+protocol SendDataBackProtocol {
+    func sendRouteBack(route : String, userType: String, destinationLatitude: Double, destinationLongitude: Double)
+    func sendUserDataBack(userID: String)
+}
+

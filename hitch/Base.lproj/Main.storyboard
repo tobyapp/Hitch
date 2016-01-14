@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1280" y="-340"/>
         </scene>
-        <!--Popover-->
+        <!--Popover View Controller-->
         <scene sceneID="o0x-M2-tXN">
             <objects>
-                <viewController storyboardIdentifier="Popover" title="Popover" id="nA8-jd-dEf" customClass="PopoverViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HitchOrDriveHereView" id="nA8-jd-dEf" customClass="PopoverViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fjB-X8-lZa"/>
                         <viewControllerLayoutGuide type="bottom" id="3EC-wd-tJ5"/>
@@ -99,6 +99,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Se-yI-jbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="479" y="481"/>
+        </scene>
+        <!--Hitcher Driver Table View Controller-->
+        <scene sceneID="Vre-bu-Kmj">
+            <objects>
+                <tableViewController storyboardIdentifier="HitcherDriverTable" id="s01-MT-SEh" customClass="HitcherDriverTableViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jJR-CK-Fbo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="elb-AM-ZgK">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="elb-AM-ZgK" id="qdU-ki-HYE">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="s01-MT-SEh" id="0pU-c5-56X"/>
+                            <outlet property="delegate" destination="s01-MT-SEh" id="xbH-10-8kv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qri-TM-LOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1241" y="475"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="qZx-RB-k8l">
@@ -564,7 +592,7 @@
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="9AFF41C9-820E-41E0-88B4-F189A8A21997" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="E131DACB-E5A1-49A4-B9DA-8C9BB7679B6E" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -636,7 +664,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="9AFF41C9-820E-41E0-88B4-F189A8A21997" width="200" height="200">
+        <image name="E131DACB-E5A1-49A4-B9DA-8C9BB7679B6E" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

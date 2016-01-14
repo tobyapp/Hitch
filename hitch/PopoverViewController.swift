@@ -85,9 +85,3 @@ class PopoverViewController: UIViewController {
         })
     }
 }
-
-
-protocol SendDataBackProtocol
-{
-    func sendRouteBack(route : String, userType: String, destinationLatitude: Double, destinationLongitude: Double)
-}

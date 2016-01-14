@@ -51,7 +51,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
                 let userName = ("\(object.objectForKey("UserName")!)")
-                let displayPicture = ("\(object.objectForKey("UserDisplayPicture"))")
+                let userID = ("\(object.objectForKey("UserID"))")
                 let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
                 let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
                 
@@ -60,7 +60,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 
                 self.drawRoute(route, userType: userType)
                 self.plottedByUser = false
-                self.placeMarker(location, userName: userName, userType: userType, displayPicture: displayPicture)
+                self.placeMarker(location, userName: userName, userType: userType, userID: userID)
             }
         })
  
@@ -205,7 +205,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, displayPicture: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String) {
 
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
@@ -245,7 +245,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
             drivingToButton.backgroundColor = MaterialColor.deepPurple.base
             infoWindow.addSubview(drivingToButton)
-            
         }
             
         else if !plottedByUser {
@@ -262,25 +261,40 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+
         if plottedByUser {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("Popover") as! PopoverViewController
-        let nav = UINavigationController(rootViewController: popoverContent)
-        nav.modalPresentationStyle = UIModalPresentationStyle.Popover
-        let popover = nav.popoverPresentationController
-        popoverContent.preferredContentSize = CGSizeMake(250,300)
-        popover!.delegate = self
-        popover!.sourceView = self.view
-        popover!.sourceRect = CGRectMake(100,100,0,0)
-        //popover!.delegate = self
-        popoverContent.delegate = self
-        plottedByUser = false
-        self.presentViewController(nav, animated: true, completion: nil)
-        marker.map = nil
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("HitchOrDriveHereView") as! PopoverViewController
+            let nav = UINavigationController(rootViewController: popoverContent)
+            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+            let popover = nav.popoverPresentationController
+            popoverContent.preferredContentSize = CGSizeMake(250,300)
+            popover!.delegate = self
+            popover!.sourceView = self.view
+            popover!.sourceRect = CGRectMake(100,100,0,0)
+            //popover!.delegate = self
+            popoverContent.delegate = self
+            plottedByUser = false
+            self.presentViewController(nav, animated: true, completion: nil)
+            marker.map = nil
+         
         }
+            
         else if !plottedByUser {
-            print("not by uer hahahahahaha (insert shit message here)")
-            //need to bring pop up displaying user and details
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let tableContent : HitcherDriverTableViewController = storyboard.instantiateViewControllerWithIdentifier("HitcherDriverTable") as! HitcherDriverTableViewController
+            let nav = UINavigationController(rootViewController: tableContent)
+            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+            let popover = nav.popoverPresentationController
+            tableContent.preferredContentSize = CGSizeMake(250,300)
+            popover!.delegate = self
+            popover!.sourceView = self.view
+            popover!.sourceRect = CGRectMake(100,100,0,0)
+            //popover!.delegate = self
+            //tableContent.delegate = self
+            plottedByUser = false
+            self.presentViewController(nav, animated: true, completion: nil)
+            marker.map = nil
         }
     }
     

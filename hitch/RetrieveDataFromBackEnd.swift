@@ -32,12 +32,12 @@ class RetrieveDataFromBackEnd {
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
-                            //print(users)
+                            print(users)
                             
-                            let userDisplayPicture = user?["UserDisplayPicture"]
+                            //let userDisplayPicture = user?["UserDisplayPicture"]
                             
                             let userName = user?["userName"]
-                            //let userID = user?["objectId"]
+                            let userID = user?["username"] //will act as objectID
                             let userRelation = PFObject(className: "UserRelations")
                         
                             userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
@@ -45,38 +45,38 @@ class RetrieveDataFromBackEnd {
                             userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
                             userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
                             userRelation.setObject(userName!, forKey: "UserName")
-                            userRelation.setObject("hello world", forKey: "tEST String")
+                            userRelation.setObject(userID!, forKey: "UserID")
                             
-                            userDisplayPicture!.getDataInBackgroundWithBlock {
-                                (imageData: NSData?, error: NSError?) -> Void in
-                                if error == nil {
-                                    if let imageData = imageData {
-                                        let image = UIImage(data:imageData)
-                                        let imageNSData: NSData = UIImagePNGRepresentation(image!)!
-                                        let imageFile = PFFile(name:"image.png", data:imageNSData)
-                                        
-                                        userRelation.setObject(imageNSData, forKey: "UserDisplayPicture")
-                                        
-                                        // put this outside of loop (delete this and uncomment code below)
-                                        routeAndUserObjects.append(userRelation)
-                                        print(userRelation)
-                                        
-                                        resultHandler(routeObjects: routeAndUserObjects)
-                                    }
-                                    else{
-                                        print("no pic")
-                                    }
-                                }
-                                else {
-                                    print("Error: \(error!)")
-                                }
-                            }
+//                            userDisplayPicture!.getDataInBackgroundWithBlock {
+//                                (imageData: NSData?, error: NSError?) -> Void in
+//                                if error == nil {
+//                                    if let imageData = imageData {
+//                                        let image = UIImage(data:imageData)
+//                                        let imageNSData: NSData = UIImagePNGRepresentation(image!)!
+//                                        let imageFile = PFFile(name:"image.png", data:imageNSData)
+//                                        
+//                                        userRelation.setObject(imageNSData, forKey: "UserDisplayPicture")
+//                                        
+//                                        // put this outside of loop (delete this and uncomment code below)
+//                                        routeAndUserObjects.append(userRelation)
+//                                        print(userRelation)
+//                                        
+//                                        resultHandler(routeObjects: routeAndUserObjects)
+//                                    }
+//                                    else{
+//                                        print("no pic")
+//                                    }
+//                                }
+//                                else {
+//                                    print("Error: \(error!)")
+//                                }
+//                            }
                             
-//                            // Appends all the required info to PFOject array
-//                        	routeAndUserObjects.append(userRelation)
-//                            print(userRelation)
-//
-//                        	resultHandler(routeObjects: routeAndUserObjects)
+                            // Appends all the required info to PFOject array
+                        	routeAndUserObjects.append(userRelation)
+                            //print(userRelation)
+
+                        	resultHandler(routeObjects: routeAndUserObjects)
                         }
                     }
                     // In case of errors above, this returns orignal data to plot routes
