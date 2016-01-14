@@ -65,12 +65,12 @@ class UserAccount {
             self.userDOB = dobData
             self.userEducation = educationData
             self.userEmail = emailData
-            
+
             PFUser.currentUser()!.setObject(self.userName!, forKey: "userName")
             PFUser.currentUser()!.setObject(Int(self.userDOB!)!, forKey: "userAge")
             PFUser.currentUser()!.setObject(self.userGender!, forKey: "userGender")
             PFUser.currentUser()!.setObject(self.userEmail!, forKey: "userEmailAddress")
-            PFUser.currentUser()!.setObject(self.userEducation!, forKey: "userEducationN")
+            PFUser.currentUser()!.setObject(self.userEducation!, forKey: "userEducation")
             PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print("Save successful")
@@ -80,6 +80,23 @@ class UserAccount {
                 }
             }
         }
+        facebookProfileData.getProfilePicture {(pictureData, error) -> Void in
+            if error != nil {
+                print("login error: \(error!.localizedDescription)")
+            }
+            let displayPicture = UIImage(data: pictureData!)
+            let imageData = UIImagePNGRepresentation(displayPicture!)
+            let imageFile = PFFile(name:"image.png", data:imageData!)
+            PFUser.currentUser()!.setObject(imageFile!, forKey: "UserDisplayPicture")
+            PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                if succeeded {
+                    print("Save successful")
+                } else {
+                    print("Save unsuccessful: \(error!.userInfo)")
+                }
+            }
+        }
+
     }
 
     func addLocationData(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double) {
