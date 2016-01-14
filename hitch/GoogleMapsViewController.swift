@@ -47,17 +47,20 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
             for object in results! {
+                print(object)
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
                 let userName = ("\(object.objectForKey("UserName")!)")
+                let displayPicture = ("\(object.objectForKey("UserDisplayPicture"))")
                 let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
                 let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
+                
 
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
                 self.plottedByUser = false
-                self.placeMarker(location, userName: userName, userType: userType)
+                self.placeMarker(location, userName: userName, userType: userType, displayPicture: displayPicture)
             }
         })
  
@@ -202,7 +205,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, displayPicture: String) {
 
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
