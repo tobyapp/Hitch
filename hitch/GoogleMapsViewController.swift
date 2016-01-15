@@ -24,6 +24,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var locationMarker: GMSMarker!
     let locationManager = CLLocationManager()
     var plottedByUser = false
+    var delegate : SendDataBackProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,9 +96,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             apiKey: "AIzaSyBZM-uX4YyOaMd5Fpas8EPBG-zq_T2kRq8",
             placeType: .Address
         )
-        
         gpaViewController.placeDelegate = self
-
     }
     
     //presents search bar for user to search, sets UI for search bar view
@@ -172,7 +171,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
 
-// Extention of current class to incorportate wrapper for googlePlacesApi
+// Extention of current class to incorportate wrapper for googlePlacesApi + other functionality
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate, SendDataBackProtocol {
     
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
@@ -212,9 +211,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
+            self.delegate?.sendUserDataBack(userID)
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
+            self.delegate?.sendUserDataBack(userID)
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
@@ -253,7 +254,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             label.text = marker.title
             label.textColor = UIColor.whiteColor()
             label.layer.cornerRadius = 10
-            print(label.text)
             infoWindow.addSubview(label)
         }
         return infoWindow
@@ -287,11 +287,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             nav.modalPresentationStyle = UIModalPresentationStyle.Popover
             let popover = nav.popoverPresentationController
             tableContent.preferredContentSize = CGSizeMake(250,300)
-            popover!.delegate = self
             popover!.sourceView = self.view
             popover!.sourceRect = CGRectMake(100,100,0,0)
-            //popover!.delegate = self
-            //tableContent.delegate = self
             plottedByUser = false
             self.presentViewController(nav, animated: true, completion: nil)
             marker.map = nil
@@ -308,10 +305,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             showAlertController("No route found", errorMessage: "No route found, please try another location")
             return
         } else {
-        account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude)
-        
-        drawRoute(route, userType: userType)
+            account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude)
+            drawRoute(route, userType: userType)
         }
+    }
+    
+    func sendUserDataBack(userID: String) {
+        print("userID")
     }
     
     // Draws route on map (colour changes depending on user type)

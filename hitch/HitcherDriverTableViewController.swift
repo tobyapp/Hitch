@@ -8,10 +8,14 @@
 
 import UIKit
 
-class HitcherDriverTableViewController: UITableViewController {
-
+class HitcherDriverTableViewController: UITableViewController, SendDataBackProtocol {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let googleMapVC : GoogleMapsViewController = storyboard.instantiateViewControllerWithIdentifier("googleMapVC") as! GoogleMapsViewController
+//        googleMapVC.delegate = self
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
@@ -52,6 +56,16 @@ class HitcherDriverTableViewController: UITableViewController {
     func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+
+    // Recieves user data from the the googlemapdVC
+    func sendUserDataBack(userID: String) {
+        print(userID)
+    }
+    
+    func sendRouteBack(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double) {
+        print("in sendRouteBack from data protocol")
+    }
+
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
