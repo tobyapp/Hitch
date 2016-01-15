@@ -65,7 +65,7 @@ class ProfileTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("example", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
 
         cell.textLabel!.text = fbarray[indexPath.item]
         cell.textLabel!.textColor = purple

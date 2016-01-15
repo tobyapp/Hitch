@@ -22,8 +22,7 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 let details = [results["userName"]!, results["userAge"]!, results["userGender"]!, results["userEducation"]!]
                 self.setArrayToGlobalVariable(details)
-                //print(self.userDetails)
-                //print(results)
+                
                 
                 //reloads tableview on main thread
                 dispatch_async(dispatch_get_main_queue()) {
@@ -81,7 +80,7 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
         cell.textLabel!.text = userDetails[indexPath.item] as? String
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
-
+        
         return cell
     }
 
