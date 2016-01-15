@@ -58,8 +58,8 @@ class PopoverViewController: UIViewController {
 //            style: UIBarButtonItemStyle.Plain,
 //            target: self,
 //            action: "cancel:")
-        
-        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
+//        
+//        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +73,7 @@ class PopoverViewController: UIViewController {
     }
     
     func cancel() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func drivingTo(sender: UIButton) {
