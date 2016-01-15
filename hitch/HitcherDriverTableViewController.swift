@@ -20,6 +20,11 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
+        // Origin + Destination Coords, need to change data passing between V/C's by using protocols
+        let userID = NSUserDefaults.standardUserDefaults().objectForKey("userID") as! String
+        
+        print(userID)
+        
         // Adds back button (cancel) to view
         let backButton:UIBarButtonItem = UIBarButtonItem(
             title: "Cancel",

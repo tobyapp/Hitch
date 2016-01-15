@@ -16,65 +16,15 @@ import MK
 
 class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
-    @IBAction func signInButton(sender: AnyObject) {
-        let permissions = ["public_profile", "email", "user_about_me", "user_birthday", "user_education_history", "user_location", "user_work_history"]
-        //let permissions = ["email"]
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
-            (user: PFUser?, error: NSError?) -> Void in
-            
-            if ((error) != nil) {
-                print("Error : \(error)")
-                self.showAlertController("\(error)")
-                return
-            }
-                
-            else {
-            if let user = user {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                }
-            } else {
-                print("Uh oh. The user cancelled the Facebook login.")
-            }
-        }
-            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-            
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Function to load the Facebook login/logout button
-        func displayFBButton() {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_about_me", "user_birthday", "user_education_history", "user_location", "user_work_history"]
 
-            loginView.delegate = self
-            print("accessed displayFBButton()")
-        }
-        
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, display logout button
-            displayFBButton()
-            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-        }
-        else
-        {
-            // User isn't logged in, sdisplay login button
-            displayFBButton()
-        }
 
         let cardView: CardView = CardView()
-        cardView.dividerInset.left = 100
-        cardView.titleLabelInset.left = 100
-        cardView.detailLabelInset.left = 100
+        cardView.dividerInset.left = 160
+        cardView.titleLabelInset.left = 150
+        cardView.detailLabelInset.left = 150
         cardView.backgroundColor  = MaterialColor.deepPurple.base
         cardView.pulseColor = nil
         cardView.pulseFill = false
@@ -93,7 +43,7 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         // Detail label.
         let detailLabel: UILabel = UILabel()
-        detailLabel.text = "Click to login to into Hitch!"
+        detailLabel.text = "Click the button to login into Hitch!"
         detailLabel.font = RobotoFont.mediumWithSize(20)
         detailLabel.textColor = MaterialColor.white
         detailLabel.numberOfLines = 0

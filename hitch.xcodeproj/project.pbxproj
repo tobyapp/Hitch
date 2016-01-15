@@ -47,7 +47,6 @@
 		52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */; };
 		52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB8A051C46D8060020959B /* UserInfoWindow.xib */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
-		52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E317F51C29802A00635E10 /* UserData.xcdatamodeld */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
 		52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93911C28539C007CF8F4 /* ClassExtentions.swift */; };
 		52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */; };
@@ -75,13 +74,11 @@
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
 		526F46F51C2AE868003DF05B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		5295EE6D1C2AADA700EBD1BF /* UserData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "UserData 2.xcdatamodel"; sourceTree = "<group>"; };
 		529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitcherDriverTableViewController.swift; sourceTree = "<group>"; };
 		52A4AA2C1C3ABFCD001D908F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52AA7F3A1C28A5B50099352F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFBData.swift; sourceTree = "<group>"; };
-		52BCE7521C29FFDD00DDE9C5 /* UserData2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData2.xcdatamodel; sourceTree = "<group>"; };
 		52C434431C2AB6CE00D565BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		52C434451C2ABABA00D565BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		52C434471C2ABACA00D565BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -102,7 +99,6 @@
 		52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveDataFromBackEnd.swift; sourceTree = "<group>"; };
 		52CB8A051C46D8060020959B /* UserInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoWindow.xib; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
-		52E317F61C29802A00635E10 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		52EC93901C2850E8007CF8F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		52EC93911C28539C007CF8F4 /* ClassExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassExtentions.swift; path = hitch/ClassExtentions.swift; sourceTree = "<group>"; };
@@ -178,13 +174,12 @@
 			children = (
 				52EC93901C2850E8007CF8F4 /* Bridging-Header.h */,
 				5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */,
-				52E317F51C29802A00635E10 /* UserData.xcdatamodeld */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
 				52CB8A001C42F9C40020959B /* Modle's */,
 				52E296281C39658200C493CC /* Parse Data */,
 				52E296291C39659C00C493CC /* ViewControllers */,
-				5257CC3D1C3DABB400B85378 /* Old files */,
 				52E317F91C29B3E500635E10 /* Extrafiles */,
+				5257CC3D1C3DABB400B85378 /* Old files */,
 			);
 			path = hitch;
 			sourceTree = "<group>";
@@ -460,7 +455,6 @@
 				52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,
-				52E317F71C29802A00635E10 /* UserData.xcdatamodeld in Sources */,
 				52CB89F91C3F09EB0020959B /* PopoverViewController.swift in Sources */,
 				52AA7F3B1C28A5B50099352F /* MapViewController.swift in Sources */,
 			);
@@ -620,21 +614,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		52E317F51C29802A00635E10 /* UserData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				5295EE6D1C2AADA700EBD1BF /* UserData 2.xcdatamodel */,
-				52BCE7521C29FFDD00DDE9C5 /* UserData2.xcdatamodel */,
-				52E317F61C29802A00635E10 /* UserData.xcdatamodel */,
-			);
-			currentVersion = 52BCE7521C29FFDD00DDE9C5 /* UserData2.xcdatamodel */;
-			path = UserData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 5206AD821C273B3C00A1EFAD /* Project object */;
 }

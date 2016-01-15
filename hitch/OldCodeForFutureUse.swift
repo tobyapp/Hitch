@@ -109,3 +109,80 @@ import Foundation
 //    return infoWindow
 //    
 //}
+
+
+//from profile data.swift
+
+//import Foundation
+//import CoreData
+//
+//class ProfileData: NSManagedObject {
+//    
+//    class func createInManagedObjectContext(moc: NSManagedObjectContext, userAge: String, userEducation: [String], userEmailAddress: String, userGender: String, userName: String) -> ProfileData {
+//        
+//        let newItem = NSEntityDescription.insertNewObjectForEntityForName("ProfileData", inManagedObjectContext: moc) as! ProfileData
+//        newItem.userAge = userAge
+//        newItem.userEducation = userEducation
+//        newItem.userEmailAddress = userEmailAddress
+//        newItem.userGender = userGender
+//        newItem.userName = userName
+//        //newItem.likeDate = likeDate
+//        //newItem.pageLiked = pageLiked
+//        
+//        return newItem
+//    }  
+//}
+
+
+//ffrom profiledara+coredataproperties.swfit
+
+//
+//  ProfileData+CoreDataProperties.swift
+//
+//
+//  Created by Toby Applegate on 22/12/2015.
+//
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+//import Foundation
+//import CoreData
+//
+//extension ProfileData {
+//    
+//    @NSManaged var userAge: String?
+//    @NSManaged var userEducation: String?
+//    @NSManaged var userEmailAddress: String?
+//    @NSManaged var userGender: String?
+//    @NSManaged var userName: String?
+//    
+//}
+
+
+//class FacebookLoginViewController //for fb login button
+
+// Function to load the Facebook login/logout button
+//        func displayFBButton() {
+//            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+//            self.view.addSubview(loginView)
+//            loginView.center = self.view.center
+//            loginView.readPermissions = ["public_profile", "email", "user_about_me", "user_birthday", "user_education_history", "user_location", "user_work_history"]
+//
+//            loginView.delegate = self
+//            print("accessed displayFBButton()")
+//        }
+//
+//        if (FBSDKAccessToken.currentAccessToken() != nil)
+//        {
+//            // User is already logged in, display logout button
+//            displayFBButton()
+//            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
+//            self.presentViewController(viewController, animated: true, completion: nil)
+//        }
+//        else
+//        {
+//            // User isn't logged in, sdisplay login button
+//            displayFBButton()
+//        }

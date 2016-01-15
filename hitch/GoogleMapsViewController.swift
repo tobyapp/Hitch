@@ -11,7 +11,7 @@ import CoreLocation
 import GoogleMaps
 import MK
 
-class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, SendDataBackProtocol  {
 
     @IBOutlet weak var mapView: GMSMapView!
 
@@ -172,7 +172,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
 
 // Extention of current class to incorportate wrapper for googlePlacesApi + other functionality
-extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate, SendDataBackProtocol {
+extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
     
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
@@ -211,11 +211,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
-            self.delegate?.sendUserDataBack(userID)
+            NSUserDefaults.standardUserDefaults().setObject(userID, forKey: "userID")
+            //self.delegate?.sendUserDataBack(userID)
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
-            self.delegate?.sendUserDataBack(userID)
+            NSUserDefaults.standardUserDefaults().setObject(userID, forKey: "userID")
+            //self.delegate?.sendUserDataBack(userID)
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
