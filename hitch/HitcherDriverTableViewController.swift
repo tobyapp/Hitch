@@ -65,6 +65,7 @@ class HitcherDriverTableViewController: UITableViewController {
         cell.textLabel!.text = userDetails[indexPath.item] as? String
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
+        cell.userInteractionEnabled = false
         
         return cell
     }
