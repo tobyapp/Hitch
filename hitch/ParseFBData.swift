@@ -45,8 +45,6 @@ class ParseFBData {
     
     // Function to obtain users name form Facebook profile
     func getUserDetails(completion: (nameData: String?, genderData: String?, dobData: String?, educationData: String?, emailData: String?, error: NSError?) -> Void) {
-        //let moc = self.managedObjectContext
-        //print(moc)
         print("getting data form fb")
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, gender, birthday, education, email"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -59,8 +57,6 @@ class ParseFBData {
             // Parses data using SwiftyJSON
             let json = JSON(result)
             
-            //print(result)
-            
             var userEducation: String?
             let userName = json["first_name"].stringValue
             let userGender = json["gender"].stringValue
@@ -72,7 +68,6 @@ class ParseFBData {
             if let uniArray = json["education"].array {
                 for uni in uniArray {
                     if uni["type"].stringValue == "College" {
-                        //print(uni["school"]["name"].stringValue)
                         userEducation = uni["school"]["name"].stringValue
                     }
                     else if uni["type"].stringValue == "High School" {
@@ -87,33 +82,7 @@ class ParseFBData {
             completion(nameData: userName, genderData: userGender, dobData: userAge, educationData: userEducation, emailData: userEmail, error: error)
             }
         })
-        
     }
-    
-//    // Function to obtain users name form Facebook profile
-//    func getUserName(completion: (nameData: String?, error: NSError?) -> Void) {
-//
-//        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name"])
-//        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-//            
-//            if error != nil {
-//                print("login error: \(error!.localizedDescription)")
-//                return
-//            }
-//            else {
-//                // Parses data using SwiftyJSON
-//                let json = JSON(result)
-//                
-//                //print(result)
-//                
-//                let userName = json["first_name"].stringValue
-//                
-//                // Use completion handler to return variables on completion
-//                completion(nameData: userName, error: error)
-//            }
-//        })
-//        
-//    }
 
     func calculateAge(dob: String?) -> String {
         if dob != nil {

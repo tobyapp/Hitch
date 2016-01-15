@@ -29,10 +29,12 @@ class RouteCalculator {
                     
                     print("error with \(errornum)")
                     
-                } else {
+                }
+                
+                else {
                     let routes = json["routes"].array
                     let status = json["status"]
-                    //print(routes)
+                    
                     if routes != nil{
                         if status != "ZERO_RESULTS" {
                         let overViewPolyLine = routes![0]["overview_polyline"]["points"].string
@@ -40,6 +42,7 @@ class RouteCalculator {
                             resultHandler(directions: overViewPolyLine)
                             }
                         }
+                            
                         else {
                             print("ROUTE ERROR : \(status)")
                             resultHandler(directions: "No directions found")

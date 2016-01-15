@@ -28,6 +28,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var userID : String?
     var destinationLatitude : Double?
     var destinationLongitude : Double?
+    var originLatitude : Double?
+    var originLongitude : Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
             for object in results! {
-                //print(object)
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
                 let userName = ("\(object.objectForKey("UserName")!)")
@@ -133,10 +134,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
-            destinationLatitude = locValue.latitude
-            destinationLongitude = locValue.longitude
-            NSUserDefaults.standardUserDefaults().setObject(locValue.longitude, forKey: "originLongitude")
-            NSUserDefaults.standardUserDefaults().setObject(locValue.latitude, forKey: "originLatitude")
+            originLatitude = locValue.latitude
+            originLongitude = locValue.longitude
         }
         
         if let location = locations.first {
@@ -187,8 +186,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             longitude = details.longitude
             self.destinationLongitude = details.longitude
             self.destinationLatitude = details.latitude
-            NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "destinationLongitude")
-            NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "destinationLatitude")
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
@@ -211,8 +208,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String) {
-        
-        //print("and again the user id is :   \(userID)")
 
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
@@ -270,25 +265,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
 
         if plottedByUser {
-//            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("HitchOrDriveHereView") as! PopoverViewController
-//            let nav = UINavigationController(rootViewController: popoverContent)
-//            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
-//            let popover = nav.popoverPresentationController
-//            popoverContent.preferredContentSize = CGSizeMake(250,300)
-//            popover!.delegate = self
-//            popover!.sourceView = self.view
-//            popover!.sourceRect = CGRectMake(100,100,0,0)
-//            //popover!.delegate = self
-//            popoverContent.delegate = self
-//            plottedByUser = false
-//            self.presentViewController(nav, animated: true, completion: nil)
-//            marker.map = nil
-            //PopoverViewController.
             performSegueWithIdentifier("segueToHitchOrDriveOption", sender: nil)
             marker.map = nil
-            //print(marker.userData)
-         //segueToHitchOrDriveOption
         }
             
         else if !plottedByUser {
@@ -306,8 +284,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         
         if (segue.identifier == "segueToHitchOrDriveOption") {
             if let destinationViewController = segue.destinationViewController as? PopoverViewController {
-                destinationViewController.destinationLatitude1 = destinationLatitude
-                destinationViewController.destinationLongitude1 = destinationLongitude
+                destinationViewController.destinationLatitude = destinationLatitude
+                destinationViewController.destinationLongitude = destinationLongitude
+                destinationViewController.originLatitude = originLatitude
+                destinationViewController.originLongitude = originLongitude
                 let vc = segue.destinationViewController as! PopoverViewController
                 vc.delegate = self
             }
@@ -327,10 +307,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude)
             drawRoute(route, userType: userType)
         }
-    }
-    
-    func sendUserDataBack(userID: String) {
-        print("userID")
     }
     
     // Draws route on map (colour changes depending on user type)

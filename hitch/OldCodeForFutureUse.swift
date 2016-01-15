@@ -110,6 +110,36 @@ import Foundation
 //    
 //}
 
+//func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+//    
+//    if plottedByUser {
+//        //            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        //            let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("HitchOrDriveHereView") as! PopoverViewController
+//        //            let nav = UINavigationController(rootViewController: popoverContent)
+//        //            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+//        //            let popover = nav.popoverPresentationController
+//        //            popoverContent.preferredContentSize = CGSizeMake(250,300)
+//        //            popover!.delegate = self
+//        //            popover!.sourceView = self.view
+//        //            popover!.sourceRect = CGRectMake(100,100,0,0)
+//        //            //popover!.delegate = self
+//        //            popoverContent.delegate = self
+//        //            plottedByUser = false
+//        //            self.presentViewController(nav, animated: true, completion: nil)
+//        //            marker.map = nil
+//        //PopoverViewController.
+//        performSegueWithIdentifier("segueToHitchOrDriveOption", sender: nil)
+//        marker.map = nil
+//        //print(marker.userData)
+//        //segueToHitchOrDriveOption
+//    }
+//        
+//    else if !plottedByUser {
+//        userID = "\(marker.userData)"
+//        performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+//    }
+//}
+
 
 //from profile data.swift
 
@@ -186,3 +216,53 @@ import Foundation
 //            // User isn't logged in, sdisplay login button
 //            displayFBButton()
 //        }
+
+
+// From popoverivewcontroller.swift file
+
+// Adds back button (cancel) to view
+//        let backButton:UIBarButtonItem = UIBarButtonItem(
+//            title: "Cancel",
+//            style: UIBarButtonItemStyle.Plain,
+//            target: self,
+//            action: "cancel:")
+//
+//        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
+
+//NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "destinationLongitude")
+//NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "destinationLatitude")
+//
+//// Origin + Destination Coords, need to change data passing between V/C's by using protocols
+//let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
+//let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
+//let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
+//let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLongitude") as! Double
+
+
+// from parseFBData.swift
+
+//    // Function to obtain users name form Facebook profile
+//    func getUserName(completion: (nameData: String?, error: NSError?) -> Void) {
+//
+//        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name"])
+//        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+//
+//            if error != nil {
+//                print("login error: \(error!.localizedDescription)")
+//                return
+//            }
+//            else {
+//                // Parses data using SwiftyJSON
+//                let json = JSON(result)
+//
+//                //print(result)
+//
+//                let userName = json["first_name"].stringValue
+//
+//                // Use completion handler to return variables on completion
+//                completion(nameData: userName, error: error)
+//            }
+//        })
+//
+//    }
+

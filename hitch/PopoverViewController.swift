@@ -15,22 +15,14 @@ class PopoverViewController: UIViewController {
  
     var routeCalc = RouteCalculator()
     var delegate : SendDataBackProtocol?
-    var destinationLongitude1 : Double?
-    var destinationLatitude1 : Double?
-    
-    
-    // Origin + Destination Coords, need to change data passing between V/C's by using protocols
-    let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
-    let destinationLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLongitude") as! Double
-    let originLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLatitude") as! Double
-    let originLongitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("originLongitude") as! Double
+    var destinationLongitude : Double?
+    var destinationLatitude : Double?
+    var originLongitude : Double?
+    var originLatitude : Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(destinationLatitude1)
-        print(destinationLongitude1)
-            
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
@@ -52,14 +44,6 @@ class PopoverViewController: UIViewController {
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
-        // Adds back button (cancel) to view
-//        let backButton:UIBarButtonItem = UIBarButtonItem(
-//            title: "Cancel",
-//            style: UIBarButtonItemStyle.Plain,
-//            target: self,
-//            action: "cancel:")
-//        
-//        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,28 +51,25 @@ class PopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Cancel button to go back to previous view (GoogleMapsViewController)
-    func cancel(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+    // Go back to previous VC (google maps vc)
     func cancel() {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    // calculate route and return this to previous vc along with user type (driver)
     func drivingTo(sender: UIButton) {
-        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude1!, destinationLongitude: self.destinationLongitude1!)
+        routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
+            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!)
             self.cancel()
         })
-        print("in button")
     }
     
+    // calculate route and return this to previous vc along with user type (hitcher)
     func hitchTo(sender: UIButton) {
-        routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude1!, destinationLongitude: self.destinationLongitude1!)
+        routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!)
             self.cancel()
         })
-        print("in button")
     }
+    
 }

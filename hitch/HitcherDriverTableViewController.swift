@@ -17,8 +17,8 @@ class HitcherDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
-            print("user data: \(userData)")
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 let details = [results["userName"]!, results["userAge"]!, results["userGender"]!, results["userEducation"]!]
                 self.setArrayToGlobalVariable(details)
@@ -39,8 +39,6 @@ class HitcherDriverTableViewController: UITableViewController {
     // sets array form completion handler to a global variable
     func setArrayToGlobalVariable(userDetailsFromHandler: [String]) {
         userDetails = userDetailsFromHandler
-        //self.tableView.reloadData()
-        print(userDetails)
     }
 
     override func didReceiveMemoryWarning() {
