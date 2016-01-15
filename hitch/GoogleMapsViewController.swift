@@ -25,6 +25,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     let locationManager = CLLocationManager()
     var plottedByUser = false
     var delegate : SendDataBackProtocol?
+    var userID : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +49,14 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
             for object in results! {
-                print(object)
+                //print(object)
                 let userType = ("\(object.objectForKey("UserType")!)")
                 let route = ("\(object.objectForKey("UserRoute")!)")
                 let userName = ("\(object.objectForKey("UserName")!)")
-                let userID = ("\(object.objectForKey("UserID"))")
+                let userID = ("\(object.objectForKey("UserID")!)")
                 let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
                 let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
                 
-
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
@@ -205,25 +205,24 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String) {
+        
+        //print("and again the user id is :   \(userID)")
 
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
-            NSUserDefaults.standardUserDefaults().setObject(userID, forKey: "userID")
-            //self.delegate?.sendUserDataBack(userID)
+            locationMarker.userData = userID
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
-            NSUserDefaults.standardUserDefaults().setObject(userID, forKey: "userID")
-            //self.delegate?.sendUserDataBack(userID)
+            locationMarker.userData = userID
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
         }
 
-        //locationMarker.snippet = "click here to see thier profile"
         locationMarker.map = mapView
 
     }
@@ -279,21 +278,33 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             plottedByUser = false
             self.presentViewController(nav, animated: true, completion: nil)
             marker.map = nil
+            print(marker.userData)
          
         }
             
         else if !plottedByUser {
-            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let tableContent : HitcherDriverTableViewController = storyboard.instantiateViewControllerWithIdentifier("HitcherDriverTable") as! HitcherDriverTableViewController
-            let nav = UINavigationController(rootViewController: tableContent)
-            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
-            let popover = nav.popoverPresentationController
-            tableContent.preferredContentSize = CGSizeMake(250,300)
-            popover!.sourceView = self.view
-            popover!.sourceRect = CGRectMake(100,100,0,0)
-            plottedByUser = false
-            self.presentViewController(nav, animated: true, completion: nil)
-            marker.map = nil
+//            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let tableContent : HitcherDriverTableViewController = storyboard.instantiateViewControllerWithIdentifier("HitcherDriverTable") as! HitcherDriverTableViewController
+//            let nav = UINavigationController(rootViewController: tableContent)
+//            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
+//            let popover = nav.popoverPresentationController
+//            tableContent.preferredContentSize = CGSizeMake(250,300)
+//            popover!.sourceView = self.view
+//            popover!.sourceRect = CGRectMake(100,100,0,0)
+//            plottedByUser = false
+//            self.presentViewController(nav, animated: true, completion: nil)
+//            marker.map = nil
+            userID = "\(marker.userData)"
+            //print(marker.userData)
+            performSegueWithIdentifier("testSegue", sender: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "testSegue") {
+            if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+                destinationViewController.userData = userID
+            }
         }
     }
     

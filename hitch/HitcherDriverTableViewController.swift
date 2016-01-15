@@ -10,29 +10,25 @@ import UIKit
 
 class HitcherDriverTableViewController: UITableViewController, SendDataBackProtocol {
     
+    var userAccount = RetrieveDataFromBackEnd()
+    var userData : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let googleMapVC : GoogleMapsViewController = storyboard.instantiateViewControllerWithIdentifier("googleMapVC") as! GoogleMapsViewController
-//        googleMapVC.delegate = self
+        
+        if let userData = userData {
+            print("user data: \(userData)")
+            userAccount.retrieveUserDetails(userData, resultHandler: ({results in
+            print(results)
+            }))
+        }
+        
+       
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
         // Origin + Destination Coords, need to change data passing between V/C's by using protocols
-        let userID = NSUserDefaults.standardUserDefaults().objectForKey("userID") as! String
-        
-        print(userID)
-        
-        // Adds back button (cancel) to view
-        let backButton:UIBarButtonItem = UIBarButtonItem(
-            title: "Cancel",
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: "cancel:")
-        
-        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

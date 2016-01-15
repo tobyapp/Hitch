@@ -32,7 +32,7 @@ class RetrieveDataFromBackEnd {
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
-                            print(users)
+                            //print(users)
                             
                             //let userDisplayPicture = user?["UserDisplayPicture"]
                             
@@ -87,6 +87,35 @@ class RetrieveDataFromBackEnd {
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
+    }
+
+    func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:String]) -> ()) {
+        
+        let query = PFUser.query()
+        query!.whereKey("username", equalTo: userID)
+        
+        query!.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var userDetails = [String: String]()
+            if error == nil {
+                if let objects = objects {
+                    // Iterates through each PFObject in the query results
+                    for object in objects {
+                        userDetails["userAge"] = ("\(object["userage"])")
+                        userDetails["userEducation"] = ("\(object["userEducation"])")
+                        userDetails["userGender"] = ("\(object["userGender"])")
+                        userDetails["userName"] = ("\(object["userName"])")
+                        //print(object["userName"])
+                        resultHandler(userDetails: userDetails)
+                    }
+                    
+                    //print(objects)
+                }
+    
+            }
+
+        }
+
     }
 
 }

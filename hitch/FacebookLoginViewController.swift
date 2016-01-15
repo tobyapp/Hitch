@@ -19,8 +19,6 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-
         let cardView: CardView = CardView()
         cardView.dividerInset.left = 160
         cardView.titleLabelInset.left = 150
