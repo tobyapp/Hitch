@@ -15,6 +15,9 @@ class PopoverViewController: UIViewController {
  
     var routeCalc = RouteCalculator()
     var delegate : SendDataBackProtocol?
+    var destinationLongitude1 : Double?
+    var destinationLatitude1 : Double?
+    
     
     // Origin + Destination Coords, need to change data passing between V/C's by using protocols
     let destinationLatitude:Double = NSUserDefaults.standardUserDefaults().objectForKey("destinationLatitude") as! Double
@@ -25,6 +28,8 @@ class PopoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(destinationLatitude1)
+        print(destinationLongitude1)
             
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
@@ -48,11 +53,11 @@ class PopoverViewController: UIViewController {
         view.addSubview(hitchinToButton)
         
         // Adds back button (cancel) to view
-        let backButton:UIBarButtonItem = UIBarButtonItem(
-            title: "Cancel",
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: "cancel:")
+//        let backButton:UIBarButtonItem = UIBarButtonItem(
+//            title: "Cancel",
+//            style: UIBarButtonItemStyle.Plain,
+//            target: self,
+//            action: "cancel:")
         
         self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
     }
@@ -73,15 +78,17 @@ class PopoverViewController: UIViewController {
     
     func drivingTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude, destinationLongitude: self.destinationLongitude)
+            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude1!, destinationLongitude: self.destinationLongitude1!)
             self.cancel()
         })
+        print("in button")
     }
     
     func hitchTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude, originLatitude: originLatitude, destinationLongitude: destinationLongitude, destinationLatitude: destinationLatitude, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude, destinationLongitude: self.destinationLongitude)
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude1!, destinationLongitude: self.destinationLongitude1!)
             self.cancel()
         })
+        print("in button")
     }
 }

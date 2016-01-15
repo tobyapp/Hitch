@@ -26,6 +26,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var plottedByUser = false
     var delegate : SendDataBackProtocol?
     var userID : String?
+    var destinationLatitude : Double?
+    var destinationLongitude : Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +133,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     // places view on users location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
+            destinationLatitude = locValue.latitude
+            destinationLongitude = locValue.longitude
             NSUserDefaults.standardUserDefaults().setObject(locValue.longitude, forKey: "originLongitude")
             NSUserDefaults.standardUserDefaults().setObject(locValue.latitude, forKey: "originLatitude")
         }
@@ -181,6 +185,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         place.getDetails { details in
             latitude = details.latitude
             longitude = details.longitude
+            self.destinationLongitude = details.longitude
+            self.destinationLatitude = details.latitude
             NSUserDefaults.standardUserDefaults().setObject(longitude, forKey: "destinationLongitude")
             NSUserDefaults.standardUserDefaults().setObject(latitude, forKey: "destinationLatitude")
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -264,46 +270,46 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
 
         if plottedByUser {
-            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("HitchOrDriveHereView") as! PopoverViewController
-            let nav = UINavigationController(rootViewController: popoverContent)
-            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
-            let popover = nav.popoverPresentationController
-            popoverContent.preferredContentSize = CGSizeMake(250,300)
-            popover!.delegate = self
-            popover!.sourceView = self.view
-            popover!.sourceRect = CGRectMake(100,100,0,0)
-            //popover!.delegate = self
-            popoverContent.delegate = self
-            plottedByUser = false
-            self.presentViewController(nav, animated: true, completion: nil)
-            marker.map = nil
-            //print(marker.userData)
-         
-        }
-            
-        else if !plottedByUser {
 //            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let tableContent : HitcherDriverTableViewController = storyboard.instantiateViewControllerWithIdentifier("HitcherDriverTable") as! HitcherDriverTableViewController
-//            let nav = UINavigationController(rootViewController: tableContent)
+//            let popoverContent : PopoverViewController = storyboard.instantiateViewControllerWithIdentifier("HitchOrDriveHereView") as! PopoverViewController
+//            let nav = UINavigationController(rootViewController: popoverContent)
 //            nav.modalPresentationStyle = UIModalPresentationStyle.Popover
 //            let popover = nav.popoverPresentationController
-//            tableContent.preferredContentSize = CGSizeMake(250,300)
+//            popoverContent.preferredContentSize = CGSizeMake(250,300)
+//            popover!.delegate = self
 //            popover!.sourceView = self.view
 //            popover!.sourceRect = CGRectMake(100,100,0,0)
+//            //popover!.delegate = self
+//            popoverContent.delegate = self
 //            plottedByUser = false
 //            self.presentViewController(nav, animated: true, completion: nil)
 //            marker.map = nil
-            userID = "\(marker.userData)"
+            //PopoverViewController.
+            performSegueWithIdentifier("segueToHitchOrDriveOption", sender: nil)
+            marker.map = nil
             //print(marker.userData)
-            performSegueWithIdentifier("testSegue", sender: nil)
+         //segueToHitchOrDriveOption
+        }
+            
+        else if !plottedByUser {
+            userID = "\(marker.userData)"
+            performSegueWithIdentifier("segueToUsersProfile", sender: nil)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "testSegue") {
+        if (segue.identifier == "segueToUsersProfile") {
             if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
                 destinationViewController.userData = userID
+            }
+        }
+        
+        if (segue.identifier == "segueToHitchOrDriveOption") {
+            if let destinationViewController = segue.destinationViewController as? PopoverViewController {
+                destinationViewController.destinationLatitude1 = destinationLatitude
+                destinationViewController.destinationLongitude1 = destinationLongitude
+                let vc = segue.destinationViewController as! PopoverViewController
+                vc.delegate = self
             }
         }
     }

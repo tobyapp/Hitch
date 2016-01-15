@@ -89,6 +89,7 @@ class RetrieveDataFromBackEnd {
         }
     }
 
+    // Retrive users accoutn details and return in completion handler
     func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:String]) -> ()) {
         
         let query = PFUser.query()
