@@ -115,12 +115,15 @@ class ParseFBData {
 //        
 //    }
 
-    func calculateAge(dob: String) -> String {
-        let splitDOB  = dob.componentsSeparatedByString("/")
+    func calculateAge(dob: String?) -> String {
+        if dob != nil {
+        let splitDOB  = dob!.componentsSeparatedByString("/")
         let formattedDOB = "\(splitDOB[2])-\(splitDOB[1])-\(splitDOB[0]) 00:00:00 +0000"
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         let formattedDate = dateFormatter.dateFromString(formattedDOB)
         return "\(NSCalendar.currentCalendar().components(.Year, fromDate: formattedDate!, toDate: NSDate(), options: []).year)"
+        }
+        return ""
     }
 }

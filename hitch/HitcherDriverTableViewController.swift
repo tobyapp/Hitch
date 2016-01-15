@@ -12,6 +12,7 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
     
     var userAccount = RetrieveDataFromBackEnd()
     var userData : String?
+    var userDetails = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,22 +20,31 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
         if let userData = userData {
             print("user data: \(userData)")
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
-            print(results)
+                let details = [results["userName"]!, results["userAge"]!, results["userGender"]!, results["userEducation"]!]
+                self.setArrayToGlobalVariable(details)
+                //print(self.userDetails)
+                //print(results)
+                
+                //reloads tableview on main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                }
+                
             }))
         }
         
-       
         
+
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
-        
-        // Origin + Destination Coords, need to change data passing between V/C's by using protocols
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        print(userDetails)
+    }
+    
+    // sets array form completion handler to a global variable
+    func setArrayToGlobalVariable(userDetailsFromHandler: [String]) {
+        userDetails = userDetailsFromHandler
+        //self.tableView.reloadData()
+        print(userDetails)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,17 +56,15 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return userDetails.count
+        
     }
 
-    func cancel(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
 
     // Recieves user data from the the googlemapdVC
     func sendUserDataBack(userID: String) {
@@ -67,16 +75,16 @@ class HitcherDriverTableViewController: UITableViewController, SendDataBackProto
         print("in sendRouteBack from data protocol")
     }
 
-
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("userCells", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel!.text = userDetails[indexPath.item] as? String
+        cell.textLabel!.textColor = purple
+        cell.textLabel!.font = UIFont(name: "System", size: 20)
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

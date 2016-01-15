@@ -278,7 +278,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             plottedByUser = false
             self.presentViewController(nav, animated: true, completion: nil)
             marker.map = nil
-            print(marker.userData)
+            //print(marker.userData)
          
         }
             

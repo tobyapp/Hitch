@@ -101,21 +101,16 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        userDetails["userAge"] = ("\(object["userage"])")
+                        userDetails["userAge"] = ("\(object["userAge"])")
                         userDetails["userEducation"] = ("\(object["userEducation"])")
                         userDetails["userGender"] = ("\(object["userGender"])")
                         userDetails["userName"] = ("\(object["userName"])")
-                        //print(object["userName"])
+                        print(object["userName"])
                         resultHandler(userDetails: userDetails)
                     }
-                    
-                    //print(objects)
                 }
-    
             }
-
         }
-
     }
 
 }

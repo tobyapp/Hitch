@@ -67,8 +67,9 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("example", forIndexPath: indexPath)
 
-        //print(indexPath)
         cell.textLabel!.text = fbarray[indexPath.item]
+        cell.textLabel!.textColor = purple
+        cell.textLabel!.font = UIFont(name: "System", size: 20)
 
         return cell
     }
