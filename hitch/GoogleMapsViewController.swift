@@ -250,7 +250,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         infoWindow.backgroundColor = purple
         
         if plottedByUser {
-            let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 50))
+            let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 75))
             drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
             drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
             drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
