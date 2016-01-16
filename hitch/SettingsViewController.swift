@@ -12,22 +12,28 @@ import Whisper
 import Parse
 import ParseFacebookUtilsV4
 import MK
+import CoreData
 
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    
-    var account = UserAccount()
+    //var account = UserAccount()
     var userName: String?
+    // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+    var profileData = [UserProfileData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         self.addSideMenu(menuButton)
         
-        self.userName = account.userName
+        fetchProfileData()
+        
+//        self.userName = account.userName
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
@@ -35,6 +41,19 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func fetchProfileData() {
+        let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+        do {
+            profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+            let userData = profileData[0]
+            self.userName = userData.userName!
+        }
+            
+        catch let error as NSError {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -13,6 +13,7 @@
 import Foundation
 import Parse
 import ParseFacebookUtilsV4
+import CoreData
 
 class UserAccount {
     
@@ -25,6 +26,7 @@ class UserAccount {
     var userEmail: String?
     var displayPicture: NSData?
     var notUploadedData = true
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     init() {
         grabFacebookData()
@@ -51,6 +53,29 @@ class UserAccount {
             self.userDOB = dobData
             self.userEducation = educationData
             self.userEmail = emailData
+            
+            let moc = self.managedObjectContext
+            
+            
+            
+            self.facebookProfileData.getProfilePicture {(pictureData, error) -> Void in
+                if error != nil {
+                    print("login error: \(error!.localizedDescription)")
+                }
+                let displayPicture = UIImage(data: pictureData!)
+                let imageData = UIImagePNGRepresentation(displayPicture!)
+                UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
+                self.saveCoreData()
+            }
+        }
+    }
+    
+    func saveCoreData() {
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("Save failed: \(error.localizedDescription)")
         }
     }
     

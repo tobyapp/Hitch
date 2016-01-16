@@ -7,38 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 class ProfileTableViewController: UITableViewController {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    
     @IBOutlet var tableviewOutlet: UITableView!
     @IBOutlet weak var displayPicture: UIImageView!
     
-    //var facebookProfileData = ParseFBData()
-    var account = UserAccount()
+    // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    var userName: String?
-    var userGender: String?
-    var userAge: String?
-    var userEducationArray: String?
-    var userEmail: String?
-    var fbarray: [String] = []
+    var profileData = [UserProfileData]()
+    var userDataArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addSideMenu(menuButton)
-        
-        if let dp = account.displayPicture {
-            self.displayPicture.image = UIImage(data: dp)
+
+        fetchProfileData()
+    }
+    
+    func fetchProfileData() {
+        let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+        do {
+            profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+            let userData = profileData[0]
+            userDataArray += [userData.userName!, userData.userAge!, userData.userGender!, userData.userEducation!]
+            self.displayPicture.image = UIImage(data: userData.userDisplayPicture!)
         }
-        
-        
-        self.userName = account.userName
-        
-        fbarray += [account.userName!, account.userDOB!, account.userGender!, account.userEducation!]
-        
+            
+        catch let error as NSError {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -60,14 +62,16 @@ class ProfileTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return fbarray.count
+        return userDataArray.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
 
-        cell.textLabel!.text = fbarray[indexPath.item]
+        //let userData = profileData[indexPath.row]
+        
+        cell.textLabel!.text = userDataArray[indexPath.item]
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
 

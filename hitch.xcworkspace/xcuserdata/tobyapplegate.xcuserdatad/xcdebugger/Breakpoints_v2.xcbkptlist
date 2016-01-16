@@ -105,11 +105,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/ProfileTableViewController.swift"
-            timestampString = "473524431.288838"
+            timestampString = "474679373.608821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/UserAccount.swift"
-            timestampString = "473953078.600121"
+            timestampString = "474673479.181612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "UserAccount"
             landmarkType = "3">
          </BreakpointContent>
@@ -137,11 +137,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/ProfileTableViewController.swift"
-            timestampString = "473546205.317468"
+            timestampString = "474679373.608821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "ProfileTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -588,6 +588,54 @@
             endingLineNumber = "217"
             landmarkName = "placeMarker(_:userName:userType:userID:timeOfRoute:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/UserAccount.swift"
+            timestampString = "474677078.451932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "saveCoreData()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.UserAccount.upLoadData (hitch.UserAccount)() -&gt; ()"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/UserAccount.swift"
+                  timestampString = "474676914.570967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.UserAccount.(upLoadData (hitch.UserAccount) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/UserAccount.swift"
+                  timestampString = "474676914.571192"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "362">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
