@@ -581,7 +581,7 @@
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="3F883FEA-5A24-4269-9991-9A8DA22AFD40" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="EF30EEF0-65DC-49D9-B14F-7F4A36DFA323" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -653,7 +653,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3F883FEA-5A24-4269-9991-9A8DA22AFD40" width="200" height="200">
+        <image name="EF30EEF0-65DC-49D9-B14F-7F4A36DFA323" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

@@ -17,12 +17,11 @@ class PopoverViewController: UIViewController {
     
     @IBAction func datePickerAction(sender: AnyObject) {
         let currentDate = NSDate()
-        datePicker.minimumDate = currentDate
+        datePicker.minimumDate = currentDate.dateByAddingTimeInterval(60)
         datePicker.maximumDate = currentDate.dateByAddingTimeInterval(259200)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
         let dateString = dateFormatter.stringFromDate(datePicker.date)
-        //print(dateString)
         self.dateString = dateString
     }
     
@@ -36,7 +35,7 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        datePicker.setValue(purple, forKey: "textColor")
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
@@ -72,18 +71,40 @@ class PopoverViewController: UIViewController {
     
     // calculate route and return this to previous vc along with user type (driver)
     func drivingTo(sender: UIButton) {
+        
+        // If user does not change date then its nil as they have not interacted with it (so therefor will be nil), this changes that to current time
+        if self.dateString == nil {
+            let currentDate = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
+           dateFormatter.stringFromDate(currentDate)
+            let dateString = dateFormatter.stringFromDate(currentDate)
+            self.dateString = dateString
+            print(self.dateString)
+        }
+        
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
             self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
-            print(self.dateString!)
             self.cancel()
         })
     }
     
     // calculate route and return this to previous vc along with user type (hitcher)
     func hitchTo(sender: UIButton) {
+        
+        // If user does not change date then its nil as they have not interacted with it (so therefor will be nil), this changes that to current time
+        if self.dateString == nil {
+            let currentDate = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
+            dateFormatter.stringFromDate(currentDate)
+            let dateString = dateFormatter.stringFromDate(currentDate)
+            self.dateString = dateString
+            print(self.dateString)
+        }
+        
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
             self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
-            print(self.dateString!)
             self.cancel()
         })
     }
