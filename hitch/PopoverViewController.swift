@@ -13,6 +13,20 @@ import MK
 
 class PopoverViewController: UIViewController {
  
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBAction func datePickerAction(sender: AnyObject) {
+        let currentDate = NSDate()
+        datePicker.minimumDate = currentDate
+        datePicker.maximumDate = currentDate.dateByAddingTimeInterval(259200)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
+        let dateString = dateFormatter.stringFromDate(datePicker.date)
+        print(dateString)
+    }
+    
+    
+    
     var routeCalc = RouteCalculator()
     var delegate : SendDataBackProtocol?
     var destinationLongitude : Double?
@@ -27,7 +41,7 @@ class PopoverViewController: UIViewController {
         changeColorScheme()
         
         // Adds driving to button to view
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 200, 200, 30))
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 400, 200, 30))
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = UIFont(name: "System", size: 15)
@@ -36,7 +50,7 @@ class PopoverViewController: UIViewController {
         view.addSubview(drivingToButton)
         
         // Adds Hitch button to view
-        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 400, 200, 30))
+        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 600, 200, 30))
         hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = UIFont(name: "System", size: 15)

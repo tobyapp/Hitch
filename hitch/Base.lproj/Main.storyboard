@@ -89,8 +89,27 @@
                     <view key="view" contentMode="scaleToFill" id="ZAL-E8-Tnf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Eb-in-WfC">
+                                <rect key="frame" x="0.0" y="28" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="474653164.74805403">
+                                    <!--2016-01-16 16:06:04 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datePickerAction:" destination="sgl-S3-QcD" eventType="valueChanged" id="VmL-vL-wia"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Eb-in-WfC" firstAttribute="leading" secondItem="ZAL-E8-Tnf" secondAttribute="leading" id="6qC-Ri-YUY"/>
+                            <constraint firstAttribute="trailing" secondItem="8Eb-in-WfC" secondAttribute="trailing" id="QbD-tF-9zA"/>
+                            <constraint firstItem="8Eb-in-WfC" firstAttribute="top" secondItem="tLi-Ca-N6H" secondAttribute="bottom" constant="8" symbolic="YES" id="Zcq-l6-X3z"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="8Eb-in-WfC" id="6gv-sH-H0z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTE-SQ-lT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -562,7 +581,7 @@
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="7EE9A9DD-097A-4FA8-9260-FE9B664658C9" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="14902BF7-CD74-4D71-8EE9-7EDBEAF5CBDB" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -634,7 +653,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7EE9A9DD-097A-4FA8-9260-FE9B664658C9" width="200" height="200">
+        <image name="14902BF7-CD74-4D71-8EE9-7EDBEAF5CBDB" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
