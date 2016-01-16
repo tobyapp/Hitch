@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import MK
+import Parse
 
 class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, SendDataBackProtocol  {
 
@@ -208,8 +209,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String, timeOfRoute: String) {
-
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String) {
+        
+        let currentUser = PFUser.currentUser()?.valueForKey("userName")
+        
+        if userName == currentUser! as! String {
+            userName = "You"
+        }
+        
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
         case "driver":
