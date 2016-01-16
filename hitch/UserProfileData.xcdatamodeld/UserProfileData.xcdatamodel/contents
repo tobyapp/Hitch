@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="UserProfileData" representedClassName=".UserProfileData" syncable="YES">
+        <attribute name="userAge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userDisplayPicture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="userEducation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userGender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UserProfileData" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>

@@ -46,6 +46,9 @@
 		52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89FE1C4272630020959B /* RouteCalculator.swift */; };
 		52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */; };
 		52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB8A051C46D8060020959B /* UserInfoWindow.xib */; };
+		52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E134F81C4AE97A008684DB /* UserProfileData.xcdatamodeld */; };
+		52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */; };
+		52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135001C4AEB45008684DB /* UserProfileData.swift */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
 		52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93911C28539C007CF8F4 /* ClassExtentions.swift */; };
@@ -98,6 +101,9 @@
 		52CB89FE1C4272630020959B /* RouteCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculator.swift; sourceTree = "<group>"; };
 		52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveDataFromBackEnd.swift; sourceTree = "<group>"; };
 		52CB8A051C46D8060020959B /* UserInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoWindow.xib; sourceTree = "<group>"; };
+		52E134F91C4AE97A008684DB /* UserProfileData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserProfileData.xcdatamodel; sourceTree = "<group>"; };
+		52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserProfileData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		52E135001C4AEB45008684DB /* UserProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		52EC93901C2850E8007CF8F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -172,6 +178,9 @@
 		5206AD8C1C273B3C00A1EFAD /* hitch */ = {
 			isa = PBXGroup;
 			children = (
+				52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */,
+				52E135001C4AEB45008684DB /* UserProfileData.swift */,
+				52E134F81C4AE97A008684DB /* UserProfileData.xcdatamodeld */,
 				52EC93901C2850E8007CF8F4 /* Bridging-Header.h */,
 				5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
@@ -438,7 +447,9 @@
 			files = (
 				5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
+				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
 				52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */,
+				52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */,
 				52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */,
 				529AB4371C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift in Sources */,
 				52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */,
@@ -452,6 +463,7 @@
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
+				52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */,
 				52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,
@@ -614,6 +626,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		52E134F81C4AE97A008684DB /* UserProfileData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52E134F91C4AE97A008684DB /* UserProfileData.xcdatamodel */,
+			);
+			currentVersion = 52E134F91C4AE97A008684DB /* UserProfileData.xcdatamodel */;
+			path = UserProfileData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5206AD821C273B3C00A1EFAD /* Project object */;
 }
