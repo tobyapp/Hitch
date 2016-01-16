@@ -45,6 +45,7 @@ class RetrieveDataFromBackEnd {
                             userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
                             userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
                             userRelation.setObject(userName!, forKey: "UserName")
+                            userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
                             userRelation.setObject(userID!, forKey: "UserID")
                             
 //                            userDisplayPicture!.getDataInBackgroundWithBlock {
@@ -102,6 +103,7 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
+                        print(objects)
                         userDetails["userAge"] = ("\(object["userAge"])")
                         userDetails["userEducation"] = ("\(object["userEducation"])")
                         userDetails["userGender"] = ("\(object["userGender"])")

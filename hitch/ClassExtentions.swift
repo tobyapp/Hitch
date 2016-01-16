@@ -49,7 +49,7 @@ extension UIViewController {
 
 protocol SendDataBackProtocol {
     
-    func sendRouteBack(route : String, userType: String, destinationLatitude: Double, destinationLongitude: Double)
+    func sendRouteBack(route : String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String)
     
 }
 

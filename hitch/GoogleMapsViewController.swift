@@ -59,12 +59,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let userID = ("\(object.objectForKey("UserID")!)")
                 let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
                 let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
+                let timeOfRoute = ("\(object.objectForKey("TimeOfRoute")!)")
                 
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
                 self.plottedByUser = false
-                self.placeMarker(location, userName: userName, userType: userType, userID: userID)
+                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute)
             }
         })
  
@@ -207,25 +208,25 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String, timeOfRoute: String) {
 
         locationMarker = GMSMarker(position: coordinate)
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
+            locationMarker.snippet = "\(timeOfRoute)"
             locationMarker.userData = userID
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
+            locationMarker.snippet = "\(timeOfRoute)"
             locationMarker.userData = userID
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
         }
-
         locationMarker.map = mapView
-
     }
     
     func placeViewClosed() {
@@ -237,7 +238,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
 
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.frame.size.width = 200
-        infoWindow.frame.size.height = 50
+        infoWindow.frame.size.height = 75
         infoWindow.layer.cornerRadius = 10
         infoWindow.backgroundColor = purple
         
@@ -251,12 +252,21 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else if !plottedByUser {
-            let label = UILabel(frame: CGRectMake(0, 0, 197, 47))
-            label.textAlignment = .Center
-            label.text = marker.title
-            label.textColor = UIColor.whiteColor()
-            label.layer.cornerRadius = 10
-            infoWindow.addSubview(label)
+            let userLabel = UILabel(frame: CGRectMake(0, 0, 200, 50))
+            userLabel.textAlignment = .Center
+            userLabel.text = marker.title
+            userLabel.textColor = UIColor.whiteColor()
+            userLabel.layer.cornerRadius = 10
+            infoWindow.addSubview(userLabel)
+            
+            let timeLabel = UILabel(frame: CGRectMake(0, 25, 200, 50))
+            timeLabel.textAlignment = .Center
+            timeLabel.text = "At : \(marker.snippet)"
+            timeLabel.textColor = UIColor.whiteColor()
+            timeLabel.layer.cornerRadius = 10
+            infoWindow.addSubview(timeLabel)
+
+            
         }
         return infoWindow
     }
@@ -299,12 +309,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
-    func sendRouteBack(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double) {
+    func sendRouteBack(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location")
             return
         } else {
-            account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude)
+            account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
             drawRoute(route, userType: userType)
         }
     }

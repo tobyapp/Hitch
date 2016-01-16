@@ -99,7 +99,7 @@ class UserAccount {
 
     }
 
-    func addLocationData(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double) {
+    func addLocationData(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         let object = PFObject(className: "UserRoutes")
         let currentUser = PFUser.currentUser()
         object.setObject(route, forKey: "UserRoute")
@@ -107,6 +107,7 @@ class UserAccount {
         object.setObject(currentUser!, forKey: "User")
         object.setObject(destinationLatitude, forKey: "DestinationLatitude")
         object.setObject(destinationLongitude, forKey: "DestinationLongitude")
+        object.setObject(timeOfRoute, forKey: "TimeOfRoute")
         object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
                 print("Save successful")

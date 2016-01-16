@@ -22,11 +22,11 @@ class PopoverViewController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
         let dateString = dateFormatter.stringFromDate(datePicker.date)
-        print(dateString)
+        //print(dateString)
+        self.dateString = dateString
     }
     
-    
-    
+    var dateString : String?
     var routeCalc = RouteCalculator()
     var delegate : SendDataBackProtocol?
     var destinationLongitude : Double?
@@ -73,7 +73,8 @@ class PopoverViewController: UIViewController {
     // calculate route and return this to previous vc along with user type (driver)
     func drivingTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!)
+            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            print(self.dateString!)
             self.cancel()
         })
     }
@@ -81,7 +82,8 @@ class PopoverViewController: UIViewController {
     // calculate route and return this to previous vc along with user type (hitcher)
     func hitchTo(sender: UIButton) {
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!)
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            print(self.dateString!)
             self.cancel()
         })
     }
