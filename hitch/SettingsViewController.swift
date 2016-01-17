@@ -19,11 +19,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    //var account = UserAccount()
-    var userName: String?
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
+    var userName: String?
     var profileData = [UserProfileData]()
     
     override func viewDidLoad() {
@@ -32,8 +30,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         self.addSideMenu(menuButton)
         
         fetchProfileData()
-        
-//        self.userName = account.userName
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {

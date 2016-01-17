@@ -65,7 +65,6 @@ class ProfileTableViewController: UITableViewController {
         return userDataArray.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
 

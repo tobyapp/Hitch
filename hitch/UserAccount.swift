@@ -88,9 +88,6 @@ class UserAccount {
                 catch let error as NSError {
                     print("Fetch failed: \(error.localizedDescription)")
                 }
-
-
-                
 //                UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
 //                self.saveCoreData()
             }
