@@ -14,6 +14,8 @@ class HitcherDriverTableViewController: UITableViewController {
     var userData : String?
     var userDetails = []
     
+    @IBOutlet weak var usersDisplayPictrueView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,15 @@ class HitcherDriverTableViewController: UITableViewController {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 let details = [results["userName"]!, results["userAge"]!, results["userGender"]!, results["userEducation"]!]
                 self.setArrayToGlobalVariable(details)
+                
+                let picture = results["userDisplayPicture"]
+                
+                let data = picture?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+                
+                //let imageNSData: NSData = UIImagePNGRepresentation(picture!)!
+                self.usersDisplayPictrueView.image = UIImage(data: data!)
+                //let usersDisplayPictrueView = PFFile(name:"image.png", data:data!)
+                //print(self.userDetails)
                 
                 //reloads tableview on main thread
                 dispatch_async(dispatch_get_main_queue()) {

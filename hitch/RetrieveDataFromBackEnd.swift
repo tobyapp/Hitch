@@ -28,13 +28,9 @@ class RetrieveDataFromBackEnd {
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
                         
-                        
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
-                            //print(users)
-                            
-                            //let userDisplayPicture = user?["UserDisplayPicture"]
                             
                             let userName = user?["userName"]
                             let userID = user?["username"] //will act as objectID
@@ -47,31 +43,6 @@ class RetrieveDataFromBackEnd {
                             userRelation.setObject(userName!, forKey: "UserName")
                             userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
                             userRelation.setObject(userID!, forKey: "UserID")
-                            
-//                            userDisplayPicture!.getDataInBackgroundWithBlock {
-//                                (imageData: NSData?, error: NSError?) -> Void in
-//                                if error == nil {
-//                                    if let imageData = imageData {
-//                                        let image = UIImage(data:imageData)
-//                                        let imageNSData: NSData = UIImagePNGRepresentation(image!)!
-//                                        let imageFile = PFFile(name:"image.png", data:imageNSData)
-//                                        
-//                                        userRelation.setObject(imageNSData, forKey: "UserDisplayPicture")
-//                                        
-//                                        // put this outside of loop (delete this and uncomment code below)
-//                                        routeAndUserObjects.append(userRelation)
-//                                        print(userRelation)
-//                                        
-//                                        resultHandler(routeObjects: routeAndUserObjects)
-//                                    }
-//                                    else{
-//                                        print("no pic")
-//                                    }
-//                                }
-//                                else {
-//                                    print("Error: \(error!)")
-//                                }
-//                            }
                             
                             // Appends all the required info to PFOject array
                         	routeAndUserObjects.append(userRelation)
@@ -103,11 +74,36 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
+                        //print(object)
+                        
                         userDetails["userAge"] = ("\(object["userAge"])")
                         userDetails["userEducation"] = ("\(object["userEducation"])")
                         userDetails["userGender"] = ("\(object["userGender"])")
                         userDetails["userName"] = ("\(object["userName"])")
-                        resultHandler(userDetails: userDetails)
+                        
+                        let userDisplayPicture = object["UserDisplayPicture"]
+                        
+                        //get users dp from Parse
+                        userDisplayPicture.getDataInBackgroundWithBlock {
+                            (imageData: NSData?, error: NSError?) -> Void in
+                            if error == nil {
+                                if let imageData = imageData {
+                                    let image = UIImage(data:imageData)
+                                    let imageNSData: NSData = UIImagePNGRepresentation(image!)!
+                                    //let imageFile = PFFile(name:"image.png", data:imageNSData)
+                                    //print("\(imageNSData)")
+                                    userDetails["userDisplayPicture"] = ("\(imageNSData)")
+                                    resultHandler(userDetails: userDetails)
+                                }
+                                else {
+                                    print("no picture")
+                                }
+                            }
+                            else {
+                                print("Error: \(error!)")
+                            }
+                        }
+                        //resultHandler(userDetails: userDetails)
                     }
                 }
             }
