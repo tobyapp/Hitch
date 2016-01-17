@@ -49,6 +49,7 @@
 		52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52E134F81C4AE97A008684DB /* UserProfileData.xcdatamodeld */; };
 		52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */; };
 		52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135001C4AEB45008684DB /* UserProfileData.swift */; };
+		52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135031C4BC9C6008684DB /* APIKeys.swift */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
 		52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93911C28539C007CF8F4 /* ClassExtentions.swift */; };
@@ -104,6 +105,7 @@
 		52E134F91C4AE97A008684DB /* UserProfileData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserProfileData.xcdatamodel; sourceTree = "<group>"; };
 		52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserProfileData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52E135001C4AEB45008684DB /* UserProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
+		52E135031C4BC9C6008684DB /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		52EC93901C2850E8007CF8F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				52E134F81C4AE97A008684DB /* UserProfileData.xcdatamodeld */,
 				52EC93901C2850E8007CF8F4 /* Bridging-Header.h */,
 				5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */,
+				52E135031C4BC9C6008684DB /* APIKeys.swift */,
 				521FE9E01C3DB5CE00040F78 /* UI */,
 				52CB8A001C42F9C40020959B /* Modle's */,
 				52E296291C39659C00C493CC /* ViewControllers */,
@@ -446,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */,
+				52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
 				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
 				52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */,

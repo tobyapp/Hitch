@@ -74,3 +74,4 @@ fastlane/screenshots\
 }
 *.plist
 *key.rtf
+APIKeys.swift

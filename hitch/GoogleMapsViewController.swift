@@ -31,6 +31,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var destinationLongitude : Double?
     var originLatitude : Double?
     var originLongitude : Double?
+    let keys = APIkeys()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +99,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         super.viewDidAppear(animated)
         
         let gpaViewController = GooglePlacesAutocomplete (
-            apiKey: "AIzaSyBZM-uX4YyOaMd5Fpas8EPBG-zq_T2kRq8",
+            apiKey: keys.googlePlacesAPIKey,
             placeType: .Address
         )
         gpaViewController.placeDelegate = self
@@ -107,7 +108,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     //presents search bar for user to search, sets UI for search bar view
     func presentSearchBar(){
         let gpaViewController = GooglePlacesAutocomplete (
-            apiKey: "AIzaSyBZM-uX4YyOaMd5Fpas8EPBG-zq_T2kRq8",
+            apiKey: keys.googlePlacesAPIKey,
             placeType: .Address
         )
         
