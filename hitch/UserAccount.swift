@@ -56,16 +56,43 @@ class UserAccount {
             
             let moc = self.managedObjectContext
             
-            
-            
             self.facebookProfileData.getProfilePicture {(pictureData, error) -> Void in
                 if error != nil {
                     print("login error: \(error!.localizedDescription)")
                 }
                 let displayPicture = UIImage(data: pictureData!)
                 let imageData = UIImagePNGRepresentation(displayPicture!)
-                UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
-                self.saveCoreData()
+                
+                // Fetches current object in CoreData
+                let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+                do {
+                   var profileData = try (self.managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+                    // If theres more then one object in CoreData, overwrite it with new user details
+                    if profileData.count != 0 {
+                        let managedObject = profileData[0]
+                        managedObject.setValue(nameData!, forKey: "userName")
+                        managedObject.setValue(dobData!, forKey: "userAge")
+                        managedObject.setValue(genderData!, forKey: "userGender")
+                        managedObject.setValue(educationData!, forKey: "userEducation")
+                        managedObject.setValue(imageData!, forKey: "userDisplayPicture")
+                        self.saveCoreData()
+                    }
+                    // If theres no objec tin coredata (first time apps been used), insert values and save
+                    else if profileData.count == 0 {
+                        UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
+                        self.saveCoreData()
+
+                    }
+                }
+                    
+                catch let error as NSError {
+                    print("Fetch failed: \(error.localizedDescription)")
+                }
+
+
+                
+//                UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
+//                self.saveCoreData()
             }
         }
     }
