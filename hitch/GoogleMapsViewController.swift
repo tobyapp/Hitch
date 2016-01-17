@@ -80,11 +80,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
             case .Restricted, .Denied:
-                showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!")
+                showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!", showSettings: true)
             }
         }
         else {
-            showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!")
+            showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true)
         }
         
     }
@@ -147,7 +147,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     // Function to display an Alert Controller
-    func showAlertController(errorTitle: String, errorMessage: String) {
+    func showAlertController(errorTitle: String, errorMessage: String, showSettings: Bool) {
         
         let alertController = UIAlertController(
             title: errorTitle,
@@ -159,22 +159,25 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             handler: nil)
         alertController.addAction(cancelAction)
         
-        // Opens the phones settings application
-        let openAction = UIAlertAction(
-            title: "Open Settings",
-            style: .Default)
-            { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
+        if showSettings {
+            // Opens the phones settings application
+            let openAction = UIAlertAction(
+                title: "Open Settings",
+                style: .Default)
+                { (action) in
+                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
                 }
+            alertController.addAction(openAction)
         }
-        
-        alertController.addAction(openAction)
-        dispatch_async(dispatch_get_main_queue(), { 
+        dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(alertController, animated: true, completion: nil)
-            })
-        }
+        })
+
     }
+
+}
 
 // Extention of current class to incorportate wrapper for googlePlacesApi + other functionality
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
@@ -318,7 +321,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
     func sendRouteBack(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         if route == "No directions found" {
-            showAlertController("No route found", errorMessage: "No route found, please try another location")
+            showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false)
             return
         } else {
             account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)

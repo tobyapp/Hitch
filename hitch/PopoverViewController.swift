@@ -80,7 +80,6 @@ class PopoverViewController: UIViewController {
            dateFormatter.stringFromDate(currentDate)
             let dateString = dateFormatter.stringFromDate(currentDate)
             self.dateString = dateString
-            print(self.dateString)
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
@@ -100,7 +99,6 @@ class PopoverViewController: UIViewController {
             dateFormatter.stringFromDate(currentDate)
             let dateString = dateFormatter.stringFromDate(currentDate)
             self.dateString = dateString
-            print(self.dateString)
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
