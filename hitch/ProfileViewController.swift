@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var displayPictureView: UIImageView!
     
     var facebookProfileData = ParseFBData()
-    var account = UserAccount()
+    var account = UploadDataToBackEnd()
     
     var userName: String?
     var userGender: String?

@@ -15,7 +15,7 @@ import Parse
 import ParseFacebookUtilsV4
 import CoreData
 
-class UserAccount {
+class UploadDataToBackEnd {
     
     var facebookProfileData = ParseFBData()
     

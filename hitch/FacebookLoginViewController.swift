@@ -144,7 +144,7 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     if user.isNew {
                         print("User signed up and logged in through Facebook!")
                         //initalises UserAccount class whihc grabs all the facebook data ready for the app
-                        let user = UserAccount()
+                        let user = UploadDataToBackEnd()
                         //uncomment when want to add data to Parse
                         dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
                             user.upLoadData()
@@ -155,7 +155,7 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     } else {
                         print("User logged in through Facebook!")
                         //initalises UserAccount class whihc grabs all the facebook data ready for the app
-                        let user = UserAccount()
+                        let user = UploadDataToBackEnd()
                         //uncomment when want to add data to Parse
                         dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
                             user.upLoadData()

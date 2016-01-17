@@ -50,12 +50,13 @@
 		52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */; };
 		52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135001C4AEB45008684DB /* UserProfileData.swift */; };
 		52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135031C4BC9C6008684DB /* APIKeys.swift */; };
+		52E135061C4BCE5E008684DB /* FilterSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E135051C4BCE5E008684DB /* FilterSelectionViewController.swift */; };
 		52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */; };
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
 		52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93911C28539C007CF8F4 /* ClassExtentions.swift */; };
 		52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */; };
 		52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93971C289CBA007CF8F4 /* ProfileViewController.swift */; };
-		52EEDF911C333BAF00C64EBF /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF901C333BAF00C64EBF /* UserAccount.swift */; };
+		52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */; };
 		52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */; };
 		52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -106,13 +107,14 @@
 		52E134FF1C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserProfileData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52E135001C4AEB45008684DB /* UserProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
 		52E135031C4BC9C6008684DB /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		52E135051C4BCE5E008684DB /* FilterSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterSelectionViewController.swift; path = ../FilterSelectionViewController.swift; sourceTree = "<group>"; };
 		52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		52EC93901C2850E8007CF8F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		52EC93911C28539C007CF8F4 /* ClassExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassExtentions.swift; path = hitch/ClassExtentions.swift; sourceTree = "<group>"; };
 		52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
 		52EC93971C289CBA007CF8F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		52EEDF901C333BAF00C64EBF /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDataToBackEnd.swift; sourceTree = "<group>"; };
 		52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previous_dataGrabbingForProfile.swift; sourceTree = "<group>"; };
 		52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		97ADE2C6FE4FD2211345452F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */,
-				52EEDF901C333BAF00C64EBF /* UserAccount.swift */,
+				52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */,
 			);
 			name = "Parse Data";
 			sourceTree = "<group>";
@@ -261,6 +263,7 @@
 		52E2962F1C39BE2D00C493CC /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				52E135051C4BCE5E008684DB /* FilterSelectionViewController.swift */,
 				529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */,
 				52CB89F81C3F09EB0020959B /* PopoverViewController.swift */,
 				52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */,
@@ -455,6 +458,7 @@
 				52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */,
 				52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */,
 				52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */,
+				52E135061C4BCE5E008684DB /* FilterSelectionViewController.swift in Sources */,
 				529AB4371C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift in Sources */,
 				52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */,
 				5206AD901C273B3C00A1EFAD /* ViewController.swift in Sources */,
@@ -463,7 +467,7 @@
 				52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */,
 				5206AD8E1C273B3C00A1EFAD /* AppDelegate.swift in Sources */,
 				52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */,
-				52EEDF911C333BAF00C64EBF /* UserAccount.swift in Sources */,
+				52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */,
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,

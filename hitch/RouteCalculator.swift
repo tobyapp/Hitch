@@ -12,11 +12,12 @@ import SwiftyJSON
 
 class RouteCalculator {
     
+    let keys = APIkeys()
     let baseURL = "https://maps.googleapis.com/maps/api/directions/json?"
     
     func getDirectionsFromCoords(originLongitude: Double, originLatitude: Double, destinationLongitude: Double, destinationLatitude: Double, resultHandler: (directions: String?) -> ()) -> () {
         
-        let requestURL = baseURL + "origin=" + "\(originLatitude),\(originLongitude)" + "&destination=" + "\(destinationLatitude),\(destinationLongitude)" + "&key=" + "AIzaSyBZM-uX4YyOaMd5Fpas8EPBG-zq_T2kRq8"
+        let requestURL = baseURL + "origin=" + "\(originLatitude),\(originLongitude)" + "&destination=" + "\(destinationLatitude),\(destinationLongitude)" + "&key=" + keys.googlePlacesAPIKey
         
         Alamofire.request(.GET, requestURL, parameters: nil).responseJSON { response in
             switch response.result {

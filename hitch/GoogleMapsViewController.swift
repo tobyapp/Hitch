@@ -21,7 +21,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     var userRoutes = RetrieveDataFromBackEnd()
-    var account = UserAccount()
+    var account = UploadDataToBackEnd()
     var locationMarker: GMSMarker!
     let locationManager = CLLocationManager()
     var plottedByUser = false
@@ -46,8 +46,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.padding = UIEdgeInsetsMake(navBarHeight+compasButtonHeight,0,0,0);
         }
         
-        let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-        mapView.camera = camera
+//        let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
+//        mapView.camera = camera
         
         mapView.settings.compassButton = true
         mapView.settings.myLocationButton = true
@@ -276,8 +276,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             timeLabel.textColor = UIColor.whiteColor()
             timeLabel.layer.cornerRadius = 10
             infoWindow.addSubview(timeLabel)
-
-            
+         
         }
         return infoWindow
     }

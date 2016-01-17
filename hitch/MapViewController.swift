@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    var userType: String?
     
     let locationManager = CLLocationManager()
     
@@ -59,9 +60,22 @@ class MapViewController: UIViewController {
     
     func showDriverRoutes(sender: UIButton){
         print("driver")
+        userType = "driver"
+        performSegueWithIdentifier("filterSegue", sender: nil)
     }
     
     func showHitchRoutes(sender: UIButton){
         print("hitcher")
+        userType = "hitcher"
+        performSegueWithIdentifier("filterSegue", sender: nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "filterSegue") {
+            if let destinationViewController = segue.destinationViewController as? FilterSelectionViewController {
+                destinationViewController.userTypeFilter = userType
+            }
+        }
+    }
+
 }

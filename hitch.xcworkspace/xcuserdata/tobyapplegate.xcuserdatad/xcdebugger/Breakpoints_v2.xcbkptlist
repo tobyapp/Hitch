@@ -153,11 +153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/MapViewController.swift"
-            timestampString = "473776367.336707"
+            timestampString = "474731765.778909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -185,11 +185,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "474729308.550318"
+            timestampString = "474735371.552342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396">
+            startingLineNumber = "395"
+            endingLineNumber = "395">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -222,22 +222,6 @@
             endingLineNumber = "15"
             landmarkName = "GoogleMapsViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "474729308.550318"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
-            landmarkName = "drawRoute(_:userType:)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -279,11 +263,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "474729308.550318"
+            timestampString = "474735371.552342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379">
+            startingLineNumber = "378"
+            endingLineNumber = "378">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
