@@ -20,6 +20,7 @@
 		52452D661C3C66D8004FCB44 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D651C3C66D8004FCB44 /* GLKit.framework */; };
 		52452D681C3C66E3004FCB44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D671C3C66E3004FCB44 /* AVFoundation.framework */; };
 		52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */; };
+		524C755A1C4C293500776597 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C75591C4C293500776597 /* ContactViewController.swift */; };
 		5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */; };
 		526F46F41C2AE85E003DF05B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4344D1C2ABB7C00D565BD /* libz.tbd */; };
 		526F46F61C2AE868003DF05B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F46F51C2AE868003DF05B /* libsqlite3.tbd */; };
@@ -55,7 +56,7 @@
 		52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */; };
 		52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93911C28539C007CF8F4 /* ClassExtentions.swift */; };
 		52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */; };
-		52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93971C289CBA007CF8F4 /* ProfileViewController.swift */; };
+		52EC93981C289CBA007CF8F4 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC93971C289CBA007CF8F4 /* FAQViewController.swift */; };
 		52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */; };
 		52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */; };
 		52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */; };
@@ -77,6 +78,7 @@
 		52452D651C3C66D8004FCB44 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		52452D671C3C66E3004FCB44 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		524C75591C4C293500776597 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
 		526F46F51C2AE868003DF05B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapSearchResultsTableViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +115,7 @@
 		52EC93901C2850E8007CF8F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		52EC93911C28539C007CF8F4 /* ClassExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassExtentions.swift; path = hitch/ClassExtentions.swift; sourceTree = "<group>"; };
 		52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
-		52EC93971C289CBA007CF8F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		52EC93971C289CBA007CF8F4 /* FAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDataToBackEnd.swift; sourceTree = "<group>"; };
 		52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previous_dataGrabbingForProfile.swift; sourceTree = "<group>"; };
 		52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +245,9 @@
 		52E296291C39659C00C493CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				524C75591C4C293500776597 /* ContactViewController.swift */,
 				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
+				52EC93971C289CBA007CF8F4 /* FAQViewController.swift */,
 				52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */,
 				52E317FE1C29B50600635E10 /* profile */,
 				52E2962A1C39661100C493CC /* FB login */,
@@ -287,7 +291,6 @@
 		52E317FE1C29B50600635E10 /* profile */ = {
 			isa = PBXGroup;
 			children = (
-				52EC93971C289CBA007CF8F4 /* ProfileViewController.swift */,
 				52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */,
 			);
 			name = profile;
@@ -455,7 +458,8 @@
 				52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
 				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
-				52EC93981C289CBA007CF8F4 /* ProfileViewController.swift in Sources */,
+				52EC93981C289CBA007CF8F4 /* FAQViewController.swift in Sources */,
+				524C755A1C4C293500776597 /* ContactViewController.swift in Sources */,
 				52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */,
 				52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */,
 				52E135061C4BCE5E008684DB /* FilterSelectionViewController.swift in Sources */,

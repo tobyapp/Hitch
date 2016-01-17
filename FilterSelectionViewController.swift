@@ -87,7 +87,6 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         }
     }
 
-
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
         //mapView.clear()
@@ -112,6 +111,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
 
 // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routePath: String) {
+        
         if userTypeFilter == userType {
             let currentUser = PFUser.currentUser()?.valueForKey("userName")
     
@@ -120,18 +120,20 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             }
     
             locationMarker = GMSMarker(position: coordinate)
+            
             switch userType {
                 case "driver":
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
                     locationMarker.title = "Driver : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
                     locationMarker.userData = userID
-                    
+                
                 case "hitcher":
                     locationMarker.icon = GMSMarker.markerImageWithColor(purple)
                     locationMarker.title = "Hitcher : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
                     locationMarker.userData = userID
+
                 default:
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
                     locationMarker.title = "Driver/Hitcher : unkown"
@@ -163,36 +165,22 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         timeLabel.textColor = UIColor.whiteColor()
         timeLabel.layer.cornerRadius = 10
         infoWindow.addSubview(timeLabel)
-        
-        //drawRoute(userType: userTypeFilter)
             
-            return infoWindow
-        }
+        return infoWindow
+    }
     
-//    func drawRoute(route: String, userType: String) {
-//        //mapView.clear()
-//        if userTypeFilter == userType {
+//    func drawRoute(route: String) {
 //            let path: GMSPath = GMSPath(fromEncodedPath: route)
 //            let routePolyline = GMSPolyline(path: path)
-//            routePolyline.strokeWidth = 5.0
-//            switch userType {
-//            case "driver":
-//                let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
-//                routePolyline.spans = [GMSStyleSpan(style: driverLine)]
-//            case "hitcher":
-//                let hitcherLine = GMSStrokeStyle.solidColor(purple)
-//                routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
-//            default:
+//            routePolyline.strokeWidth = 10.0
+//        
 //                let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
 //                routePolyline.spans = [GMSStyleSpan(style: standardline)]
-//            }
+//        
 //            routePolyline.map = mapView
-//        }
+//        
 //    }
-    
-    
-    
-    
+
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         userID = "\(marker.userData)"

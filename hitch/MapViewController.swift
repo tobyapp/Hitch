@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 475, 200, 30))
-        drivingToButton.setTitle("Show Driving routes..", forState: .Normal)
+        drivingToButton.setTitle("Show Driving Routes..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = UIFont(name: "System", size: 15)
         drivingToButton.addTarget(self, action: "showDriverRoutes:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         view.addSubview(drivingToButton)
         
         let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 550, 200, 30))
-        hitchinToButton.setTitle("Show Hitch'n routes..", forState: .Normal)
+        hitchinToButton.setTitle("Show Hitch'n Routes..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = UIFont(name: "System", size: 15)
         hitchinToButton.addTarget(self, action: "showHitchRoutes:", forControlEvents: UIControlEvents.TouchUpInside)

@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2573" y="-1119"/>
+            <point key="canvasLocation" x="-3394" y="-1119"/>
         </scene>
         <!--Settings-->
         <scene sceneID="HTz-xr-WGV">
@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcR-6D-hTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1280" y="-340"/>
+            <point key="canvasLocation" x="57" y="564"/>
         </scene>
         <!--Hitcher Driver Table View Controller-->
         <scene sceneID="Vre-bu-Kmj">
@@ -60,7 +60,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCells" id="elb-AM-ZgK">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="elb-AM-ZgK" id="qdU-ki-HYE">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -76,7 +76,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qri-TM-LOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="1223"/>
+            <point key="canvasLocation" x="-829" y="2127"/>
         </scene>
         <!--Popover View Controller-->
         <scene sceneID="bf1-tx-wH8">
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTE-SQ-lT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-472" y="1223"/>
+            <point key="canvasLocation" x="-1780" y="2127"/>
         </scene>
         <!--Filter Selection View Controller-->
         <scene sceneID="4jO-NL-6mA">
@@ -147,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wb5-Sr-n2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="442"/>
+            <point key="canvasLocation" x="-829" y="1346"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="qZx-RB-k8l">
@@ -169,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oee-8g-6WU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1619" y="-1119"/>
+            <point key="canvasLocation" x="-2444" y="-1119"/>
         </scene>
         <!--Menu Table View Controller-->
         <scene sceneID="1xB-b2-zsg">
@@ -315,11 +315,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-lW-NhO">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-lW-NhO">
                                                     <rect key="frame" x="8" y="4" width="35" height="35"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Travling From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-6b-AJM">
-                                                    <rect key="frame" x="51" y="11" width="115" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-6b-AJM">
+                                                    <rect key="frame" x="51" y="11" width="72" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -329,6 +329,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="Rac-Qi-4pe" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="ZVu-ao-6up"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -344,6 +347,66 @@
             <point key="canvasLocation" x="-827" y="-1119"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="sx1-H8-Nxj">
+            <objects>
+                <navigationController id="Rac-Qi-4pe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DKg-xb-v40">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qiC-1L-Rmb" kind="relationship" relationship="rootViewController" id="Wrn-ki-aYQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAt-sm-Aq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67" y="-1119"/>
+        </scene>
+        <!--Contant-->
+        <scene sceneID="dmu-Lz-acw">
+            <objects>
+                <viewController id="qiC-1L-Rmb" customClass="ContactViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5vW-Sd-FI7"/>
+                        <viewControllerLayoutGuide type="bottom" id="N9o-PW-ZnN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="604-7J-NFY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aON-mp-IAe">
+                                <rect key="frame" x="20" y="72" width="560" height="262"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">If you have any complaints or suggestions please contact us (well me tbh) @ toby.applegate@myport.ac.uk
+
+If you would liek to see more cool projects then please visit my Github @ 
+https://github.com/tobyapp</string>
+                                <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aON-mp-IAe" firstAttribute="trailing" secondItem="604-7J-NFY" secondAttribute="trailingMargin" id="Y2Q-09-5iz"/>
+                            <constraint firstItem="aON-mp-IAe" firstAttribute="top" secondItem="5vW-Sd-FI7" secondAttribute="bottom" constant="8" symbolic="YES" id="kDl-kr-yH2"/>
+                            <constraint firstItem="N9o-PW-ZnN" firstAttribute="top" secondItem="aON-mp-IAe" secondAttribute="bottom" constant="266" id="q0N-cC-FPA"/>
+                            <constraint firstItem="aON-mp-IAe" firstAttribute="leading" secondItem="604-7J-NFY" secondAttribute="leadingMargin" id="vh7-wH-fgl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contant" id="4Pf-yH-6Tz">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="8jW-Dr-Px9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="8jW-Dr-Px9" id="wDt-ro-1Sb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDr-XX-kh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="885" y="-1119"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="mYt-Ms-gs6">
             <objects>
                 <navigationController id="GWb-qB-HyQ" sceneMemberID="viewController">
@@ -357,12 +420,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrV-Zn-9Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111" y="-1926"/>
+            <point key="canvasLocation" x="57" y="-1974"/>
         </scene>
-        <!--Profile-->
+        <!--FAQ-->
         <scene sceneID="jQm-Mc-aHu">
             <objects>
-                <viewController id="vb2-jg-twO" customClass="ProfileViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vb2-jg-twO" customClass="FAQViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bhy-IY-tXq"/>
                         <viewControllerLayoutGuide type="bottom" id="yWa-IU-lAU"/>
@@ -371,23 +434,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YaS-qp-JAZ">
-                                <rect key="frame" x="20" y="72" width="100" height="100"/>
-                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="499-di-kXX">
+                                <rect key="frame" x="20" y="72" width="560" height="508"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <mutableString key="text">Welcome to Hitch!The purpose of this application is to provide backpackers a way of traveling and meeting other like minded individuals for (next to) nothing!By using this application, YOU are encouraging and experiencing the way of the hitchhiker, a once forgotten means of transportation, revamped for the 21st century! To use this app, all you have to do is to go to the map section, click on the map, search where you want to go and state weather you are hitch'n there or driving! No sit back, grab a beer (or wine) and wait to see who else gets in contact with you! On a spontaneous adventure and not sure where you want to go? Then just click either the 'Show Driving Routes..' or the 'Show Hitch’n Routes..' to see where others are going! Click on the route and pop the person a message! You never know, you may just experience the trip of a life time..</mutableString>
+                                <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="499-di-kXX" secondAttribute="bottom" constant="20" symbolic="YES" id="Pu2-F2-Ii4"/>
+                            <constraint firstItem="499-di-kXX" firstAttribute="leading" secondItem="Uhc-YT-WgG" secondAttribute="leadingMargin" id="eDF-ZK-5L6"/>
+                            <constraint firstItem="499-di-kXX" firstAttribute="trailing" secondItem="Uhc-YT-WgG" secondAttribute="trailingMargin" id="hGc-WA-dfO"/>
+                            <constraint firstItem="499-di-kXX" firstAttribute="top" secondItem="Bhy-IY-tXq" secondAttribute="bottom" constant="8" symbolic="YES" id="it3-Ec-jgY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="QvE-1r-QjJ">
+                    <navigationItem key="navigationItem" title="FAQ" id="QvE-1r-QjJ">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="ZUI-3y-7R6"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="displayPictureView" destination="YaS-qp-JAZ" id="UPR-Nl-TXs"/>
                         <outlet property="menuButton" destination="ZUI-3y-7R6" id="bT5-tb-ZVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AaY-Br-Xck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829" y="-1119"/>
+            <point key="canvasLocation" x="885" y="-335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kep-A2-uB7">
@@ -403,7 +479,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0uY-e4-Iym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="484" y="-340"/>
+            <point key="canvasLocation" x="-827" y="564"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ThZ-0O-YYs">
@@ -419,7 +495,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6R-Ix-HVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1136" y="-340"/>
+            <point key="canvasLocation" x="-2444" y="564"/>
         </scene>
         <!--Map-->
         <scene sceneID="bcd-46-JFv">
@@ -442,7 +518,9 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2j-dY-TuC">
                                 <rect key="frame" x="277" y="550" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="cAe-Lr-ZLW" kind="show" id="DbC-cV-6CO"/>
                                 </connections>
@@ -474,7 +552,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-253" y="-340"/>
+            <point key="canvasLocation" x="-1561" y="564"/>
         </scene>
         <!--Google Maps View Controller-->
         <scene sceneID="Yb9-KN-486">
@@ -526,7 +604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfu-0f-Kxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-229" y="442"/>
+            <point key="canvasLocation" x="-1537" y="1346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HfG-59-Ox4">
@@ -542,7 +620,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EzM-Ga-dQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="-1119"/>
+            <point key="canvasLocation" x="67" y="-335"/>
         </scene>
         <!--Profile-->
         <scene sceneID="A6C-4u-7fb">
@@ -596,7 +674,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKG-JR-yk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780" y="-1926"/>
+            <point key="canvasLocation" x="885" y="-1974"/>
         </scene>
         <!--Map Kit View Controller-->
         <scene sceneID="D1B-Op-KLI">
@@ -616,7 +694,7 @@
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="14EE0D2C-DA86-42D7-BAD8-6318C2DEFF0C" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="5F76B80B-567A-41DB-BBB7-B3CA0566044E" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -684,11 +762,11 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-962" y="427"/>
+            <point key="canvasLocation" x="-2270" y="1331"/>
         </scene>
     </scenes>
     <resources>
-        <image name="14EE0D2C-DA86-42D7-BAD8-6318C2DEFF0C" width="200" height="200">
+        <image name="5F76B80B-567A-41DB-BBB7-B3CA0566044E" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3364,7 +3442,7 @@ z//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//0BTQ/9AU
 AAEAAAEGAAMAAAABAAIAAAERAAQAAAACAAJxxgESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAAB
 AKMAAAEXAAQAAAACAAJxvgEcAAMAAAABAAEAAAFSAAMAAAABAAIAAAFTAAMAAAAEAAJxzodzAAcAAAxI
 AAJx1gAAAAAACAAIAAgACAAB/WAAAHOgAAAACAAB/WgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0Ig
-WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMt
+WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMt
 SFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQ
 AAAAM2Rlc2MAAAGEAAAAbHd0cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIs
 AAAAFGJYWVoAAAJAAAAAFGRtbmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPU
@@ -3428,15 +3506,15 @@ AAAAAAAAAn+5A
 </mutableData>
         </image>
         <image name="Settings" width="60" height="60"/>
-        <image name="facebook" width="50" height="50"/>
         <image name="faq" width="72" height="72"/>
+        <image name="mail" width="72" height="72"/>
         <image name="map" width="137" height="91"/>
         <image name="map icon" width="72" height="72"/>
         <image name="menu" width="22" height="22"/>
         <image name="profile" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="leM-aS-Fht"/>
-        <segue reference="Kct-4Z-A6d"/>
+        <segue reference="LvU-ho-NQM"/>
+        <segue reference="5ko-41-CXC"/>
     </inferredMetricsTieBreakers>
 </document>
