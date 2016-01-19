@@ -20,7 +20,7 @@ class FAQViewController: UIViewController{
         self.addSideMenu(menuButton)
         
         
-        let params = ["usersOriginLat" : 37.33233141,  "usersOriginLon" : -122.0312186]
+        let params = ["usersOriginLatitude" : 37.33074384,  "usersOriginLongitude" : -122.02322912, "usersDestLatitude" : 40.7747314,  "usersDestLongitude" : -73.96537339999999]
         PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
             if error == nil {
                 print(response)
