@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class FAQViewController: UIViewController{
 
@@ -17,7 +18,17 @@ class FAQViewController: UIViewController{
 
         // Used to display side menu (using SWRevealViewController)
         self.addSideMenu(menuButton)
-
+        
+        
+        let params = ["usersOriginLat" : 37.33233141,  "usersOriginLon" : -122.0312186]
+        PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
+            if error == nil {
+                print(response)
+            }
+            else {
+                print(error)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
