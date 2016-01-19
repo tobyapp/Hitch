@@ -319,12 +319,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
-    func sendRouteBack(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
+    func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false)
             return
         } else {
-            account.addLocationData(route, userType: userType, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
+            account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
             drawRoute(route, userType: userType)
         }
     }

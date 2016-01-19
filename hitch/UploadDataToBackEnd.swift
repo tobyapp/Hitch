@@ -148,12 +148,14 @@ class UploadDataToBackEnd {
 
     }
 
-    func addLocationData(route: String, userType: String, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
+    func addLocationData(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         let object = PFObject(className: "UserRoutes")
         let currentUser = PFUser.currentUser()
         object.setObject(route, forKey: "UserRoute")
         object.setObject(userType, forKey: "UserType")
         object.setObject(currentUser!, forKey: "User")
+        object.setObject(originLatitude, forKey: "OriginLatitude")
+        object.setObject(originLongitude, forKey: "OriginLongitude")
         object.setObject(destinationLatitude, forKey: "DestinationLatitude")
         object.setObject(destinationLongitude, forKey: "DestinationLongitude")
         object.setObject(timeOfRoute, forKey: "TimeOfRoute")

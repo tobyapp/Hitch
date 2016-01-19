@@ -83,7 +83,7 @@ class PopoverViewController: UIViewController {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            self.delegate?.sendRouteBack(results!, userType: "driver", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
             self.cancel()
         })
     }
@@ -102,7 +102,7 @@ class PopoverViewController: UIViewController {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
             self.cancel()
         })
     }
