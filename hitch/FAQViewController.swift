@@ -13,6 +13,8 @@ class FAQViewController: UIViewController{
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
 
+    let account = RetrieveDataFromBackEnd()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,19 @@ class FAQViewController: UIViewController{
         PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
             if error == nil {
                 print(response)
+                print("going to retireve objects")
+                //self.account.retrieveObjectFromPointer(response!)
+                
+                //print(response)
+                var count = 0
+                let objects = response as! [PFObject]
+                for object in objects {
+                    count++
+                    print("count for    \(object)   is \(count)")
+                }
+                
+                
+                
             }
             else {
                 print(error)

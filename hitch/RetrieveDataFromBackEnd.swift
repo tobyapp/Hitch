@@ -25,13 +25,15 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
+                        print(object)
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
+                        print(userQuery)
                         
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
-                            
+                            print(users)
                             let userName = user?["userName"]
                             let userID = user?["username"] //will act as objectID
                             let userRelation = PFObject(className: "UserRelations")
@@ -61,6 +63,26 @@ class RetrieveDataFromBackEnd {
         }
     }
 
+    //retireve details from backend using parse object obtained from JS function in backend
+//    func retrieveObjectFromPointer(userData : AnyObject, resultHandler: (userObject: [String:String]?) -> ()) {
+//
+//            var userDetails = [String: String]()
+//            let users = userData as! [PFObject]
+//        
+//            for user in users {
+//                user.fetchIfNeededInBackgroundWithBlock {
+//                    (users: PFObject?, error: NSError?) -> Void in
+//                        print(users)
+//                    let userGender = users!["userGender"]
+//                    let userName = users!["userName"]
+//                    let userEmail = users!["userEmailAddress"]
+//                    resultHandler(userObject: userDetails)
+//                    print(userGender)
+//            }
+//        }
+//
+//    }
+    
     // Retrive users accoutn details and return in completion handler
     func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:String]) -> ()) {
         
