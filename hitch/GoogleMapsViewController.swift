@@ -325,8 +325,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             return
         } else {
             routeProximity(originLatitude, usersOriginLongitude: originLongitude, usersDestLatitude: destinationLatitude, usersDestLongitude: destinationLongitude)
-            account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
+            print("start...")
+            //delayed as other wise the route would get saved to the backend before it can be searched for users going same area, this means that the back end search would show a user is travling to the same location (but would really just be the orignal user as thier route is being searched against thier own route), increae number as records get bigger.
+            runCodeAfterDelay(2) {
+            self.account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
+            }
             drawRoute(route, userType: userType)
+            //account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
+            //drawRoute(route, userType: userType)
             
         }
     }
@@ -337,6 +343,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         let params = ["usersOriginLatitude" : usersOriginLatitude,  "usersOriginLongitude" : usersOriginLongitude, "usersDestLatitude" : usersDestLatitude,  "usersDestLongitude" : usersDestLongitude]
         PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
             print(response)
+            if response != nil {
+                print("not nill")
+            }
 //            if response != nil {
 //            if error == nil {
 //                print(response)
