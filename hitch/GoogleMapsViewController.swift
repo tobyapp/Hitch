@@ -32,6 +32,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var originLatitude : Double?
     var originLongitude : Double?
     let keys = APIkeys()
+    var calledFromAlertController = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,11 +82,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
             case .Restricted, .Denied:
-                showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!", showSettings: true)
+                showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!", showSettings: true, showProfile: false)
             }
         }
         else {
-            showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true)
+            showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
         
     }
@@ -148,7 +149,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     // Function to display an Alert Controller
-    func showAlertController(errorTitle: String, errorMessage: String, showSettings: Bool) {
+    func showAlertController(errorTitle: String, errorMessage: String, showSettings: Bool, showProfile: Bool) {
         
         let alertController = UIAlertController(
             title: errorTitle,
@@ -165,12 +166,25 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             let openAction = UIAlertAction(
                 title: "Open Settings",
                 style: .Default)
-                { (action) in
+                { action in
                     if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
                         UIApplication.sharedApplication().openURL(url)
                     }
                 }
             alertController.addAction(openAction)
+        }
+        
+        if showProfile {
+            // Displays an action to user profile defined by userID 
+            let profielAction = UIAlertAction(
+                title:"Show profile",
+                style: .Default,
+                handler: { action in
+                    self.performSegueWithIdentifier("segueToUsersProfile", sender: self)
+                }
+            )
+            alertController.addAction(profielAction)
+            
         }
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -290,8 +304,17 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else if !plottedByUser {
+            if calledFromAlertController {
+                print("user id in calledFromAlertController : \(userID)")
+                calledFromAlertController = false
+                performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                
+            }
+            else if !calledFromAlertController{
             userID = "\(marker.userData)"
+            print("user id in not called from : \(userID)")
             performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+            }
         }
     }
     
@@ -321,49 +344,44 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
     func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         if route == "No directions found" {
-            showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false)
+            showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false, showProfile: false)
             return
         } else {
             routeProximity(originLatitude, usersOriginLongitude: originLongitude, usersDestLatitude: destinationLatitude, usersDestLongitude: destinationLongitude)
-            print("start...")
+
             //delayed as other wise the route would get saved to the backend before it can be searched for users going same area, this means that the back end search would show a user is travling to the same location (but would really just be the orignal user as thier route is being searched against thier own route), increae number as records get bigger.
             runCodeAfterDelay(2) {
             self.account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
             }
-            drawRoute(route, userType: userType)
-            //account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
-            //drawRoute(route, userType: userType)
             
+            drawRoute(route, userType: userType)
+            plottedByUser = false
         }
     }
     
+    // Calculate route proximity then present alert to show user that another user is trvaling to this location
     func routeProximity(usersOriginLatitude : Double, usersOriginLongitude : Double, usersDestLatitude : Double, usersDestLongitude : Double) {
         
-//        let params = ["usersOriginLatitude" : 37.33074384,  "usersOriginLongitude" : -122.02322912, "usersDestLatitude" : 40.7747314,  "usersDestLongitude" : -73.96537339999999]
+        // co-ord params to pass to back end function "routeProximity" (see parse cloud code)
         let params = ["usersOriginLatitude" : usersOriginLatitude,  "usersOriginLongitude" : usersOriginLongitude, "usersDestLatitude" : usersDestLatitude,  "usersDestLongitude" : usersDestLongitude]
         PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
-            print(response)
+
             if response != nil {
-                print("not nill")
+            if error == nil {
+                if let objects = response as! [PFObject]? {
+                    for object in objects {
+                        let userIDNumber = object["username"]
+                        //need userIDNumber (its actually thier unique username) to pass to alert controller to present alert and then users profile page (if user clicked show profile page on alert controller)
+                        self.calledFromAlertController = true
+                        self.userID = "\(userIDNumber)"
+                        self.showAlertController("someones alreayd going that way!!", errorMessage: "the user \(userIDNumber) is already goign there!", showSettings: false, showProfile: true)
+                    }
+                }
             }
-//            if response != nil {
-//            if error == nil {
-//                print(response)
-//                print("going to retireve objects")
-//
-//                //var count = 0
-//                let objects = response as! [PFObject]
-//                for object in objects {
-//                    // scount++
-//                    //print("count for    \(object)   is \(count)")
-//                    let userID = object["username"]
-//                    print(userID)
-//                }
-//            }
-//            else {
-//                print(error)
-//            }
-//        }
+            else {
+                print(error)
+            }
+        }
         }
     }
     

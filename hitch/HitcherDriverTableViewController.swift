@@ -18,7 +18,6 @@ class HitcherDriverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userData)
         //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
