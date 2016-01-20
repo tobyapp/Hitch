@@ -34,7 +34,9 @@ class FAQViewController: UIViewController{
                 let objects = response as! [PFObject]
                 for object in objects {
                     count++
-                    print("count for    \(object)   is \(count)")
+                    //print("count for    \(object)   is \(count)")
+                    let userID = object["username"]
+                    print(userID)
                 }
                 
                 

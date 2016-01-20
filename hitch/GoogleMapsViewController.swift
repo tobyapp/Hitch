@@ -324,8 +324,37 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false)
             return
         } else {
+            routeProximity(originLatitude, usersOriginLongitude: originLongitude, usersDestLatitude: destinationLatitude, usersDestLongitude: destinationLongitude)
             account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
             drawRoute(route, userType: userType)
+            
+        }
+    }
+    
+    func routeProximity(usersOriginLatitude : Double, usersOriginLongitude : Double, usersDestLatitude : Double, usersDestLongitude : Double) {
+        
+//        let params = ["usersOriginLatitude" : 37.33074384,  "usersOriginLongitude" : -122.02322912, "usersDestLatitude" : 40.7747314,  "usersDestLongitude" : -73.96537339999999]
+        let params = ["usersOriginLatitude" : usersOriginLatitude,  "usersOriginLongitude" : usersOriginLongitude, "usersDestLatitude" : usersDestLatitude,  "usersDestLongitude" : usersDestLongitude]
+        PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
+            print(response)
+//            if response != nil {
+//            if error == nil {
+//                print(response)
+//                print("going to retireve objects")
+//
+//                //var count = 0
+//                let objects = response as! [PFObject]
+//                for object in objects {
+//                    // scount++
+//                    //print("count for    \(object)   is \(count)")
+//                    let userID = object["username"]
+//                    print(userID)
+//                }
+//            }
+//            else {
+//                print(error)
+//            }
+//        }
         }
     }
     

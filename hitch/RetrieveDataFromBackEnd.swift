@@ -25,15 +25,13 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        print(object)
+                        
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
-                        print(userQuery)
-                        
+
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
-                            print(users)
                             let userName = user?["userName"]
                             let userID = user?["username"] //will act as objectID
                             let userRelation = PFObject(className: "UserRelations")
@@ -96,7 +94,6 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        //print(object)
                         
                         userDetails["userAge"] = ("\(object["userAge"])")
                         userDetails["userEducation"] = ("\(object["userEducation"])")
