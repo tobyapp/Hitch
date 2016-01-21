@@ -311,9 +311,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 
             }
             else if !calledFromAlertController{
-            userID = "\(marker.userData)"
-            print("user id in not called from : \(userID)")
-            performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                userID = "\(marker.userData)"
+                print("user id in not called from : \(userID)")
+                performSegueWithIdentifier("segueToUsersProfile", sender: nil)
             }
         }
     }

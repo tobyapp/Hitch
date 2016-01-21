@@ -24,16 +24,10 @@ class HitcherDriverTableViewController: UITableViewController {
                 // cast elements of array to string as setArrayToGlobalVariable expecting [String]
                 let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)"]
                 self.setArrayToGlobalVariable(details)
-                
-                let picture = results["userDisplayPicture"]
-                
-                let data = picture?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                //print(data)
-                //let imageNSData: NSData = UIImagePNGRepresentation(picture!)!
-                self.usersDisplayPictrueView.image = UIImage(data: data!)
-                //let usersDisplayPictrueView = PFFile(name:"image.png", data:data!)
-                //print(self.userDetails)
-                
+                if let picture = results["userDisplayPicture"] as! UIImage? {
+                    self.usersDisplayPictrueView.image = picture
+                }
+
                 //reloads tableview on main thread
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()

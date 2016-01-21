@@ -81,20 +81,8 @@ class RetrieveDataFromBackEnd {
 //
 //    }
     
-//    func retrieveUserPicture(userID: String) {
-//        
-//        if let userPicture = object.valueForKey("Image")! as! PFFile {
-//            userPicture.getDataInBackgroundWithBlock({
-//                (imageData: NSData!, error NSError!) -> Void in
-//                if (error == nil) {
-//                    let image = UIImage(data:imageData)
-//                    
-//                }
-//            })
-//        }
-//    }
-    
-    // Retrive users accoutn details and return in completion handler
+    // Retrive users accoutn details (age, uni, genrder, name and dp) and return in completion handler
+    // Needed to set return dict as Anyobject to include UIImage, else set to string
     func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {
         
         let query = PFUser.query()
@@ -102,7 +90,7 @@ class RetrieveDataFromBackEnd {
         
         query!.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            var userDetails = [String: String]()
+            var userDetails = [String: AnyObject]()
             if error == nil {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
@@ -113,23 +101,16 @@ class RetrieveDataFromBackEnd {
                         userDetails["userGender"] = ("\(object["userGender"])")
                         userDetails["userName"] = ("\(object["userName"])")
                         
-                        let userDisplayPicture = object["UserDisplayPicture"]
-                        
-                        //get users dp from Parse
+                        if let userDisplayPicture = object["UserDisplayPicture"] as! PFFile? {
+                            
+                        //get users display picture from Parse
                         userDisplayPicture.getDataInBackgroundWithBlock {
                             (imageData: NSData?, error: NSError?) -> Void in
                             if error == nil {
-                                if let imageData = imageData {
-                                    let image = UIImage(data:imageData)
-                                    let imageNSData: NSData = UIImagePNGRepresentation(image!)!
-                                    //let imageFile = PFFile(name:"image.png", data:imageNSData)
-                                    //print("\(imageNSData)")
-                                    userDetails["userDisplayPicture"] = ("\(imageNSData)")
+                                
+                                let image = UIImage(data: imageData!)
+                                userDetails["userDisplayPicture"] = image
                                     resultHandler(userDetails: userDetails)
-                                }
-                                else {
-                                    print("no picture")
-                                }
                             }
                             else {
                                 print("Error: \(error!)")
@@ -141,5 +122,5 @@ class RetrieveDataFromBackEnd {
             }
         }
     }
-
+    }
 }
