@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 
+// Shown after user selects either 'show driving routes' or 'show hitch'n routes'
 class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!

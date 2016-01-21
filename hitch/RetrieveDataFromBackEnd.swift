@@ -81,8 +81,21 @@ class RetrieveDataFromBackEnd {
 //
 //    }
     
+//    func retrieveUserPicture(userID: String) {
+//        
+//        if let userPicture = object.valueForKey("Image")! as! PFFile {
+//            userPicture.getDataInBackgroundWithBlock({
+//                (imageData: NSData!, error NSError!) -> Void in
+//                if (error == nil) {
+//                    let image = UIImage(data:imageData)
+//                    
+//                }
+//            })
+//        }
+//    }
+    
     // Retrive users accoutn details and return in completion handler
-    func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:String]) -> ()) {
+    func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {
         
         let query = PFUser.query()
         query!.whereKey("username", equalTo: userID)

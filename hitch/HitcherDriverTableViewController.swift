@@ -21,13 +21,14 @@ class HitcherDriverTableViewController: UITableViewController {
         //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
-                let details = [results["userName"]!, results["userAge"]!, results["userGender"]!, results["userEducation"]!]
+                // cast elements of array to string as setArrayToGlobalVariable expecting [String]
+                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)"]
                 self.setArrayToGlobalVariable(details)
                 
                 let picture = results["userDisplayPicture"]
                 
                 let data = picture?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                
+                //print(data)
                 //let imageNSData: NSData = UIImagePNGRepresentation(picture!)!
                 self.usersDisplayPictrueView.image = UIImage(data: data!)
                 //let usersDisplayPictrueView = PFFile(name:"image.png", data:data!)

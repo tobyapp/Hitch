@@ -36,6 +36,7 @@ class ProfileTableViewController: UITableViewController {
             let userData = profileData[0]
             userDataArray += [userData.userName!, userData.userAge!, userData.userGender!, userData.userEducation!]
             self.displayPicture.image = UIImage(data: userData.userDisplayPicture!)
+            print(userData.userDisplayPicture!)
         }
             
         catch let error as NSError {
