@@ -18,7 +18,7 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var displayPictureView: UIImageView!
     
-    var facebookProfileData = ParseFBData()
+    var facebookProfileData = ObtainFBData()
     
     var userName: String?
     var userGender: String?

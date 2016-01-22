@@ -28,7 +28,7 @@
 		529C8A5C1C48411100268B99 /* HitcherDriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */; };
 		52A4AA2D1C3ABFCD001D908F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4AA2C1C3ABFCD001D908F /* MapKit.framework */; };
 		52AA7F3B1C28A5B50099352F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA7F3A1C28A5B50099352F /* MapViewController.swift */; };
-		52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */; };
+		52AA7F3D1C28A7AE0099352F /* ObtainFBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AA7F3C1C28A7AE0099352F /* ObtainFBData.swift */; };
 		52C434441C2AB6CE00D565BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434431C2AB6CE00D565BD /* CoreData.framework */; };
 		52C4344F1C2AC04B00D565BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434451C2ABABA00D565BD /* AudioToolbox.framework */; };
 		52C434501C2AC05000D565BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434471C2ABACA00D565BD /* CFNetwork.framework */; };
@@ -85,7 +85,7 @@
 		529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitcherDriverTableViewController.swift; sourceTree = "<group>"; };
 		52A4AA2C1C3ABFCD001D908F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52AA7F3A1C28A5B50099352F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFBData.swift; sourceTree = "<group>"; };
+		52AA7F3C1C28A7AE0099352F /* ObtainFBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainFBData.swift; sourceTree = "<group>"; };
 		52C434431C2AB6CE00D565BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		52C434451C2ABABA00D565BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		52C434471C2ABACA00D565BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -228,18 +228,10 @@
 				52CB8A031C43C4D80020959B /* RetrieveDataFromBackEnd.swift */,
 				52CB89FE1C4272630020959B /* RouteCalculator.swift */,
 				5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */,
-				52E296281C39658200C493CC /* Parse Data */,
-			);
-			name = "Modle's";
-			sourceTree = "<group>";
-		};
-		52E296281C39658200C493CC /* Parse Data */ = {
-			isa = PBXGroup;
-			children = (
-				52AA7F3C1C28A7AE0099352F /* ParseFBData.swift */,
+				52AA7F3C1C28A7AE0099352F /* ObtainFBData.swift */,
 				52EEDF901C333BAF00C64EBF /* UploadDataToBackEnd.swift */,
 			);
-			name = "Parse Data";
+			name = "Modle's";
 			sourceTree = "<group>";
 		};
 		52E296291C39659C00C493CC /* ViewControllers */ = {
@@ -249,19 +241,19 @@
 				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
 				52EC93971C289CBA007CF8F4 /* FAQViewController.swift */,
 				52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */,
-				52E317FE1C29B50600635E10 /* profile */,
-				52E2962A1C39661100C493CC /* FB login */,
+				52E317FE1C29B50600635E10 /* User Profile */,
+				52E2962A1C39661100C493CC /* Facebook login */,
 				52E2962F1C39BE2D00C493CC /* Map */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		52E2962A1C39661100C493CC /* FB login */ = {
+		52E2962A1C39661100C493CC /* Facebook login */ = {
 			isa = PBXGroup;
 			children = (
 				52EC93931C2853E1007CF8F4 /* FacebookLoginViewController.swift */,
 			);
-			name = "FB login";
+			name = "Facebook login";
 			sourceTree = "<group>";
 		};
 		52E2962F1C39BE2D00C493CC /* Map */ = {
@@ -288,12 +280,12 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		52E317FE1C29B50600635E10 /* profile */ = {
+		52E317FE1C29B50600635E10 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
 				52E317FA1C29B48600635E10 /* ProfileTableViewController.swift */,
 			);
-			name = profile;
+			name = "User Profile";
 			sourceTree = "<group>";
 		};
 		8B5B8E3CB74CDB0E782E3846 /* Frameworks */ = {
@@ -476,7 +468,7 @@
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
 				52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */,
-				52AA7F3D1C28A7AE0099352F /* ParseFBData.swift in Sources */,
+				52AA7F3D1C28A7AE0099352F /* ObtainFBData.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,
 				52CB89F91C3F09EB0020959B /* PopoverViewController.swift in Sources */,

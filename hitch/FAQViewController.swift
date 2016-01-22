@@ -13,7 +13,7 @@ class FAQViewController: UIViewController{
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
 
-    let account = RetrieveDataFromBackEnd()
+    //let account = RetrieveDataFromBackEnd()
     
     override func viewDidLoad() {
         super.viewDidLoad()

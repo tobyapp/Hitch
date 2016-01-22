@@ -17,7 +17,7 @@ import CoreData
 
 class UploadDataToBackEnd {
     
-    var facebookProfileData = ParseFBData()
+    var facebookProfileData = ObtainFBData()
     
     var userName: String?
     var userGender: String?

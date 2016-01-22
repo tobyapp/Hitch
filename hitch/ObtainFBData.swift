@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 
-class ParseFBData {
+class ObtainFBData {
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
