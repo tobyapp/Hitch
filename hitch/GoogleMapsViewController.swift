@@ -156,7 +156,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             message: errorMessage,
             preferredStyle: .Alert)
         let cancelAction = UIAlertAction(
-            title: "ok",
+            title: "Ok",
             style: UIAlertActionStyle.Destructive,
             handler: nil)
         alertController.addAction(cancelAction)
@@ -177,7 +177,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         if showProfile {
             // Displays an action to user profile defined by userID 
             let profielAction = UIAlertAction(
-                title:"Show profile",
+                title:"Show Profile",
                 style: .Default,
                 handler: { action in
                     self.performSegueWithIdentifier("segueToUsersProfile", sender: self)
@@ -368,15 +368,16 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
 
             if response != nil {
                 if error == nil {
-                    if let objects = response as! [PFObject]? {
-                        for object in objects {
-                            let userIDNumber = object["username"]
-                            let userName = object["userName"]
+                    if let userObject = response as! PFObject? {
+                        //for object in objects {
+                            let userIDNumber = userObject["username"]
+                            let userName = userObject["userName"]
+                            print(userName)
                             //need userIDNumber (its actually thier unique username) to pass to alert controller to present alert and then users profile page (if user clicked show profile page on alert controller)
                             self.calledFromAlertController = true
                             self.userID = "\(userIDNumber)"
-                            self.showAlertController("someones alreayd going that way!!", errorMessage: "the user \(userName) is already going there!", showSettings: false, showProfile: true)
-                        }
+                            self.showAlertController("Somebody is already going that way, why not drop them a message?", errorMessage: "The user \(userName) is already going there!", showSettings: false, showProfile: true)
+                        //}
                     }
                 }
             else {

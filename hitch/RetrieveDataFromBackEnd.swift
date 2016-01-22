@@ -103,24 +103,26 @@ class RetrieveDataFromBackEnd {
                         
                         if let userDisplayPicture = object["UserDisplayPicture"] as! PFFile? {
                             
-                        //get users display picture from Parse
-                        userDisplayPicture.getDataInBackgroundWithBlock {
-                            (imageData: NSData?, error: NSError?) -> Void in
-                            if error == nil {
+                            //get users display picture from Parse
+                            userDisplayPicture.getDataInBackgroundWithBlock {
+                                (imageData: NSData?, error: NSError?) -> Void in
+                                if error == nil {
                                 
-                                let image = UIImage(data: imageData!)
-                                userDetails["userDisplayPicture"] = image
+                                    let image = UIImage(data: imageData!)
+                                    userDetails["userDisplayPicture"] = image
                                     resultHandler(userDetails: userDetails)
-                            }
-                            else {
+                                }
+                                else {
                                 print("Error: \(error!)")
+                                }
                             }
-                        }
                         //resultHandler(userDetails: userDetails)
+                        }
                     }
                 }
             }
         }
     }
-    }
+    
+    
 }
