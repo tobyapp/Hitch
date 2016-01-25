@@ -326,12 +326,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         
         if (segue.identifier == "segueToHitchOrDriveOption") {
-            if let destinationViewController = segue.destinationViewController as? PopoverViewController {
+            if let destinationViewController = segue.destinationViewController as? HtichOrDrivePopupViewController {
                 destinationViewController.destinationLatitude = destinationLatitude
                 destinationViewController.destinationLongitude = destinationLongitude
                 destinationViewController.originLatitude = originLatitude
                 destinationViewController.originLongitude = originLongitude
-                let vc = segue.destinationViewController as! PopoverViewController
+                let vc = segue.destinationViewController as! HtichOrDrivePopupViewController
                 vc.delegate = self
             }
         }

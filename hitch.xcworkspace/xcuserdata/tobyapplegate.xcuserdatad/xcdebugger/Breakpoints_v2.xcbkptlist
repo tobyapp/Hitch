@@ -136,22 +136,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "hitch/MapViewController.swift"
-            timestampString = "474731765.778909"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
             timestampString = "475018477.991803"
             startingColumnNumber = "9223372036854775807"
@@ -220,7 +204,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "PopoverViewController"
+            landmarkName = "HtichOrDrivePopupViewController"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>

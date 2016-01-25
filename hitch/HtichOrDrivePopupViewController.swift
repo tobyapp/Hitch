@@ -11,7 +11,7 @@ import MK
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
 
-class PopoverViewController: UIViewController {
+class HtichOrDrivePopupViewController: UIViewController {
  
     @IBOutlet weak var datePicker: UIDatePicker!
     

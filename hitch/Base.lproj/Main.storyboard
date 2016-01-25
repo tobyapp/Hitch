@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="-829" y="2127"/>
         </scene>
-        <!--Popover View Controller-->
+        <!--Htich Or Drive Popup View Controller-->
         <scene sceneID="bf1-tx-wH8">
             <objects>
-                <viewController id="sgl-S3-QcD" customClass="PopoverViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sgl-S3-QcD" customClass="HtichOrDrivePopupViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tLi-Ca-N6H"/>
                         <viewControllerLayoutGuide type="bottom" id="ayh-gd-UrV"/>
@@ -524,12 +524,13 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toq-k0-pR1">
-                                <rect key="frame" x="175" y="89" width="250" height="250"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-test" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="toq-k0-pR1">
+                                <rect key="frame" x="175" y="74" width="250" height="250"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="PdN-07-QaL"/>
                                     <constraint firstAttribute="width" constant="250" id="avK-KJ-RF8"/>
+                                    <constraint firstAttribute="width" constant="250" id="qbp-9o-DEV"/>
+                                    <constraint firstAttribute="height" constant="250" id="u7I-at-5Xb"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -548,14 +549,15 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="toq-k0-pR1" firstAttribute="centerX" secondItem="72o-v8-McF" secondAttribute="centerX" id="23a-oi-Yri"/>
+                            <constraint firstItem="toq-k0-pR1" firstAttribute="centerX" secondItem="72o-v8-McF" secondAttribute="centerX" id="1kB-jC-66B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="toq-k0-pR1" secondAttribute="trailing" constant="255" id="3ou-eT-EZA"/>
-                            <constraint firstItem="bWp-oM-2I0" firstAttribute="top" secondItem="toq-k0-pR1" secondAttribute="bottom" constant="261" id="7Ni-jk-LyD"/>
                             <constraint firstItem="toq-k0-pR1" firstAttribute="centerX" secondItem="72o-v8-McF" secondAttribute="centerX" id="CJN-PR-fAt"/>
-                            <constraint firstItem="toq-k0-pR1" firstAttribute="top" secondItem="Pr0-Em-x2F" secondAttribute="bottom" constant="25" id="DLt-qB-P6J"/>
+                            <constraint firstItem="toq-k0-pR1" firstAttribute="top" secondItem="Pr0-Em-x2F" secondAttribute="bottom" constant="10" id="Dpp-fs-O3s"/>
                             <constraint firstItem="toq-k0-pR1" firstAttribute="leading" secondItem="72o-v8-McF" secondAttribute="leadingMargin" constant="255" id="EdI-ce-byq"/>
+                            <constraint firstItem="toq-k0-pR1" firstAttribute="leading" secondItem="72o-v8-McF" secondAttribute="leadingMargin" constant="155" id="OaH-fF-B2U"/>
                             <constraint firstItem="toq-k0-pR1" firstAttribute="top" secondItem="Pr0-Em-x2F" secondAttribute="bottom" constant="65" id="P8p-yH-4gs"/>
                             <constraint firstItem="bWp-oM-2I0" firstAttribute="top" secondItem="toq-k0-pR1" secondAttribute="bottom" constant="221" id="giV-1T-WLg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="toq-k0-pR1" secondAttribute="trailing" constant="155" id="tg7-4l-3kr"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -734,7 +736,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="4F1DE506-16AC-4D23-AB90-42B6C5F79986" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="F8067DC8-9931-4AD6-9060-6C6F1702844E" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -806,7 +808,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="4F1DE506-16AC-4D23-AB90-42B6C5F79986" width="200" height="200">
+        <image name="F8067DC8-9931-4AD6-9060-6C6F1702844E" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3548,8 +3550,8 @@ AAAAAAAAAn+5A
         <image name="Settings" width="60" height="60"/>
         <image name="faq" width="72" height="72"/>
         <image name="mail" width="72" height="72"/>
-        <image name="map" width="72" height="72"/>
         <image name="map icon" width="72" height="72"/>
+        <image name="map-test" width="256" height="256"/>
         <image name="menu" width="22" height="22"/>
         <image name="profile" width="72" height="72"/>
     </resources>
