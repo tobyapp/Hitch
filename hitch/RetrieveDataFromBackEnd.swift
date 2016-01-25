@@ -100,6 +100,7 @@ class RetrieveDataFromBackEnd {
                         userDetails["userEducation"] = ("\(object["userEducation"])")
                         userDetails["userGender"] = ("\(object["userGender"])")
                         userDetails["userName"] = ("\(object["userName"])")
+                        userDetails["userEmailAddress"] = ("\(object["userEmailAddress"])")
                         
                         if let userDisplayPicture = object["UserDisplayPicture"] as! PFFile? {
                             

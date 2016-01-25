@@ -22,7 +22,7 @@ class HitcherDriverTableViewController: UITableViewController {
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 // cast elements of array to string as setArrayToGlobalVariable expecting [String]
-                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)"]
+                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
                 self.setArrayToGlobalVariable(details)
                 if let picture = results["userDisplayPicture"] as! UIImage? {
                     self.usersDisplayPictrueView.image = picture
@@ -73,6 +73,10 @@ class HitcherDriverTableViewController: UITableViewController {
         cell.userInteractionEnabled = false
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("touched")
     }
 
 }
