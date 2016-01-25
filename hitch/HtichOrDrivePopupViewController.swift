@@ -40,19 +40,19 @@ class HtichOrDrivePopupViewController: UIViewController {
         changeColorScheme()
         
         // Adds driving to button to view
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 400, 200, 30))
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 400, 400, 60)) //CGRectMake(110, 400, 200, 30)
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        drivingToButton.titleLabel!.font = UIFont(name: "System", size: 15)
+        drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
         drivingToButton.addTarget(self, action: "drivingTo:", forControlEvents: UIControlEvents.TouchUpInside)
         drivingToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(drivingToButton)
         
         // Adds Hitch button to view
-        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 600, 200, 30))
+        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(110, 600, 400, 60)) //CGRectMake(110, 400, 200, 30)
         hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        hitchinToButton.titleLabel!.font = UIFont(name: "System", size: 15)
+        hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
         hitchinToButton.addTarget(self, action: "hitchTo:", forControlEvents: UIControlEvents.TouchUpInside)
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)

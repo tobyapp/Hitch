@@ -43,6 +43,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+
     }
     
     func runCodeAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
