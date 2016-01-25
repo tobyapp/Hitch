@@ -272,6 +272,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
             drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
             drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
+            drivingToButton.layer.cornerRadius = 10
             drivingToButton.backgroundColor = MaterialColor.deepPurple.base
             infoWindow.addSubview(drivingToButton)
         }
