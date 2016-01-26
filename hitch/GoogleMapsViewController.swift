@@ -322,7 +322,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "segueToUsersProfile") {
             if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
-                destinationViewController.userData = userID
+                destinationViewController.userData = userID!
+                print(userID!)
             }
         }
         

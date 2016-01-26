@@ -13,6 +13,8 @@
 		5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5206AD911C273B3C00A1EFAD /* Main.storyboard */; };
 		5206AD951C273B3C00A1EFAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5206AD941C273B3C00A1EFAD /* Assets.xcassets */; };
 		5223121F1C3B0AB800AF218A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5223121E1C3B0AB800AF218A /* LaunchScreen.storyboard */; };
+		522D20A31C580A4A009069DA /* HitcherDriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D20A21C580A4A009069DA /* HitcherDriverProfileViewController.swift */; };
+		522D20A51C58180A009069DA /* UsersRoutesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D20A41C58180A009069DA /* UsersRoutesTableViewController.swift */; };
 		52452D5E1C3C6688004FCB44 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D5D1C3C6688004FCB44 /* OpenGLES.framework */; };
 		52452D601C3C66B3004FCB44 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D5F1C3C66B3004FCB44 /* libicucore.tbd */; };
 		52452D621C3C66C5004FCB44 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D611C3C66C5004FCB44 /* libc++.tbd */; };
@@ -71,6 +73,8 @@
 		5206AD941C273B3C00A1EFAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = hitch/Assets.xcassets; sourceTree = "<group>"; };
 		5206AD991C273B3C00A1EFAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = hitch/Info.plist; sourceTree = "<group>"; };
 		5223121E1C3B0AB800AF218A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		522D20A21C580A4A009069DA /* HitcherDriverProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitcherDriverProfileViewController.swift; sourceTree = "<group>"; };
+		522D20A41C58180A009069DA /* UsersRoutesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRoutesTableViewController.swift; sourceTree = "<group>"; };
 		52452D5D1C3C6688004FCB44 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		52452D5F1C3C66B3004FCB44 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		52452D611C3C66C5004FCB44 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -214,6 +218,7 @@
 		5257CC3D1C3DABB400B85378 /* Old files */ = {
 			isa = PBXGroup;
 			children = (
+				522D20A21C580A4A009069DA /* HitcherDriverProfileViewController.swift */,
 				52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */,
 				52E2962D1C39BE1C00C493CC /* MapKitViewController.swift */,
 				529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */,
@@ -237,6 +242,7 @@
 		52E296291C39659C00C493CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				522D20A41C58180A009069DA /* UsersRoutesTableViewController.swift */,
 				524C75591C4C293500776597 /* ContactViewController.swift */,
 				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
 				52EC93971C289CBA007CF8F4 /* FAQViewController.swift */,
@@ -448,6 +454,7 @@
 			files = (
 				5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */,
 				52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */,
+				522D20A31C580A4A009069DA /* HitcherDriverProfileViewController.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
 				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
 				52EC93981C289CBA007CF8F4 /* FAQViewController.swift in Sources */,
@@ -467,6 +474,7 @@
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
+				522D20A51C58180A009069DA /* UsersRoutesTableViewController.swift in Sources */,
 				52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */,
 				52AA7F3D1C28A7AE0099352F /* ObtainFBData.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
