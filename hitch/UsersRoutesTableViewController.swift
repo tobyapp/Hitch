@@ -14,12 +14,10 @@ class UsersRoutesTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var userRoutes = RetrieveDataFromBackEnd()
+    var userRoutesArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
-//        print(currentUser!)
         
         self.addSideMenu(menuButton)
         
@@ -38,11 +36,19 @@ class UsersRoutesTableViewController: UITableViewController {
 //                
 //            }
 //        })
-        userRoutes.retrieveUsersOwnRoutes("kgLtQDcx5Q", resultHandler: {results in
-                        for object in results! {
-                            print("object")
-                        }
-                    })
+        var positionInArray = 0
+        userRoutes.retrieveUsersOwnRoutes({results in
+            for object in results! {
+            // cast elements of array to string as setArrayToGlobalVariable expecting [String]
+                let message = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
+                
+                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
+                
+                self.setArrayToGlobalVariable(details)
+                positionInArray++
+            }
+        })
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

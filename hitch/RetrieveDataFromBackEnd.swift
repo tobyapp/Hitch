@@ -12,8 +12,9 @@ import Parse
 class RetrieveDataFromBackEnd {
     
     // Retirve current logged in users own routes
-    func retrieveUsersOwnRoutes(userIDQuery : String, resultHandler: (routeObjects: [PFObject]?) -> ()) {
+    func retrieveUsersOwnRoutes(resultHandler: (routeObjects: [PFObject]?) -> ()) {
         
+        // Gets current logged in users objectId and uses that to compare retieved objects
         let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         var routeAndUserObjects = [PFObject]()
         let query = PFQuery(className:"UserRoutes")
@@ -21,53 +22,45 @@ class RetrieveDataFromBackEnd {
         // Retirves all routes from Parse 
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
             if error == nil {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
-                        //let userID = user!.valueForKey("objectId")
                         
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
                             (users: PFObject?, error: NSError?) -> Void in
                             let userName = user?["userName"]
                             let userID = user!.valueForKey("objectId") //will act as objectID
-//                            let userTest = user!.valueForKey("objectId")
-                            print("in back end test userID is : \(userID)")
                             
-                            if ("\(userID)" == userIDQuery) {
+                            if ("\(userID!)" == "\(currentUser!)") {
+                                print("in back end test userID is : \(userID!)")
+                                print("in back end test current user is : \(currentUser!)")
+                                let userRelation = PFObject(className: "UserRelations")
                             
-                            let userRelation = PFObject(className: "UserRelations")
+                                userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
+                                userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
+                                userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
+                                userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
+                                userRelation.setObject(userName!, forKey: "UserName")
+                                userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
+                                userRelation.setObject(userID!, forKey: "UserID")
                             
-                            userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
-                            userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
-                            userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
-                            userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
-                            userRelation.setObject(userName!, forKey: "UserName")
-                            userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
-                            userRelation.setObject(userID!, forKey: "UserID")
-                            
-                            // Appends all the required info to PFOject array
-                            routeAndUserObjects.append(userRelation)
-                            //print(userRelation)
-                            
-                            resultHandler(routeObjects: routeAndUserObjects)
+                                // Appends all the required info to PFOject array
+                                routeAndUserObjects.append(userRelation)
+                                // Returns results
+                                resultHandler(routeObjects: routeAndUserObjects)
+                            }
                         }
                     }
-                    }
-                    // In case of errors above, this returns orignal data to plot routes
-                    //resultHandler(routeObjects: objects)
                 }
             } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+            // Log details of the failure
+            print("Error: \(error!) \(error!.userInfo)")
             }
         }
-
     }
     
     // Retireves route's from users + info about each user
