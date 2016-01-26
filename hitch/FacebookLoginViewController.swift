@@ -18,11 +18,38 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         // Adds image to background
+
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        
+        imageViewBackground.image = UIImage(named: "Backpacker")
+        imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
+        
+        // Adds motion functionality to background image
+        
+        let horizontalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
+        horizontalMotionEffect.minimumRelativeValue = -25
+        horizontalMotionEffect.maximumRelativeValue = 25
+        
+        let verticalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
+        verticalMotionEffect.minimumRelativeValue = -25
+        verticalMotionEffect.maximumRelativeValue = 25
+        
+        let motionEffectGroup = UIMotionEffectGroup()
+        motionEffectGroup.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
+        
+        imageViewBackground.addMotionEffect(motionEffectGroup)
 
         let cardView: CardView = CardView()
-        cardView.dividerInset.left = 160
-        cardView.titleLabelInset.left = 150
-        cardView.detailLabelInset.left = 150
+        cardView.dividerInset.left = 0 // White line seperating loging button with text
+        cardView.titleLabelInset.left = 150 // Top line of text
+        cardView.detailLabelInset.left = 150 // Bottom line of text
         cardView.backgroundColor  = MaterialColor.deepPurple.base
         cardView.pulseColor = nil
         cardView.pulseFill = false
