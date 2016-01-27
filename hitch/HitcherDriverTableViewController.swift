@@ -7,28 +7,38 @@
 //
 
 import UIKit
+import Parse
 
 class HitcherDriverTableViewController: UITableViewController {
     
     var userAccount = RetrieveDataFromBackEnd()
+    var updateData = UploadDataToBackEnd()
     var userData : String?
     var userDetails = []
+    var routeId : String?
     
     @IBOutlet weak var usersDisplayPictrueView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
+        let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
+        print("route ID is:")
+        print(routeId!)
+        print("user ID is:")
+        print(userData!)
+        print("current user is:")
+        print(currentUser)
         
-        let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: "match")
-        navigationItem.rightBarButtonItem = matchButton
+        self.tableView.delegate = self
+        if (userData! != currentUser) {
+            let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: "match")
+            navigationItem.rightBarButtonItem = matchButton
+        }
         
         //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
-                // cast elements of array to string as setArrayToGlobalVariable expecting [String]
-                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
-                self.setArrayToGlobalVariable(details)
+                self.userDetails = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
                 if let picture = results["userDisplayPicture"] as! UIImage? {
                     self.usersDisplayPictrueView.image = picture
                 }
@@ -45,15 +55,10 @@ class HitcherDriverTableViewController: UITableViewController {
         changeColorScheme()
 
     }
-    
-    // sets array form completion handler to a global variable
-    func setArrayToGlobalVariable(userDetailsFromHandler: [String]) {
-        userDetails = userDetailsFromHandler
-    }
 
     // Function activated from matchButton
     func match() {
-        print("Perform action")
+        updateData.addMatchToRoute(routeId!, userId: userData!)
         
     }
     
@@ -81,7 +86,7 @@ class HitcherDriverTableViewController: UITableViewController {
         cell.textLabel!.text = userDetails[indexPath.item] as? String
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
-        cell.userInteractionEnabled = false
+        //cell.userInteractionEnabled = false
         
         return cell
     }

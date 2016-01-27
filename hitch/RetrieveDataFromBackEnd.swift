@@ -77,9 +77,9 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        
                         let user = object.objectForKey("User")
                         let userQuery = object["User"] as! PFObject
+                        let routeObjectId = object.valueForKey("objectId")
 
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                         userQuery.fetchIfNeededInBackgroundWithBlock {
@@ -95,6 +95,7 @@ class RetrieveDataFromBackEnd {
                             userRelation.setObject(userName!, forKey: "UserName")
                             userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
                             userRelation.setObject(userID!, forKey: "UserID")
+                            userRelation.setObject(routeObjectId!, forKey: "RoutId")
                             
                             // Appends all the required info to PFOject array
                         	routeAndUserObjects.append(userRelation)

@@ -149,17 +149,17 @@ class UploadDataToBackEnd {
     }
 
     func addLocationData(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
-        let object = PFObject(className: "UserRoutes")
+        let query = PFObject(className: "UserRoutes")
         let currentUser = PFUser.currentUser()
-        object.setObject(route, forKey: "UserRoute")
-        object.setObject(userType, forKey: "UserType")
-        object.setObject(currentUser!, forKey: "User")
-        object.setObject(originLatitude, forKey: "OriginLatitude")
-        object.setObject(originLongitude, forKey: "OriginLongitude")
-        object.setObject(destinationLatitude, forKey: "DestinationLatitude")
-        object.setObject(destinationLongitude, forKey: "DestinationLongitude")
-        object.setObject(timeOfRoute, forKey: "TimeOfRoute")
-        object.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+        query.setObject(route, forKey: "UserRoute")
+        query.setObject(userType, forKey: "UserType")
+        query.setObject(currentUser!, forKey: "User")
+        query.setObject(originLatitude, forKey: "OriginLatitude")
+        query.setObject(originLongitude, forKey: "OriginLongitude")
+        query.setObject(destinationLatitude, forKey: "DestinationLatitude")
+        query.setObject(destinationLongitude, forKey: "DestinationLongitude")
+        query.setObject(timeOfRoute, forKey: "TimeOfRoute")
+        query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
                 print("Save successful")
             } else {
@@ -167,7 +167,61 @@ class UploadDataToBackEnd {
             }
         }
     }
+    
+    func addMatchToRoute(routeId : String, userId : String) {
+        let query = PFQuery(className:"UserRoutes")
+        query.getObjectInBackgroundWithId(routeId) {
+            (route: PFObject?, error: NSError?) -> Void in
+                print(route)
+            if error != nil {
+                print("Save failed: \(error!.localizedDescription)")
+            } else if let route = route {
+                //route["match"] = userId
+                
+                route.setObject(userId, forKey: "match")
+                route.saveInBackground()
+            }
+        }
+
+
+    }
 }
+
+//func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {
+//    
+//    // Searches User class on parse with User's ID
+//    let query = PFQuery(className:"_User")
+//    query.getObjectInBackgroundWithId(userID) {
+//        (objects: PFObject?, error: NSError?) -> Void in
+//        var userDetails = [String: AnyObject]()
+//        if error == nil {
+//            if let objects = objects {
+//                userDetails["userAge"] = ("\(objects["userAge"])")
+//                userDetails["userEducation"] = ("\(objects["userEducation"])")
+//                userDetails["userGender"] = ("\(objects["userGender"])")
+//                userDetails["userName"] = ("\(objects["userName"])")
+//                userDetails["userEmailAddress"] = ("\(objects["userEmailAddress"])")
+//                
+//                if let userDisplayPicture = objects["UserDisplayPicture"] as! PFFile? {
+//                    
+//                    //get users display picture from Parse
+//                    userDisplayPicture.getDataInBackgroundWithBlock {
+//                        (imageData: NSData?, error: NSError?) -> Void in
+//                        if error == nil {
+//                            let image = UIImage(data: imageData!)
+//                            userDetails["userDisplayPicture"] = image
+//                            resultHandler(userDetails: userDetails)
+//                        }
+//                        else {
+//                            print("Error: \(error!)")
+//                        }
+//                    }
+//                    //resultHandler(userDetails: userDetails)
+//                }
+//            }
+//        }
+//    }
+//}
 
 
 

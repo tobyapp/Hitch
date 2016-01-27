@@ -14,38 +14,40 @@ class UsersRoutesTableViewController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var userRoutes = RetrieveDataFromBackEnd()
-    var userRoutesArray = []
+    var userRoutesArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addSideMenu(menuButton)
-        
-        // Draws routes on map from back end database (Parse)
-//        userRoutes.retrieveRoutes({results in
-//            for object in results! {
-//                let userType = ("\(object.objectForKey("UserType")!)")
-//                let route = ("\(object.objectForKey("UserRoute")!)")
-//                let userName = ("\(object.objectForKey("UserName")!)")
-//                let userID = ("\(object.objectForKey("UserID")!)")
-//                let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
-//                let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
-//                let timeOfRoute = ("\(object.objectForKey("TimeOfRoute")!)")
-//                
-//                let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
-//                
-//            }
-//        })
-        var positionInArray = 0
+
         userRoutes.retrieveUsersOwnRoutes({results in
             for object in results! {
             // cast elements of array to string as setArrayToGlobalVariable expecting [String]
-                let message = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
                 
-                let details = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
-                
-                self.setArrayToGlobalVariable(details)
-                positionInArray++
+                let location = CLLocation(latitude: object["DestinationLatitude"]! as! Double, longitude: object["DestinationLongitude"]! as! Double)
+                CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+                    {(places, error) in
+                        if error == nil {
+                            let locations = places![0] as CLPlacemark
+
+                            let place = "\(locations.thoroughfare!)"
+                            let city =  "\(locations.locality!)"
+                            let region = "\(locations.administrativeArea!)"
+                            let country = "\(locations.ISOcountryCode!)"
+
+                            self.userRoutesArray.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
+                            
+                            //reloads tableview on main thread
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
+
+                        }
+                        else {
+                            print("reverse geodcode fail: \(error!.localizedDescription)")
+                        }
+                    })
             }
         })
         
@@ -55,7 +57,7 @@ class UsersRoutesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,23 +67,25 @@ class UsersRoutesTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return userRoutesArray.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel!.text = userRoutesArray[indexPath.item]
+        cell.textLabel!.textColor = purple
+        cell.textLabel!.font = UIFont(name: "System", size: 20)
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

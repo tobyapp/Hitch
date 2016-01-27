@@ -27,6 +27,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var plottedByUser = false
     var delegate : SendDataBackProtocol?
     var userID : String?
+    var routeId : String?
     var destinationLatitude : Double?
     var destinationLongitude : Double?
     var originLatitude : Double?
@@ -63,12 +64,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
                 let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
                 let timeOfRoute = ("\(object.objectForKey("TimeOfRoute")!)")
+                let routeId = ("\(object.objectForKey("RoutId")!)")
                 
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
                 self.plottedByUser = false
-                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute)
+                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId)
             }
         })
  
@@ -227,11 +229,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String) {
         
-        let currentUser = PFUser.currentUser()?.valueForKey("userName")
+        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         
-        if userName == currentUser! as! String {
+        if userID == currentUser! as! String {
             userName = "You"
         }
         
@@ -241,12 +243,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = userID
+            locationMarker.userData = ["userID": userID, "routeId" : routeId]
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = userID
+            locationMarker.userData = ["userID": userID, "routeId" : routeId]
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
@@ -306,15 +308,16 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             
         else if !plottedByUser {
             if calledFromAlertController {
-                print("user id in calledFromAlertController : \(userID)")
                 calledFromAlertController = false
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                print("not plotted by user")
                 
             }
             else if !calledFromAlertController{
-                userID = "\(marker.userData)"
-                print("user id in not called from : \(userID)")
+                userID = "\(marker.userData["userID"])"
+                routeId = "\(marker.userData["routeId"])"
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                print("not from alert controller")
             }
         }
     }
@@ -323,7 +326,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         if (segue.identifier == "segueToUsersProfile") {
             if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
                 destinationViewController.userData = userID!
-                print(userID!)
+                destinationViewController.routeId = routeId!
             }
         }
         
@@ -374,7 +377,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                         //for object in objects {
                             let userIDNumber = userObject["username"]
                             let userName = userObject["userName"]
-                            print(userName)
                             //need userIDNumber (its actually thier unique username) to pass to alert controller to present alert and then users profile page (if user clicked show profile page on alert controller)
                             self.calledFromAlertController = true
                             self.userID = "\(userIDNumber)"
@@ -382,9 +384,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                         //}
                     }
                 }
-            else {
-                print(error)
-            }
+                else {
+                    print(error)
+                }
             }
         }
     }
