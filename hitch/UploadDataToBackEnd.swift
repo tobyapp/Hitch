@@ -170,58 +170,29 @@ class UploadDataToBackEnd {
     
     func addMatchToRoute(routeId : String, userId : String) {
         let query = PFQuery(className:"UserRoutes")
+        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         query.getObjectInBackgroundWithId(routeId) {
             (route: PFObject?, error: NSError?) -> Void in
                 print(route)
             if error != nil {
                 print("Save failed: \(error!.localizedDescription)")
             } else if let route = route {
-                //route["match"] = userId
                 
-                route.setObject(userId, forKey: "match")
-                route.saveInBackground()
+                // create pointer to user object and store that in 'match' coloumn
+                let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(currentUser!)")
+                route["match"] = pointer
+                
+                route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                    if succeeded {
+                        print("Save successful")
+                    } else {
+                        print("Save unsuccessful: \(error!.userInfo)")
+                    }
+                }
             }
         }
-
-
     }
+    
+    
 }
-
-//func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {
-//    
-//    // Searches User class on parse with User's ID
-//    let query = PFQuery(className:"_User")
-//    query.getObjectInBackgroundWithId(userID) {
-//        (objects: PFObject?, error: NSError?) -> Void in
-//        var userDetails = [String: AnyObject]()
-//        if error == nil {
-//            if let objects = objects {
-//                userDetails["userAge"] = ("\(objects["userAge"])")
-//                userDetails["userEducation"] = ("\(objects["userEducation"])")
-//                userDetails["userGender"] = ("\(objects["userGender"])")
-//                userDetails["userName"] = ("\(objects["userName"])")
-//                userDetails["userEmailAddress"] = ("\(objects["userEmailAddress"])")
-//                
-//                if let userDisplayPicture = objects["UserDisplayPicture"] as! PFFile? {
-//                    
-//                    //get users display picture from Parse
-//                    userDisplayPicture.getDataInBackgroundWithBlock {
-//                        (imageData: NSData?, error: NSError?) -> Void in
-//                        if error == nil {
-//                            let image = UIImage(data: imageData!)
-//                            userDetails["userDisplayPicture"] = image
-//                            resultHandler(userDetails: userDetails)
-//                        }
-//                        else {
-//                            print("Error: \(error!)")
-//                        }
-//                    }
-//                    //resultHandler(userDetails: userDetails)
-//                }
-//            }
-//        }
-//    }
-//}
-
-
 
