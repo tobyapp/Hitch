@@ -16,7 +16,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView1: UITableView!
 
     var userRoutes = RetrieveDataFromBackEnd()
-    var userRoutesArray = [String]()
+    var usersOwnRoutes = [String]()
+    var usersMatchedRoutes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,9 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView1.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table1Cells")
         self.tableView2.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table2Ccells")
         
-        
-        self.addSideMenu(menuButton)
+        // Changes colour scheme to purple to match rest of app, see class extentions for more details
+        changeColorScheme()
+         self.addSideMenu(menuButton)
         
         userRoutes.retrieveUsersOwnRoutes({results in
             for object in results! {
@@ -47,14 +49,12 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let region = "\(locations.administrativeArea!)"
                             let country = "\(locations.ISOcountryCode!)"
                             
-                            self.userRoutesArray.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
+                            self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView1.reloadData()
-                                self.tableView2.reloadData()
                             }
-                            
                         }
                         else {
                             print("reverse geodcode fail: \(error!.localizedDescription)")
@@ -63,9 +63,36 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         })
 
-        
-        // Changes colour scheme to purple to match rest of app, see class extentions for more details
-        changeColorScheme()
+        userRoutes.retrieveMatchedRoutes({results in
+            for object in results {
+
+                print(object)
+                print("next one")
+//                let location = CLLocation(latitude: object["DestinationLatitude"]! as! Double, longitude: object["DestinationLongitude"]! as! Double)
+//                CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+//                    {(places, error) in
+//                        if error == nil {
+//                            let locations = places![0] as CLPlacemark
+//                            
+//                            let place = "\(locations.thoroughfare!)"
+//                            let city =  "\(locations.locality!)"
+//                            let region = "\(locations.administrativeArea!)"
+//                            let country = "\(locations.ISOcountryCode!)"
+//                            
+//                            self.usersMatchedRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
+//                            
+//                            //reloads tableview on main thread
+//                            dispatch_async(dispatch_get_main_queue()) {
+//                                self.tableView2.reloadData()
+//                            }
+//                        }
+//                        else {
+//                            print("reverse geodcode fail: \(error!.localizedDescription)")
+//                        }
+//                })
+            }
+        })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,11 +113,11 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         var numberOfRows: Int?
         
         if tableView == tableView1 {
-            numberOfRows = userRoutesArray.count
+            numberOfRows = usersOwnRoutes.count
         }
         
         if tableView == tableView2 {
-            numberOfRows = userRoutesArray.count
+            numberOfRows = usersMatchedRoutes.count
         }
         
         return numberOfRows!
@@ -103,7 +130,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView1 {
             cell = tableView.dequeueReusableCellWithIdentifier("table1Cells", forIndexPath: indexPath)
             
-            cell!.textLabel!.text = userRoutesArray[indexPath.item]
+            cell!.textLabel!.text = usersOwnRoutes[indexPath.item]
             cell!.textLabel!.textColor = purple
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
             
@@ -113,7 +140,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView2 {
             cell = tableView.dequeueReusableCellWithIdentifier("table2Ccells", forIndexPath: indexPath)
             
-            cell!.textLabel!.text = userRoutesArray[indexPath.item]
+            cell!.textLabel!.text = usersMatchedRoutes[indexPath.item]
             cell!.textLabel!.textColor = purple
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
             
@@ -128,7 +155,15 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
      func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("touched")
+        
+        if tableView == tableView1 {
+            print("touched 1")
+        }
+        
+        if tableView == tableView2 {
+            print("touched 2")
+        }
+
     }
     
 

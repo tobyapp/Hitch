@@ -116,26 +116,78 @@ class RetrieveDataFromBackEnd {
         }
     }
 
-    //retireve details from backend using parse object obtained from JS function in backend
-//    func retrieveObjectFromPointer(userData : AnyObject, resultHandler: (userObject: [String:String]?) -> ()) {
-//
-//            var userDetails = [String: String]()
-//            let users = userData as! [PFObject]
-//        
-//            for user in users {
-//                user.fetchIfNeededInBackgroundWithBlock {
-//                    (users: PFObject?, error: NSError?) -> Void in
-//                        print(users)
-//                    let userGender = users!["userGender"]
-//                    let userName = users!["userName"]
-//                    let userEmail = users!["userEmailAddress"]
-//                    resultHandler(userObject: userDetails)
-//                    print(userGender)
-//            }
-//        }
-//
-//    }
     
+    // Retireves route's from users + info about each user
+    func retrieveMatchedRoutes(resultHandler: (matchedDict: [String:[String: AnyObject]]) -> ()) {
+        
+        // Gets current logged in users objectId and uses that to compare retieved objects
+        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        var routeAndUserObjects = [PFObject]()
+        let query = PFQuery(className:"UserRoutes")
+        var count = 0
+        
+        
+        // Retirves all routes from Parse
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                if let objects = objects {
+                    // Iterates through each PFObject in the query results
+                    for object in objects {
+                        let user = object.objectForKey("User")
+                        let userQuery = object["User"] as! PFObject
+                        
+                        // Querys FK in UserRoutes table and obtains user's details from who plotted the route
+                        userQuery.fetchIfNeededInBackgroundWithBlock {
+                            (users: PFObject?, error: NSError?) -> Void in
+                            let userName = user?["userName"]
+                            let userID = user!.valueForKey("objectId") //will act as objectID
+                            // if match isnt nil then get the value
+                            if let match = object.objectForKey("match") {
+                                // Check if match's objectId (as match = pointer to User object) = current logged in user
+                                if ("\(match.valueForKey("objectId")!)" == "\(currentUser!)") {
+                                    //print(count)
+                                    var routeDict = [String: AnyObject]()
+                                    var matchedDict = [String:[String: AnyObject]]()
+                                    let userRelation = PFObject(className: "UserRelations")
+                                    userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
+                                    userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
+                                    //userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
+                                    userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
+                                    userRelation.setObject(userName!, forKey: "UserName")
+                                    userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
+                                    userRelation.setObject(userID!, forKey: "UserID")
+                                    userRelation.setObject("\(match.valueForKey("objectId")!)", forKey: "match")
+                                    
+                                    routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
+                                    routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
+                                    routeDict["UserType"] = object.objectForKey("UserType")!
+                                    routeDict["UserName"] = userName!
+                                    routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
+                                    routeDict["UserID"] = userID!
+                                    routeDict["match"] = match.valueForKey("objectId")!
+                                    matchedDict["\(count)"] = routeDict
+                                    count++
+                                    // Appends all the required info to PFOject array
+                                    routeAndUserObjects.append(userRelation)
+                                    resultHandler(matchedDict: matchedDict)
+                                }
+                                
+                            }
+                            //print(matchedDict)
+                            print("")
+                            
+                        }
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+    }
+    
+   
     // Retrive users accoutn details (age, uni, genrder, name and dp) and return in completion handler
     // Needed to set return dict as Anyobject to include UIImage, else set to string
     func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {

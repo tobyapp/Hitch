@@ -266,3 +266,26 @@ import Foundation
 //
 //    }
 
+
+// For retirving data from paarse
+//From RetrieveDataFromBackEnd.swift
+
+//retireve details from backend using parse object obtained from JS function in backend
+//    func retrieveObjectFromPointer(userData : AnyObject, resultHandler: (userObject: [String:String]?) -> ()) {
+//
+//            var userDetails = [String: String]()
+//            let users = userData as! [PFObject]
+//
+//            for user in users {
+//                user.fetchIfNeededInBackgroundWithBlock {
+//                    (users: PFObject?, error: NSError?) -> Void in
+//                        print(users)
+//                    let userGender = users!["userGender"]
+//                    let userName = users!["userName"]
+//                    let userEmail = users!["userEmailAddress"]
+//                    resultHandler(userObject: userDetails)
+//                    print(userGender)
+//            }
+//        }
+//
+//    }
