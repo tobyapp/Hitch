@@ -34,12 +34,9 @@ class RetrieveDataFromBackEnd {
                             (users: PFObject?, error: NSError?) -> Void in
                             let userName = user?["userName"]
                             let userID = user!.valueForKey("objectId") //will act as objectID
-                            
+                            // Checks if the user's id from parse matches the id of the currently logged in user
                             if ("\(userID!)" == "\(currentUser!)") {
-                                print("in back end test userID is : \(userID!)")
-                                print("in back end test current user is : \(currentUser!)")
                                 let userRelation = PFObject(className: "UserRelations")
-                            
                                 userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
                                 userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
                                 userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
@@ -77,35 +74,40 @@ class RetrieveDataFromBackEnd {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        let user = object.objectForKey("User")
-                        let userQuery = object["User"] as! PFObject
-                        let routeObjectId = object.valueForKey("objectId")
-
-                        // Querys FK in UserRoutes table and obtains user's details from who plotted the route
-                        userQuery.fetchIfNeededInBackgroundWithBlock {
-                            (users: PFObject?, error: NSError?) -> Void in
-                            let userName = user?["userName"]
-                            let userID = user!.valueForKey("objectId") //will act as objectID
-                            let userRelation = PFObject(className: "UserRelations")
                         
-                            userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
-                            userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
-                            userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
-                            userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
-                            userRelation.setObject(userName!, forKey: "UserName")
-                            userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
-                            userRelation.setObject(userID!, forKey: "UserID")
-                            userRelation.setObject(routeObjectId!, forKey: "RoutId")
-                            
-                            // Appends all the required info to PFOject array
-                        	routeAndUserObjects.append(userRelation)
-                            //print(userRelation)
+                        // checkes to see if routes are already booked or not
+                        if (object["match"] == nil) {
 
-                        	resultHandler(routeObjects: routeAndUserObjects)
+                            let user = object.objectForKey("User")
+                            let userQuery = object["User"] as! PFObject
+                            let routeObjectId = object.valueForKey("objectId")
+
+                            // Querys FK in UserRoutes table and obtains user's details from who plotted the route
+                            userQuery.fetchIfNeededInBackgroundWithBlock {
+                                (users: PFObject?, error: NSError?) -> Void in
+                                let userName = user?["userName"]
+                                let userID = user!.valueForKey("objectId") //will act as objectID
+                                let userRelation = PFObject(className: "UserRelations")
+                        
+                                userRelation.setObject(object.objectForKey("DestinationLatitude")!, forKey: "DestinationLatitude")
+                                userRelation.setObject(object.objectForKey("DestinationLongitude")!, forKey: "DestinationLongitude")
+                                userRelation.setObject(object.objectForKey("UserRoute")!, forKey: "UserRoute")
+                                userRelation.setObject(object.objectForKey("UserType")!, forKey: "UserType")
+                                userRelation.setObject(userName!, forKey: "UserName")
+                            	userRelation.setObject(object.objectForKey("TimeOfRoute")!, forKey: "TimeOfRoute")
+                                userRelation.setObject(userID!, forKey: "UserID")
+                                userRelation.setObject(routeObjectId!, forKey: "RoutId")
+                            
+                                // Appends all the required info to PFOject array
+                                routeAndUserObjects.append(userRelation)
+                            
+                                // Returns objects in completion handler
+                                resultHandler(routeObjects: routeAndUserObjects)
+                            }
                         }
-                    }
                     // In case of errors above, this returns orignal data to plot routes
                     //resultHandler(routeObjects: objects)
+                    }
                 }
             } else {
                 // Log details of the failure
@@ -171,6 +173,7 @@ class RetrieveDataFromBackEnd {
             }
         }
     }
+   
     
     
 }

@@ -21,15 +21,11 @@ class HitcherDriverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
-        print("route ID is:")
-        print(routeId!)
-        print("user ID is:")
-        print(userData!)
-        print("current user is:")
-        print(currentUser)
         
         self.tableView.delegate = self
+        
         if (userData! != currentUser) {
             let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: "match")
             navigationItem.rightBarButtonItem = matchButton
@@ -59,6 +55,8 @@ class HitcherDriverTableViewController: UITableViewController {
     // Function activated from matchButton
     func match() {
         updateData.addMatchToRoute(routeId!, userId: userData!)
+        navigationController?.popViewControllerAnimated(true)
+        
         
     }
     

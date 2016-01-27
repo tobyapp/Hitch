@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="-829" y="2127"/>
         </scene>
-        <!--Hitcher Driver Profile View Controller-->
+        <!--Test route display-->
         <scene sceneID="qSO-eF-Xal">
             <objects>
-                <viewController id="2P2-FC-BvH" customClass="HitcherDriverProfileViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2P2-FC-BvH" customClass="UserRoutesViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KQd-M8-4AR"/>
                         <viewControllerLayoutGuide type="bottom" id="ZY9-aS-jEe"/>
@@ -97,36 +97,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DnG-hI-O27">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsh-iq-Vo6">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Your routes" id="fEe-yH-std"/>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNk-Uw-3vi">
-                                <rect key="frame" x="0.0" y="308" width="600" height="128"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="VcM-WJ-eY2"/>
+                                    <constraint firstAttribute="height" constant="220" id="Jsz-6w-8xn"/>
                                 </constraints>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-2n-6qm">
+                                <rect key="frame" x="0.0" y="328" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Matched Routes" id="cBt-Nf-yXP"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hsl-27-a1w">
+                                <rect key="frame" x="0.0" y="372" width="600" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="leading" secondItem="TKn-ar-uUU" secondAttribute="leading" id="2F7-09-xMX"/>
-                            <constraint firstItem="DnG-hI-O27" firstAttribute="top" secondItem="TKn-ar-uUU" secondAttribute="top" id="HKw-9E-LhB"/>
-                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="leading" secondItem="DnG-hI-O27" secondAttribute="leading" id="J9m-jT-9Xb"/>
-                            <constraint firstAttribute="trailing" secondItem="mNk-Uw-3vi" secondAttribute="trailing" id="Pm9-qL-gtX"/>
-                            <constraint firstItem="ZY9-aS-jEe" firstAttribute="top" secondItem="mNk-Uw-3vi" secondAttribute="bottom" constant="164" id="UYj-fb-eZ6"/>
-                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="trailing" secondItem="DnG-hI-O27" secondAttribute="trailing" id="WNG-1n-fd2"/>
-                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="top" secondItem="DnG-hI-O27" secondAttribute="bottom" constant="8" symbolic="YES" id="pxH-5I-P49"/>
+                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="leading" secondItem="qsh-iq-Vo6" secondAttribute="leading" id="0GD-KS-Njv"/>
+                            <constraint firstItem="1Je-2n-6qm" firstAttribute="trailing" secondItem="mNk-Uw-3vi" secondAttribute="trailing" id="1bm-Ln-JGG"/>
+                            <constraint firstItem="qsh-iq-Vo6" firstAttribute="trailing" secondItem="mNk-Uw-3vi" secondAttribute="trailing" id="20u-3P-ojU"/>
+                            <constraint firstItem="hsl-27-a1w" firstAttribute="top" secondItem="1Je-2n-6qm" secondAttribute="bottom" id="94U-jB-aZe"/>
+                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="leading" secondItem="1Je-2n-6qm" secondAttribute="leading" id="9ez-x0-aaJ"/>
+                            <constraint firstItem="qsh-iq-Vo6" firstAttribute="leading" secondItem="TKn-ar-uUU" secondAttribute="leading" id="ILy-Aa-80y"/>
+                            <constraint firstItem="mNk-Uw-3vi" firstAttribute="top" secondItem="qsh-iq-Vo6" secondAttribute="bottom" id="Jtm-nG-XgD"/>
+                            <constraint firstItem="qsh-iq-Vo6" firstAttribute="top" secondItem="KQd-M8-4AR" secondAttribute="bottom" id="Ula-1G-MGP"/>
+                            <constraint firstAttribute="trailing" secondItem="1Je-2n-6qm" secondAttribute="trailing" id="V9U-vo-fdd"/>
+                            <constraint firstItem="hsl-27-a1w" firstAttribute="trailing" secondItem="1Je-2n-6qm" secondAttribute="trailing" id="Zfs-no-eNy"/>
+                            <constraint firstItem="1Je-2n-6qm" firstAttribute="top" secondItem="mNk-Uw-3vi" secondAttribute="bottom" id="fuE-xY-vVI"/>
+                            <constraint firstItem="ZY9-aS-jEe" firstAttribute="top" secondItem="hsl-27-a1w" secondAttribute="bottom" constant="8" symbolic="YES" id="h3C-su-Qe6"/>
+                            <constraint firstItem="hsl-27-a1w" firstAttribute="leading" secondItem="1Je-2n-6qm" secondAttribute="leading" id="u9x-Xk-G6o"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Test route display" id="rOm-ny-F2W">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="UhW-UD-CCl"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="mNk-Uw-3vi" id="2Ns-JF-ufL"/>
-                        <outlet property="userDisplaypicture" destination="DnG-hI-O27" id="PnF-fJ-SBS"/>
+                        <outlet property="menuButton" destination="UhW-UD-CCl" id="UvL-gZ-rhe"/>
+                        <outlet property="tableView1" destination="mNk-Uw-3vi" id="hVU-Jy-HTB"/>
+                        <outlet property="tableView2" destination="hsl-27-a1w" id="0tK-qy-X6y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dnr-Qf-gBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="2110"/>
+            <point key="canvasLocation" x="-3274" y="-2081"/>
         </scene>
         <!--Htich Or Drive Popup View Controller-->
         <scene sceneID="bf1-tx-wH8">
@@ -221,7 +244,23 @@
             </objects>
             <point key="canvasLocation" x="-2444" y="-1119"/>
         </scene>
-        <!--Your Routes-->
+        <!--Navigation Controller-->
+        <scene sceneID="3nj-Xo-IxF">
+            <objects>
+                <navigationController id="WVH-OE-ukS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vhe-wq-rWd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2P2-FC-BvH" kind="relationship" relationship="rootViewController" id="5yE-g3-dTM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y9N-96-qma" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2543" y="-2081"/>
+        </scene>
+        <!--Original Your Routes-->
         <scene sceneID="fHK-I2-UtZ">
             <objects>
                 <tableViewController id="P7j-6F-67c" customClass="UsersRoutesTableViewController" customModule="hitch" customModuleProvider="target" sceneMemberID="viewController">
@@ -234,7 +273,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSd-mb-Ckp" id="A6w-P6-JCi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -244,7 +283,7 @@
                             <outlet property="delegate" destination="P7j-6F-67c" id="xaD-1R-jvR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your Routes" id="DC1-zo-Kox">
+                    <navigationItem key="navigationItem" title="Original Your Routes" id="DC1-zo-Kox">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="rPx-JN-QRg"/>
                     </navigationItem>
                     <connections>
@@ -253,7 +292,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oq3-4F-cSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1524" y="-1975"/>
+            <point key="canvasLocation" x="-1724" y="-2081"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ghS-Ma-Pst">
@@ -269,25 +308,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1l-Qh-NS8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-829" y="-1974"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Aje-yt-M5i">
-            <objects>
-                <viewController id="wgd-pc-IPp" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Cz4-Za-9IE"/>
-                        <viewControllerLayoutGuide type="bottom" id="dFh-Aw-h4e"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="F2i-b8-D0e">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GWR-3e-cIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1526" y="-1181"/>
+            <point key="canvasLocation" x="-829" y="-2081"/>
         </scene>
         <!--Menu Table View Controller-->
         <scene sceneID="1xB-b2-zsg">
@@ -304,7 +325,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="AwW-Ck-9Nt" id="RY2-j4-goZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biw-E3-csB">
@@ -324,7 +345,7 @@
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fdg-e4-cgA" id="YZo-2h-K6H">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="bCD-xa-iXH">
@@ -349,7 +370,7 @@
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u3N-sN-5HP" id="x1U-fj-DDc">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="trc-7S-QYX">
@@ -374,7 +395,7 @@
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LbN-ZK-Twv" id="KTx-aE-leC">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri3-nD-Php">
@@ -402,7 +423,7 @@
                                         <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7y2-tH-rep" id="13e-wU-jPJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Routes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYk-Bc-eLB">
@@ -422,14 +443,14 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Hys-CU-Jou" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="TKs-JL-C3X"/>
+                                            <segue destination="WVH-OE-ukS" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="MKu-sx-4ji"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="K0o-Pd-c6b">
                                         <rect key="frame" x="0.0" y="220" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K0o-Pd-c6b" id="Eyc-sU-Rm8">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="faq" translatesAutoresizingMaskIntoConstraints="NO" id="gXJ-ZY-BjU">
@@ -457,7 +478,7 @@
                                         <rect key="frame" x="0.0" y="264" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kit-Np-opK" id="kFP-Mm-uak">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-lW-NhO">
@@ -476,6 +497,27 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="Rac-Qi-4pe" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="ZVu-ao-6up"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iCe-qK-Rn0">
+                                        <rect key="frame" x="0.0" y="308" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iCe-qK-Rn0" id="jiy-sF-XU3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIO-w1-aOM">
+                                                    <rect key="frame" x="8" y="11" width="46" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="shadowColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Hys-CU-Jou" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="cgy-yQ-F3b"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -816,7 +858,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                 <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sIx-Xo-hEE" id="56V-1i-aPz">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7d-tK-DPd">
@@ -836,7 +878,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                 <rect key="frame" x="0.0" y="536" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z7p-wL-Qlx" id="ioB-Qx-JmT">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -851,6 +893,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                     </navigationItem>
                     <connections>
                         <outlet property="displayPicture" destination="oxb-lb-s54" id="DUQ-aH-mie"/>
+                        <outlet property="menuButton" destination="B16-ac-Iya" id="DNU-iX-DHf"/>
                         <outlet property="tableviewOutlet" destination="e12-IN-duq" id="xNr-nF-gzo"/>
                     </connections>
                 </tableViewController>
@@ -876,7 +919,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="6F8C63C8-C3E2-4CD0-A415-F0F2241F721D" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="5BDAB89E-5722-4A63-A8AC-E0E02657AA76" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -962,7 +1005,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="6F8C63C8-C3E2-4CD0-A415-F0F2241F721D" width="200" height="200">
+        <image name="5BDAB89E-5722-4A63-A8AC-E0E02657AA76" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
