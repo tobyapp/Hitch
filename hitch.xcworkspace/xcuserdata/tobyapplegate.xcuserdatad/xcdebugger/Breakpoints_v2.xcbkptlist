@@ -405,11 +405,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475627602.251332"
+            timestampString = "475628526.674665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -421,11 +421,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475627602.251332"
+            timestampString = "475628526.674665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -635,70 +635,6 @@
             startingLineNumber = "97"
             endingLineNumber = "97"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475627602.251332"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "retrieveMatchedRoutes(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "hitch.RetrieveDataFromBackEnd.retrieveMatchedRoutes (hitch.RetrieveDataFromBackEnd)((routeObjects : Swift.Optional&lt;Swift.Array&lt;__ObjC.PFObject&gt;&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "hitch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/RetrieveDataFromBackEnd.swift"
-                  timestampString = "475623037.209984"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "487">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "hitch.RetrieveDataFromBackEnd.(retrieveMatchedRoutes (hitch.RetrieveDataFromBackEnd) -&gt; ((routeObjects : Swift.Optional&lt;Swift.Array&lt;__ObjC.PFObject&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "hitch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/RetrieveDataFromBackEnd.swift"
-                  timestampString = "475623037.210231"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475627602.251332"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "retrieveMatchedRoutes(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

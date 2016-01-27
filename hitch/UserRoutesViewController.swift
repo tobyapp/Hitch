@@ -64,33 +64,33 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         })
 
         userRoutes.retrieveMatchedRoutes({results in
-            for object in results {
+            print(results)
+            print("nextone")
+            //for object in results {
 
-                print(object)
-                print("next one")
-//                let location = CLLocation(latitude: object["DestinationLatitude"]! as! Double, longitude: object["DestinationLongitude"]! as! Double)
-//                CLGeocoder().reverseGeocodeLocation(location, completionHandler:
-//                    {(places, error) in
-//                        if error == nil {
-//                            let locations = places![0] as CLPlacemark
-//                            
-//                            let place = "\(locations.thoroughfare!)"
-//                            let city =  "\(locations.locality!)"
-//                            let region = "\(locations.administrativeArea!)"
-//                            let country = "\(locations.ISOcountryCode!)"
-//                            
-//                            self.usersMatchedRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
-//                            
-//                            //reloads tableview on main thread
-//                            dispatch_async(dispatch_get_main_queue()) {
-//                                self.tableView2.reloadData()
-//                            }
-//                        }
-//                        else {
-//                            print("reverse geodcode fail: \(error!.localizedDescription)")
-//                        }
-//                })
-            }
+                let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
+                CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+                    {(places, error) in
+                        if error == nil {
+                            let locations = places![0] as CLPlacemark
+                            
+                            let place = "\(locations.thoroughfare!)"
+                            let city =  "\(locations.locality!)"
+                            let region = "\(locations.administrativeArea!)"
+                            let country = "\(locations.ISOcountryCode!)"
+                            
+                            self.usersMatchedRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!)")
+                            
+                            //reloads tableview on main thread
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView2.reloadData()
+                            }
+                        }
+                        else {
+                            print("reverse geodcode fail: \(error!.localizedDescription)")
+                        }
+                })
+//            }
         })
 
     }
