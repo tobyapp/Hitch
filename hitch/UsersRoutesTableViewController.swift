@@ -22,10 +22,9 @@ class UsersRoutesTableViewController: UITableViewController {
         self.addSideMenu(menuButton)
 
         userRoutes.retrieveUsersOwnRoutes({results in
-            for object in results! {
             // cast elements of array to string as setArrayToGlobalVariable expecting [String]
                 
-                let location = CLLocation(latitude: object["DestinationLatitude"]! as! Double, longitude: object["DestinationLongitude"]! as! Double)
+                let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
                 CLGeocoder().reverseGeocodeLocation(location, completionHandler:
                     {(places, error) in
                         if error == nil {
@@ -36,7 +35,7 @@ class UsersRoutesTableViewController: UITableViewController {
                             let region = "\(locations.administrativeArea!)"
                             let country = "\(locations.ISOcountryCode!)"
 
-                            self.userRoutesArray.append("Your Route to \(place), \(city), \(region), \(country) at \(object["TimeOfRoute"]!) as a \(object["UserType"]!)")
+                            self.userRoutesArray.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!)")
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
@@ -48,7 +47,6 @@ class UsersRoutesTableViewController: UITableViewController {
                             print("reverse geodcode fail: \(error!.localizedDescription)")
                         }
                     })
-            }
         })
         
         // Uncomment the following line to preserve selection between presentations

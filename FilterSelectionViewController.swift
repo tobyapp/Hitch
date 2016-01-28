@@ -42,21 +42,19 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         
         // Draws routes on map from back end database (Parse)
         userRoutes.retrieveRoutes({results in
-            for object in results! {
-                let userType = ("\(object.objectForKey("UserType")!)")
-                let route = ("\(object.objectForKey("UserRoute")!)")
-                let userName = ("\(object.objectForKey("UserName")!)")
-                let userID = ("\(object.objectForKey("UserID")!)")
-                let destinationLatitude = Double("\(object.objectForKey("DestinationLatitude")!)")
-                let destinationLongitude = Double("\(object.objectForKey("DestinationLongitude")!)")
-                let timeOfRoute = ("\(object.objectForKey("TimeOfRoute")!)")
-                let routePath = ("\(object.objectForKey("UserRoute")!)")
+                
+                let userType = ("\(results["UserType"]!)")
+                let route = ("\(results["UserRoute"]!)")
+                let userName = ("\(results["UserName"]!)")
+                let userID = ("\(results["UserID"]!)")
+                let destinationLatitude = Double("\(results["DestinationLatitude"]!)")
+                let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
+                let timeOfRoute = ("\(results["TimeOfRoute"]!)")
                 
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
-                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routePath: routePath)
-            }
+                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routePath: route)
         })
 
     }
