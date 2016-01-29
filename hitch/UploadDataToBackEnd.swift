@@ -18,28 +18,11 @@ import CoreData
 class UploadDataToBackEnd {
     
     var facebookProfileData = ObtainFBData()
-    
-    var userName: String?
-    var userGender: String?
-    var userDOB: String?
-    var userEducation: String?
-    var userEmail: String?
-    var displayPicture: NSData?
     var notUploadedData = true
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     init() {
         grabFacebookData()
-        grabFacebookPicture()
-    }
-    
-    func grabFacebookPicture() {
-        facebookProfileData.getProfilePicture {(pictureData, error) -> Void in
-            if error != nil {
-                print("login error: \(error!.localizedDescription)")
-            }
-            self.displayPicture = pictureData!
-        }
     }
     
     func grabFacebookData() {
@@ -47,12 +30,6 @@ class UploadDataToBackEnd {
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
             }
-        
-            self.userName =  nameData
-            self.userGender = genderData
-            self.userDOB = dobData
-            self.userEducation = educationData
-            self.userEmail = emailData
             
             let moc = self.managedObjectContext
             
@@ -109,17 +86,12 @@ class UploadDataToBackEnd {
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
             }
-            self.userName =  nameData
-            self.userGender = genderData
-            self.userDOB = dobData
-            self.userEducation = educationData
-            self.userEmail = emailData
 
-            PFUser.currentUser()!.setObject(self.userName!, forKey: "userName")
-            PFUser.currentUser()!.setObject(Int(self.userDOB!)!, forKey: "userAge")
-            PFUser.currentUser()!.setObject(self.userGender!, forKey: "userGender")
-            PFUser.currentUser()!.setObject(self.userEmail!, forKey: "userEmailAddress")
-            PFUser.currentUser()!.setObject(self.userEducation!, forKey: "userEducation")
+            PFUser.currentUser()!.setObject(nameData!, forKey: "userName")
+            PFUser.currentUser()!.setObject(Int(dobData!)!, forKey: "userAge")
+            PFUser.currentUser()!.setObject(genderData!, forKey: "userGender")
+            PFUser.currentUser()!.setObject(emailData!, forKey: "userEmailAddress")
+            PFUser.currentUser()!.setObject(educationData!, forKey: "userEducation")
             PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print("Save successful")
