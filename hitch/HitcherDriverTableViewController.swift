@@ -14,7 +14,7 @@ class HitcherDriverTableViewController: UITableViewController {
     var userAccount = RetrieveDataFromBackEnd()
     var updateData = UploadDataToBackEnd()
     var userData : String?
-    var userDetails = []
+    var userDetails = [String]()
     var routeId : String?
     
     @IBOutlet weak var usersDisplayPictrueView: UIImageView!
@@ -34,22 +34,39 @@ class HitcherDriverTableViewController: UITableViewController {
         //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
-                self.userDetails = ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
+                self.userDetails += ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
                 if let picture = results["userDisplayPicture"] as! UIImage? {
                     self.usersDisplayPictrueView.image = picture
                 }
-
-                //reloads tableview on main thread
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView.reloadData()
-                }
                 
+                let params = ["objectId" : userData]
+                PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+                    if response != nil {
+                        if error == nil {
+                            print("rating is : \(response!)")
+                            self.userDetails.append("Average User Rating  :  \(response!)")
+                        }
+                        else {
+                            print(error)
+                        }
+                    }
+                    else {
+                        print("no repsonse")
+                        self.userDetails.append("Average User Rating  :  2.5")
+                    }
+                    
+                    //reloads tableview on main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                        
+                    }
+                }
             }))
         }
-
+        
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
-
+       
     }
 
     // Function activated from matchButton
@@ -97,4 +114,68 @@ class HitcherDriverTableViewController: UITableViewController {
         print("touched")
     }
 
+    func getAverageRating(usersObjectId : String) -> String? {
+        let params = ["objectId" : usersObjectId]
+        var rating: String?
+        
+        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+            
+            if response != nil {
+                if error == nil {
+                    print("rating is : \(response!)")
+                    rating = response! as? String
+                }
+                else {
+                    print(error)
+                }
+            }
+            else {
+                print("no repsonse")
+                rating = "2.5"
+            }
+        }
+         return rating
+    }
+    
+    
+}
+
+
+class CustomTableViewCell: UITableViewCell {
+    
+    let imgUser = UIImageView()
+    let labUerName = UILabel()
+    let labMessage = UILabel()
+    let labTime = UILabel()
+    let starView = UIView()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        imgUser.backgroundColor = UIColor.blueColor()
+        
+        imgUser.translatesAutoresizingMaskIntoConstraints = false
+        labUerName.translatesAutoresizingMaskIntoConstraints = false
+        labMessage.translatesAutoresizingMaskIntoConstraints = false
+        labTime.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(imgUser)
+        contentView.addSubview(labUerName)
+        contentView.addSubview(labMessage)
+        contentView.addSubview(labTime)
+        
+        let viewsDict = [
+            "image" : imgUser,
+            "username" : labUerName,
+            "message" : labMessage,
+            "labTime" : labTime,
+        ]
+        
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[image(10)]", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[labTime]-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[username]-[message]-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[username]-[image(10)]-|", options: [], metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[message]-[labTime]-|", options: [], metrics: nil, views: viewsDict))
+    }
+    
 }

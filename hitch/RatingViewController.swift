@@ -9,6 +9,7 @@
 import UIKit
 import Cosmos
 import MK
+import Parse
 
 class RatingViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class RatingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAverageRating(objectId!)
         
         // Cosmos star rating config
         starRating.rating = 2.5
@@ -51,7 +53,6 @@ class RatingViewController: UIViewController {
         
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,6 +63,7 @@ class RatingViewController: UIViewController {
     }
 
     func rate(sender: UIButton) {
+        
         navigationController?.popViewControllerAnimated(true)
         if let rating = rating {
             uploadData.addRating(rating, userReviewed: objectId!)
@@ -70,16 +72,26 @@ class RatingViewController: UIViewController {
             uploadData.addRating(2.5, userReviewed: objectId!)
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func getAverageRating(usersObjectId : String){
+        let params = ["objectId" : usersObjectId]
+        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+            
+            if response != nil {
+                if error == nil {
+                        print("rating is : \(response!)")
+                }
+                else {
+                    print(error)
+                }
+            }
+            else {
+                print("no repsonse")
+            }
+        }
     }
-    */
-
+    
+    
+    
 }
+
