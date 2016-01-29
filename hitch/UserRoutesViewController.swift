@@ -128,7 +128,6 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
             cell!.textLabel!.numberOfLines = 0
             
-            //return cell
         }
         
         if tableView == tableView2 {

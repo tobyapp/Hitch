@@ -119,11 +119,6 @@ class UploadDataToBackEnd {
         }
 
     }
-
-    func addRating(rating: Double, userReviewed: String) {
-        print("You gave \(userReviewed) \(rating) our of 5")
-        
-    }
     
     func addLocationData(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         let query = PFObject(className: "UserRoutes")
@@ -168,6 +163,43 @@ class UploadDataToBackEnd {
                 }
             }
         }
+    }
+    
+    
+    func addRating(rating: Double, userReviewed: String) {
+        
+        let query = PFObject(className:"Ratings")
+        let currentUser = PFUser.currentUser()
+        
+        print("you gave \(userReviewed) \(rating) our of 5")
+        
+        let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(userReviewed)")
+        query["UserReviewed"] = pointer
+        query.setObject(currentUser!, forKey: "WhoReviewedUser")
+        query.setObject(rating, forKey:  "Rating")
+        print("done")
+        query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+            if succeeded {
+                print("Save successful")
+            } else {
+                print("Save unsuccessful: \(error!.userInfo)")
+            }
+        }
+        
+        
+//        let query = PFObject(className: "UserRoutes")
+//        let currentUser = PFUser.currentUser()
+//        query.setObject(route, forKey: "UserRoute")
+//        query.setObject(userType, forKey: "UserType")
+//        query.setObject(currentUser!, forKey: "User")
+//        query.setObject(originLatitude, forKey: "OriginLatitude")
+//        query.setObject(originLongitude, forKey: "OriginLongitude")
+//        query.setObject(destinationLatitude, forKey: "DestinationLatitude")
+//        query.setObject(destinationLongitude, forKey: "DestinationLongitude")
+//        query.setObject(timeOfRoute, forKey: "TimeOfRoute")
+//        query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+
+        
     }
     
     

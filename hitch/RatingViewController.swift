@@ -12,10 +12,15 @@ import MK
 
 class RatingViewController: UIViewController {
 
+    @IBOutlet weak var displayPicture: UIImageView!
     @IBOutlet weak var starRating: CosmosView!
+    @IBOutlet weak var ratingMessage: UILabel!
+    
+    
     private var rating: Double?
     var objectId: String?
     var uploadData = UploadDataToBackEnd()
+    var retrieveData = RetrieveDataFromBackEnd()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,17 @@ class RatingViewController: UIViewController {
         rateButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(rateButton)
 
+        //get details of user, set these to global array then reload table view to show these
+        if let objectId = objectId {
+            retrieveData.retrieveUserDetails(objectId, resultHandler: ({results in
+                self.ratingMessage.text! = "Rate \(results["userName"]!) on your trip!"
+               
+                if let picture = results["userDisplayPicture"] as! UIImage? {
+                    self.displayPicture.image = picture
+                }
+            }))
+        }
+        
     }
     
     
@@ -43,15 +59,12 @@ class RatingViewController: UIViewController {
     
     func didFinishTouchingCosmos(userRating: Double){
         rating = userRating
-//        print(rating!)
-//        print(objectId)
     }
 
     func rate(sender: UIButton) {
         navigationController?.popViewControllerAnimated(true)
         if let rating = rating {
             uploadData.addRating(rating, userReviewed: objectId!)
-            //print(rating)
         }
         else {
             uploadData.addRating(2.5, userReviewed: objectId!)
