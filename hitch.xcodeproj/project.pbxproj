@@ -41,6 +41,7 @@
 		52C434581C2AC07F00D565BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434571C2AC07F00D565BD /* Security.framework */; };
 		52C4345A1C2AC08700D565BD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434591C2AC08700D565BD /* StoreKit.framework */; };
 		52C4345C1C2AC09900D565BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */; };
+		52CA12C11C5A652E007DA03F /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA12C01C5A652E007DA03F /* RatingViewController.swift */; };
 		52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */; };
 		52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */; };
 		52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */; };
@@ -101,6 +102,7 @@
 		52C434571C2AC07F00D565BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		52C434591C2AC08700D565BD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		52CA12C01C5A652E007DA03F /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = ../../ios_google_places_autocomplete/GooglePlacesAutocomplete/GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
 		52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomInfoWindow.xib; path = ../CustomInfoWindow.xib; sourceTree = "<group>"; };
 		52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				522D20A21C580A4A009069DA /* UserRoutesViewController.swift */,
+				52CA12C01C5A652E007DA03F /* RatingViewController.swift */,
 				524C75591C4C293500776597 /* ContactViewController.swift */,
 				5206AD8F1C273B3C00A1EFAD /* ViewController.swift */,
 				52EC93971C289CBA007CF8F4 /* FAQViewController.swift */,
@@ -473,6 +476,7 @@
 				52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */,
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
+				52CA12C11C5A652E007DA03F /* RatingViewController.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
 				522D20A51C58180A009069DA /* UsersRoutesTableViewController.swift in Sources */,
 				52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */,

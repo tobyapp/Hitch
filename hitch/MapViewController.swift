@@ -38,41 +38,7 @@ class MapViewController: UIViewController {
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         //hitchinToButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hitchinToButton)
-        
-//        // Dictionary for buttons, to be used for auto layout
-//        let buttonDictionary = [
-//            "drivingToButton" : drivingToButton,
-//            "hitchinToButton" : hitchinToButton
-//            ]
-//        
-//        // Sizing constraints for driving button
-//        let drivingToButtonHeightConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "H:[drivingToButton(200)]",
-//            options: NSLayoutFormatOptions(rawValue: 0),
-//            metrics: nil, views: buttonDictionary)
-//        let drivingToButtonWidthConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "V:[drivingToButton(30)]",
-//            options: NSLayoutFormatOptions(rawValue:0),
-//            metrics: nil, views: buttonDictionary)
-//        
-//        drivingToButton.addConstraints(drivingToButtonHeightConstraints)
-//        drivingToButton.addConstraints(drivingToButtonWidthConstraints)
-//        
-//        // Sizing constraints for hitching button
-//        //view2
-//        let hitchinToButtonHeightConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "H:[hitchinToButton(200)]",
-//            options: NSLayoutFormatOptions(rawValue: 0),
-//            metrics: nil, views: buttonDictionary)
-//        let hitchinToButtonWidthConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "V:[hitchinToButton(30)]",
-//            options: NSLayoutFormatOptions(rawValue:0),
-//            metrics: nil, views: buttonDictionary)
-//        
-//        drivingToButton.addConstraints(hitchinToButtonHeightConstraints)
-//        drivingToButton.addConstraints(hitchinToButtonWidthConstraints)
-        
-        
+
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .AuthorizedAlways, .AuthorizedWhenInUse:

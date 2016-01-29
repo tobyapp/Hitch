@@ -47,7 +47,6 @@ class RetrieveDataFromBackEnd {
                                 routeDict["UserRoute"] = object.objectForKey("UserRoute")!
                                 
                                 resultHandler(routeObjects: routeDict)
-
                             }
                         }
                     }
