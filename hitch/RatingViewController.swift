@@ -15,6 +15,7 @@ class RatingViewController: UIViewController {
     @IBOutlet weak var starRating: CosmosView!
     private var rating: Double?
     var objectId: String?
+    var uploadData = UploadDataToBackEnd()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +43,19 @@ class RatingViewController: UIViewController {
     
     func didFinishTouchingCosmos(userRating: Double){
         rating = userRating
-        print(rating!)
-        print(objectId)
+//        print(rating!)
+//        print(objectId)
     }
 
     func rate(sender: UIButton) {
         navigationController?.popViewControllerAnimated(true)
+        if let rating = rating {
+            uploadData.addRating(rating, userReviewed: objectId!)
+            //print(rating)
+        }
+        else {
+            uploadData.addRating(2.5, userReviewed: objectId!)
+        }
     }
 
 

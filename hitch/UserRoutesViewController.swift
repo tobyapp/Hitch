@@ -73,7 +73,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let country = "\(locations.ISOcountryCode!)"
                             
                             // Adds objectId and content to be displayed in cell to dict
-                            self.usersMatchedRoutes.append(["objectId" : "\(results["match"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!)"])
+                            self.usersMatchedRoutes.append(["objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!)"])
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
@@ -126,6 +126,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             cell!.textLabel!.text = usersOwnRoutes[indexPath.item]
             cell!.textLabel!.textColor = purple
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
+            cell!.textLabel!.numberOfLines = 0
             
             //return cell
         }
@@ -133,13 +134,11 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView2 {
             cell = tableView.dequeueReusableCellWithIdentifier("table2Ccells", forIndexPath: indexPath)
             
-            //for routeMessage in usersMatchedRoutes.values{
             let routeDict = usersMatchedRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]//usersMatchedRoutes[indexPath.item]
                 cell!.textLabel!.textColor = purple
                 cell!.textLabel!.font = UIFont(name: "System", size: 20)
-            //}
-            //return cell
+                cell!.textLabel!.numberOfLines = 0
         }
         
         return cell!

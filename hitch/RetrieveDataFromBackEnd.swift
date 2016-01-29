@@ -147,7 +147,6 @@ class RetrieveDataFromBackEnd {
                                     routeDict["UserName"] = userName!
                                     routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
                                     routeDict["UserID"] = userID!
-                                    routeDict["match"] = match.valueForKey("objectId")!
                                     
                                     resultHandler(matchedDict: routeDict)
                                 }

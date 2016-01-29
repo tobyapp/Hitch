@@ -120,6 +120,11 @@ class UploadDataToBackEnd {
 
     }
 
+    func addRating(rating: Double, userReviewed: String) {
+        print("You gave \(userReviewed) \(rating) our of 5")
+        
+    }
+    
     func addLocationData(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
         let query = PFObject(className: "UserRoutes")
         let currentUser = PFUser.currentUser()

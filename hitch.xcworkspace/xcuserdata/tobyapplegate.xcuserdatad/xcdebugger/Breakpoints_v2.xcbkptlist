@@ -389,11 +389,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475681840.550435"
+            timestampString = "475766943.256607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -405,11 +405,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "475681840.550435"
+            timestampString = "475766943.256607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
