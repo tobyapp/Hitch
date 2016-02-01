@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -186,7 +187,7 @@
                                 <exclude reference="5v7-Xb-eUS"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Gnq-bO-BqJ"/>
+                                <exclude reference="Ea6-PU-LWg"/>
                                 <exclude reference="OgR-cg-ii3"/>
                                 <exclude reference="SL4-uu-l1M"/>
                                 <exclude reference="UuT-pe-sfp"/>
@@ -198,7 +199,7 @@
                                 <exclude reference="S78-8b-vxu"/>
                                 <exclude reference="UmT-I5-Mwu"/>
                                 <exclude reference="aPr-yD-6nR"/>
-                                <exclude reference="Ea6-PU-LWg"/>
+                                <exclude reference="Gnq-bO-BqJ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -208,7 +209,7 @@
                                 <include reference="5v7-Xb-eUS"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Gnq-bO-BqJ"/>
+                                <include reference="Ea6-PU-LWg"/>
                                 <include reference="OgR-cg-ii3"/>
                                 <include reference="SL4-uu-l1M"/>
                                 <include reference="UuT-pe-sfp"/>
@@ -216,7 +217,7 @@
                                 <include reference="v0O-fU-zmg"/>
                                 <include reference="4De-hQ-maV"/>
                                 <include reference="JcF-Me-g7u"/>
-                                <include reference="Ea6-PU-LWg"/>
+                                <include reference="Gnq-bO-BqJ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -418,16 +419,95 @@
                                     <action selector="datePickerAction:" destination="sgl-S3-QcD" eventType="valueChanged" id="VmL-vL-wia"/>
                                 </connections>
                             </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extra Information For Ride:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2S-0T-Ems">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="PFq-vY-JxK"/>
+                                    <constraint firstAttribute="width" constant="204" id="RJ1-xg-s90"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.22745098039215686" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PFq-vY-JxK"/>
+                                        <exclude reference="RJ1-xg-s90"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="PFq-vY-JxK"/>
+                                        <include reference="RJ1-xg-s90"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHM-46-7By">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.22745098039215686" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" returnKeyType="done"/>
+                                <variation key="heightClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="yHM-46-7By" firstAttribute="top" secondItem="C2S-0T-Ems" secondAttribute="bottom" constant="40" id="0ON-h1-yIz"/>
+                            <constraint firstItem="ayh-gd-UrV" firstAttribute="top" secondItem="yHM-46-7By" secondAttribute="bottom" constant="247" id="6Gs-fB-Wmg"/>
                             <constraint firstItem="8Eb-in-WfC" firstAttribute="leading" secondItem="ZAL-E8-Tnf" secondAttribute="leading" id="6qC-Ri-YUY"/>
+                            <constraint firstItem="yHM-46-7By" firstAttribute="leading" secondItem="ZAL-E8-Tnf" secondAttribute="leadingMargin" id="DDW-eP-hb2"/>
+                            <constraint firstItem="8Eb-in-WfC" firstAttribute="top" secondItem="tLi-Ca-N6H" secondAttribute="bottom" constant="8" symbolic="YES" id="FgT-zR-68s"/>
                             <constraint firstAttribute="trailing" secondItem="8Eb-in-WfC" secondAttribute="trailing" id="QbD-tF-9zA"/>
                             <constraint firstItem="8Eb-in-WfC" firstAttribute="top" secondItem="tLi-Ca-N6H" secondAttribute="bottom" constant="8" symbolic="YES" id="Zcq-l6-X3z"/>
+                            <constraint firstItem="C2S-0T-Ems" firstAttribute="top" secondItem="8Eb-in-WfC" secondAttribute="bottom" constant="40" id="aQO-KD-q4y"/>
+                            <constraint firstItem="C2S-0T-Ems" firstAttribute="centerX" secondItem="8Eb-in-WfC" secondAttribute="centerX" id="jdI-vg-Skr"/>
+                            <constraint firstItem="8Eb-in-WfC" firstAttribute="leading" secondItem="ZAL-E8-Tnf" secondAttribute="leading" id="mFQ-ef-IrN"/>
+                            <constraint firstItem="yHM-46-7By" firstAttribute="centerX" secondItem="C2S-0T-Ems" secondAttribute="centerX" id="mVK-2z-DXE"/>
+                            <constraint firstAttribute="trailing" secondItem="8Eb-in-WfC" secondAttribute="trailing" id="nQ9-9t-7SH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="C2S-0T-Ems"/>
+                                <exclude reference="yHM-46-7By"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FgT-zR-68s"/>
+                                <exclude reference="mFQ-ef-IrN"/>
+                                <exclude reference="nQ9-9t-7SH"/>
+                                <exclude reference="0ON-h1-yIz"/>
+                                <exclude reference="DDW-eP-hb2"/>
+                                <exclude reference="mVK-2z-DXE"/>
+                                <exclude reference="aQO-KD-q4y"/>
+                                <exclude reference="jdI-vg-Skr"/>
+                                <exclude reference="6Gs-fB-Wmg"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="C2S-0T-Ems"/>
+                                <include reference="yHM-46-7By"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6qC-Ri-YUY"/>
+                                <include reference="FgT-zR-68s"/>
+                                <exclude reference="QbD-tF-9zA"/>
+                                <exclude reference="Zcq-l6-X3z"/>
+                                <include reference="mFQ-ef-IrN"/>
+                                <include reference="nQ9-9t-7SH"/>
+                                <include reference="0ON-h1-yIz"/>
+                                <include reference="DDW-eP-hb2"/>
+                                <include reference="mVK-2z-DXE"/>
+                                <include reference="aQO-KD-q4y"/>
+                                <include reference="jdI-vg-Skr"/>
+                                <include reference="6Gs-fB-Wmg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="8Eb-in-WfC" id="6gv-sH-H0z"/>
+                        <outlet property="textView" destination="yHM-46-7By" id="Db3-Ji-I9q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTE-SQ-lT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -996,11 +1076,11 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                 <exclude reference="GCJ-tB-93n"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="bP4-6l-oAE"/>
                                 <exclude reference="3ou-eT-EZA"/>
                                 <exclude reference="CJN-PR-fAt"/>
                                 <exclude reference="EdI-ce-byq"/>
                                 <exclude reference="P8p-yH-4gs"/>
-                                <exclude reference="bP4-6l-oAE"/>
                                 <exclude reference="cUa-9H-Skd"/>
                                 <exclude reference="giV-1T-WLg"/>
                             </mask>
@@ -1188,7 +1268,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="0370ECD2-29EB-46D2-99AD-E360107D50CE" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="C9C950A4-8982-458C-927E-3835F32F9EF0" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1260,7 +1340,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="0370ECD2-29EB-46D2-99AD-E360107D50CE" width="200" height="200">
+        <image name="C9C950A4-8982-458C-927E-3835F32F9EF0" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

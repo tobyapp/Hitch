@@ -45,6 +45,7 @@ class RetrieveDataFromBackEnd {
                                 routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
                                 routeDict["UserID"] = userID!
                                 routeDict["UserRoute"] = object.objectForKey("UserRoute")!
+                                routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
                                 
                                 resultHandler(routeObjects: routeDict)
                             }
@@ -95,6 +96,7 @@ class RetrieveDataFromBackEnd {
                                 routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
                                 routeDict["UserID"] = userID!
                                 routeDict["RoutId"] = routeObjectId!
+                                routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
                                 
                                 // Returns objects in completion handler
                                 resultHandler(routeObjects: routeDict)
@@ -147,6 +149,7 @@ class RetrieveDataFromBackEnd {
                                     routeDict["UserName"] = userName!
                                     routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
                                     routeDict["UserID"] = userID!
+                                    routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
                                     
                                     resultHandler(matchedDict: routeDict)
                                 }

@@ -65,12 +65,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
                 let timeOfRoute = ("\(results["TimeOfRoute"]!)")
                 let routeId = ("\(results["RoutId"]!)")
+                let extraRideInfo = ("\(results["ExtraRideInfo"]!)")
                 
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
                 self.plottedByUser = false
-                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId)
+            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
             //}
         })
  
@@ -229,7 +230,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String) {
         
         let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         
@@ -243,12 +244,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId]
+            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId]
+            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
@@ -264,12 +265,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
 
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
-        infoWindow.frame.size.width = 200
-        infoWindow.frame.size.height = 75
-        infoWindow.layer.cornerRadius = 10
         infoWindow.backgroundColor = purple
+        infoWindow.layer.cornerRadius = 10
         
         if plottedByUser {
+            //info window dimensions, change depending if there is extra info from user on lift
+            infoWindow.frame.size.width = 200
+            infoWindow.frame.size.height = 75
+            
             let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 75))
             drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
             drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
@@ -280,22 +283,44 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else if !plottedByUser {
-            let userLabel = UILabel(frame: CGRectMake(0, 0, 200, 50))
+            if "\(marker.userData["extraRideInfo"])" != "" {
+                //info window dimensions, demsions increase if there are extra info
+                infoWindow.frame.size.width = 300
+                infoWindow.frame.size.height = 150
+                
+                let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
+                extraInfoLabel.numberOfLines = 0
+                extraInfoLabel.textAlignment = .Center
+                extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
+                extraInfoLabel.textColor = UIColor.whiteColor()
+                extraInfoLabel.layer.cornerRadius = 10
+                infoWindow.addSubview(extraInfoLabel)
+            }
+            
+            else {
+                //info window dimensions
+                infoWindow.frame.size.width = 200
+                infoWindow.frame.size.height = 75
+                infoWindow.layer.cornerRadius = 10
+            }
+            
+            let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
             userLabel.textAlignment = .Center
             userLabel.text = marker.title
             userLabel.textColor = UIColor.whiteColor()
             userLabel.layer.cornerRadius = 10
             infoWindow.addSubview(userLabel)
             
-            let timeLabel = UILabel(frame: CGRectMake(0, 25, 200, 50))
+            let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
             timeLabel.textAlignment = .Center
             timeLabel.text = "At : \(marker.snippet)"
             timeLabel.textColor = UIColor.whiteColor()
             timeLabel.layer.cornerRadius = 10
             infoWindow.addSubview(timeLabel)
-         
         }
+        
         return infoWindow
+    
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
@@ -313,6 +338,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 print("not plotted by user")
                 
             }
+                
             else if !calledFromAlertController{
                 userID = "\(marker.userData["userID"])"
                 routeId = "\(marker.userData["routeId"])"
@@ -347,7 +373,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
-    func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String) {
+    func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
+        print("extra ride info : \(extraRideInfo)")
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false, showProfile: false)
             return
@@ -356,7 +383,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
 
             //delayed as other wise the route would get saved to the backend before it can be searched for users going same area, this means that the back end search would show a user is travling to the same location (but would really just be the orignal user as thier route is being searched against thier own route), increae number as records get bigger.
             runCodeAfterDelay(2) {
-            self.account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute)
+                self.account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute, extraRideInfo: extraRideInfo)
             }
             
             drawRoute(route, userType: userType)

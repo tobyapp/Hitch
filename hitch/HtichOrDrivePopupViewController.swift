@@ -11,8 +11,9 @@ import MK
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
 
-class HtichOrDrivePopupViewController: UIViewController {
+class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
  
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBAction func datePickerAction(sender: AnyObject) {
@@ -36,11 +37,12 @@ class HtichOrDrivePopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.setValue(purple, forKey: "textColor")
+        textView.delegate = self
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
         // Adds driving to button to view
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 400, 400, 60)) //CGRectMake(110, 400, 200, 30)
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 600, 400, 60)) //CGRectMake(110, 400, 200, 30)
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
@@ -49,7 +51,7 @@ class HtichOrDrivePopupViewController: UIViewController {
         view.addSubview(drivingToButton)
         
         // Adds Hitch button to view
-        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 600, 400, 60)) //CGRectMake(110, 400, 200, 30)
+        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 800, 400, 60)) //CGRectMake(110, 400, 200, 30)
         hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
@@ -57,7 +59,29 @@ class HtichOrDrivePopupViewController: UIViewController {
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
+        addPlaceHolderText(textView, placeholderText: "Enter your extra information for your ride here...")
     }
+    
+    func addPlaceHolderText(textView: UITextView, placeholderText: String) {
+        // make it look (initially) like a placeholder
+        textView.textColor = UIColor.lightGrayColor()
+        textView.text = placeholderText
+    }
+    
+    func textViewShouldBeginEditing(aTextView: UITextView) -> Bool {
+        if textView.text != nil {
+            textView.text = ""
+            textView.textColor = purple
+            print("began")
+        }
+        return true
+    }
+    
+//    func textViewDidChange(textView: UITextView) { //Handle the text changes here
+//
+//        
+//        print(textView.text); //the textView parameter is the textView where text was changed
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,7 +107,10 @@ class HtichOrDrivePopupViewController: UIViewController {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "driver", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            if self.textView.text == "Enter your extra information for your ride here..." {
+                self.textView.text = ""
+            }
+            self.delegate?.sendRouteBack(results!, userType: "driver", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textView.text!)
             self.cancel()
         })
     }
@@ -102,7 +129,10 @@ class HtichOrDrivePopupViewController: UIViewController {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!)
+            if self.textView.text == "Enter your extra information for your ride here..." {
+                self.textView.text = ""
+            }
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textView.text!)
             self.cancel()
         })
     }

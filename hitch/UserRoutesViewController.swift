@@ -45,8 +45,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let city =  "\(locations.locality!)"
                             let region = "\(locations.administrativeArea!)"
                             let country = "\(locations.ISOcountryCode!)"
-                            
-                            self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!)")
+                            //ExtraRideInfo
+                            self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'")
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
@@ -73,7 +73,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let country = "\(locations.ISOcountryCode!)"
                             
                             // Adds objectId and content to be displayed in cell to dict
-                            self.usersMatchedRoutes.append(["objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!)"])
+                            self.usersMatchedRoutes.append(["objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
