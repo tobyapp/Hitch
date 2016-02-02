@@ -21,6 +21,7 @@ PODS:
   - FBSDKShareKit (4.8.0):
     - FBSDKCoreKit
   - GoogleMaps (1.11.1)
+  - JVFloatLabeledTextField (1.1.0)
   - MK (1.27.4)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - GoogleMaps
+  - JVFloatLabeledTextField
   - MK
   - Parse
   - ParseFacebookUtilsV4
@@ -59,6 +61,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   MK: ae717506e2aae48803175d622faa7896c6b4e47e
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9

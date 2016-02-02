@@ -66,7 +66,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 let timeOfRoute = ("\(results["TimeOfRoute"]!)")
                 let routeId = ("\(results["RoutId"]!)")
                 let extraRideInfo = ("\(results["ExtraRideInfo"]!)")
-                
+            
                 let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
                 
                 self.drawRoute(route, userType: userType)
@@ -91,7 +91,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         else {
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,7 +119,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         gpaViewController.navigationBar.barTintColor = purple
         gpaViewController.navigationBar.barStyle = UIBarStyle.Black
         gpaViewController.placeDelegate = self
-        
         presentViewController(gpaViewController, animated: true, completion: nil)
     }
     
@@ -195,6 +193,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
     }
 
+    
 }
 
 // Extention of current class to incorportate wrapper for googlePlacesApi + other functionality
@@ -224,7 +223,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
-        //locationMarker.appearAnimation = kGMSMarkerAnimationPop
         locationMarker.map = mapView
         plottedByUser = true
     }
@@ -284,6 +282,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             
         else if !plottedByUser {
             if "\(marker.userData["extraRideInfo"])" != "" {
+                
                 //info window dimensions, demsions increase if there are extra info
                 infoWindow.frame.size.width = 300
                 infoWindow.frame.size.height = 150
@@ -301,7 +300,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 //info window dimensions
                 infoWindow.frame.size.width = 200
                 infoWindow.frame.size.height = 75
-                infoWindow.layer.cornerRadius = 10
             }
             
             let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
@@ -335,15 +333,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             if calledFromAlertController {
                 calledFromAlertController = false
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
-                print("not plotted by user")
-                
             }
                 
             else if !calledFromAlertController{
                 userID = "\(marker.userData["userID"])"
                 routeId = "\(marker.userData["routeId"])"
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
-                print("not from alert controller")
             }
         }
     }
@@ -352,7 +347,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         if (segue.identifier == "segueToUsersProfile") {
             if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
                 destinationViewController.userData = userID!
-                destinationViewController.routeId = routeId!
+                if let routeId = routeId {
+                    destinationViewController.routeId = routeId
+                }
             }
         }
         
@@ -374,7 +371,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
     func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
-        print("extra ride info : \(extraRideInfo)")
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false, showProfile: false)
             return
@@ -401,14 +397,18 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             if response != nil {
                 if error == nil {
                     if let userObject = response as! PFObject? {
-                        //for object in objects {
-                            let userIDNumber = userObject["username"]
-                            let userName = userObject["userName"]
-                            //need userIDNumber (its actually thier unique username) to pass to alert controller to present alert and then users profile page (if user clicked show profile page on alert controller)
-                            self.calledFromAlertController = true
-                            self.userID = "\(userIDNumber)"
-                            self.showAlertController("Somebody is already going that way, why not drop them a message?", errorMessage: "The user \(userName) is already going there!", showSettings: false, showProfile: true)
-                        //}
+                        
+                        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+                        let userName = userObject["userName"]
+                        self.calledFromAlertController = true
+                        self.userID = ("\(userObject.valueForKey("objectId")!)")
+                        
+                        if "\(currentUser!)" == self.userID! {
+                            self.showAlertController("Your already going there!", errorMessage: "Your already going to a location in this vicinity!", showSettings: false, showProfile: false)
+                        }
+                        else if "\(currentUser!)" != self.userID! {
+                             self.showAlertController("Somebody is already going that way, why not drop them a message?", errorMessage: "The user \(userName) is already going there!", showSettings: false, showProfile: true)
+                        }
                     }
                 }
                 else {
@@ -438,4 +438,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         routePolyline.map = mapView
     }
+    
+    
+    
+    
 }

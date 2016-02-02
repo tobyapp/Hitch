@@ -43,8 +43,11 @@ class HitcherDriverTableViewController: UITableViewController {
                 PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
                     if response != nil {
                         if error == nil {
-                            print("rating is : \(response!)")
-                            self.userDetails.append("Average User Rating  :  \(response!)")
+                            
+                            let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
+                            
+                            print("rating is : \(response! as! Double)")
+                            self.userDetails.append("Average User Rating  :  \(roundedRating)")
                         }
                         else {
                             print(error)

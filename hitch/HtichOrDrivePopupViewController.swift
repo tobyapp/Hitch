@@ -8,13 +8,15 @@
 
 import UIKit
 import MK
+import JVFloatLabeledTextField
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
 
-class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
+class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
  
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var textField: JVFloatLabeledTextField!
+    
     
     @IBAction func datePickerAction(sender: AnyObject) {
         let currentDate = NSDate()
@@ -37,7 +39,8 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.setValue(purple, forKey: "textColor")
-        textView.delegate = self
+        textField.delegate = self
+        
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         
@@ -59,29 +62,30 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
-        addPlaceHolderText(textView, placeholderText: "Enter your extra information for your ride here...")
+        //addPlaceHolderText(textField, placeholderText: "Enter your extra information for your ride here...")
     }
     
-    func addPlaceHolderText(textView: UITextView, placeholderText: String) {
+    func addPlaceHolderText(textField: UITextField, placeholderText: String) {
         // make it look (initially) like a placeholder
-        textView.textColor = UIColor.lightGrayColor()
-        textView.text = placeholderText
+        textField.textColor = UIColor.lightGrayColor()
+        textField.text = placeholderText
     }
     
     func textViewShouldBeginEditing(aTextView: UITextView) -> Bool {
-        if textView.text != nil {
-            textView.text = ""
-            textView.textColor = purple
+        if textField.text != nil {
+            textField.text = ""
+            textField.textColor = purple
             print("began")
         }
         return true
     }
     
-//    func textViewDidChange(textView: UITextView) { //Handle the text changes here
-//
-//        
-//        print(textView.text); //the textView parameter is the textView where text was changed
-//    }
+    // To dismiss keyboard when users finished typing
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //self.view.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -107,10 +111,10 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            if self.textView.text == "Enter your extra information for your ride here..." {
-                self.textView.text = ""
+            if self.textField.text == "Enter your extra information for your ride here..." {
+                self.textField.text = ""
             }
-            self.delegate?.sendRouteBack(results!, userType: "driver", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textView.text!)
+            self.delegate?.sendRouteBack(results!, userType: "driver", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textField.text!)
             self.cancel()
         })
     }
@@ -129,10 +133,10 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate {
         }
         
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
-            if self.textView.text == "Enter your extra information for your ride here..." {
-                self.textView.text = ""
+            if self.textField.text == "Enter your extra information for your ride here..." {
+                self.textField.text = ""
             }
-            self.delegate?.sendRouteBack(results!, userType: "hitcher", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textView.text!)
+            self.delegate?.sendRouteBack(results!, userType: "hitcher", originLatitude: self.originLatitude!, originLongitude: self.originLongitude!, destinationLatitude: self.destinationLatitude!, destinationLongitude: self.destinationLongitude!, timeOfRoute: self.dateString!, extraRideInfo : self.textField.text!)
             self.cancel()
         })
     }

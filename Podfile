@@ -22,3 +22,5 @@ pod 'GoogleMaps'
 pod 'Alamofire'
 
 pod 'Cosmos'
+
+pod 'JVFloatLabeledTextField'
