@@ -85,7 +85,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
             case .Restricted, .Denied:
-                showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!", showSettings: true, showProfile: false)
+                showAlertController("Location services not enabled!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
             }
         }
         else {

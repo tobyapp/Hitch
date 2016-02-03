@@ -19,15 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var storyBoard : UIStoryboard?
+    var keys = APIkeys()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        Parse.setApplicationId("9n6ArF2G7Iw2OYCKOvzL28t48eWdGVhVnuNHBuuw", clientKey: "n1eF18feSH6yqEmy4Z64Iw3FOkWu60MVGLHvRmVX")
+        Parse.setApplicationId(keys.parseAppKey, clientKey: keys.parseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
-        GMSServices.provideAPIKey("AIzaSyDQXVnZ8sUquszZfQ12p9e97Oz9a3UDPbM")
+        GMSServices.provideAPIKey(keys.googleMapsKey)
     
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
