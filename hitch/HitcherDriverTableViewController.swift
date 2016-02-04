@@ -47,7 +47,7 @@ class HitcherDriverTableViewController: UITableViewController {
                             let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
                             
                             print("rating is : \(response! as! Double)")
-                            self.userDetails.append("Average User Rating  :  \(roundedRating)")
+                            self.userDetails.append("Average User Rating  :  \(response!)")
                         }
                         else {
                             print(error)

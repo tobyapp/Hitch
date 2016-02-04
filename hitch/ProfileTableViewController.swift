@@ -41,6 +41,35 @@ class ProfileTableViewController: UITableViewController {
         catch let error as NSError {
             print("Fetch failed: \(error.localizedDescription)")
         }
+        
+        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        let params = ["objectId" : "\(currentUser)"]
+        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+            if response != nil {
+                if error == nil {
+                    
+                    let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
+                    
+                    print("rating is : \(response! as! Double)")
+                    self.userDataArray.append("Average User Rating  :  \(response!)")
+                }
+                else {
+                    print(error)
+                }
+            }
+            else {
+                print("no repsonse")
+                self.userDataArray.append("Average User Rating  :  2.5")
+            }
+            
+            //reloads tableview on main thread
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+                
+            }
+        }
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {

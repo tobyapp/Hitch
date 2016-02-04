@@ -62,7 +62,9 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
-        //addPlaceHolderText(textField, placeholderText: "Enter your extra information for your ride here...")
+        // Create notifications on when keyboard is displayed/hidden
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func addPlaceHolderText(textField: UITextField, placeholderText: String) {
@@ -141,4 +143,18 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         })
     }
     
+    //Move UIView up when keyboard is displayed (shown)
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+        
+    }
+    
+    //Move UIView down when keyboard is retracted (hidden)
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
+    }
 }
