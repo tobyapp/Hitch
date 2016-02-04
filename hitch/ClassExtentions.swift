@@ -63,6 +63,15 @@ extension String {
     var length: Int {
         return characters.count
     }
+    
+    func toBool() -> Bool{
+        if (self == "1" || self == "true" || self == "True" || self == "Yes" || self == "yes" || self == "on" || self == "On") {
+            return true
+        } else{
+            return false
+        }
+    }
+
 }
 
 extension Double {

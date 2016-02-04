@@ -20,6 +20,7 @@ class RatingViewController: UIViewController {
     
     private var rating: Double?
     var objectId: String?
+    var routeId: String?
     var uploadData = UploadDataToBackEnd()
     var retrieveData = RetrieveDataFromBackEnd()
     
@@ -66,9 +67,14 @@ class RatingViewController: UIViewController {
         
         navigationController?.popViewControllerAnimated(true)
         if let rating = rating {
+            uploadData.userReviewed(routeId!, userId: objectId!)
             uploadData.addRating(rating, userReviewed: objectId!)
+            
+            print("user :   \(objectId!)   on  route   :   \(routeId!)")
+
         }
         else {
+            uploadData.userReviewed(routeId!, userId: objectId!)
             uploadData.addRating(2.5, userReviewed: objectId!)
         }
     }

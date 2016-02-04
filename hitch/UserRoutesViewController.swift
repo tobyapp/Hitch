@@ -17,54 +17,68 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     var userRoutes = RetrieveDataFromBackEnd()
     var usersOwnRoutes = [String]()
     var usersMatchedRoutes = [Dictionary<String, String>]()
+    var reviewedYet : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView1.delegate = self
         tableView1.dataSource = self
         tableView2.delegate = self
         tableView2.dataSource = self
         
         self.tableView1.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table1Cells")
-        self.tableView2.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table2Ccells")
+        self.tableView2.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table2Cells")
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
-         self.addSideMenu(menuButton)
+        self.addSideMenu(menuButton)
+        
+        
         
         userRoutes.retrieveUsersOwnRoutes({results in
-                
-                let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
-                CLGeocoder().reverseGeocodeLocation(location, completionHandler:
-                    {(places, error) in
-                        if error == nil {
-                            
-                            let locations = places![0] as CLPlacemark
-                            let place = "\(locations.thoroughfare!)"
-                            let city =  "\(locations.locality!)"
-                            let region = "\(locations.administrativeArea!)"
-                            let country = "\(locations.ISOcountryCode!)"
-                            //ExtraRideInfo
-                            self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'")
-                            
-                            //reloads tableview on main thread
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.tableView1.reloadData()
-                            }
+            let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+                {(places, error) in
+                    if error == nil {
+                        
+                        let locations = places![0] as CLPlacemark
+                        let place = "\(locations.thoroughfare!)"
+                        let city =  "\(locations.locality!)"
+                        let region = "\(locations.administrativeArea!)"
+                        let country = "\(locations.ISOcountryCode!)"
+                        //ExtraRideInfo
+                        self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'")
+                        
+                        //reloads tableview on main thread
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView1.reloadData()
                         }
-                        else {
-                            print("reverse geodcode fail: \(error!.localizedDescription)")
-                        }
-                })
+                    }
+                    else {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+            })
         })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
 
         userRoutes.retrieveMatchedRoutes({results in
-
                 let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
                 CLGeocoder().reverseGeocodeLocation(location, completionHandler:
                     {(places, error) in
                         if error == nil {
+                            
+//                            for key in self.usersMatchedRoutes {
+//                                print("key  :   \(key)")
+//                                if key[("results["RouteId"]!)"]
+//                            }
+                            
+                            
+                            // need to stop refreshing of view, need to updated dict usersMatchedRoutes so cant keep updating user
+                            
                             
                             let locations = places![0] as CLPlacemark
                             let place = "\(locations.thoroughfare!)"
@@ -73,7 +87,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let country = "\(locations.ISOcountryCode!)"
                             
                             // Adds objectId and content to be displayed in cell to dict
-                            self.usersMatchedRoutes.append(["objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
+                            self.usersMatchedRoutes.append(["reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
@@ -131,7 +145,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if tableView == tableView2 {
-            cell = tableView.dequeueReusableCellWithIdentifier("table2Ccells", forIndexPath: indexPath)
+            cell = tableView.dequeueReusableCellWithIdentifier("table2Cells", forIndexPath: indexPath)
             
             let routeDict = usersMatchedRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]//usersMatchedRoutes[indexPath.item]
@@ -154,8 +168,26 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if tableView == tableView2 {
-            self.performSegueWithIdentifier("segueToRating", sender: self)
+            
+            let row = self.tableView2.indexPathForSelectedRow?.row
+            let routeDict = usersMatchedRoutes[row!]
+            let reviewBool = routeDict["reviewedBool"]?.toBool()
+            
+            if let reviewed = reviewBool {
+            //defult is false so if not reviewed yet
+            if !reviewed {
+                self.performSegueWithIdentifier("segueToRating", sender: self)
+                print("")
+                print("in segue")
+                print("")
+            }
+            else if reviewed {
+                print("")
+                print("you have already reviewed this match")
+                print("")
+            }
         }
+    }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -163,7 +195,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                 // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
                 let row = self.tableView2.indexPathForSelectedRow?.row
                 let routeDict = usersMatchedRoutes[row!]
-                destinationViewController.objectId = routeDict["objectId"]
+                destinationViewController.objectId = routeDict["objectId"]!
+                destinationViewController.routeId = routeDict["routeId"]!
             }
     }
     

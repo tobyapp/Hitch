@@ -132,9 +132,10 @@ class UploadDataToBackEnd {
         query.setObject(destinationLongitude, forKey: "DestinationLongitude")
         query.setObject(timeOfRoute, forKey: "TimeOfRoute")
         query.setObject(extraRideInfo, forKey: "ExtraRideInfo")
+        query.setObject(false, forKey: "Reviewed")
         query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
-                print("Save successful")
+                print("Save successful for adding locaiton data")
             } else {
                 print("Save unsuccessful: \(error!.userInfo)")
             }
@@ -146,7 +147,6 @@ class UploadDataToBackEnd {
         let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         query.getObjectInBackgroundWithId(routeId) {
             (route: PFObject?, error: NSError?) -> Void in
-                print(route)
             if error != nil {
                 print("Save failed: \(error!.localizedDescription)")
             } else if let route = route {
@@ -154,7 +154,6 @@ class UploadDataToBackEnd {
                 // create pointer to user object and store that in 'match' coloumn
                 let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(currentUser!)")
                 route["match"] = pointer
-                
                 route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
                     if succeeded {
                         print("Save successful")
@@ -166,6 +165,25 @@ class UploadDataToBackEnd {
         }
     }
     
+    func userReviewed(routeId : String, userId : String) {
+        let query = PFQuery(className:"UserRoutes")
+        query.getObjectInBackgroundWithId(routeId) {
+            (route: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print("Save failed: \(error!.localizedDescription)")
+            } else if let route = route {
+                route["Reviewed"] = true
+                route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                    if succeeded {
+                        print("Save successful")
+                    } else {
+                        print("Save unsuccessful: \(error!.userInfo)")
+                    }
+                }
+            }
+        }
+    }
+
     
     func addRating(rating: Double, userReviewed: String) {
         
@@ -176,6 +194,7 @@ class UploadDataToBackEnd {
         
         let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(userReviewed)")
         query["UserReviewed"] = pointer
+
         query.setObject(currentUser!, forKey: "WhoReviewedUser")
         query.setObject(rating, forKey:  "Rating")
         query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
