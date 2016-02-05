@@ -48,33 +48,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.padding = UIEdgeInsetsMake(navBarHeight+compasButtonHeight,0,0,0);
         }
         
-//        let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-//        mapView.camera = camera
-        
         mapView.settings.compassButton = true
         mapView.settings.myLocationButton = true
         
         // Draws routes on map from back end database (Parse)
-        userRoutes.retrieveRoutes({results in
-
-                let userType = ("\(results["UserType"]!)")
-                let route = ("\(results["UserRoute"]!)")
-                let userName = ("\(results["UserName"]!)")
-                let userID = ("\(results["UserID"]!)")
-                let destinationLatitude = Double("\(results["DestinationLatitude"]!)")
-                let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
-                let timeOfRoute = ("\(results["TimeOfRoute"]!)")
-                let routeId = ("\(results["RoutId"]!)")
-                let extraRideInfo = ("\(results["ExtraRideInfo"]!)")
-            
-                let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
-                
-                self.drawRoute(route, userType: userType)
-                self.plottedByUser = false
-            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
-            //}
-        })
- 
+       getRoutesAndDisplayThem()
+        
         // handles location auth globally and locally (locally as in for app, globally as in for whole phone through locaiotnservicesenabled())
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
@@ -92,7 +71,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap") //(title: "Refresh!", style: .Done, target: self, action: "test")
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap")
         navigationItem.rightBarButtonItem = refreshButton
 
     }
@@ -154,7 +133,32 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     func refreshMap(){
+        mapView.clear()
         print("refreshed")
+        getRoutesAndDisplayThem()
+    }
+    
+    func getRoutesAndDisplayThem() {
+        // Draws routes on map from back end database (Parse)
+        userRoutes.retrieveRoutes({results in
+            
+            let userType = ("\(results["UserType"]!)")
+            let route = ("\(results["UserRoute"]!)")
+            let userName = ("\(results["UserName"]!)")
+            let userID = ("\(results["UserID"]!)")
+            let destinationLatitude = Double("\(results["DestinationLatitude"]!)")
+            let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
+            let timeOfRoute = ("\(results["TimeOfRoute"]!)")
+            let routeId = ("\(results["RoutId"]!)")
+            let extraRideInfo = ("\(results["ExtraRideInfo"]!)")
+            
+            let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
+            
+            self.drawRoute(route, userType: userType)
+            self.plottedByUser = false
+            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
+        })
+
     }
     
     // Function to display an Alert Controller
@@ -198,7 +202,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(alertController, animated: true, completion: nil)
         })
-
     }
 
     
