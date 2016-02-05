@@ -132,9 +132,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
+    // Clears the map of all routes and retrievs the latest oens
     func refreshMap(){
         mapView.clear()
-        print("refreshed")
         getRoutesAndDisplayThem()
     }
     
@@ -197,7 +197,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 }
             )
             alertController.addAction(profielAction)
-            
         }
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -449,8 +448,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         routePolyline.map = mapView
     }
-    
-    
-    
+
     
 }

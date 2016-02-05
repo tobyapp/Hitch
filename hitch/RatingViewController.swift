@@ -26,8 +26,7 @@ class RatingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAverageRating(objectId!)
-        
+
         // Cosmos star rating config
         starRating.rating = 2.5
         starRating.settings.minTouchRating = 0
@@ -45,6 +44,7 @@ class RatingViewController: UIViewController {
         if let objectId = objectId {
             retrieveData.retrieveUserDetails(objectId, resultHandler: ({results in
                 self.ratingMessage.text! = "Rate \(results["userName"]!) on your trip!"
+                self.ratingMessage.textColor = self.purple
                
                 if let picture = results["userDisplayPicture"] as! UIImage? {
                     self.displayPicture.image = picture
@@ -75,25 +75,6 @@ class RatingViewController: UIViewController {
             uploadData.addRating(2.5, userReviewed: objectId!)
         }
     }
-    
-    func getAverageRating(usersObjectId : String){
-        let params = ["objectId" : usersObjectId]
-        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
-            
-            if response != nil {
-                if error == nil {
-                        print("rating is : \(response!)")
-                }
-                else {
-                    print(error)
-                }
-            }
-            else {
-                print("no repsonse")
-            }
-        }
-    }
-    
     
     
 }

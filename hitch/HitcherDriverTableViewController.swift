@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+// Shows profile of other hithc users
 class HitcherDriverTableViewController: UITableViewController {
     
     var userAccount = RetrieveDataFromBackEnd()
@@ -43,11 +44,8 @@ class HitcherDriverTableViewController: UITableViewController {
                 PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
                     if response != nil {
                         if error == nil {
-                            
-                            //let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
-                            
                             print("rating is : \(response! as! Double)")
-                            self.userDetails.append("Average User Rating  :  \(response!)")
+                            self.userDetails.append("Hitch Rating  :  \(response!)")
                         }
                         else {
                             print(error)
@@ -55,7 +53,7 @@ class HitcherDriverTableViewController: UITableViewController {
                     }
                     else {
                         print("no repsonse")
-                        self.userDetails.append("Average User Rating  :  2.5")
+                        self.userDetails.append("Hitch Rating  :  2.5")
                     }
                     
                     //reloads tableview on main thread

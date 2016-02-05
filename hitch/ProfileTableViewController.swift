@@ -59,7 +59,7 @@ class ProfileTableViewController: UITableViewController {
             }
             else {
                 print("no repsonse")
-                self.userDataArray.append("Average User Rating  :  2.5")
+                self.userDataArray.append("Hitch Rating  :  2.5")
             }
             
             //reloads tableview on main thread
