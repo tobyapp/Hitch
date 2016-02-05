@@ -69,9 +69,6 @@ class RatingViewController: UIViewController {
         if let rating = rating {
             uploadData.userReviewed(routeId!, userId: objectId!)
             uploadData.addRating(rating, userReviewed: objectId!)
-            
-            print("user :   \(objectId!)   on  route   :   \(routeId!)")
-
         }
         else {
             uploadData.userReviewed(routeId!, userId: objectId!)

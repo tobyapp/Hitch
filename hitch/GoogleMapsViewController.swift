@@ -91,6 +91,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         else {
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap") //(title: "Refresh!", style: .Done, target: self, action: "test")
+        navigationItem.rightBarButtonItem = refreshButton
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,6 +151,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
         }
+    }
+    
+    func refreshMap(){
+        print("refreshed")
     }
     
     // Function to display an Alert Controller

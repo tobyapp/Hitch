@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MK
 
 class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -32,9 +33,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         self.addSideMenu(menuButton)
-        
-        
-        
+
         userRoutes.retrieveUsersOwnRoutes({results in
             let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
             CLGeocoder().reverseGeocodeLocation(location, completionHandler:
@@ -63,22 +62,13 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        self.usersMatchedRoutes.removeAll()
 
         userRoutes.retrieveMatchedRoutes({results in
                 let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
                 CLGeocoder().reverseGeocodeLocation(location, completionHandler:
                     {(places, error) in
                         if error == nil {
-                            
-//                            for key in self.usersMatchedRoutes {
-//                                print("key  :   \(key)")
-//                                if key[("results["RouteId"]!)"]
-//                            }
-                            
-                            
-                            // need to stop refreshing of view, need to updated dict usersMatchedRoutes so cant keep updating user
-                            
                             
                             let locations = places![0] as CLPlacemark
                             let place = "\(locations.thoroughfare!)"
@@ -87,7 +77,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             let country = "\(locations.ISOcountryCode!)"
                             
                             // Adds objectId and content to be displayed in cell to dict
-                            self.usersMatchedRoutes.append(["reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
+                            self.usersMatchedRoutes.append(["userName" : "\(results["UserName"]!)", "reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
@@ -145,13 +135,14 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if tableView == tableView2 {
+            tableView.rowHeight = UITableViewAutomaticDimension
             cell = tableView.dequeueReusableCellWithIdentifier("table2Cells", forIndexPath: indexPath)
             
             let routeDict = usersMatchedRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]//usersMatchedRoutes[indexPath.item]
-                cell!.textLabel!.textColor = purple
-                cell!.textLabel!.font = UIFont(name: "System", size: 20)
-                cell!.textLabel!.numberOfLines = 0
+            cell!.textLabel!.textColor = purple
+            cell!.textLabel!.font = UIFont(name: "System", size: 20)  //systemFontOfSize(20)
+            cell!.textLabel!.numberOfLines = 0
         }
         
         return cell!
@@ -172,24 +163,34 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             let row = self.tableView2.indexPathForSelectedRow?.row
             let routeDict = usersMatchedRoutes[row!]
             let reviewBool = routeDict["reviewedBool"]?.toBool()
+            let userName = routeDict["userName"]
             
             if let reviewed = reviewBool {
-            //defult is false so if not reviewed yet
-            if !reviewed {
-                self.performSegueWithIdentifier("segueToRating", sender: self)
-                print("")
-                print("in segue")
-                print("")
-            }
-            else if reviewed {
-                print("")
-                print("you have already reviewed this match")
-                print("")
+                //defult is false so if not reviewed yet
+                if !reviewed {
+                    self.performSegueWithIdentifier("segueToRating", sender: self)
+                }
+                else if reviewed {
+                    showAlertController(userName!)
+                }
             }
         }
     }
-    }
     
+    // Function to display an Alert Controller
+    func showAlertController(userName : String) {
+        let alertController = UIAlertController(
+            title: "You have already reviewed \(userName)!",
+            message: "Come on, you cant keep reviewing the same user over and over again!",
+            preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(
+            title: "Got it!",
+            style: UIAlertActionStyle.Destructive,
+            handler: nil)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
             if let destinationViewController = segue.destinationViewController as? RatingViewController {
                 // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict

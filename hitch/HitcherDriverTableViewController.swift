@@ -44,7 +44,7 @@ class HitcherDriverTableViewController: UITableViewController {
                     if response != nil {
                         if error == nil {
                             
-                            let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
+                            //let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
                             
                             print("rating is : \(response! as! Double)")
                             self.userDetails.append("Average User Rating  :  \(response!)")
@@ -76,8 +76,6 @@ class HitcherDriverTableViewController: UITableViewController {
     func match() {
         updateData.addMatchToRoute(routeId!, userId: userData!)
         navigationController?.popViewControllerAnimated(true)
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
