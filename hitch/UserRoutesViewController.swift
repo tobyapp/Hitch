@@ -11,6 +11,7 @@ import MK
 
 class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView2: UITableView!
     @IBOutlet weak var tableView1: UITableView!
@@ -21,6 +22,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     var reviewedYet : Bool?
     
     override func viewDidLoad() {
+        activityIndicatorView.startAnimating()
         super.viewDidLoad()
         tableView1.delegate = self
         tableView1.dataSource = self
@@ -51,6 +53,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         //reloads tableview on main thread
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView1.reloadData()
+                            self.activityIndicatorView.stopAnimating()
+
                         }
                     }
                     else {
@@ -63,6 +67,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.usersMatchedRoutes.removeAll()
+        activityIndicatorView.startAnimating()
 
         userRoutes.retrieveMatchedRoutes({results in
                 let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
@@ -81,6 +86,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             
                             //reloads tableview on main thread
                             dispatch_async(dispatch_get_main_queue()) {
+                                self.activityIndicatorView.stopAnimating()
                                 self.tableView2.reloadData()
                             }
                         }

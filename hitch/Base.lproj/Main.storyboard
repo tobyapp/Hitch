@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -317,17 +317,25 @@
                                     </mask>
                                 </variation>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9sB-kl-GVB">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hsl-27-a1w" firstAttribute="leading" secondItem="TKn-ar-uUU" secondAttribute="leading" id="6cX-Wo-TEX"/>
                             <constraint firstItem="ZY9-aS-jEe" firstAttribute="top" secondItem="hsl-27-a1w" secondAttribute="bottom" constant="8" symbolic="YES" id="7Sk-hF-hqq"/>
+                            <constraint firstItem="9sB-kl-GVB" firstAttribute="centerX" secondItem="9Tc-Fr-gzb" secondAttribute="centerX" id="DGe-y8-YlF"/>
                             <constraint firstItem="mNk-Uw-3vi" firstAttribute="trailing" secondItem="hsl-27-a1w" secondAttribute="trailing" id="Ew7-Jm-vBC"/>
                             <constraint firstItem="hsl-27-a1w" firstAttribute="trailing" secondItem="mNk-Uw-3vi" secondAttribute="trailing" id="FXM-AE-doU"/>
                             <constraint firstItem="hsl-27-a1w" firstAttribute="leading" secondItem="TKn-ar-uUU" secondAttribute="leading" id="GY4-nc-yyi"/>
                             <constraint firstAttribute="trailing" secondItem="hsl-27-a1w" secondAttribute="trailing" id="H5X-Rd-4GX"/>
                             <constraint firstItem="Awd-Of-EPo" firstAttribute="top" secondItem="KQd-M8-4AR" secondAttribute="bottom" constant="8" symbolic="YES" id="IBl-Nn-xAv"/>
                             <constraint firstItem="hsl-27-a1w" firstAttribute="top" secondItem="9Tc-Fr-gzb" secondAttribute="bottom" constant="15" id="JyW-ez-3Qm"/>
+                            <constraint firstItem="9sB-kl-GVB" firstAttribute="centerY" secondItem="TKn-ar-uUU" secondAttribute="centerY" id="Tez-p4-OFB"/>
                             <constraint firstItem="mNk-Uw-3vi" firstAttribute="top" secondItem="Awd-Of-EPo" secondAttribute="bottom" constant="15" id="Wa8-Ys-r3h"/>
                             <constraint firstItem="hsl-27-a1w" firstAttribute="leading" secondItem="mNk-Uw-3vi" secondAttribute="leading" id="Xf8-CF-SRV"/>
                             <constraint firstItem="9Tc-Fr-gzb" firstAttribute="top" secondItem="mNk-Uw-3vi" secondAttribute="bottom" constant="8" symbolic="YES" id="YDj-hy-zWy"/>
@@ -344,6 +352,9 @@
                             <constraint firstItem="9Tc-Fr-gzb" firstAttribute="top" secondItem="mNk-Uw-3vi" secondAttribute="bottom" constant="8" symbolic="YES" id="uC0-2y-sDD"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="9sB-kl-GVB"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="cJY-8k-PrO"/>
                                 <exclude reference="gKH-vE-5pn"/>
@@ -354,11 +365,16 @@
                                 <exclude reference="H5X-Rd-4GX"/>
                                 <exclude reference="Xf8-CF-SRV"/>
                                 <exclude reference="pwZ-ar-E0O"/>
+                                <exclude reference="DGe-y8-YlF"/>
+                                <exclude reference="Tez-p4-OFB"/>
                                 <exclude reference="uC0-2y-sDD"/>
                                 <exclude reference="7Sk-hF-hqq"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="9sB-kl-GVB"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="Ew7-Jm-vBC"/>
                                 <exclude reference="Wa8-Ys-r3h"/>
@@ -378,6 +394,8 @@
                                 <exclude reference="jKF-LU-wwn"/>
                                 <include reference="pwZ-ar-E0O"/>
                                 <exclude reference="rS3-0Y-3QK"/>
+                                <include reference="DGe-y8-YlF"/>
+                                <include reference="Tez-p4-OFB"/>
                                 <exclude reference="YDj-hy-zWy"/>
                                 <include reference="uC0-2y-sDD"/>
                                 <include reference="7Sk-hF-hqq"/>
@@ -389,6 +407,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menu" id="UhW-UD-CCl"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="9sB-kl-GVB" id="u3D-8A-7yO"/>
                         <outlet property="menuButton" destination="UhW-UD-CCl" id="UvL-gZ-rhe"/>
                         <outlet property="tableView1" destination="mNk-Uw-3vi" id="hVU-Jy-HTB"/>
                         <outlet property="tableView2" destination="hsl-27-a1w" id="0tK-qy-X6y"/>
@@ -1292,7 +1311,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="DDEC85AB-0EBF-4771-BE67-762AE9715EC3" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="C40306C3-4D19-46EE-B94A-582BE5E6B5F5" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1364,7 +1383,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="DDEC85AB-0EBF-4771-BE67-762AE9715EC3" width="200" height="200">
+        <image name="C40306C3-4D19-46EE-B94A-582BE5E6B5F5" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4040,7 +4059,7 @@ z//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//0BTQ/9AU
 AAEAAAEGAAMAAAABAAIAAAERAAQAAAACAAJxxgESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAAB
 AKMAAAEXAAQAAAACAAJxvgEcAAMAAAABAAEAAAFSAAMAAAABAAIAAAFTAAMAAAAEAAJxzodzAAcAAAxI
 AAJx1gAAAAAACAAIAAgACAAB/WAAAHOgAAAACAAB/WgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0Ig
-WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMt
+WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMt
 SFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQ
 AAAAM2Rlc2MAAAGEAAAAbHd0cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIs
 AAAAFGJYWVoAAAJAAAAAFGRtbmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPU

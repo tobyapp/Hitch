@@ -158,7 +158,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.plottedByUser = false
             self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
         })
-
     }
     
     // Function to display an Alert Controller
