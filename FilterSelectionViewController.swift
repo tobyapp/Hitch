@@ -181,7 +181,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         userID = "\(marker.userData["userID"])"
         routeId = "\(marker.userData["routeId"])"
         performSegueWithIdentifier("segueToUsersProfile", sender: nil)
-    }å
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
