@@ -136,41 +136,40 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
         
-            if "\(marker.userData["extraRideInfo"])" != "" {
-                
-                //info window dimensions, demsions increase if there are extra info
-                infoWindow.frame.size.width = 300
-                infoWindow.frame.size.height = 150
-                
-                let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
-                extraInfoLabel.numberOfLines = 0
-                extraInfoLabel.textAlignment = .Center
-                extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
-                extraInfoLabel.textColor = UIColor.whiteColor()
-                extraInfoLabel.layer.cornerRadius = 10
-                infoWindow.addSubview(extraInfoLabel)
-            }
-                
-            else {
-                //info window dimensions
-                infoWindow.frame.size.width = 200
-                infoWindow.frame.size.height = 75
-            }
+        if "\(marker.userData["extraRideInfo"])" != "" {
             
-            let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
-            userLabel.textAlignment = .Center
-            userLabel.text = marker.title
-            userLabel.textColor = UIColor.whiteColor()
-            userLabel.layer.cornerRadius = 10
-            infoWindow.addSubview(userLabel)
+            //info window dimensions, demsions increase if there are extra info
+            infoWindow.frame.size.width = 300
+            infoWindow.frame.size.height = 150
+                
+            let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
+            extraInfoLabel.numberOfLines = 0
+            extraInfoLabel.textAlignment = .Center
+            extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
+            extraInfoLabel.textColor = UIColor.whiteColor()
+            extraInfoLabel.layer.cornerRadius = 10
+            infoWindow.addSubview(extraInfoLabel)
+        }
+                
+        else {
+            //info window dimensions
+            infoWindow.frame.size.width = 200
+            infoWindow.frame.size.height = 75
+        }
             
-            let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
-            timeLabel.textAlignment = .Center
-            timeLabel.text = "At : \(marker.snippet)"
-            timeLabel.textColor = UIColor.whiteColor()
-            timeLabel.layer.cornerRadius = 10
-            infoWindow.addSubview(timeLabel)
-        
+        let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
+        userLabel.textAlignment = .Center
+        userLabel.text = marker.title
+        userLabel.textColor = UIColor.whiteColor()
+        userLabel.layer.cornerRadius = 10
+        infoWindow.addSubview(userLabel)
+            
+        let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
+        timeLabel.textAlignment = .Center
+        timeLabel.text = "At : \(marker.snippet)"
+        timeLabel.textColor = UIColor.whiteColor()
+        timeLabel.layer.cornerRadius = 10
+        infoWindow.addSubview(timeLabel)
         
         return infoWindow
         
@@ -182,7 +181,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         userID = "\(marker.userData["userID"])"
         routeId = "\(marker.userData["routeId"])"
         performSegueWithIdentifier("segueToUsersProfile", sender: nil)
-    }
+    }å
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
