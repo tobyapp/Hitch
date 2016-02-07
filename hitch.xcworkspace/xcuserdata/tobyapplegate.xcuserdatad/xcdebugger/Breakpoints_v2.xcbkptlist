@@ -565,11 +565,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/UserRoutesViewController.swift"
-            timestampString = "476548437.261928"
+            timestampString = "476553101.958854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -581,11 +581,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/UserRoutesViewController.swift"
-            timestampString = "476547017.256557"
+            timestampString = "476553101.958854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -597,11 +597,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/UploadDataToBackEnd.swift"
-            timestampString = "476547017.256557"
+            timestampString = "476550744.56305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "deleteUserRoute(_:)"
             landmarkType = "5">
          </BreakpointContent>

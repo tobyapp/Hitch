@@ -17,14 +17,12 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView1: UITableView!
 
     var userRoutes = RetrieveDataFromBackEnd()
-    var usersOwnRoutes = [String]()
-    var test = [Dictionary<String, String>]()
+    var usersOwnRoutes = [Dictionary<String, String>]()
     var usersMatchedRoutes = [Dictionary<String, String>]()
     var reviewedYet : Bool?
     var uploadData = UploadDataToBackEnd()
     
     override func viewDidLoad() {
-        activityIndicatorView.startAnimating()
         super.viewDidLoad()
         tableView1.delegate = self
         tableView1.dataSource = self
@@ -37,7 +35,14 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         self.addSideMenu(menuButton)
-
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.usersMatchedRoutes.removeAll()
+        self.usersOwnRoutes.removeAll()
+        activityIndicatorView.startAnimating()
+        
         userRoutes.retrieveUsersOwnRoutes({results in
             let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
             CLGeocoder().reverseGeocodeLocation(location, completionHandler:
@@ -49,21 +54,15 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         let city =  "\(locations.locality!)"
                         let region = "\(locations.administrativeArea!)"
                         let country = "\(locations.ISOcountryCode!)"
-                        //ExtraRideInfo
-                        self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'")
                         
-                        
-                        
-                        
-                        
-                        self.test.append(["routeId" : "\(results["RouteId"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
+                        self.usersOwnRoutes.append(["routeTo" : place, "routeId" : "\(results["RouteId"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                         
                         
                         //reloads tableview on main thread
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView1.reloadData()
                             self.activityIndicatorView.stopAnimating()
-
+                            
                         }
                     }
                     else {
@@ -71,12 +70,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
             })
         })
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.usersMatchedRoutes.removeAll()
-        activityIndicatorView.startAnimating()
+
 
         userRoutes.retrieveMatchedRoutes({results in
                 let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
@@ -142,7 +136,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView1 {
             cell = tableView.dequeueReusableCellWithIdentifier("table1Cells", forIndexPath: indexPath)
             
-            let routeDict = test[indexPath.row]
+            let routeDict = usersOwnRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]
             cell!.textLabel!.textColor = purple
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
@@ -171,11 +165,12 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
      func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if tableView == tableView1 {
-            print("touched 1")
             let row = self.tableView1.indexPathForSelectedRow?.row
-            let routeDict = test[row!]
+            let routeDict = usersOwnRoutes[row!]
             let routeId = routeDict["routeId"]
-            uploadData.deleteUserRoute(routeId!)
+            //uploadData.deleteUserRoute(routeId!)
+            let routeTo = routeDict["routeTo"]
+            showAlertController(routeId!, routeTo: routeTo!, row: row!)
         }
         
         if tableView == tableView2 {
@@ -210,15 +205,49 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         alertController.addAction(cancelAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    // Function to display an Alert Controller to delete user route
+    func showAlertController(routeId : String, routeTo: String, row: Int) {
+        let alertController = UIAlertController(
+            title: "Are you sure you want to delete this route to \(routeTo)?",
+            message: "By pressing the button below you will be deleting the route from yourself and all other hitchers!",
+            preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: UIAlertActionStyle.Cancel,
+            handler: nil)
+        let deleteAction = UIAlertAction(
+            title: "Delete Route",
+            style: UIAlertActionStyle.Destructive)
+            { action in
+                self.uploadData.deleteUserRoute(routeId)
+                
+                print(row)
+                self.usersOwnRoutes.removeAtIndex(row)
+                
+                //reloads tableview on main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView1.reloadData()
+                    print("reloading")
+                }
+
+                
+            }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-            if let destinationViewController = segue.destinationViewController as? RatingViewController {
-                // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
-                let row = self.tableView2.indexPathForSelectedRow?.row
-                let routeDict = usersMatchedRoutes[row!]
-                destinationViewController.objectId = routeDict["objectId"]!
-                destinationViewController.routeId = routeDict["routeId"]!
-            }
+        if let destinationViewController = segue.destinationViewController as? RatingViewController {
+        // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
+            let row = self.tableView2.indexPathForSelectedRow?.row
+            let routeDict = usersMatchedRoutes[row!]
+            destinationViewController.objectId = routeDict["objectId"]!
+            destinationViewController.routeId = routeDict["routeId"]!
+        }
     }
     
 

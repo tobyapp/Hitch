@@ -21,9 +21,10 @@ class UploadDataToBackEnd {
     var notUploadedData = true
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    init() {
-        grabFacebookData()
-    }
+    //not sure if app delegate needs this for when a new user signs up
+//    init() {
+//        grabFacebookData()
+//    }
     
     func grabFacebookData() {
         facebookProfileData.getUserDetails { (nameData, genderData, dobData, educationData, emailData, error) -> Void in

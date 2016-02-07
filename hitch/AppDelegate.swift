@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             
             //initalises UserAccount class whihc grabs all the facebook data ready for the app
-            let user = UploadDataToBackEnd()
+            //let user = UploadDataToBackEnd()
             //uncomment when want to add data to Parse
 //            dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
 //            user.upLoadData()
