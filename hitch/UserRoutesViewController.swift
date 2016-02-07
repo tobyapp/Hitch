@@ -18,8 +18,10 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     var userRoutes = RetrieveDataFromBackEnd()
     var usersOwnRoutes = [String]()
+    var test = [Dictionary<String, String>]()
     var usersMatchedRoutes = [Dictionary<String, String>]()
     var reviewedYet : Bool?
+    var uploadData = UploadDataToBackEnd()
     
     override func viewDidLoad() {
         activityIndicatorView.startAnimating()
@@ -49,6 +51,13 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         let country = "\(locations.ISOcountryCode!)"
                         //ExtraRideInfo
                         self.usersOwnRoutes.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'")
+                        
+                        
+                        
+                        
+                        
+                        self.test.append(["routeId" : "\(results["RouteId"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
+                        
                         
                         //reloads tableview on main thread
                         dispatch_async(dispatch_get_main_queue()) {
@@ -133,7 +142,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView1 {
             cell = tableView.dequeueReusableCellWithIdentifier("table1Cells", forIndexPath: indexPath)
             
-            cell!.textLabel!.text = usersOwnRoutes[indexPath.item]
+            let routeDict = test[indexPath.row]
+            cell!.textLabel!.text = routeDict["message"]
             cell!.textLabel!.textColor = purple
             cell!.textLabel!.font = UIFont(name: "System", size: 20)
             cell!.textLabel!.numberOfLines = 0
@@ -162,6 +172,10 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if tableView == tableView1 {
             print("touched 1")
+            let row = self.tableView1.indexPathForSelectedRow?.row
+            let routeDict = test[row!]
+            let routeId = routeDict["routeId"]
+            uploadData.deleteUserRoute(routeId!)
         }
         
         if tableView == tableView2 {

@@ -46,6 +46,7 @@ class RetrieveDataFromBackEnd {
                                 routeDict["UserID"] = userID!
                                 routeDict["UserRoute"] = object.objectForKey("UserRoute")!
                                 routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
+                                routeDict["RouteId"] = object.valueForKey("objectId")!
                                 
                                 resultHandler(routeObjects: routeDict)
                             }

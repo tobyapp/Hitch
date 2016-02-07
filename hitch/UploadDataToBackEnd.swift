@@ -207,5 +207,26 @@ class UploadDataToBackEnd {
     }
     
     
+    func deleteUserRoute(routeId : String){
+
+        let query = PFQuery(className:"UserRoutes")
+        query.whereKey("objectId", equalTo: routeId)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            for object in objects! {
+                object.deleteInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                    if succeeded {
+                        print("Deletion successful")
+                    } else {
+                        print("Deletion unsuccessful: \(error!.userInfo)")
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
 }
 
