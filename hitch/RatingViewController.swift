@@ -51,7 +51,6 @@ class RatingViewController: UIViewController {
                 }
             }))
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

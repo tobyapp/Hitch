@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import MK
 
 // Shown after user selects either 'show driving routes' or 'show hitch'n routes'
 class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
@@ -20,6 +21,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     var userTypeFilter: String?
     var userID : String?
     let locationManager = CLLocationManager()
+    var routeId : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +42,11 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         mapView.settings.compassButton = true
         mapView.settings.myLocationButton = true
         
-        // Draws routes on map from back end database (Parse)
-        userRoutes.retrieveRoutes({results in
-                
-                let userType = ("\(results["UserType"]!)")
-                let route = ("\(results["UserRoute"]!)")
-                let userName = ("\(results["UserName"]!)")
-                let userID = ("\(results["UserID"]!)")
-                let destinationLatitude = Double("\(results["DestinationLatitude"]!)")
-                let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
-                let timeOfRoute = ("\(results["TimeOfRoute"]!)")
-                
-                let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
-                
-                self.drawRoute(route, userType: userType)
-                self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routePath: route)
-        })
+        getRoutesAndDisplayThem()
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap")
+        navigationItem.rightBarButtonItem = refreshButton
+
 
     }
 
@@ -108,8 +99,8 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         }
     }
 
-// Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routePath: String) {
+ //Places marker on map when address is selected from searching, called from placeSelected()
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String) {
         
         if userTypeFilter == userType {
             let currentUser = PFUser.currentUser()?.valueForKey("userName")
@@ -125,14 +116,12 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
                     locationMarker.title = "Driver : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
-                    locationMarker.userData = userID
-                
+                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
                 case "hitcher":
                     locationMarker.icon = GMSMarker.markerImageWithColor(purple)
                     locationMarker.title = "Hitcher : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
-                    locationMarker.userData = userID
-
+                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
                 default:
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
                     locationMarker.title = "Driver/Hitcher : unkown"
@@ -140,60 +129,99 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             locationMarker.map = mapView
         }
     }
-    
-   
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
-        infoWindow.frame.size.width = 200
-        infoWindow.frame.size.height = 75
-        infoWindow.layer.cornerRadius = 10
         infoWindow.backgroundColor = purple
+        infoWindow.layer.cornerRadius = 10
         
-        let userLabel = UILabel(frame: CGRectMake(0, 0, 200, 50))
-        userLabel.textAlignment = .Center
-        userLabel.text = marker.title
-        userLabel.textColor = UIColor.whiteColor()
-        userLabel.layer.cornerRadius = 10
-        infoWindow.addSubview(userLabel)
+            if "\(marker.userData["extraRideInfo"])" != "" {
+                
+                //info window dimensions, demsions increase if there are extra info
+                infoWindow.frame.size.width = 300
+                infoWindow.frame.size.height = 150
+                
+                let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
+                extraInfoLabel.numberOfLines = 0
+                extraInfoLabel.textAlignment = .Center
+                extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
+                extraInfoLabel.textColor = UIColor.whiteColor()
+                extraInfoLabel.layer.cornerRadius = 10
+                infoWindow.addSubview(extraInfoLabel)
+            }
+                
+            else {
+                //info window dimensions
+                infoWindow.frame.size.width = 200
+                infoWindow.frame.size.height = 75
+            }
             
-        let timeLabel = UILabel(frame: CGRectMake(0, 25, 200, 50))
-        timeLabel.textAlignment = .Center
-        timeLabel.text = "At : \(marker.snippet)"
-        timeLabel.textColor = UIColor.whiteColor()
-        timeLabel.layer.cornerRadius = 10
-        infoWindow.addSubview(timeLabel)
+            let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
+            userLabel.textAlignment = .Center
+            userLabel.text = marker.title
+            userLabel.textColor = UIColor.whiteColor()
+            userLabel.layer.cornerRadius = 10
+            infoWindow.addSubview(userLabel)
             
+            let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
+            timeLabel.textAlignment = .Center
+            timeLabel.text = "At : \(marker.snippet)"
+            timeLabel.textColor = UIColor.whiteColor()
+            timeLabel.layer.cornerRadius = 10
+            infoWindow.addSubview(timeLabel)
+        
+        
         return infoWindow
+        
     }
-    
-//    func drawRoute(route: String) {
-//            let path: GMSPath = GMSPath(fromEncodedPath: route)
-//            let routePolyline = GMSPolyline(path: path)
-//            routePolyline.strokeWidth = 10.0
-//        
-//                let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
-//                routePolyline.spans = [GMSStyleSpan(style: standardline)]
-//        
-//            routePolyline.map = mapView
-//        
-//    }
+
 
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        userID = "\(marker.userData)"
+        userID = "\(marker.userData["userID"])"
+        routeId = "\(marker.userData["routeId"])"
         performSegueWithIdentifier("segueToUsersProfile", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "segueToUsersProfile") {
-            if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
-                destinationViewController.userData = userID
+        if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+            destinationViewController.userData = userID!
+            if let routeId = routeId {
+                destinationViewController.routeId = routeId
             }
         }
+        
     }
+    
+    // Clears the map of all routes and retrievs the latest oens
+    func refreshMap(){
+        mapView.clear()
+        getRoutesAndDisplayThem()
+    }
+    
+    func getRoutesAndDisplayThem(){
+        // Draws routes on map from back end database (Parse)
+        userRoutes.retrieveRoutes({results in
+            
+            let userType = ("\(results["UserType"]!)")
+            let route = ("\(results["UserRoute"]!)")
+            let userName = ("\(results["UserName"]!)")
+            let userID = ("\(results["UserID"]!)")
+            let destinationLatitude = Double("\(results["DestinationLatitude"]!)")
+            let destinationLongitude = Double("\(results["DestinationLongitude"]!)")
+            let timeOfRoute = ("\(results["TimeOfRoute"]!)")
+            let routeId = ("\(results["RoutId"]!)")
+            let extraRideInfo = ("\(results["ExtraRideInfo"]!)")
+            
+            let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
+            
+            self.drawRoute(route, userType: userType)
+            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
+        })
 
+    }
+    
 }
 
 

@@ -221,8 +221,6 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             style: UIAlertActionStyle.Destructive)
             { action in
                 self.uploadData.deleteUserRoute(routeId)
-                
-                print(row)
                 self.usersOwnRoutes.removeAtIndex(row)
                 
                 //reloads tableview on main thread
@@ -230,8 +228,6 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.tableView1.reloadData()
                     print("reloading")
                 }
-
-                
             }
         
         alertController.addAction(cancelAction)
