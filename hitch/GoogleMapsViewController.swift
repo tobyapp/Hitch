@@ -33,6 +33,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var originLatitude : Double?
     var originLongitude : Double?
     let keys = APIkeys()
+    var routePath : GMSPolyline?
     var calledFromAlertController = false
 
     override func viewDidLoad() {
@@ -156,7 +157,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             
             self.drawRoute(route, userType: userType)
             self.plottedByUser = false
-            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
+            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo, routePath: route)
         })
     }
     
@@ -237,7 +238,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
         
         let currentUser = PFUser.currentUser()?.valueForKey("objectId")
         
@@ -251,12 +252,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
+            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
+            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
@@ -271,6 +272,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
 
+        print("slsectedMarker")
+        print(mapView.selectedMarker)
+        
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
@@ -290,6 +294,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else if !plottedByUser {
+            
             if "\(marker.userData["extraRideInfo"])" != "" {
                 
                 //info window dimensions, demsions increase if there are extra info
@@ -324,10 +329,28 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             timeLabel.textColor = UIColor.whiteColor()
             timeLabel.layer.cornerRadius = 10
             infoWindow.addSubview(timeLabel)
+            
+            // Clears the last plotted route from global var
+            if let routePath = routePath {
+                // removes previously plotted line form the map
+                routePath.map = nil
+                
+            }
+            
+            //draws blue route over selected route so user can see it
+            self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
         }
-        
+       
         return infoWindow
     
+    }
+    
+    // When user taps the map (not the info marker or anything)
+    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        if let routePath = routePath {
+            // removes previously plotted line from the map
+            routePath.map = nil
+        }
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
@@ -437,16 +460,22 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             case "driver":
                 let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
                 routePolyline.spans = [GMSStyleSpan(style: driverLine)]
-        case "hitcher":
-            let hitcherLine = GMSStrokeStyle.solidColor(purple)
-            routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
-            
-        default:
-            let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
-            routePolyline.spans = [GMSStyleSpan(style: standardline)]
+            case "hitcher":
+                let hitcherLine = GMSStrokeStyle.solidColor(purple)
+                routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
+            case "selected":
+                print("in selected draw route")
+                let selectedLine = GMSStrokeStyle.solidColor(UIColor.blueColor())
+                routePolyline.spans = [GMSStyleSpan(style: selectedLine)]
+                routePath = routePolyline
+            default:
+                let standardline = GMSStrokeStyle.solidColor(UIColor.redColor())
+                routePolyline.spans = [GMSStyleSpan(style: standardline)]
         }
         routePolyline.map = mapView
+
     }
 
+    
     
 }
