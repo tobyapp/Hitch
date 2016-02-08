@@ -271,9 +271,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-
-        print("slsectedMarker")
-        print(mapView.selectedMarker)
         
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
@@ -337,7 +334,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 
             }
             
-            //draws blue route over selected route so user can see it
+            //draws red route over selected route so user can see it
             self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
         }
        
@@ -452,7 +449,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
-        //mapView.clear()
         let path: GMSPath = GMSPath(fromEncodedPath: route)
         let routePolyline = GMSPolyline(path: path)
         routePolyline.strokeWidth = 5.0
@@ -464,16 +460,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 let hitcherLine = GMSStrokeStyle.solidColor(purple)
                 routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
             case "selected":
-                print("in selected draw route")
-                let selectedLine = GMSStrokeStyle.solidColor(UIColor.blueColor())
+                let selectedLine = GMSStrokeStyle.solidColor(UIColor.redColor())
                 routePolyline.spans = [GMSStyleSpan(style: selectedLine)]
                 routePath = routePolyline
             default:
-                let standardline = GMSStrokeStyle.solidColor(UIColor.redColor())
+                let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
                 routePolyline.spans = [GMSStyleSpan(style: standardline)]
         }
         routePolyline.map = mapView
-
     }
 
     

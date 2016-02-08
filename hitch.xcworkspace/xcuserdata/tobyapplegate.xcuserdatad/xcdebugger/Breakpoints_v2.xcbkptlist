@@ -153,11 +153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "476625745.914592"
+            timestampString = "476627560.524407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "537"
-            endingLineNumber = "537">
+            startingLineNumber = "528"
+            endingLineNumber = "528">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -231,11 +231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "476625745.914592"
+            timestampString = "476627560.524407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520">
+            startingLineNumber = "511"
+            endingLineNumber = "511">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -501,11 +501,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "476625745.914592"
+            timestampString = "476627560.524407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "routeProximity(_:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -549,11 +549,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "476625745.914592"
+            timestampString = "476627560.524407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "routeProximity(_:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
             landmarkType = "5">
          </BreakpointContent>

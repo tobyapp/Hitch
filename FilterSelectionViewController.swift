@@ -22,6 +22,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     var userID : String?
     let locationManager = CLLocationManager()
     var routeId : String?
+    var routePath : GMSPolyline?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +80,10 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
 
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
-        //mapView.clear()
-        if userTypeFilter == userType {
+        print("in draw route \(userType)")
+//        print("user type : \(userType)")
+//        print("userTypeFilter : \(userTypeFilter)")
+        if userType == userTypeFilter || userType == "selected" {
             let path: GMSPath = GMSPath(fromEncodedPath: route)
             let routePolyline = GMSPolyline(path: path)
             routePolyline.strokeWidth = 5.0
@@ -88,19 +91,23 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
                 case "driver":
                     let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
                     routePolyline.spans = [GMSStyleSpan(style: driverLine)]
-            case "hitcher":
-                let hitcherLine = GMSStrokeStyle.solidColor(purple)
-                routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
-            default:
-                let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
-                routePolyline.spans = [GMSStyleSpan(style: standardline)]
+                case "hitcher":
+                    let hitcherLine = GMSStrokeStyle.solidColor(purple)
+                    routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
+                case "selected":
+                    let selectedLine = GMSStrokeStyle.solidColor(UIColor.redColor())
+                    routePolyline.spans = [GMSStyleSpan(style: selectedLine)]
+                    routePath = routePolyline
+                default:
+                    let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
+                    routePolyline.spans = [GMSStyleSpan(style: standardline)]
             }
             routePolyline.map = mapView
         }
     }
 
  //Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String) {
+    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
         
         if userTypeFilter == userType {
             let currentUser = PFUser.currentUser()?.valueForKey("userName")
@@ -116,12 +123,12 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
                     locationMarker.title = "Driver : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
-                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
+                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
                 case "hitcher":
                     locationMarker.icon = GMSMarker.markerImageWithColor(purple)
                     locationMarker.title = "Hitcher : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
-                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo]
+                    locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
                 default:
                     locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
                     locationMarker.title = "Driver/Hitcher : unkown"
@@ -171,10 +178,28 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         timeLabel.layer.cornerRadius = 10
         infoWindow.addSubview(timeLabel)
         
+        // Clears the last plotted route from global var
+        if let routePath = routePath {
+            // removes previously plotted line form the map
+            routePath.map = nil
+            
+        }
+        
+        //draws red route over selected route so user can see it
+        print("draw")
+        self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
+        
         return infoWindow
         
     }
 
+    // When user taps the map (not the info marker or anything)
+    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        if let routePath = routePath {
+            // removes previously plotted line from the map
+            routePath.map = nil
+        }
+    }
 
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
@@ -216,7 +241,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
             
             self.drawRoute(route, userType: userType)
-            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo)
+            self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo, routePath: route)
         })
 
     }
