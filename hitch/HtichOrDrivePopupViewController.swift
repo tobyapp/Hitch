@@ -17,7 +17,6 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var textField: JVFloatLabeledTextField!
     
-    
     @IBAction func datePickerAction(sender: AnyObject) {
         let currentDate = NSDate()
         datePicker.minimumDate = currentDate.dateByAddingTimeInterval(60)

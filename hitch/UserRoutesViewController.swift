@@ -50,10 +50,26 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                     if error == nil {
                         
                         let locations = places![0] as CLPlacemark
-                        let place = "\(locations.thoroughfare!)"
-                        let city =  "\(locations.locality!)"
-                        let region = "\(locations.administrativeArea!)"
-                        let country = "\(locations.ISOcountryCode!)"
+                        
+                        guard let place = locations.thoroughfare else {
+                            print("no place at \(location)")
+                            return
+                        }
+                        
+                        guard let city = locations.locality else {
+                            print("no city at \(location)")
+                            return
+                        }
+                        
+                        guard let region = locations.administrativeArea else {
+                            print("no region at \(location)")
+                            return
+                        }
+                        
+                        guard let country = locations.ISOcountryCode else {
+                            print ("no country at \(location)")
+                            return
+                        }
                         
                         self.usersOwnRoutes.append(["routeTo" : place, "routeId" : "\(results["RouteId"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                         
@@ -71,7 +87,6 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         })
 
-
         userRoutes.retrieveMatchedRoutes({results in
                 let location = CLLocation(latitude: results["DestinationLatitude"]! as! Double, longitude: results["DestinationLongitude"]! as! Double)
                 CLGeocoder().reverseGeocodeLocation(location, completionHandler:
@@ -79,10 +94,26 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         if error == nil {
                             
                             let locations = places![0] as CLPlacemark
-                            let place = "\(locations.thoroughfare!)"
-                            let city =  "\(locations.locality!)"
-                            let region = "\(locations.administrativeArea!)"
-                            let country = "\(locations.ISOcountryCode!)"
+                            
+                            guard let place = locations.thoroughfare else {
+                                print("no place at \(location)")
+                                return
+                            }
+                            
+                            guard let city = locations.locality else {
+                                print("no city at \(location)")
+                                return
+                            }
+                            
+                            guard let region = locations.administrativeArea else {
+                                print("no region at \(location)")
+                                return
+                            }
+                            
+                            guard let country = locations.ISOcountryCode else {
+                                print ("no country at \(location)")
+                                return
+                            }
                             
                             // Adds objectId and content to be displayed in cell to dict
                             self.usersMatchedRoutes.append(["userName" : "\(results["UserName"]!)", "reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])

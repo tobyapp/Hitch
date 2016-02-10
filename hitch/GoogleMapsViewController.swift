@@ -157,7 +157,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             let location = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
             
             self.drawRoute(route, userType: userType)
-            self.plottedByUser = false
             self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo, routePath: route)
         })
     }
@@ -218,7 +217,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             let location = CLLocationCoordinate2D(latitude: details.latitude, longitude: details.longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
-            self.plottedByUser = true
             self.placeMarker(location)
         }
     }
@@ -277,7 +275,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
-        if marker.snippet == nil{
+        
+        // If snippet from marker is nil then means is plotting a new route, snippet contains date and time info so only applicable to previously plotted oruts
+        if marker.snippet == nil {
+            
             //info window dimensions, change depending if there is extra info from user on lift
             infoWindow.frame.size.width = 200
             infoWindow.frame.size.height = 75
@@ -290,6 +291,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             drivingToButton.backgroundColor = MaterialColor.deepPurple.base
             infoWindow.addSubview(drivingToButton)
         }
+            
         else {
             if locationMarker != nil {
                 locationMarker.map = nil
@@ -330,24 +332,20 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             timeLabel.layer.cornerRadius = 10
             infoWindow.addSubview(timeLabel)
             
-            // Clears the last plotted route from global var
+            // removes previously plotted line form the map
             if let routePath = routePath {
-                // removes previously plotted line form the map
                 routePath.map = nil
             }
             
             //draws red route over selected route so user can see it
             self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
-            plottedByUser = false
         }
         return infoWindow
     }
     
     // When user taps the map (not the info marker or anything)
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-        
-        plottedByUser = false
-        
+
         // removes previously plotted line from the map
         if let routePath = routePath {
             routePath.map = nil
@@ -368,7 +366,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             destinationLongitude = coordinate.longitude
             destinationLatitude = coordinate.latitude
             mapView.camera = GMSCameraPosition(target: coordinate, zoom: currentZoom, bearing: 0, viewingAngle: 0)
-            plottedByUser = true
             placeMarker(coordinate)
             tappedByUser = false
         }
@@ -376,7 +373,6 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             if locationMarker != nil {
                 locationMarker.map = nil
             }
-            plottedByUser = false
             tappedByUser = true
         }
     }
@@ -395,7 +391,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
             }
                 
-            else if !calledFromAlertController{
+            else if !calledFromAlertController {
                 userID = "\(marker.userData["userID"])"
                 routeId = "\(marker.userData["routeId"])"
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
