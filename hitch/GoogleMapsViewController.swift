@@ -274,13 +274,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
 
-        print(locationMarker.userData)
-        
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
         if marker.snippet == nil{
-        //if plottedByUser {
             //info window dimensions, change depending if there is extra info from user on lift
             infoWindow.frame.size.width = 200
             infoWindow.frame.size.height = 75
@@ -292,14 +289,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             drivingToButton.layer.cornerRadius = 10
             drivingToButton.backgroundColor = MaterialColor.deepPurple.base
             infoWindow.addSubview(drivingToButton)
-        //}
         }
         else {
             if locationMarker != nil {
                 locationMarker.map = nil
             }
-            
-        //if !plottedByUser {
             
             if "\(marker.userData["extraRideInfo"])" != "" {
                 
@@ -340,52 +334,50 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             if let routePath = routePath {
                 // removes previously plotted line form the map
                 routePath.map = nil
-
-                
             }
             
             //draws red route over selected route so user can see it
             self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
-            //tappedByUser = false
             plottedByUser = false
-        //}
         }
         return infoWindow
-    
     }
     
     // When user taps the map (not the info marker or anything)
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         
-        print("tapped")
         plottedByUser = false
         
-            if let routePath = routePath {
-                // removes previously plotted line from the map
-                routePath.map = nil
-                if locationMarker != nil {
-                    locationMarker.map = nil
-                }
+        // removes previously plotted line from the map
+        if let routePath = routePath {
+            routePath.map = nil
+            if locationMarker != nil {
+                locationMarker.map = nil
             }
-
-            if tappedByUser {
-                if locationMarker != nil {
-                    locationMarker.map = nil
-                }
-                let currentZoom = self.mapView.camera.zoom
-                destinationLongitude = coordinate.longitude//details.longitude
-                destinationLatitude = coordinate.latitude
-                mapView.camera = GMSCameraPosition(target: coordinate, zoom: currentZoom, bearing: 0, viewingAngle: 0)
-                plottedByUser = true
-                placeMarker(coordinate)
-                tappedByUser = false
+        }
+        
+        // Allows user to tap area on map to plot route there, also allows user to tap map to deselect route they previously plotted or pinned
+        if tappedByUser {
+            
+            //Deletes marker placed on map by user
+            if locationMarker != nil {
+                locationMarker.map = nil
             }
-            else {
-                if locationMarker != nil {
-                    locationMarker.map = nil
-                }
-                plottedByUser = false
-                tappedByUser = true
+            
+            let currentZoom = self.mapView.camera.zoom
+            destinationLongitude = coordinate.longitude
+            destinationLatitude = coordinate.latitude
+            mapView.camera = GMSCameraPosition(target: coordinate, zoom: currentZoom, bearing: 0, viewingAngle: 0)
+            plottedByUser = true
+            placeMarker(coordinate)
+            tappedByUser = false
+        }
+        else {
+            if locationMarker != nil {
+                locationMarker.map = nil
+            }
+            plottedByUser = false
+            tappedByUser = true
         }
     }
     
