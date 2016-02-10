@@ -358,6 +358,7 @@
                                 <exclude reference="9sB-kl-GVB"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="YhN-SS-c4u"/>
                                 <exclude reference="gKH-vE-5pn"/>
                                 <exclude reference="iDd-Vr-jqL"/>
                                 <exclude reference="sED-7D-IgH"/>
@@ -366,7 +367,6 @@
                                 <exclude reference="H5X-Rd-4GX"/>
                                 <exclude reference="Xf8-CF-SRV"/>
                                 <exclude reference="fi6-6b-8XU"/>
-                                <exclude reference="YhN-SS-c4u"/>
                                 <exclude reference="BwA-CJ-1yM"/>
                                 <exclude reference="Th7-dl-eeL"/>
                                 <exclude reference="rgR-sW-ujG"/>
@@ -378,6 +378,7 @@
                                 <include reference="9sB-kl-GVB"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="YhN-SS-c4u"/>
                                 <exclude reference="Ew7-Jm-vBC"/>
                                 <exclude reference="Wa8-Ys-r3h"/>
                                 <include reference="gKH-vE-5pn"/>
@@ -395,7 +396,6 @@
                                 <include reference="fi6-6b-8XU"/>
                                 <exclude reference="jKF-LU-wwn"/>
                                 <exclude reference="rS3-0Y-3QK"/>
-                                <include reference="YhN-SS-c4u"/>
                                 <include reference="BwA-CJ-1yM"/>
                                 <include reference="Th7-dl-eeL"/>
                                 <exclude reference="YDj-hy-zWy"/>
@@ -1301,7 +1301,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="0191A2D6-68D3-4216-B47A-3169003CEB02" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="E0BF6E95-EF30-437A-86F7-E7F4CB4910AA" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1373,7 +1373,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="0191A2D6-68D3-4216-B47A-3169003CEB02" width="200" height="200">
+        <image name="E0BF6E95-EF30-437A-86F7-E7F4CB4910AA" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

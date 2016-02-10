@@ -35,6 +35,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     let keys = APIkeys()
     var routePath : GMSPolyline?
     var calledFromAlertController = false
+    var tappedByUser = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,14 +212,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
     func placeSelected(place: Place) {
-        var latitude: Double = 0.0
-        var longitude: Double = 0.0
         place.getDetails { details in
-            latitude = details.latitude
-            longitude = details.longitude
             self.destinationLongitude = details.longitude
             self.destinationLatitude = details.latitude
-            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let location = CLLocationCoordinate2D(latitude: details.latitude, longitude: details.longitude)
             self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             self.placeViewClosed()
             self.plottedByUser = true
@@ -231,9 +228,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         if locationMarker != nil {
             locationMarker.map = nil
         }
+        if let routePath = routePath {
+            // removes previously plotted line from the map
+            routePath.map = nil
+        }
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         locationMarker.map = mapView
+        locationMarker.userData = ["longitude" : coordinate.longitude, "latitude" : coordinate.latitude]
         plottedByUser = true
     }
     
@@ -252,12 +254,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
             locationMarker.title = "Driver : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
+            locationMarker.userData = ["userID" : userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         case "hitcher":
             locationMarker.icon = GMSMarker.markerImageWithColor(purple)
             locationMarker.title = "Hitcher : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
-            locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
+            locationMarker.userData = ["userID" : userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         default:
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
             locationMarker.title = "Driver/Hitcher : unkown"
@@ -271,12 +273,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Presents custom window info box above marker
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+
+        print(locationMarker.userData)
         
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
-        
-        if plottedByUser {
+        if marker.snippet == nil{
+        //if plottedByUser {
             //info window dimensions, change depending if there is extra info from user on lift
             infoWindow.frame.size.width = 200
             infoWindow.frame.size.height = 75
@@ -288,9 +292,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             drivingToButton.layer.cornerRadius = 10
             drivingToButton.backgroundColor = MaterialColor.deepPurple.base
             infoWindow.addSubview(drivingToButton)
+        //}
         }
+        else {
+            if locationMarker != nil {
+                locationMarker.map = nil
+            }
             
-        else if !plottedByUser {
+        //if !plottedByUser {
             
             if "\(marker.userData["extraRideInfo"])" != "" {
                 
@@ -331,22 +340,52 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             if let routePath = routePath {
                 // removes previously plotted line form the map
                 routePath.map = nil
+
                 
             }
             
             //draws red route over selected route so user can see it
             self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
+            //tappedByUser = false
+            plottedByUser = false
+        //}
         }
-       
         return infoWindow
     
     }
     
     // When user taps the map (not the info marker or anything)
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-        if let routePath = routePath {
-            // removes previously plotted line from the map
-            routePath.map = nil
+        
+        print("tapped")
+        plottedByUser = false
+        
+            if let routePath = routePath {
+                // removes previously plotted line from the map
+                routePath.map = nil
+                if locationMarker != nil {
+                    locationMarker.map = nil
+                }
+            }
+
+            if tappedByUser {
+                if locationMarker != nil {
+                    locationMarker.map = nil
+                }
+                let currentZoom = self.mapView.camera.zoom
+                destinationLongitude = coordinate.longitude//details.longitude
+                destinationLatitude = coordinate.latitude
+                mapView.camera = GMSCameraPosition(target: coordinate, zoom: currentZoom, bearing: 0, viewingAngle: 0)
+                plottedByUser = true
+                placeMarker(coordinate)
+                tappedByUser = false
+            }
+            else {
+                if locationMarker != nil {
+                    locationMarker.map = nil
+                }
+                plottedByUser = false
+                tappedByUser = true
         }
     }
     
