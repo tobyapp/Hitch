@@ -359,3 +359,79 @@ import Foundation
 //            }
 //        }
 //    }
+
+
+
+
+
+// fb login vc - code to log into fb
+
+// Facebook delegate method, check if user logged in successfully
+//func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+//    
+//    if ((error) != nil)
+//    {
+//        print("Error : \(error)")
+//        showAlertController("\(error)")
+//        return
+//    }
+//        
+//    else if result.isCancelled {
+//        // User cancelled to log in, stay at same page
+//        print("cancelled")
+//    }
+//    else {
+//        print("logged in")
+//        //self.performSegueWithIdentifier("loggedInSegue2", sender: nil) //was used to perform segue, keeping it for refference
+//        
+//        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
+//        self.presentViewController(viewController, animated: true, completion: nil)
+//    }
+//}
+//
+//// Function to handle what happens when a user logs out
+//func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+//    print("User Logged Out")
+//}
+
+
+
+
+
+
+
+//settings vc - to logout of fb
+
+//if (FBSDKAccessToken.currentAccessToken() != nil)
+//{
+//    displayFBButton()
+//}
+
+//func displayFBButton() {
+//    let loginView : FBSDKLoginButton = FBSDKLoginButton()
+//    self.view.addSubview(loginView)
+//    loginView.center = self.view.center
+//    loginView.readPermissions = ["public_profile", "email", "age_range", "bio", "birthday", "education", "gender"]
+//    loginView.delegate = self
+//    print("accessed displayFBButton()")
+//}
+//
+//// Facebook delegate method, check if user logged in successfully
+//func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+//    //method only here to satisfy Facebook delegate method, when users at this vie wthey must have already logged in so dont care about login button
+//}
+//
+//// Function to handle what happens when a user logs out
+//func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+//    print("User Logged Out")
+//    
+//    //segue to loging screen
+//    let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("loginView") as UIViewController
+//    self.presentViewController(viewController, animated: true, completion: nil)
+//    
+//    //display logout message
+//    let murmur = Murmur(title: "\(userName!) logged out")
+//    Whistle(murmur)
+//}
+
+
