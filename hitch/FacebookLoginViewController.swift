@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import FBSDKLoginKit
 import Whisper
 import Parse
 import ParseFacebookUtilsV4
-import SWRevealViewController
 import MK
 
-class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class FacebookLoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,35 +99,7 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    // Facebook delegate method, check if user logged in successfully
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        
-        if ((error) != nil)
-        {
-            print("Error : \(error)")
-            showAlertController("\(error)")
-            return
-        }
-            
-        else if result.isCancelled {
-            // User cancelled to log in, stay at same page
-            print("cancelled")
-        }
-        else {
-            print("logged in")
-            //self.performSegueWithIdentifier("loggedInSegue2", sender: nil) //was used to perform segue, keeping it for refference
-
-            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-        }
-    }
-    
-    // Function to handle what happens when a user logs out
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("User Logged Out")
-    }
-    
-    // Function to display an Alert Controller (for test purposes)
+    // Function to display an Alert Controller
     func showAlertController(errorMessage: String) {
         let alertController = UIAlertController(
             title: "Error in loggining in",
@@ -141,16 +111,6 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             handler: nil)
         alertController.addAction(cancelAction)
         
-        // Opens the phones settings application
-        let openAction = UIAlertAction(
-            title: "Open Settings",
-            style: .Default)
-            { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-        }
-        alertController.addAction(openAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -196,4 +156,7 @@ class FacebookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
     }
+    
+    
+    
 }
