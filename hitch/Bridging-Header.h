@@ -18,5 +18,7 @@
 #import <Bolts/Bolts.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <ASValueTrackingSlider/ASValueTrackingSlider.h>
+#import <ASValueTrackingSlider/ASValuePopUpView.h>
 
 #endif

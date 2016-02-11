@@ -13,24 +13,58 @@ import Parse
 import ParseFacebookUtilsV4
 import MK
 import CoreData
+import ASValueTrackingSlider
+//import SMSegmentView
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, SMSegmentViewDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var ageSlider: ASValueTrackingSlider!
+
+    @IBAction func ageChanged(sender: ASValueTrackingSlider) {
+        print(round(sender.value))
+    }
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var userName: String?
     var profileData = [UserProfileData]()
+    var segmentView: SMSegmentView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         self.addSideMenu(menuButton)
+
+        // set UI elemtns for slider
+        ageSlider.popUpViewWidthPaddingFactor = 1.5
+        ageSlider.popUpViewHeightPaddingFactor = 1.5
+        ageSlider.popUpViewArrowLength = 25
+        ageSlider.popUpViewCornerRadius = 25
+        ageSlider.setMaxFractionDigitsDisplayed(0)
+        ageSlider.popUpViewColor = purple
+        ageSlider.textColor = UIColor.whiteColor()
+        ageSlider.font = RobotoFont.mediumWithSize(50)
         
         fetchProfileData()
         
+        let segmentFrame = CGRect(x: 10.0, y: 50.0, width: 300.0, height: 40.0)
+        segmentView = SMSegmentView(frame: segmentFrame,
+            separatorColour: UIColor.blueColor(),
+            separatorWidth: 1.0,
+            segmentProperties: ["keySegmentTitleFont" : UIFont.systemFontOfSize(12.0),
+                "keySegmentOnSelectionColour" : UIColor.blackColor(),
+                "keySegmentOffSelectionColour" : UIColor.greenColor(),
+                "keyContentVerticalMargin" : 5.0])
+        
+        segmentView.addSegmentWithTitle("1", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("2", onSelectionImage: nil, offSelectionImage: nil)
+        segmentView.addSegmentWithTitle("3", onSelectionImage: nil, offSelectionImage: nil)
+        
+        segmentView.delegate = self
+        
+        // Create custom logout button for facebook
         let cardView: CardView = CardView()
         cardView.dividerInset.left = 0 // White line seperating loging button with text
         cardView.titleLabelInset.left = 150 // Top line of text
@@ -114,7 +148,9 @@ class SettingsViewController: UIViewController {
         Whistle(murmur)
     }
     
-    
+    func segmentView(segmentView: SMSegmentView, didSelectSegmentAtIndex index: Int) {
+        print(index)
+    }
     
 
 }

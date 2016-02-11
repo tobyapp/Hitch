@@ -38,12 +38,47 @@
                     <view key="view" contentMode="scaleToFill" id="cR0-9M-Ech">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="46.5" minValue="18" maxValue="75" translatesAutoresizingMaskIntoConstraints="NO" id="sUk-Jp-38d" customClass="ASValueTrackingSlider">
+                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <color key="minimumTrackTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="ageChanged:" destination="f1s-Hp-8dH" eventType="valueChanged" id="nDX-o0-iKC"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sUk-Jp-38d" firstAttribute="leading" secondItem="cR0-9M-Ech" secondAttribute="leadingMargin" id="JOZ-Iy-VR5"/>
+                            <constraint firstItem="sUk-Jp-38d" firstAttribute="centerY" secondItem="cR0-9M-Ech" secondAttribute="centerY" id="SEd-xB-c2m"/>
+                            <constraint firstItem="sUk-Jp-38d" firstAttribute="trailing" secondItem="cR0-9M-Ech" secondAttribute="trailingMargin" id="fdw-hr-OGu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sUk-Jp-38d"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="JOZ-Iy-VR5"/>
+                                <exclude reference="SEd-xB-c2m"/>
+                                <exclude reference="fdw-hr-OGu"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="sUk-Jp-38d"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="JOZ-Iy-VR5"/>
+                                <include reference="SEd-xB-c2m"/>
+                                <include reference="fdw-hr-OGu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="MSf-M2-0f3">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="TbW-iu-fcb"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageSlider" destination="sUk-Jp-38d" id="YAh-rf-ttP"/>
                         <outlet property="menuButton" destination="TbW-iu-fcb" id="CnQ-dg-mXj"/>
                     </connections>
                 </viewController>
@@ -1230,7 +1265,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="AFFF0011-2271-449C-B079-FA9382E36B5D" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="04A5B1B5-75B0-4022-AC92-66E939A70446" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1302,7 +1337,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="AFFF0011-2271-449C-B079-FA9382E36B5D" width="200" height="200">
+        <image name="04A5B1B5-75B0-4022-AC92-66E939A70446" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3978,7 +4013,7 @@ z//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//0BTQ/9AU
 AAEAAAEGAAMAAAABAAIAAAERAAQAAAACAAJxxgESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAAB
 AKMAAAEXAAQAAAACAAJxvgEcAAMAAAABAAEAAAFSAAMAAAABAAIAAAFTAAMAAAAEAAJxzodzAAcAAAxI
 AAJx1gAAAAAACAAIAAgACAAB/WAAAHOgAAAACAAB/WgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0Ig
-WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMt
+WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMt
 SFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQ
 AAAAM2Rlc2MAAAGEAAAAbHd0cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIs
 AAAAFGJYWVoAAAJAAAAAFGRtbmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPU

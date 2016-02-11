@@ -25,4 +25,6 @@ pod 'Cosmos'
 
 pod 'JVFloatLabeledTextField'
 
+pod 'ASValueTrackingSlider'
 
+pod 'SMSegmentView'
