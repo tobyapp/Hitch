@@ -14,7 +14,6 @@ import ParseFacebookUtilsV4
 import MK
 import CoreData
 import ASValueTrackingSlider
-//import SMSegmentView
 
 
 class SettingsViewController: UIViewController, SMSegmentViewDelegate {
@@ -24,6 +23,8 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
 
     @IBAction func ageChanged(sender: ASValueTrackingSlider) {
         print(round(sender.value))
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(round(sender.value), forKey: "AgePreference")
     }
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
@@ -49,20 +50,31 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         
         fetchProfileData()
         
-        let segmentFrame = CGRect(x: 10.0, y: 50.0, width: 300.0, height: 40.0)
+        let frame = UIScreen.mainScreen().bounds
+        let segmentFrame = CGRect(x: frame.minX + 20,
+            y: frame.minY + 750,
+            width: frame.width - 40,
+            height: 65.0)
         segmentView = SMSegmentView(frame: segmentFrame,
-            separatorColour: UIColor.blueColor(),
+            separatorColour: purple,
             separatorWidth: 1.0,
-            segmentProperties: ["keySegmentTitleFont" : UIFont.systemFontOfSize(12.0),
-                "keySegmentOnSelectionColour" : UIColor.blackColor(),
-                "keySegmentOffSelectionColour" : UIColor.greenColor(),
-                "keyContentVerticalMargin" : 5.0])
+            segmentProperties: [keySegmentTitleFont : UIFont.systemFontOfSize(21.0),
+                keySegmentOnSelectionColour : UIColor.whiteColor(),
+                keySegmentOffSelectionColour : purple,
+                keyContentVerticalMargin : 5.0])
         
-        segmentView.addSegmentWithTitle("1", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("2", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.addSegmentWithTitle("3", onSelectionImage: nil, offSelectionImage: nil)
-        
+        segmentView.segmentOnSelectionTextColour = purple
+        segmentView.segmentOffSelectionTextColour = UIColor.whiteColor()
+        segmentView.addSegmentWithTitle("Male", onSelectionImage: UIImage(named: "male-purple"), offSelectionImage: UIImage(named: "male-white"))
+        segmentView.addSegmentWithTitle("Female", onSelectionImage: UIImage(named: "female-purple"), offSelectionImage: UIImage(named: "female-white"))
+        segmentView.addSegmentWithTitle("Either", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.delegate = self
+        segmentView.layer.cornerRadius = 10.0
+        segmentView.layer.borderColor = purple.CGColor
+        segmentView.layer.borderWidth = 1.0
+        segmentView.selectSegmentAtIndex(2)
+        
+        view.addSubview(segmentView)
         
         // Create custom logout button for facebook
         let cardView: CardView = CardView()
@@ -148,9 +160,25 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         Whistle(murmur)
     }
     
-    func segmentView(segmentView: SMSegmentView, didSelectSegmentAtIndex index: Int) {
-        print(index)
+    func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        switch index {
+        case 0:
+             defaults.setObject("male", forKey: "GenderPreference")
+             print("male")
+        case 1:
+            defaults.setObject("female", forKey: "GenderPreference")
+            print("female")
+        case 2:
+            defaults.setObject("female", forKey: "GenderPreference")
+            print("either")
+        default:
+            defaults.setObject("either", forKey: "GenderPreference")
+            print("either")
+        }
     }
+    
     
 
 }
+

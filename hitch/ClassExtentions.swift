@@ -80,3 +80,23 @@ extension Double {
     }
 }
 
+
+//struct agePreferences {
+//    
+//    var agePreference : Int
+//    
+//    init(setAgePreference agePreference: Int){
+//        self.agePreference = agePreference
+//    }
+//}
+//
+//struct genderPreferences {
+//    
+//    var genderPreference : String
+//    
+//    init(setGenderPreference genderPreference: String){
+//        self.genderPreference = genderPreference
+//    }
+//}
+
+

@@ -89,11 +89,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/ProfileTableViewController.swift"
-            timestampString = "476227025.12947"
+            timestampString = "477231373.426762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -293,11 +293,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "476547663.922606"
+            timestampString = "476998636.122748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -309,11 +309,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "476547663.922606"
+            timestampString = "476998636.122748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -619,6 +619,99 @@
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "addSideMenu(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/FacebookLoginViewController.swift"
+            timestampString = "476923825.13611"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "FacebookLoginViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/SettingsViewController.swift"
+            timestampString = "476997140.466468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.SettingsViewController.__deallocating_deinit"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/SettingsViewController.swift"
+                  timestampString = "476997140.711576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.SettingsViewController.init (hitch.SettingsViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; hitch.SettingsViewController"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/SettingsViewController.swift"
+                  timestampString = "476997140.711801"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.SettingsViewController.init (hitch.SettingsViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;hitch.SettingsViewController&gt;"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/SettingsViewController.swift"
+                  timestampString = "476997140.71191"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/AppDelegate.swift"
+            timestampString = "477228023.306347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

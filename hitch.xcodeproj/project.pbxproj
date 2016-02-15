@@ -24,14 +24,15 @@
 		52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */; };
 		524C755A1C4C293500776597 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C75591C4C293500776597 /* ContactViewController.swift */; };
 		5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */; };
-		525F4C951C6D423F00B7A356 /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C881C6D423F00B7A356 /* SMAlphaImageSegment.swift */; };
-		525F4C961C6D423F00B7A356 /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C891C6D423F00B7A356 /* SMBasicSegment.swift */; };
-		525F4C971C6D423F00B7A356 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C8A1C6D423F00B7A356 /* SMBasicSegmentView.swift */; };
-		525F4C981C6D423F00B7A356 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C8B1C6D423F00B7A356 /* SMSegment.swift */; };
-		525F4C991C6D423F00B7A356 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C8C1C6D423F00B7A356 /* SMSegmentView.swift */; };
-		525F4C9A1C6D423F00B7A356 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 525F4C8D1C6D423F00B7A356 /* Info.plist */; };
-		525F4C9B1C6D423F00B7A356 /* SMSegmentView.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 525F4C8F1C6D423F00B7A356 /* SMSegmentView.xcconfig */; };
-		525F4C9C1C6D423F00B7A356 /* SMSegmentView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F4C901C6D423F00B7A356 /* SMSegmentView-dummy.m */; };
+		525F4CB31C6E70E200B7A356 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */; };
+		525F4CC11C71F06600B7A356 /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */; };
+		525F4CC21C71F06600B7A356 /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */; };
+		525F4CC31C71F06600B7A356 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */; };
+		525F4CC41C71F06600B7A356 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB71C71F06600B7A356 /* SMSegment.swift */; };
+		525F4CC51C71F06600B7A356 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB81C71F06600B7A356 /* SMSegmentView.swift */; };
+		525F4CC61C71F06600B7A356 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 525F4CB91C71F06600B7A356 /* Info.plist */; };
+		525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */; };
+		525F4CC81C71F06600B7A356 /* SMSegmentView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */; };
 		526F46F41C2AE85E003DF05B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4344D1C2ABB7C00D565BD /* libz.tbd */; };
 		526F46F61C2AE868003DF05B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F46F51C2AE868003DF05B /* libsqlite3.tbd */; };
 		529AB4371C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */; };
@@ -93,17 +94,18 @@
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		524C75591C4C293500776597 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
-		525F4C881C6D423F00B7A356 /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMAlphaImageSegment.swift; path = SMSegmentViewController/SMSegmentView/SMAlphaImageSegment.swift; sourceTree = "<group>"; };
-		525F4C891C6D423F00B7A356 /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegment.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegment.swift; sourceTree = "<group>"; };
-		525F4C8A1C6D423F00B7A356 /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegmentView.swift; sourceTree = "<group>"; };
-		525F4C8B1C6D423F00B7A356 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegment.swift; path = SMSegmentViewController/SMSegmentView/SMSegment.swift; sourceTree = "<group>"; };
-		525F4C8C1C6D423F00B7A356 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMSegmentView.swift; sourceTree = "<group>"; };
-		525F4C8D1C6D423F00B7A356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		525F4C8E1C6D423F00B7A356 /* SMSegmentView.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = SMSegmentView.modulemap; sourceTree = "<group>"; };
-		525F4C8F1C6D423F00B7A356 /* SMSegmentView.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SMSegmentView.xcconfig; sourceTree = "<group>"; };
-		525F4C901C6D423F00B7A356 /* SMSegmentView-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMSegmentView-dummy.m"; sourceTree = "<group>"; };
-		525F4C911C6D423F00B7A356 /* SMSegmentView-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-prefix.pch"; sourceTree = "<group>"; };
-		525F4C921C6D423F00B7A356 /* SMSegmentView-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-umbrella.h"; sourceTree = "<group>"; };
+		525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMAlphaImageSegment.swift; path = SMSegmentViewController/SMSegmentView/SMAlphaImageSegment.swift; sourceTree = "<group>"; };
+		525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegment.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegment.swift; sourceTree = "<group>"; };
+		525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegmentView.swift; sourceTree = "<group>"; };
+		525F4CB71C71F06600B7A356 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegment.swift; path = SMSegmentViewController/SMSegmentView/SMSegment.swift; sourceTree = "<group>"; };
+		525F4CB81C71F06600B7A356 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMSegmentView.swift; sourceTree = "<group>"; };
+		525F4CB91C71F06600B7A356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = SMSegmentView.modulemap; sourceTree = "<group>"; };
+		525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SMSegmentView.xcconfig; sourceTree = "<group>"; };
+		525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMSegmentView-dummy.m"; sourceTree = "<group>"; };
+		525F4CBD1C71F06600B7A356 /* SMSegmentView-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-prefix.pch"; sourceTree = "<group>"; };
+		525F4CBE1C71F06600B7A356 /* SMSegmentView-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-umbrella.h"; sourceTree = "<group>"; };
 		526F46F51C2AE868003DF05B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitcherDriverTableViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				5206AD8C1C273B3C00A1EFAD /* hitch */,
-				525F4C941C6D423F00B7A356 /* SMSegmentView */,
 				5206AD8B1C273B3C00A1EFAD /* Products */,
 				0CC03D203C9A7BF2363778A1 /* Pods */,
 				8B5B8E3CB74CDB0E782E3846 /* Frameworks */,
@@ -249,29 +250,29 @@
 			name = "Old files";
 			sourceTree = "<group>";
 		};
-		525F4C931C6D423F00B7A356 /* Support Files */ = {
+		525F4CBF1C71F06600B7A356 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				525F4C8D1C6D423F00B7A356 /* Info.plist */,
-				525F4C8E1C6D423F00B7A356 /* SMSegmentView.modulemap */,
-				525F4C8F1C6D423F00B7A356 /* SMSegmentView.xcconfig */,
-				525F4C901C6D423F00B7A356 /* SMSegmentView-dummy.m */,
-				525F4C911C6D423F00B7A356 /* SMSegmentView-prefix.pch */,
-				525F4C921C6D423F00B7A356 /* SMSegmentView-umbrella.h */,
+				525F4CB91C71F06600B7A356 /* Info.plist */,
+				525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */,
+				525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */,
+				525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */,
+				525F4CBD1C71F06600B7A356 /* SMSegmentView-prefix.pch */,
+				525F4CBE1C71F06600B7A356 /* SMSegmentView-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SMSegmentView";
 			sourceTree = "<group>";
 		};
-		525F4C941C6D423F00B7A356 /* SMSegmentView */ = {
+		525F4CC01C71F06600B7A356 /* SMSegmentView */ = {
 			isa = PBXGroup;
 			children = (
-				525F4C881C6D423F00B7A356 /* SMAlphaImageSegment.swift */,
-				525F4C891C6D423F00B7A356 /* SMBasicSegment.swift */,
-				525F4C8A1C6D423F00B7A356 /* SMBasicSegmentView.swift */,
-				525F4C8B1C6D423F00B7A356 /* SMSegment.swift */,
-				525F4C8C1C6D423F00B7A356 /* SMSegmentView.swift */,
-				525F4C931C6D423F00B7A356 /* Support Files */,
+				525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */,
+				525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */,
+				525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */,
+				525F4CB71C71F06600B7A356 /* SMSegment.swift */,
+				525F4CB81C71F06600B7A356 /* SMSegmentView.swift */,
+				525F4CBF1C71F06600B7A356 /* Support Files */,
 			);
 			name = SMSegmentView;
 			path = Pods/SMSegmentView;
@@ -292,6 +293,7 @@
 		52E296291C39659C00C493CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */,
 				522D20A21C580A4A009069DA /* UserRoutesViewController.swift */,
 				52CA12C01C5A652E007DA03F /* RatingViewController.swift */,
 				524C75591C4C293500776597 /* ContactViewController.swift */,
@@ -329,6 +331,7 @@
 		52E317F91C29B3E500635E10 /* Extrafiles */ = {
 			isa = PBXGroup;
 			children = (
+				525F4CC01C71F06600B7A356 /* SMSegmentView */,
 				52EC93911C28539C007CF8F4 /* ClassExtentions.swift */,
 				5206AD941C273B3C00A1EFAD /* Assets.xcassets */,
 				5206AD991C273B3C00A1EFAD /* Info.plist */,
@@ -442,11 +445,11 @@
 				5206AD951C273B3C00A1EFAD /* Assets.xcassets in Resources */,
 				5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */,
 				5223121F1C3B0AB800AF218A /* LaunchScreen.storyboard in Resources */,
-				525F4C9B1C6D423F00B7A356 /* SMSegmentView.xcconfig in Resources */,
+				525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */,
 				52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */,
 				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
-				525F4C9A1C6D423F00B7A356 /* Info.plist in Resources */,
+				525F4CC61C71F06600B7A356 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,10 +509,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */,
+				525F4CC21C71F06600B7A356 /* SMBasicSegment.swift in Sources */,
 				52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */,
 				522D20A31C580A4A009069DA /* UserRoutesViewController.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
-				525F4C961C6D423F00B7A356 /* SMBasicSegment.swift in Sources */,
 				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
 				52EC93981C289CBA007CF8F4 /* FAQViewController.swift in Sources */,
 				524C755A1C4C293500776597 /* ContactViewController.swift in Sources */,
@@ -519,27 +522,28 @@
 				529AB4371C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift in Sources */,
 				52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */,
 				5206AD901C273B3C00A1EFAD /* ViewController.swift in Sources */,
-				525F4C991C6D423F00B7A356 /* SMSegmentView.swift in Sources */,
 				529C8A5C1C48411100268B99 /* HitcherDriverTableViewController.swift in Sources */,
+				525F4CC31C71F06600B7A356 /* SMBasicSegmentView.swift in Sources */,
 				52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */,
-				525F4C971C6D423F00B7A356 /* SMBasicSegmentView.swift in Sources */,
 				52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */,
+				525F4CC11C71F06600B7A356 /* SMAlphaImageSegment.swift in Sources */,
 				5206AD8E1C273B3C00A1EFAD /* AppDelegate.swift in Sources */,
 				52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */,
 				52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */,
-				525F4C951C6D423F00B7A356 /* SMAlphaImageSegment.swift in Sources */,
 				52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */,
 				52EEDF931C3345B600C64EBF /* previous_dataGrabbingForProfile.swift in Sources */,
 				52CA12C11C5A652E007DA03F /* RatingViewController.swift in Sources */,
-				525F4C981C6D423F00B7A356 /* SMSegment.swift in Sources */,
 				52CB89FF1C4272630020959B /* RouteCalculator.swift in Sources */,
 				522D20A51C58180A009069DA /* UsersRoutesTableViewController.swift in Sources */,
 				52E134FA1C4AE97A008684DB /* UserProfileData.xcdatamodeld in Sources */,
 				52AA7F3D1C28A7AE0099352F /* ObtainFBData.swift in Sources */,
-				525F4C9C1C6D423F00B7A356 /* SMSegmentView-dummy.m in Sources */,
+				525F4CB31C6E70E200B7A356 /* MenuTableViewController.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,
+				525F4CC51C71F06600B7A356 /* SMSegmentView.swift in Sources */,
 				52CB89F91C3F09EB0020959B /* HtichOrDrivePopupViewController.swift in Sources */,
+				525F4CC41C71F06600B7A356 /* SMSegment.swift in Sources */,
+				525F4CC81C71F06600B7A356 /* SMSegmentView-dummy.m in Sources */,
 				52AA7F3B1C28A5B50099352F /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

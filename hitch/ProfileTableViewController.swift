@@ -23,10 +23,18 @@ class ProfileTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("")
+        print("in profile")
+        print("")
         
+        userDataArray.append("test 1")
+        userDataArray.append("test2")
+        userDataArray.append("what ever")
+        userDataArray.append("fuck it")
         self.addSideMenu(menuButton)
 
         fetchProfileData()
+        
     }
     
     func fetchProfileData() {
@@ -48,7 +56,7 @@ class ProfileTableViewController: UITableViewController {
             if response != nil {
                 if error == nil {
                     
-                    let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
+                    //let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
                     
                     print("rating is : \(response! as! Double)")
                     self.userDataArray.append("Average User Rating  :  \(response!)")

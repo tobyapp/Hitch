@@ -52,7 +52,18 @@ class MapViewController: UIViewController {
             }
         }
 
-        self.addSideMenu(menuButton) 
+        self.addSideMenu(menuButton)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        guard let _ = defaults.stringForKey("AgePreference") else {
+            defaults.setObject(75, forKey: "AgePreference")
+            return
+        }
+        guard let _ = defaults.stringForKey("GenderPreference") else {
+            defaults.setObject("either", forKey: "GenderPreference")
+            return
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

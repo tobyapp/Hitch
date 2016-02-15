@@ -64,7 +64,8 @@ class RetrieveDataFromBackEnd {
     func retrieveRoutes(resultHandler: (routeObjects: [String: AnyObject]) -> ()) {
 
         let query = PFQuery(className:"UserRoutes")
-    
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
         // Retirves all routes from Parse
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -76,7 +77,7 @@ class RetrieveDataFromBackEnd {
                         
                         // checkes to see if routes are already booked or not
                         if (object["match"] == nil) {
-
+                            
                             let user = object.objectForKey("User")
                             let userQuery = object["User"] as! PFObject
                             let routeObjectId = object.valueForKey("objectId")
@@ -84,23 +85,31 @@ class RetrieveDataFromBackEnd {
                             // Querys FK in UserRoutes table and obtains user's details from who plotted the route
                             userQuery.fetchIfNeededInBackgroundWithBlock {
                                 (users: PFObject?, error: NSError?) -> Void in
+
                                 let userName = user?["userName"]
                                 let userID = user!.valueForKey("objectId")
-
+                                
                                 var routeDict = [String: AnyObject]()
                                 
-                                routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
-                                routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
-                                routeDict["UserRoute"] = object.objectForKey("UserRoute")!
-                                routeDict["UserType"] = object.objectForKey("UserType")!
-                                routeDict["UserName"] = userName!
-                                routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
-                                routeDict["UserID"] = userID!
-                                routeDict["RoutId"] = routeObjectId!
-                                routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
+                                let agePreference = Int(defaults.stringForKey("AgePreference")!)
                                 
-                                // Returns objects in completion handler
-                                resultHandler(routeObjects: routeDict)
+                                // if users age is equal or less then users preffered age range of users
+                                if (Int("\((user?["userAge"]!)!)")! <= agePreference!) {
+                                
+                                
+                                    routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
+                                    routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
+                                    routeDict["UserRoute"] = object.objectForKey("UserRoute")!
+                                    routeDict["UserType"] = object.objectForKey("UserType")!
+                                    routeDict["UserName"] = userName!
+                                    routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
+                                    routeDict["UserID"] = userID!
+                                    routeDict["RoutId"] = routeObjectId!
+                                    routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
+                                
+                                    // Returns objects in completion handler
+                                    resultHandler(routeObjects: routeDict)
+                                }
                             }
                         }
                     }
