@@ -55,10 +55,6 @@ class ProfileTableViewController: UITableViewController {
         PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
             if response != nil {
                 if error == nil {
-                    
-                    //let roundedRating = Double(round(100*Double(response! as! NSNumber))/100)
-                    
-                    print("rating is : \(response! as! Double)")
                     self.userDataArray.append("Average User Rating  :  \(response!)")
                 }
                 else {

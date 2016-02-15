@@ -22,7 +22,6 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
     @IBOutlet weak var ageSlider: ASValueTrackingSlider!
 
     @IBAction func ageChanged(sender: ASValueTrackingSlider) {
-        print(round(sender.value))
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(round(sender.value), forKey: "AgePreference")
     }
@@ -33,8 +32,10 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
     var profileData = [UserProfileData]()
     var segmentView: SMSegmentView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         self.addSideMenu(menuButton)
 
@@ -48,6 +49,14 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         ageSlider.textColor = UIColor.whiteColor()
         ageSlider.font = RobotoFont.mediumWithSize(50)
         
+        //set value of slider
+        if let agePreference = Int(defaults.stringForKey("AgePreference")!) {
+            ageSlider.setValue(Float(agePreference), animated: false)
+        }
+        else {
+            ageSlider.setValue(46.5, animated: true)
+        }
+
         fetchProfileData()
         
         let frame = UIScreen.mainScreen().bounds
@@ -72,7 +81,24 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         segmentView.layer.cornerRadius = 10.0
         segmentView.layer.borderColor = purple.CGColor
         segmentView.layer.borderWidth = 1.0
-        segmentView.selectSegmentAtIndex(2)
+        
+        //set value of gender seelctor
+        if let genderPreference = defaults.stringForKey("GenderPreference") {
+            switch genderPreference {
+            case "male":
+                segmentView.selectSegmentAtIndex(0)
+            case "female":
+                segmentView.selectSegmentAtIndex(1)
+            case "either":
+                segmentView.selectSegmentAtIndex(2)
+            default:
+                segmentView.selectSegmentAtIndex(2)
+            }
+        }
+        else {
+            segmentView.selectSegmentAtIndex(2)
+        }
+
         
         view.addSubview(segmentView)
         
@@ -170,7 +196,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
             defaults.setObject("female", forKey: "GenderPreference")
             print("female")
         case 2:
-            defaults.setObject("female", forKey: "GenderPreference")
+            defaults.setObject("either", forKey: "GenderPreference")
             print("either")
         default:
             defaults.setObject("either", forKey: "GenderPreference")
