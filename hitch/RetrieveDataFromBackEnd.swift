@@ -93,9 +93,10 @@ class RetrieveDataFromBackEnd {
                                 
                                 let agePreference = Int(defaults.stringForKey("AgePreference")!)
                                 
-                                // if users age is equal or less then users preffered age range of users
-                                if (Int("\((user?["userAge"]!)!)")! <= agePreference!) {
-                                
+                                let genderPreference = defaults.stringForKey("GenderPreference")!
+      
+                                // if users age is equal or less then users preffered age range of users and euqals the desired gender or either
+                                if (Int("\((user?["userAge"]!)!)")! <= agePreference! && ( "\((user?["userGender"]!)!)" == genderPreference || genderPreference == "either") ) {
                                 
                                     routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
                                     routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!

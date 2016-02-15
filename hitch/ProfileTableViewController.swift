@@ -23,18 +23,8 @@ class ProfileTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("")
-        print("in profile")
-        print("")
-        
-        userDataArray.append("test 1")
-        userDataArray.append("test2")
-        userDataArray.append("what ever")
-        userDataArray.append("fuck it")
         self.addSideMenu(menuButton)
-
         fetchProfileData()
-        
     }
     
     func fetchProfileData() {
@@ -62,7 +52,6 @@ class ProfileTableViewController: UITableViewController {
                 }
             }
             else {
-                print("no repsonse")
                 self.userDataArray.append("Hitch Rating  :  2.5")
             }
             
