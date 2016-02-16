@@ -293,9 +293,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else {
-            if locationMarker != nil {
-                locationMarker.map = nil
-            }
+            //deletes latest marker info places on map
+//            if locationMarker != nil {
+//                locationMarker.map = nil
+//            }
             
             if "\(marker.userData["extraRideInfo"])" != "" {
                 
@@ -437,8 +438,13 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             runCodeAfterDelay(2) {
                 self.account.addLocationData(route, userType: userType, originLatitude: originLatitude, originLongitude: originLongitude, destinationLatitude: destinationLatitude, destinationLongitude: destinationLongitude, timeOfRoute: timeOfRoute, extraRideInfo: extraRideInfo)
             }
-            
             drawRoute(route, userType: userType)
+            
+            //add marker to plotted route, may not need it
+            let location = CLLocationCoordinate2D(latitude: destinationLatitude, longitude: destinationLongitude)
+            let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+            self.placeMarker(location, userName: "You", userType: userType, userID: "\(currentUser!)", timeOfRoute: timeOfRoute, routeId: "", extraRideInfo: "", routePath: route)
+            
             plottedByUser = false
         }
     }

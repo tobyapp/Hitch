@@ -92,7 +92,6 @@ class RetrieveDataFromBackEnd {
                                 var routeDict = [String: AnyObject]()
                                 
                                 let agePreference = Int(defaults.stringForKey("AgePreference")!)
-                                
                                 let genderPreference = defaults.stringForKey("GenderPreference")!
       
                                 // if users age is equal or less then users preffered age range of users and euqals the desired gender or either
