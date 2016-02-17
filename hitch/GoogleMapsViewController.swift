@@ -139,9 +139,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         mapView.clear()
         getRoutesAndDisplayThem()
         tappedByUser = true
-        print("")
-        print("")
-        print("")
     }
     
     func getRoutesAndDisplayThem() {
@@ -227,14 +224,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Places marker on map when address is selected from searching, called from placeSelected()
     func placeMarker(coordinate: CLLocationCoordinate2D) {
-//        if locationMarker != nil {
-//            locationMarker.map = nil
-//            print("in placemarker func")
-//        }
         if let routePath = routePath {
             // removes previously plotted line from the map
             routePath.map = nil
         }
+        
         locationMarker = GMSMarker(position: coordinate)
         locationMarker.icon = GMSMarker.markerImageWithColor(purple)
         locationMarker.map = mapView
@@ -252,6 +246,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         
         locationMarker = GMSMarker(position: coordinate)
+        
         switch userType {
         case "driver":
             locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
@@ -299,12 +294,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
             
         else {
-            //deletes latest marker info places on map
-//            if locationMarker != nil {
-//                locationMarker.map = nil
-//                print("in marker info window func")
-//                tappedByUser = false
-//            }
+            
             plottedByUser = false
             
             if "\(marker.userData["extraRideInfo"])" != "" {
@@ -360,23 +350,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         if let routePath = routePath {
             print("in route path")
             routePath.map = nil
-            
-            //just commmented out, may need to undo
-//            if locationMarker != nil {
-//                print("in did tap at coordinate")
-//                locationMarker.map = nil
-//            }
         }
         
         // Allows user to tap area on map to plot route there, also allows user to tap map to deselect route they previously plotted or pinned
         if tappedByUser {
-            
-            //Deletes marker placed on map by user
-//            if locationMarker != nil {
-//                locationMarker.map = nil
-//                print("in tapped by user")
-//            }
-            
             let currentZoom = self.mapView.camera.zoom
             destinationLongitude = coordinate.longitude
             destinationLatitude = coordinate.latitude
@@ -386,9 +363,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         else {
             if locationMarker != nil {
-                    print(locationMarker)
-                    locationMarker.map = nil
-                    print("in else tapped by user")
+                locationMarker.map = nil
             }
             tappedByUser = true
         }

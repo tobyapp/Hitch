@@ -44,7 +44,6 @@ class HitcherDriverTableViewController: UITableViewController {
                 PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
                     if response != nil {
                         if error == nil {
-                            print("rating is : \(response! as! Double)")
                             self.userDetails.append("Hitch Rating  :  \(response!)")
                         }
                         else {
@@ -97,7 +96,7 @@ class HitcherDriverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("userCells", forIndexPath: indexPath)
 
-        cell.textLabel!.text = userDetails[indexPath.item] as? String
+        cell.textLabel!.text = userDetails[indexPath.item] as String
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
         //cell.userInteractionEnabled = false
