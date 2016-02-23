@@ -20,5 +20,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <ASValueTrackingSlider/ASValueTrackingSlider.h>
 #import <ASValueTrackingSlider/ASValuePopUpView.h>
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+
 
 #endif

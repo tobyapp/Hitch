@@ -105,13 +105,13 @@
                                 <exclude reference="4Iw-uH-4kB"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="hVl-2f-3oJ"/>
                                 <exclude reference="JOZ-Iy-VR5"/>
                                 <exclude reference="SEd-xB-c2m"/>
                                 <exclude reference="fdw-hr-OGu"/>
+                                <exclude reference="LXC-dm-b5m"/>
                                 <exclude reference="O7s-xN-vwg"/>
                                 <exclude reference="QeV-aY-Iqc"/>
-                                <exclude reference="LXC-dm-b5m"/>
-                                <exclude reference="hVl-2f-3oJ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -121,13 +121,13 @@
                                 <include reference="4Iw-uH-4kB"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="hVl-2f-3oJ"/>
                                 <include reference="JOZ-Iy-VR5"/>
                                 <include reference="SEd-xB-c2m"/>
                                 <include reference="fdw-hr-OGu"/>
+                                <include reference="LXC-dm-b5m"/>
                                 <include reference="O7s-xN-vwg"/>
                                 <include reference="QeV-aY-Iqc"/>
-                                <include reference="LXC-dm-b5m"/>
-                                <include reference="hVl-2f-3oJ"/>
                             </mask>
                         </variation>
                     </view>
@@ -780,18 +780,19 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kvF-yD-yic">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kvF-yD-yic" id="Kwd-83-bvC">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="fue-5C-Llt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="fue-5C-Llt">
                                                     <rect key="frame" x="8" y="4" width="35" height="35"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="4" width="35" height="35"/>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-Ui-ePC">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-Ui-ePC">
                                                     <rect key="frame" x="51" y="11" width="93" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1283,10 +1284,6 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oxb-lb-s54">
-                            <rect key="frame" x="0.0" y="64" width="600" height="400"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="profileCells" id="sIx-Xo-hEE">
                                 <rect key="frame" x="0.0" y="492" width="600" height="44"/>
@@ -1314,7 +1311,6 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                         <barButtonItem key="leftBarButtonItem" image="menu" id="B16-ac-Iya"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="displayPicture" destination="oxb-lb-s54" id="DUQ-aH-mie"/>
                         <outlet property="menuButton" destination="B16-ac-Iya" id="DNU-iX-DHf"/>
                         <outlet property="tableviewOutlet" destination="e12-IN-duq" id="xNr-nF-gzo"/>
                     </connections>
@@ -1341,7 +1337,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="BD62A20F-4846-4B96-B9E6-0668346949D3" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="54FD85B0-F72B-4094-8739-39067D4ABCC5" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1413,7 +1409,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
         </scene>
     </scenes>
     <resources>
-        <image name="BD62A20F-4846-4B96-B9E6-0668346949D3" width="200" height="200">
+        <image name="54FD85B0-F72B-4094-8739-39067D4ABCC5" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

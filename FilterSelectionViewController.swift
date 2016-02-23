@@ -48,7 +48,6 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap")
         navigationItem.rightBarButtonItem = refreshButton
 
-
     }
 
     override func didReceiveMemoryWarning() {

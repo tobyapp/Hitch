@@ -28,3 +28,5 @@ pod 'JVFloatLabeledTextField'
 pod 'ASValueTrackingSlider'
 
 pod 'SMSegmentView'
+
+pod 'APParallaxHeader'

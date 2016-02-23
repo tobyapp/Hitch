@@ -13,7 +13,7 @@ class ProfileTableViewController: UITableViewController {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet var tableviewOutlet: UITableView!
-    @IBOutlet weak var displayPicture: UIImageView!
+   // @IBOutlet weak var displayPicture: UIImageView!
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -25,7 +25,17 @@ class ProfileTableViewController: UITableViewController {
         super.viewDidLoad()
         self.addSideMenu(menuButton)
         fetchProfileData()
+        
+        //add UI gesture
+//        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+//        //swipeDown.delegate = self
+//        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+//        displayPicture.userInteractionEnabled = true
+//        self.displayPicture.addGestureRecognizer(swipeDown)
+        
     }
+    
+    
     
     func fetchProfileData() {
         let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
@@ -33,7 +43,9 @@ class ProfileTableViewController: UITableViewController {
             profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
             let userData = profileData[0]
             userDataArray += [userData.userName!, userData.userAge!, userData.userGender!, userData.userEducation!]
-            self.displayPicture.image = UIImage(data: userData.userDisplayPicture!)
+            //self.displayPicture.image = UIImage(data: userData.userDisplayPicture!)
+            //self.displayPicture.contentMode = UIViewContentMode.Center
+            tableView.addParallaxWithImage(UIImage(data: userData.userDisplayPicture!), andHeight: 450, andShadow: true)
         }
             
         catch let error as NSError {
@@ -89,7 +101,6 @@ class ProfileTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
-
         //let userData = profileData[indexPath.row]
         
         cell.textLabel!.text = userDataArray[indexPath.item]
@@ -99,51 +110,17 @@ class ProfileTableViewController: UITableViewController {
         return cell
     }
 
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //handle when user swipes
+//    func respondToGesture(gesture: UIGestureRecognizer){
+//        print("swiped down")
+//        UIView.animateWithDuration(0.35, animations: {
+//            
+//            self.displayPicture.frame = CGRectMake(self.displayPicture.frame.origin.x,
+//                self.view.frame.height,
+//                self.displayPicture.frame.size.width,
+//                self.displayPicture.frame.size.height)
+//        })
+//        
+//    }
 
 }
