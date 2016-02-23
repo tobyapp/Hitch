@@ -398,6 +398,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 if let routeId = routeId {
                     destinationViewController.routeId = routeId
                 }
+                destinationViewController.showMatch = true
             }
         }
         

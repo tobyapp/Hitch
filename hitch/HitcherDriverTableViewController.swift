@@ -19,13 +19,14 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
     var userData : String?
     var userDetails = [String]()
     var routeId : String?
+    var showMatch : Bool?
     let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         
-        if (userData! != currentUser) {
+        if (userData! != currentUser && showMatch!) {
             let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: "match")
             navigationItem.rightBarButtonItem = matchButton
         }

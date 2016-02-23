@@ -37,8 +37,8 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         self.addSideMenu(menuButton)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.usersMatchedRoutes.removeAll()
         self.usersOwnRoutes.removeAll()
         activityIndicatorView.startAnimating()
@@ -72,17 +72,16 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         }
                         
                         self.usersOwnRoutes.append(["routeTo" : place, "routeId" : "\(results["RouteId"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
-                        
-                        
-                        //reloads tableview on main thread
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.tableView1.reloadData()
-                            self.activityIndicatorView.stopAnimating()
-                            
-                        }
                     }
                     else {
                         print("reverse geodcode fail: \(error!.localizedDescription)")
+                    }
+                    
+                    //reloads tableview on main thread after all data is got
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView1.reloadData()
+                        self.activityIndicatorView.stopAnimating()
+                        
                     }
             })
         })
@@ -116,22 +115,23 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             }
                             
                             // Adds objectId and content to be displayed in cell to dict
-                            self.usersMatchedRoutes.append(["userName" : "\(results["UserName"]!)", "reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
-                            
-                            //reloads tableview on main thread
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.activityIndicatorView.stopAnimating()
-                                self.tableView2.reloadData()
-                            }
+                            self.usersMatchedRoutes.append(["UserID": "\(results["UserID"]!)", "userName" : "\(results["UserName"]!)", "reviewedBool" : "\(results["Reviewed"]!)", "routeId" : "\(results["RouteId"]!)","objectId" : "\(results["UserID"]!)", "message" : "Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!) from \(results["UserName"]!) with the following extra ride information '\(results["ExtraRideInfo"]!)'"])
                         }
+                            
                         else {
                             print("reverse geodcode fail: \(error!.localizedDescription)")
+                        }
+                        
+                        //reloads tableview on main thread after all data is got
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.activityIndicatorView.stopAnimating()
+                            self.tableView2.reloadData()
                         }
                 })
         })
 
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -207,33 +207,43 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == tableView2 {
             
             let row = self.tableView2.indexPathForSelectedRow?.row
+            print("row : \(row)")
             let routeDict = usersMatchedRoutes[row!]
             let reviewBool = routeDict["reviewedBool"]?.toBool()
             let userName = routeDict["userName"]
             
             if let reviewed = reviewBool {
-                //defult is false so if not reviewed yet
-                if !reviewed {
-                    self.performSegueWithIdentifier("segueToRating", sender: self)
-                }
-                else if reviewed {
-                    showAlertController(userName!)
-                }
+                showAlertController(userName!, reviewed: reviewed)
             }
         }
     }
     
     // Function to display an Alert Controller
-    func showAlertController(userName : String) {
+    func showAlertController(userName : String, reviewed: Bool) {
         let alertController = UIAlertController(
-            title: "You have already reviewed \(userName)!",
-            message: "Come on, you cant keep reviewing the same user over and over again!",
+            title: "Review or view the user \(userName)!",
+            message: "You can either view thier profile or rate them (you can only do this one per trip!)",
             preferredStyle: .Alert)
         let cancelAction = UIAlertAction(
-            title: "Got it!",
-            style: UIAlertActionStyle.Destructive,
+            title: "Cancel",
+            style: UIAlertActionStyle.Cancel,
             handler: nil)
+        let showAction = UIAlertAction(
+            title: "Show Profile!",
+            style: UIAlertActionStyle.Default)
+            { action in
+                self.performSegueWithIdentifier("segueToUsersProfile", sender: nil) }
+        let rateAction = UIAlertAction(
+            title: "Rate Hitcher!",
+            style: UIAlertActionStyle.Default)
+            { action in
+                self.performSegueWithIdentifier("segueToRating", sender: nil) }
+        
         alertController.addAction(cancelAction)
+        if !reviewed {
+            alertController.addAction(rateAction)
+        }
+        alertController.addAction(showAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -248,7 +258,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             style: UIAlertActionStyle.Cancel,
             handler: nil)
         let deleteAction = UIAlertAction(
-            title: "Delete Route",
+            title: "Delete Route!",
             style: UIAlertActionStyle.Destructive)
             { action in
                 self.uploadData.deleteUserRoute(routeId)
@@ -268,14 +278,26 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if let destinationViewController = segue.destinationViewController as? RatingViewController {
-        // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
-            let row = self.tableView2.indexPathForSelectedRow?.row
-            let routeDict = usersMatchedRoutes[row!]
-            destinationViewController.objectId = routeDict["objectId"]!
-            destinationViewController.routeId = routeDict["routeId"]!
+        
+        let row = self.tableView2.indexPathForSelectedRow?.row
+        let routeDict = usersMatchedRoutes[row!]
+        
+        if segue.identifier == "segueToRating" {
+            if let destinationViewController = segue.destinationViewController as? RatingViewController {
+                // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
+                destinationViewController.objectId = routeDict["objectId"]!
+                destinationViewController.routeId = routeDict["routeId"]!
+            }
+        }
+            
+        else if segue.identifier == "segueToUsersProfile" {
+            if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+                destinationViewController.userData = routeDict["UserID"]!
+                destinationViewController.routeId = routeDict["routeId"]!
+                destinationViewController.showMatch = false
+            }
         }
     }
-    
+
 
 }

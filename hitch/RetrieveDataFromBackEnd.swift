@@ -152,6 +152,7 @@ class RetrieveDataFromBackEnd {
                                 if ("\(match.valueForKey("objectId")!)" == "\(currentUser!)") {
                                     
                                     var routeDict = [String: AnyObject]()
+                                    let user = object.objectForKey("User")
                                     
                                     routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
                                     routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
@@ -162,6 +163,7 @@ class RetrieveDataFromBackEnd {
                                     routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
                                     routeDict["Reviewed"] = object.objectForKey("Reviewed")!
                                     routeDict["RouteId"] = object.valueForKey("objectId")!
+                                    routeDict["UserID"] = user!.valueForKey("objectId")
                                     
                                     resultHandler(matchedDict: routeDict)
                                 }

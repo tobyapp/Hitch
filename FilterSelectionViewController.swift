@@ -214,7 +214,6 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
                 destinationViewController.routeId = routeId
             }
         }
-        
     }
     
     // Clears the map of all routes and retrievs the latest oens

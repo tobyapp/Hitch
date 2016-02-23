@@ -153,11 +153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "477429935.93199"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552">
+            startingLineNumber = "553"
+            endingLineNumber = "553">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -231,11 +231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "477429935.93199"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535">
+            startingLineNumber = "536"
+            endingLineNumber = "536">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -293,11 +293,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "477317898.189452"
+            timestampString = "477949778.798512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -309,11 +309,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/RetrieveDataFromBackEnd.swift"
-            timestampString = "477317898.189452"
+            timestampString = "477949778.798512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "retrieveUserDetails(_:resultHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -341,11 +341,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/HitcherDriverTableViewController.swift"
-            timestampString = "477936693.503833"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -501,11 +501,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "477429935.93199"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "routeProximity(_:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -533,11 +533,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/HitcherDriverTableViewController.swift"
-            timestampString = "477936693.503833"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "getAverageRating(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -549,28 +549,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hitch/GoogleMapsViewController.swift"
-            timestampString = "477429935.93199"
+            timestampString = "477951957.257183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "routeProximity(_:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "hitch/UserRoutesViewController.swift"
-            timestampString = "476832983.882733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
