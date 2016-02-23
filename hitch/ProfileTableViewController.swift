@@ -8,12 +8,12 @@
 
 import UIKit
 import CoreData
+import APParallaxHeader
 
-class ProfileTableViewController: UITableViewController {
+class ProfileTableViewController: UITableViewController, APParallaxViewDelegate {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet var tableviewOutlet: UITableView!
-   // @IBOutlet weak var displayPicture: UIImageView!
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -26,16 +26,7 @@ class ProfileTableViewController: UITableViewController {
         self.addSideMenu(menuButton)
         fetchProfileData()
         
-        //add UI gesture
-//        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-//        //swipeDown.delegate = self
-//        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-//        displayPicture.userInteractionEnabled = true
-//        self.displayPicture.addGestureRecognizer(swipeDown)
-        
     }
-    
-    
     
     func fetchProfileData() {
         let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
@@ -43,8 +34,6 @@ class ProfileTableViewController: UITableViewController {
             profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
             let userData = profileData[0]
             userDataArray += [userData.userName!, userData.userAge!, userData.userGender!, userData.userEducation!]
-            //self.displayPicture.image = UIImage(data: userData.userDisplayPicture!)
-            //self.displayPicture.contentMode = UIViewContentMode.Center
             tableView.addParallaxWithImage(UIImage(data: userData.userDisplayPicture!), andHeight: 450, andShadow: true)
         }
             
@@ -73,8 +62,6 @@ class ProfileTableViewController: UITableViewController {
                 
             }
         }
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,26 +88,21 @@ class ProfileTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
-        //let userData = profileData[indexPath.row]
-        
+
         cell.textLabel!.text = userDataArray[indexPath.item]
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
 
         return cell
     }
-
-    //handle when user swipes
-//    func respondToGesture(gesture: UIGestureRecognizer){
-//        print("swiped down")
-//        UIView.animateWithDuration(0.35, animations: {
-//            
-//            self.displayPicture.frame = CGRectMake(self.displayPicture.frame.origin.x,
-//                self.view.frame.height,
-//                self.displayPicture.frame.size.width,
-//                self.displayPicture.frame.size.height)
-//        })
-//        
-//    }
+    
+    
+    func parallaxView(view: APParallaxView!, willChangeFrame frame: CGRect) {
+        print("will change")
+    }
+    
+    func parallaxView(view: APParallaxView!, didChangeFrame frame: CGRect) {
+        print("did change")
+    }
 
 }

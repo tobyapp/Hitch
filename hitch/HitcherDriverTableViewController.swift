@@ -8,23 +8,21 @@
 
 import UIKit
 import Parse
+import APParallaxHeader
+import MessageUI
 
 // Shows profile of other hithc users
-class HitcherDriverTableViewController: UITableViewController {
+class HitcherDriverTableViewController: UITableViewController, APParallaxViewDelegate, MFMailComposeViewControllerDelegate {
     
     var userAccount = RetrieveDataFromBackEnd()
     var updateData = UploadDataToBackEnd()
     var userData : String?
     var userDetails = [String]()
     var routeId : String?
-    
-    @IBOutlet weak var usersDisplayPictrueView: UIImageView!
+    let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
-        
         self.tableView.delegate = self
         
         if (userData! != currentUser) {
@@ -37,7 +35,7 @@ class HitcherDriverTableViewController: UITableViewController {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 self.userDetails += ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
                 if let picture = results["userDisplayPicture"] as! UIImage? {
-                    self.usersDisplayPictrueView.image = picture
+                    self.tableView.addParallaxWithImage(picture, andHeight: 450, andShadow: true)
                 }
                 
                 let params = ["objectId" : userData]
@@ -66,7 +64,6 @@ class HitcherDriverTableViewController: UITableViewController {
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
-       
     }
 
     // Function activated from matchButton
@@ -95,11 +92,19 @@ class HitcherDriverTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("userCells", forIndexPath: indexPath)
-
+        
+        // if current user loged in
+        if (userData! == currentUser) {
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+        }
+        else {
+            cell.userInteractionEnabled = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        }
+        
         cell.textLabel!.text = userDetails[indexPath.item] as String
         cell.textLabel!.textColor = purple
         cell.textLabel!.font = UIFont(name: "System", size: 20)
-        //cell.userInteractionEnabled = false
         
         return cell
     }
@@ -109,7 +114,36 @@ class HitcherDriverTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("touched")
+        if (userData! != currentUser) {
+            print("touched")
+            print(indexPath.row)
+            print(userDetails[indexPath.item])
+            if indexPath.row == 4 {
+                let mc: MFMailComposeViewController = MFMailComposeViewController()
+                mc.mailComposeDelegate = self
+                mc.setSubject("Your New Hitch Match!")
+                mc.setMessageBody("Hey we just matched!", isHTML: false)
+                mc.setToRecipients([(userDetails[indexPath.item])])
+                self.presentViewController(mc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error:NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: %@", [error!.localizedDescription])
+        default:
+            break
+        }
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func getAverageRating(usersObjectId : String) -> String? {
@@ -117,7 +151,6 @@ class HitcherDriverTableViewController: UITableViewController {
         var rating: String?
         
         PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
-            
             if response != nil {
                 if error == nil {
                     print("rating is : \(response!)")
@@ -135,6 +168,15 @@ class HitcherDriverTableViewController: UITableViewController {
          return rating
     }
     
+    func parallaxView(view: APParallaxView!, willChangeFrame frame: CGRect) {
+        print("will change")
+    }
+    
+    func parallaxView(view: APParallaxView!, didChangeFrame frame: CGRect) {
+        print("did change")
+    }
 
+    
+    
 }
 
