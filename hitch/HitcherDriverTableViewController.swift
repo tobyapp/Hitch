@@ -31,12 +31,21 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
             navigationItem.rightBarButtonItem = matchButton
         }
         
+        
+        // Changes colour scheme to purple to match rest of app, see class extentions for more details
+        changeColorScheme()
+        
         //get details of user, set these to global array then reload table view to show these
         if let userData = userData {
             userAccount.retrieveUserDetails(userData, resultHandler: ({results in
                 self.userDetails += ["\(results["userName"]!)", "\(results["userAge"]!)", "\(results["userGender"]!)", "\(results["userEducation"]!)", "\(results["userEmailAddress"]!)"]
+                
                 if let picture = results["userDisplayPicture"] as! UIImage? {
-                    self.tableView.addParallaxWithImage(picture, andHeight: 450, andShadow: true)
+                    //reloads tableview on main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.addParallaxWithImage(picture, andHeight: 450, andShadow: true)
+                        self.tableView.reloadData()
+                    }
                 }
                 
                 let params = ["objectId" : userData]
@@ -57,14 +66,10 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
                     //reloads tableview on main thread
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()
-                        
                     }
                 }
             }))
         }
-        
-        // Changes colour scheme to purple to match rest of app, see class extentions for more details
-        changeColorScheme()
     }
 
     // Function activated from matchButton
@@ -119,6 +124,8 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
             print("touched")
             print(indexPath.row)
             print(userDetails[indexPath.item])
+            
+            //If user touched email address
             if indexPath.row == 4 {
                 let mc: MFMailComposeViewController = MFMailComposeViewController()
                 mc.mailComposeDelegate = self

@@ -66,6 +66,7 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         tableviewOutlet.reloadData()
     }
     
