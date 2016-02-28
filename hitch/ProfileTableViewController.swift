@@ -13,7 +13,7 @@ import APParallaxHeader
 class ProfileTableViewController: UITableViewController, APParallaxViewDelegate {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet var tableviewOutlet: UITableView!
+    var displayPicture: UIImageView?
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -27,7 +27,7 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
         fetchProfileData()
         
     }
-    
+
     func fetchProfileData() {
         let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
         do {
@@ -62,12 +62,6 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
                 
             }
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        tableviewOutlet.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

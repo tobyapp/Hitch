@@ -22,6 +22,10 @@
 		52452D661C3C66D8004FCB44 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D651C3C66D8004FCB44 /* GLKit.framework */; };
 		52452D681C3C66E3004FCB44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D671C3C66E3004FCB44 /* AVFoundation.framework */; };
 		52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */; };
+		524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6191C8313F600470EF5 /* hitchTests.swift */; };
+		524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6211C83143E00470EF5 /* ViewControllerTests.swift */; };
+		524BC6241C8317C500470EF5 /* OtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6231C8317C500470EF5 /* OtherTests.swift */; };
+		524BC6261C8320C500470EF5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524BC6251C8320C500470EF5 /* CoreBluetooth.framework */; };
 		524C755A1C4C293500776597 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C75591C4C293500776597 /* ContactViewController.swift */; };
 		5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */; };
 		525F4CB31C6E70E200B7A356 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */; };
@@ -74,6 +78,16 @@
 		52EEDF971C3465AC00C64EBF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		524BC61C1C8313F600470EF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5206AD821C273B3C00A1EFAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5206AD891C273B3C00A1EFAD;
+			remoteInfo = hitch;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		13D4701BCE2052350A37CAA3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5206AD8A1C273B3C00A1EFAD /* hitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +106,12 @@
 		52452D651C3C66D8004FCB44 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		52452D671C3C66E3004FCB44 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		524BC6171C8313F600470EF5 /* hitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hitchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		524BC6191C8313F600470EF5 /* hitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hitchTests.swift; sourceTree = "<group>"; };
+		524BC61B1C8313F600470EF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		524BC6211C83143E00470EF5 /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		524BC6231C8317C500470EF5 /* OtherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherTests.swift; sourceTree = "<group>"; };
+		524BC6251C8320C500470EF5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		524C75591C4C293500776597 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
 		525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524BC6261C8320C500470EF5 /* CoreBluetooth.framework in Frameworks */,
 				52452D681C3C66E3004FCB44 /* AVFoundation.framework in Frameworks */,
 				52452D661C3C66D8004FCB44 /* GLKit.framework in Frameworks */,
 				52452D641C3C66CF004FCB44 /* ImageIO.framework in Frameworks */,
@@ -178,6 +199,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		524BC6141C8313F600470EF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -194,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				5206AD8C1C273B3C00A1EFAD /* hitch */,
+				524BC6181C8313F600470EF5 /* hitchTests */,
 				5206AD8B1C273B3C00A1EFAD /* Products */,
 				0CC03D203C9A7BF2363778A1 /* Pods */,
 				8B5B8E3CB74CDB0E782E3846 /* Frameworks */,
@@ -204,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				5206AD8A1C273B3C00A1EFAD /* hitch.app */,
+				524BC6171C8313F600470EF5 /* hitchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,6 +266,17 @@
 				5223121E1C3B0AB800AF218A /* LaunchScreen.storyboard */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		524BC6181C8313F600470EF5 /* hitchTests */ = {
+			isa = PBXGroup;
+			children = (
+				524BC6211C83143E00470EF5 /* ViewControllerTests.swift */,
+				524BC6231C8317C500470EF5 /* OtherTests.swift */,
+				524BC6191C8313F600470EF5 /* hitchTests.swift */,
+				524BC61B1C8313F600470EF5 /* Info.plist */,
+			);
+			path = hitchTests;
 			sourceTree = "<group>";
 		};
 		5257CC3D1C3DABB400B85378 /* Old files */ = {
@@ -351,6 +392,7 @@
 		8B5B8E3CB74CDB0E782E3846 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				524BC6251C8320C500470EF5 /* CoreBluetooth.framework */,
 				52452D671C3C66E3004FCB44 /* AVFoundation.framework */,
 				52452D651C3C66D8004FCB44 /* GLKit.framework */,
 				52452D631C3C66CF004FCB44 /* ImageIO.framework */,
@@ -398,6 +440,24 @@
 			productReference = 5206AD8A1C273B3C00A1EFAD /* hitch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		524BC6161C8313F600470EF5 /* hitchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524BC61E1C8313F600470EF5 /* Build configuration list for PBXNativeTarget "hitchTests" */;
+			buildPhases = (
+				524BC6131C8313F600470EF5 /* Sources */,
+				524BC6141C8313F600470EF5 /* Frameworks */,
+				524BC6151C8313F600470EF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				524BC61D1C8313F600470EF5 /* PBXTargetDependency */,
+			);
+			name = hitchTests;
+			productName = hitchTests;
+			productReference = 524BC6171C8313F600470EF5 /* hitchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -417,6 +477,11 @@
 							};
 						};
 					};
+					524BC6161C8313F600470EF5 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = VAF4J635VX;
+						TestTargetID = 5206AD891C273B3C00A1EFAD;
+					};
 				};
 			};
 			buildConfigurationList = 5206AD851C273B3C00A1EFAD /* Build configuration list for PBXProject "hitch" */;
@@ -433,6 +498,7 @@
 			projectRoot = "";
 			targets = (
 				5206AD891C273B3C00A1EFAD /* hitch */,
+				524BC6161C8313F600470EF5 /* hitchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -450,6 +516,13 @@
 				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
 				525F4CC61C71F06600B7A356 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		524BC6151C8313F600470EF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +621,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		524BC6131C8313F600470EF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524BC6241C8317C500470EF5 /* OtherTests.swift in Sources */,
+				524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */,
+				524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		524BC61D1C8313F600470EF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5206AD891C273B3C00A1EFAD /* hitch */;
+			targetProxy = 524BC61C1C8313F600470EF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5206AD911C273B3C00A1EFAD /* Main.storyboard */ = {
@@ -582,6 +673,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -598,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -626,6 +718,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -636,7 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -648,6 +741,8 @@
 			baseConfigurationReference = F42B117B444164F4FC3F7007 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -668,6 +763,8 @@
 			baseConfigurationReference = 13D4701BCE2052350A37CAA3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -679,6 +776,30 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		524BC61F1C8313F600470EF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = hitchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "";
+			};
+			name = Debug;
+		};
+		524BC6201C8313F600470EF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = hitchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
@@ -702,6 +823,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		524BC61E1C8313F600470EF5 /* Build configuration list for PBXNativeTarget "hitchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524BC61F1C8313F600470EF5 /* Debug */,
+				524BC6201C8313F600470EF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
