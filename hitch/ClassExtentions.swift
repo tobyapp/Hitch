@@ -27,7 +27,7 @@ extension UIViewController {
     func addSideMenu(menuButton : UIBarButtonItem!) {
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = Selector("revealToggle:")
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             self.revealViewController().rearViewRevealWidth = CGFloat(200)
             self.revealViewController().frontViewShadowRadius = CGFloat(50)

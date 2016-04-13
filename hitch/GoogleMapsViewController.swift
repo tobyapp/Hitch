@@ -73,9 +73,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap")
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(refreshMap))
         navigationItem.rightBarButtonItem = refreshButton
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -160,6 +159,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             self.drawRoute(route, userType: userType)
             self.placeMarker(location, userName: userName, userType: userType, userID: userID, timeOfRoute: timeOfRoute, routeId: routeId, extraRideInfo: extraRideInfo, routePath: route)
         })
+        
     }
     
     // Function to display an Alert Controller
@@ -296,9 +296,10 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         else {
             
             plottedByUser = false
+            let routeData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
             
-            if "\(marker.userData["extraRideInfo"])" != "" {
-                
+            if "\(routeData["extraRideInfo"])" != "" {
+
                 //info window dimensions, demsions increase if there are extra info
                 infoWindow.frame.size.width = 300
                 infoWindow.frame.size.height = 150
@@ -306,7 +307,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
                 extraInfoLabel.numberOfLines = 0
                 extraInfoLabel.textAlignment = .Center
-                extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
+                extraInfoLabel.text = "Extra info : \((routeData["extraRideInfo"])!)"
                 extraInfoLabel.textColor = UIColor.whiteColor()
                 extraInfoLabel.layer.cornerRadius = 10
                 infoWindow.addSubview(extraInfoLabel)
@@ -338,7 +339,8 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             }
             
             //draws red route over selected route so user can see it
-            self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
+            self.drawRoute("\((routeData["routePath"])!)", userType: "selected")
+
         }
         return infoWindow
     }
@@ -371,7 +373,9 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-
+        
+        let routeData = marker.userData as! [String: AnyObject]
+        
         if plottedByUser {
             performSegueWithIdentifier("segueToHitchOrDriveOption", sender: nil)
             marker.map = nil
@@ -384,8 +388,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             }
                 
             else if !calledFromAlertController {
-                userID = "\(marker.userData["userID"])"
-                routeId = "\(marker.userData["routeId"])"
+                
+                //print((routeData["extraRideInfo"])!)
+                print("route is : \((routeData["routePath"])!)")
+                
+                userID = "\((routeData["userID"])!)"
+                routeId = "\(routeData["routeId"]!)"
                 performSegueWithIdentifier("segueToUsersProfile", sender: nil)
             }
         }
@@ -474,6 +482,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
+
         let path: GMSPath = GMSPath(fromEncodedPath: route)
         let routePolyline = GMSPolyline(path: path)
         routePolyline.strokeWidth = 5.0

@@ -48,7 +48,7 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         drivingToButton.setTitle("I'm driving to..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        drivingToButton.addTarget(self, action: "drivingTo:", forControlEvents: UIControlEvents.TouchUpInside)
+        drivingToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.drivingTo(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         drivingToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(drivingToButton)
         
@@ -57,13 +57,13 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        hitchinToButton.addTarget(self, action: "hitchTo:", forControlEvents: UIControlEvents.TouchUpInside)
+        hitchinToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.hitchTo(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(hitchinToButton)
         
         // Create notifications on when keyboard is displayed/hidden
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func addPlaceHolderText(textField: UITextField, placeholderText: String) {

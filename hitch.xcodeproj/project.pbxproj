@@ -22,9 +22,9 @@
 		52452D661C3C66D8004FCB44 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D651C3C66D8004FCB44 /* GLKit.framework */; };
 		52452D681C3C66E3004FCB44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D671C3C66E3004FCB44 /* AVFoundation.framework */; };
 		52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */; };
+		524839E91CBE96FE00D63420 /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524839E81CBE96FE00D63420 /* GooglePlacesAutocomplete.xib */; };
 		524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6191C8313F600470EF5 /* hitchTests.swift */; };
 		524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6211C83143E00470EF5 /* ViewControllerTests.swift */; };
-		524BC6241C8317C500470EF5 /* OtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6231C8317C500470EF5 /* OtherTests.swift */; };
 		524BC6261C8320C500470EF5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524BC6251C8320C500470EF5 /* CoreBluetooth.framework */; };
 		524C755A1C4C293500776597 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C75591C4C293500776597 /* ContactViewController.swift */; };
 		5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */; };
@@ -55,7 +55,6 @@
 		52C4345A1C2AC08700D565BD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C434591C2AC08700D565BD /* StoreKit.framework */; };
 		52C4345C1C2AC09900D565BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */; };
 		52CA12C11C5A652E007DA03F /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA12C01C5A652E007DA03F /* RatingViewController.swift */; };
-		52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */; };
 		52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */; };
 		52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */; };
 		52CB89F91C3F09EB0020959B /* HtichOrDrivePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB89F81C3F09EB0020959B /* HtichOrDrivePopupViewController.swift */; };
@@ -106,11 +105,11 @@
 		52452D651C3C66D8004FCB44 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		52452D671C3C66E3004FCB44 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		524839E81CBE96FE00D63420 /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
 		524BC6171C8313F600470EF5 /* hitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hitchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524BC6191C8313F600470EF5 /* hitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hitchTests.swift; sourceTree = "<group>"; };
 		524BC61B1C8313F600470EF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524BC6211C83143E00470EF5 /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
-		524BC6231C8317C500470EF5 /* OtherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherTests.swift; sourceTree = "<group>"; };
 		524BC6251C8320C500470EF5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		524C75591C4C293500776597 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 		52C434591C2AC08700D565BD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		52C4345B1C2AC09900D565BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		52CA12C01C5A652E007DA03F /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
-		52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = ../../ios_google_places_autocomplete/GooglePlacesAutocomplete/GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
 		52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomInfoWindow.xib; path = ../CustomInfoWindow.xib; sourceTree = "<group>"; };
 		52CB89F61C3EC1C20020959B /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		52CB89F81C3F09EB0020959B /* HtichOrDrivePopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtichOrDrivePopupViewController.swift; sourceTree = "<group>"; };
@@ -262,7 +260,7 @@
 				5206AD911C273B3C00A1EFAD /* Main.storyboard */,
 				52CB89F41C3EBC400020959B /* CustomInfoWindow.xib */,
 				52CB8A051C46D8060020959B /* UserInfoWindow.xib */,
-				52CB89EE1C3EABAB0020959B /* GooglePlacesAutocomplete.xib */,
+				524839E81CBE96FE00D63420 /* GooglePlacesAutocomplete.xib */,
 				5223121E1C3B0AB800AF218A /* LaunchScreen.storyboard */,
 			);
 			name = UI;
@@ -272,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				524BC6211C83143E00470EF5 /* ViewControllerTests.swift */,
-				524BC6231C8317C500470EF5 /* OtherTests.swift */,
 				524BC6191C8313F600470EF5 /* hitchTests.swift */,
 				524BC61B1C8313F600470EF5 /* Info.plist */,
 			);
@@ -512,8 +509,8 @@
 				5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */,
 				5223121F1C3B0AB800AF218A /* LaunchScreen.storyboard in Resources */,
 				525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */,
-				52CB89EF1C3EABAB0020959B /* GooglePlacesAutocomplete.xib in Resources */,
 				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
+				524839E91CBE96FE00D63420 /* GooglePlacesAutocomplete.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
 				525F4CC61C71F06600B7A356 /* Info.plist in Resources */,
 			);
@@ -625,7 +622,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524BC6241C8317C500470EF5 /* OtherTests.swift in Sources */,
 				524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */,
 				524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */,
 			);
@@ -831,6 +827,7 @@
 				524BC6201C8313F600470EF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

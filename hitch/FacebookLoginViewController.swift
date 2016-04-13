@@ -84,7 +84,7 @@ class FacebookLoginViewController: UIViewController {
         // Add buttons to right side.
         cardView.rightButtons = [loginButton]
 
-        loginButton.addTarget(self, action: "loginToFb:", forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(FacebookLoginViewController.loginToFb(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 
         // To support orientation changes, use MaterialLayout.
         view.addSubview(cardView)

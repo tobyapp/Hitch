@@ -36,7 +36,7 @@ class RatingViewController: UIViewController {
         rateButton.setTitle("Rate!", forState: .Normal)
         rateButton.setTitleColor(MaterialColor.white, forState: .Normal)
         rateButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        rateButton.addTarget(self, action: "rate:", forControlEvents: UIControlEvents.TouchUpInside)
+        rateButton.addTarget(self, action: #selector(RatingViewController.rate(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         rateButton.backgroundColor = MaterialColor.deepPurple.base
         view.addSubview(rateButton)
 

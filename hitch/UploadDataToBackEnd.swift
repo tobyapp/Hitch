@@ -153,7 +153,7 @@ class UploadDataToBackEnd {
             } else if let route = route {
                 
                 // create pointer to user object and store that in 'match' coloumn
-                let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(currentUser!)")
+                let pointer = PFObject(outDataWithClassName: "_User", objectId: "\(currentUser!)")
                 route["match"] = pointer
                 route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
                     if succeeded {
@@ -193,7 +193,7 @@ class UploadDataToBackEnd {
         
         print("you gave \(userReviewed) \(rating) our of 5")
         
-        let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(userReviewed)")
+        let pointer = PFObject(outDataWithClassName: "_User", objectId: "\(userReviewed)")
         query["UserReviewed"] = pointer
 
         query.setObject(currentUser!, forKey: "WhoReviewedUser")

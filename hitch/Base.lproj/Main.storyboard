@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcR-6D-hTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="564"/>
+            <point key="canvasLocation" x="-1623" y="-330"/>
         </scene>
         <!--Hitcher Driver Table View Controller-->
         <scene sceneID="Vre-bu-Kmj">
@@ -153,7 +153,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="userCells" id="elb-AM-ZgK">
-                                <rect key="frame" x="0.0" y="428" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="elb-AM-ZgK" id="qdU-ki-HYE">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -169,7 +169,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qri-TM-LOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-827" y="2080.5"/>
+            <point key="canvasLocation" x="-4667" y="419.25"/>
         </scene>
         <!--Rating View Controller-->
         <scene sceneID="wUB-gG-l2I">
@@ -643,7 +643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTE-SQ-lT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1816" y="2080.5"/>
+            <point key="canvasLocation" x="-3640" y="425.25"/>
         </scene>
         <!--Filter Selection View Controller-->
         <scene sceneID="4jO-NL-6mA">
@@ -677,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wb5-Sr-n2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-829" y="1346"/>
+            <point key="canvasLocation" x="-1789" y="446.25"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="qZx-RB-k8l">
@@ -1096,7 +1096,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6R-Ix-HVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2444" y="564"/>
+            <point key="canvasLocation" x="-3404" y="-335.25"/>
         </scene>
         <!--Map-->
         <scene sceneID="bcd-46-JFv">
@@ -1130,13 +1130,6 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outletCollection property="gestureRecognizers" destination="o5V-x2-Wth" appends="YES" id="mBs-ls-ADQ"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-tB-93n">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="AppleMap"/>
-                                <connections>
-                                    <segue destination="cAe-Lr-ZLW" kind="show" id="mt3-RL-84Q"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1146,32 +1139,16 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                             <constraint firstItem="toq-k0-pR1" firstAttribute="leading" secondItem="72o-v8-McF" secondAttribute="leadingMargin" constant="255" id="EdI-ce-byq"/>
                             <constraint firstItem="toq-k0-pR1" firstAttribute="leading" secondItem="72o-v8-McF" secondAttribute="leadingMargin" constant="155" id="NI4-DE-otx"/>
                             <constraint firstItem="toq-k0-pR1" firstAttribute="top" secondItem="Pr0-Em-x2F" secondAttribute="bottom" constant="65" id="P8p-yH-4gs"/>
-                            <constraint firstItem="GCJ-tB-93n" firstAttribute="leading" secondItem="72o-v8-McF" secondAttribute="leadingMargin" constant="14" id="bP4-6l-oAE"/>
-                            <constraint firstItem="bWp-oM-2I0" firstAttribute="top" secondItem="GCJ-tB-93n" secondAttribute="bottom" constant="128" id="cUa-9H-Skd"/>
                             <constraint firstItem="bWp-oM-2I0" firstAttribute="top" secondItem="toq-k0-pR1" secondAttribute="bottom" constant="221" id="giV-1T-WLg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="toq-k0-pR1" secondAttribute="trailing" constant="155" id="t0J-nQ-Kfe"/>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="GCJ-tB-93n"/>
-                            </mask>
                             <mask key="constraints">
-                                <exclude reference="bP4-6l-oAE"/>
                                 <exclude reference="3ou-eT-EZA"/>
                                 <exclude reference="CJN-PR-fAt"/>
                                 <exclude reference="EdI-ce-byq"/>
                                 <exclude reference="P8p-yH-4gs"/>
-                                <exclude reference="cUa-9H-Skd"/>
                                 <exclude reference="giV-1T-WLg"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="subviews">
-                                <include reference="GCJ-tB-93n"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="bP4-6l-oAE"/>
-                                <include reference="cUa-9H-Skd"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -1200,7 +1177,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1561" y="564"/>
+            <point key="canvasLocation" x="-2521" y="-335.25"/>
         </scene>
         <!--Google Maps View Controller-->
         <scene sceneID="Yb9-KN-486">
@@ -1252,7 +1229,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfu-0f-Kxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1537" y="1346"/>
+            <point key="canvasLocation" x="-2497" y="446.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HfG-59-Ox4">
@@ -1280,7 +1257,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="profileCells" id="sIx-Xo-hEE">
-                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sIx-Xo-hEE" id="56V-1i-aPz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1288,7 +1265,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="z7p-wL-Qlx">
-                                <rect key="frame" x="0.0" y="536" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z7p-wL-Qlx" id="ioB-Qx-JmT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1330,7 +1307,7 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                                     <outlet property="delegate" destination="cAe-Lr-ZLW" id="aMM-zq-VtO"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="06A4846B-BEB0-4DC4-B21F-FB2529057140" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" scopeBarBackgroundImage="62200F89-C768-4FAA-9E43-7C5DB81AB295" translatesAutoresizingMaskIntoConstraints="NO" id="A4Z-pU-td9">
                                 <rect key="frame" x="54" y="556" width="526" height="44"/>
                                 <color key="barTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search"/>
@@ -1398,11 +1375,11 @@ On a spontaneous adventure and not sure where you want to go? Then just click ei
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-2270" y="1331"/>
+            <point key="canvasLocation" x="-870" y="-1932.75"/>
         </scene>
     </scenes>
     <resources>
-        <image name="06A4846B-BEB0-4DC4-B21F-FB2529057140" width="200" height="200">
+        <image name="62200F89-C768-4FAA-9E43-7C5DB81AB295" width="200" height="200">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4078,7 +4055,7 @@ z//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//zxPP/88Tz//PE8//0BTQ/9AU
 AAEAAAEGAAMAAAABAAIAAAERAAQAAAACAAJxxgESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAAB
 AKMAAAEXAAQAAAACAAJxvgEcAAMAAAABAAEAAAFSAAMAAAABAAIAAAFTAAMAAAAEAAJxzodzAAcAAAxI
 AAJx1gAAAAAACAAIAAgACAAB/WAAAHOgAAAACAAB/WgAAQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0Ig
-WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMt
+WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAABAAD21gABAAAAANMt
 SFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQ
 AAAAM2Rlc2MAAAGEAAAAbHd0cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIs
 AAAAFGJYWVoAAAJAAAAAFGRtbmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANMAAAAhnZpZXcAAAPU
@@ -4152,6 +4129,6 @@ AAAAAAAAAn+5A
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="leM-aS-Fht"/>
-        <segue reference="3AS-IA-SLb"/>
+        <segue reference="Kct-4Z-A6d"/>
     </inferredMetricsTieBreakers>
 </document>

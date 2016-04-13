@@ -143,7 +143,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         // Add buttons to right side.
         cardView.rightButtons = [loginButton]
         
-        loginButton.addTarget(self, action: "logOutOfFb:", forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(SettingsViewController.logOutOfFb(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         // To support orientation changes, use MaterialLayout.
         view.addSubview(cardView)

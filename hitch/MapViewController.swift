@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
         drivingToButton.setTitle("Show Driving Routes..", forState: .Normal)
         drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        drivingToButton.addTarget(self, action: "showDriverRoutes:", forControlEvents: UIControlEvents.TouchUpInside)
+        drivingToButton.addTarget(self, action: #selector(MapViewController.showDriverRoutes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         drivingToButton.backgroundColor = MaterialColor.deepPurple.base
         //drivingToButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(drivingToButton)
@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
         hitchinToButton.setTitle("Show Hitch'n Routes..", forState: .Normal)
         hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
         hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        hitchinToButton.addTarget(self, action: "showHitchRoutes:", forControlEvents: UIControlEvents.TouchUpInside)
+        hitchinToButton.addTarget(self, action: #selector(MapViewController.showHitchRoutes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
         //hitchinToButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hitchinToButton)

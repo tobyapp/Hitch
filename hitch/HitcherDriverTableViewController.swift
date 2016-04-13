@@ -27,7 +27,7 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
         self.tableView.delegate = self
         
         if (userData! != currentUser && showMatch!) {
-            let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: "match")
+            let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: #selector(HitcherDriverTableViewController.match))
             navigationItem.rightBarButtonItem = matchButton
         }
         

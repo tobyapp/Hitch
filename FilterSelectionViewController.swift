@@ -45,7 +45,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         
         getRoutesAndDisplayThem()
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshMap")
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(FilterSelectionViewController.refreshMap))
         navigationItem.rightBarButtonItem = refreshButton
 
     }
@@ -141,8 +141,9 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
+        let routeData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
         
-        if "\(marker.userData["extraRideInfo"])" != "" {
+        if "\(routeData["extraRideInfo"])" != "" {
             
             //info window dimensions, demsions increase if there are extra info
             infoWindow.frame.size.width = 300
@@ -151,7 +152,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
             extraInfoLabel.numberOfLines = 0
             extraInfoLabel.textAlignment = .Center
-            extraInfoLabel.text = "Extra info : \(marker.userData["extraRideInfo"])"
+            extraInfoLabel.text = "Extra info : \(routeData["extraRideInfo"])"
             extraInfoLabel.textColor = UIColor.whiteColor()
             extraInfoLabel.layer.cornerRadius = 10
             infoWindow.addSubview(extraInfoLabel)
@@ -186,7 +187,10 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         
         //draws red route over selected route so user can see it
         print("draw")
-        self.drawRoute("\(marker.userData["routePath"])", userType: "selected")
+        
+        let routePathData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
+
+        self.drawRoute("\(routePathData["routePath"])", userType: "selected")
         
         return infoWindow
         
@@ -202,8 +206,9 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
 
     // executes when user taps custom window info above marker, presents PopooverViewController
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        userID = "\(marker.userData["userID"])"
-        routeId = "\(marker.userData["routeId"])"
+        let routeData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
+        userID = "\(routeData["userID"])"
+        routeId = "\(routeData["routeId"])"
         performSegueWithIdentifier("segueToUsersProfile", sender: nil)
     }
     
