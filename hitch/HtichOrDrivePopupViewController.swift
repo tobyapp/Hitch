@@ -111,6 +111,7 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
             self.dateString = dateString
         }
         
+        
         routeCalc.getDirectionsFromCoords(originLongitude!, originLatitude: originLatitude!, destinationLongitude: destinationLongitude!, destinationLatitude: destinationLatitude!, resultHandler: {results in
             if self.textField.text == "Enter your extra information for your ride here..." {
                 self.textField.text = ""

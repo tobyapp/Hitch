@@ -483,7 +483,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     // Draws route on map (colour changes depending on user type)
     func drawRoute(route: String, userType: String) {
 
-        let path: GMSPath = GMSPath(fromEncodedPath: route)
+        let path: GMSPath = GMSPath(fromEncodedPath: route)!
         let routePolyline = GMSPolyline(path: path)
         routePolyline.strokeWidth = 5.0
         switch userType {

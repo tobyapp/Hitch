@@ -83,7 +83,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
 //        print("user type : \(userType)")
 //        print("userTypeFilter : \(userTypeFilter)")
         if userType == userTypeFilter || userType == "selected" {
-            let path: GMSPath = GMSPath(fromEncodedPath: route)
+            let path: GMSPath = GMSPath(fromEncodedPath: route)!
             let routePolyline = GMSPolyline(path: path)
             routePolyline.strokeWidth = 5.0
             switch userType {

@@ -97,6 +97,7 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
         
         //display logout message
         let murmur = Murmur(title: "\(userName!) logged out")
-        Whistle(murmur)
+        show(whistle: murmur, action: .Show(0.5))
+        //Whistle(murmur)
     }
 }

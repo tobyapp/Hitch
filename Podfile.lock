@@ -1,50 +1,48 @@
 PODS:
-  - Alamofire (3.1.4)
+  - Alamofire (3.5.1)
   - APParallaxHeader (0.1.6)
-  - ASValueTrackingSlider (0.11.2)
-  - Bolts (1.5.1):
-    - Bolts/AppLinks (= 1.5.1)
-    - Bolts/Tasks (= 1.5.1)
-  - Bolts/AppLinks (1.5.1):
+  - ASValueTrackingSlider (0.12.1)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.5.1)
-  - Cosmos (1.1.5)
-  - FBSDKCoreKit (4.8.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.8.0)
-    - FBSDKCoreKit/no-arc (= 4.8.0)
-  - FBSDKCoreKit/arc (4.8.0):
-    - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.8.0):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.8.0):
+  - Bolts/Tasks (1.8.4)
+  - Cosmos (1.2.3)
+  - FBSDKCoreKit (4.18.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.8.0):
+  - FBSDKShareKit (4.18.0):
     - FBSDKCoreKit
-  - GoogleMaps (1.11.1)
-  - JVFloatLabeledTextField (1.1.0)
-  - MK (1.27.4)
-  - Parse (1.11.0):
-    - Bolts/Tasks (~> 1.5)
-  - ParseFacebookUtilsV4 (1.9.1):
-    - Bolts/Tasks (>= 1.5)
-    - FBSDKCoreKit (~> 4.8)
-    - FBSDKLoginKit (~> 4.8)
-    - Parse (~> 1.9)
-  - ParseUI (1.1.7):
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
+    - GoogleMaps/Base
+  - JVFloatLabeledTextField (1.1.1)
+  - MK (1.27.14)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
+  - ParseFacebookUtilsV4 (1.11.1):
+    - Bolts/Tasks (>= 1.6)
+    - FBSDKCoreKit (~> 4.10)
+    - FBSDKLoginKit (~> 4.10)
+    - FBSDKTVOSKit (~> 4.10)
+    - Parse (~> 1.12)
+  - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SMSegmentView (1.1)
-  - SwiftyJSON (2.3.2)
+  - SwiftyJSON (2.3.3)
   - SWRevealViewController (2.3.0)
-  - Whisper (1.1.0)
+  - Whisper (3.1.1)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 3.5.1)
   - APParallaxHeader
   - ASValueTrackingSlider
-  - Cosmos
+  - Cosmos (~> 1.2.3)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -55,28 +53,30 @@ DEPENDENCIES:
   - ParseFacebookUtilsV4
   - ParseUI
   - SMSegmentView
-  - SwiftyJSON
+  - SwiftyJSON (~> 2.3.3)
   - SWRevealViewController
-  - Whisper
+  - Whisper (~> 3.1.1)
 
 SPEC CHECKSUMS:
-  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
-  ASValueTrackingSlider: 45c9f78252da60de01d8f2afe869aaf90dd978d9
-  Bolts: a12663244b1d3351c738882e71902fc74db54f64
-  Cosmos: d05465696561ccb50fa8b7574026326bb23d654b
-  FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
-  FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
-  FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
-  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
-  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
-  MK: ae717506e2aae48803175d622faa7896c6b4e47e
-  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
-  ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
-  ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
+  ASValueTrackingSlider: 5261de3fcf00adb339efc93885e8f0bc99e703cd
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Cosmos: efddd01b729956ad6335bc58bc92e5735a1d12a3
+  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
+  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
+  FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
+  MK: a68c9ae628f625847bddf5921e7a208873d192c2
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
+  ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyJSON: 0fd0a115a3c0c09b277d2ab801df154902b942c3
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
-  Whisper: 80f9eafa9d51dbc246f7c6aeb8aaa146a20cddce
+  Whisper: 74decae53daf8caff5acf8628e24b92d3f05a453
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: fa8aa5500f0f48c3faf31cfba3bc198a201247b2
+
+COCOAPODS: 1.1.1

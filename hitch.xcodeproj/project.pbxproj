@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B540C9B4C4E6D7C8E0EB9BD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADE2C6FE4FD2211345452F /* Pods.framework */; };
+		390A595920A9C2106683C233 /* Pods_hitch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20195302D88071B7A47775B /* Pods_hitch.framework */; };
 		5206AD8E1C273B3C00A1EFAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */; };
 		5206AD901C273B3C00A1EFAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206AD8F1C273B3C00A1EFAD /* ViewController.swift */; };
 		5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5206AD911C273B3C00A1EFAD /* Main.storyboard */; };
@@ -34,7 +34,6 @@
 		525F4CC31C71F06600B7A356 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */; };
 		525F4CC41C71F06600B7A356 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB71C71F06600B7A356 /* SMSegment.swift */; };
 		525F4CC51C71F06600B7A356 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB81C71F06600B7A356 /* SMSegmentView.swift */; };
-		525F4CC61C71F06600B7A356 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 525F4CB91C71F06600B7A356 /* Info.plist */; };
 		525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */; };
 		525F4CC81C71F06600B7A356 /* SMSegmentView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */; };
 		526F46F41C2AE85E003DF05B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4344D1C2ABB7C00D565BD /* libz.tbd */; };
@@ -88,7 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13D4701BCE2052350A37CAA3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1CD9A672744529B4CEC7B2EE /* Pods-hitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hitch/Pods-hitch.debug.xcconfig"; sourceTree = "<group>"; };
 		5206AD8A1C273B3C00A1EFAD /* hitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5206AD8D1C273B3C00A1EFAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5206AD8F1C273B3C00A1EFAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +118,6 @@
 		525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		525F4CB71C71F06600B7A356 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegment.swift; path = SMSegmentViewController/SMSegmentView/SMSegment.swift; sourceTree = "<group>"; };
 		525F4CB81C71F06600B7A356 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMSegmentView.swift; sourceTree = "<group>"; };
-		525F4CB91C71F06600B7A356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = SMSegmentView.modulemap; sourceTree = "<group>"; };
 		525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SMSegmentView.xcconfig; sourceTree = "<group>"; };
 		525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMSegmentView-dummy.m"; sourceTree = "<group>"; };
@@ -165,7 +163,8 @@
 		52EEDF921C3345B600C64EBF /* previous_dataGrabbingForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previous_dataGrabbingForProfile.swift; sourceTree = "<group>"; };
 		52EEDF961C3465AC00C64EBF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		97ADE2C6FE4FD2211345452F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F42B117B444164F4FC3F7007 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BA928379EC89AB044A5C7510 /* Pods-hitch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hitch.release.xcconfig"; path = "Pods/Target Support Files/Pods-hitch/Pods-hitch.release.xcconfig"; sourceTree = "<group>"; };
+		C20195302D88071B7A47775B /* Pods_hitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +192,7 @@
 				52C434501C2AC05000D565BD /* CFNetwork.framework in Frameworks */,
 				52C4344F1C2AC04B00D565BD /* AudioToolbox.framework in Frameworks */,
 				52C434441C2AB6CE00D565BD /* CoreData.framework in Frameworks */,
-				4B540C9B4C4E6D7C8E0EB9BD /* Pods.framework in Frameworks */,
+				390A595920A9C2106683C233 /* Pods_hitch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,23 +206,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CC03D203C9A7BF2363778A1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F42B117B444164F4FC3F7007 /* Pods.debug.xcconfig */,
-				13D4701BCE2052350A37CAA3 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5206AD811C273B3C00A1EFAD = {
 			isa = PBXGroup;
 			children = (
 				5206AD8C1C273B3C00A1EFAD /* hitch */,
 				524BC6181C8313F600470EF5 /* hitchTests */,
 				5206AD8B1C273B3C00A1EFAD /* Products */,
-				0CC03D203C9A7BF2363778A1 /* Pods */,
 				8B5B8E3CB74CDB0E782E3846 /* Frameworks */,
+				9342B7D23835461061F52374 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,7 +281,6 @@
 		525F4CBF1C71F06600B7A356 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				525F4CB91C71F06600B7A356 /* Info.plist */,
 				525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */,
 				525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */,
 				525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */,
@@ -410,8 +399,18 @@
 				52C434451C2ABABA00D565BD /* AudioToolbox.framework */,
 				52C434431C2AB6CE00D565BD /* CoreData.framework */,
 				97ADE2C6FE4FD2211345452F /* Pods.framework */,
+				C20195302D88071B7A47775B /* Pods_hitch.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9342B7D23835461061F52374 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CD9A672744529B4CEC7B2EE /* Pods-hitch.debug.xcconfig */,
+				BA928379EC89AB044A5C7510 /* Pods-hitch.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,12 +420,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5206AD9C1C273B3C00A1EFAD /* Build configuration list for PBXNativeTarget "hitch" */;
 			buildPhases = (
-				586B093D06947A495698B9C5 /* Check Pods Manifest.lock */,
+				794A4D362B16CAB590E8AF87 /* [CP] Check Pods Manifest.lock */,
 				5206AD861C273B3C00A1EFAD /* Sources */,
 				5206AD871C273B3C00A1EFAD /* Frameworks */,
 				5206AD881C273B3C00A1EFAD /* Resources */,
-				0F8D4E690AEB9320544881EC /* Embed Pods Frameworks */,
-				BC113438D2ED78EDCD682A90 /* Copy Pods Resources */,
+				E387B473DF16DF1780C0C394 /* [CP] Embed Pods Frameworks */,
+				699048820926DC20EC9494CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -512,7 +511,6 @@
 				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
 				524839E91CBE96FE00D63420 /* GooglePlacesAutocomplete.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
-				525F4CC61C71F06600B7A356 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,49 +524,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F8D4E690AEB9320544881EC /* Embed Pods Frameworks */ = {
+		699048820926DC20EC9494CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hitch/Pods-hitch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		586B093D06947A495698B9C5 /* Check Pods Manifest.lock */ = {
+		794A4D362B16CAB590E8AF87 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BC113438D2ED78EDCD682A90 /* Copy Pods Resources */ = {
+		E387B473DF16DF1780C0C394 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hitch/Pods-hitch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -734,9 +732,11 @@
 		};
 		5206AD9D1C273B3C00A1EFAD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F42B117B444164F4FC3F7007 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1CD9A672744529B4CEC7B2EE /* Pods-hitch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -744,10 +744,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = hitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch;
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hitch/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -756,9 +757,11 @@
 		};
 		5206AD9E1C273B3C00A1EFAD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13D4701BCE2052350A37CAA3 /* Pods.release.xcconfig */;
+			baseConfigurationReference = BA928379EC89AB044A5C7510 /* Pods-hitch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -766,10 +769,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = hitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch;
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};

@@ -1,14 +1,13 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target "hitch" do
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit' 
 
-pod 'Whisper', '~> 3.1.1'
+pod 'Whisper'
 
-pod 'SwiftyJSON', '~> 2.3.3'
+pod 'SwiftyJSON'
 
 pod 'SWRevealViewController'
 
@@ -20,9 +19,9 @@ pod 'ParseFacebookUtilsV4'
 
 pod 'GoogleMaps'
 
-pod 'Alamofire', '~> 3.5.1'
+pod 'Alamofire'
 
-pod 'Cosmos', '~> 1.2.3'
+pod 'Cosmos'
 
 pod 'JVFloatLabeledTextField'
 
@@ -31,5 +30,3 @@ pod 'ASValueTrackingSlider'
 pod 'SMSegmentView'
 
 pod 'APParallaxHeader'
-
-end

@@ -182,8 +182,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         
         //display logout message
         var murmur = Murmur(title: "\(userName!) logged out")
-        murmur.duration = 100.0
-        Whistle(murmur)
+        show(whistle: murmur, action: .Show(0.5))
     }
     
     func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {

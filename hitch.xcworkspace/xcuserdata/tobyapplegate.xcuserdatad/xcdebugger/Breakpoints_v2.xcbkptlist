@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-            landmarkName = "addSideMenu(_:)"
-            landmarkType = "5">
+            landmarkName = "addSideMenu(menuButton:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -172,8 +172,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
             endingLineNumber = "229"
-            landmarkName = "placeMarker(_:)"
-            landmarkType = "5">
+            landmarkName = "placeMarker(coordinate:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -251,7 +251,7 @@
             startingLineNumber = "55"
             endingLineNumber = "55"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -410,8 +410,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "262"
             endingLineNumber = "262"
-            landmarkName = "placeMarker(_:userName:userType:userID:timeOfRoute:routeId:extraRideInfo:routePath:)"
-            landmarkType = "5">
+            landmarkName = "placeMarker(coordinate:userName:userType:userID:timeOfRoute:routeId:extraRideInfo:routePath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -491,7 +491,7 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "presentSearchBar()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -506,8 +506,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "471"
             endingLineNumber = "471"
-            landmarkName = "routeProximity(_:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
-            landmarkType = "5">
+            landmarkName = "routeProximity(usersOriginLatitude:usersOriginLongitude:usersDestLatitude:usersDestLongitude:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -554,8 +554,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "485"
             endingLineNumber = "485"
-            landmarkName = "drawRoute(_:userType:)"
-            landmarkType = "5">
+            landmarkName = "drawRoute(route:userType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -586,8 +586,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "deleteUserRoute(_:)"
-            landmarkType = "5">
+            landmarkName = "deleteUserRoute(routeId:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -602,8 +602,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "addSideMenu(_:)"
-            landmarkType = "5">
+            landmarkName = "addSideMenu(menuButton:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -711,8 +711,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "387"
             endingLineNumber = "387"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
+            landmarkName = "mapView(mapView:didTapInfoWindowOfMarker:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -761,6 +761,145 @@
             endingLineNumber = "141"
             landmarkName = "init(apiKey:placeType:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/AppDelegate.swift"
+            timestampString = "506246859.122948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.AppDelegate.__deallocating_deinit"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/AppDelegate.swift"
+                  timestampString = "506246862.957126"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.AppDelegate.init () -&gt; hitch.AppDelegate"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/AppDelegate.swift"
+                  timestampString = "506246862.95811"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/AppDelegate.swift"
+                  timestampString = "506246862.958267"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hitch/ProfileTableViewController.swift"
+            timestampString = "506246892.185165"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "ProfileTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.ProfileTableViewController.__deallocating_deinit"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/ProfileTableViewController.swift"
+                  timestampString = "506246892.221108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.ProfileTableViewController.init (style : __C.UITableViewStyle) -&gt; hitch.ProfileTableViewController"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/ProfileTableViewController.swift"
+                  timestampString = "506246892.221387"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.ProfileTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; hitch.ProfileTableViewController"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/ProfileTableViewController.swift"
+                  timestampString = "506246892.221551"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "hitch.ProfileTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;hitch.ProfileTableViewController&gt;"
+                  moduleName = "hitch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tobyapplegate/GitHub/Hitch%20-%20Final%20Year%20Project/hitch/ProfileTableViewController.swift"
+                  timestampString = "506246892.221697"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
