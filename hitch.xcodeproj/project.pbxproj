@@ -23,21 +23,16 @@
 		52452D681C3C66E3004FCB44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52452D671C3C66E3004FCB44 /* AVFoundation.framework */; };
 		52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */; };
 		524839E91CBE96FE00D63420 /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524839E81CBE96FE00D63420 /* GooglePlacesAutocomplete.xib */; };
-		524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6191C8313F600470EF5 /* hitchTests.swift */; };
-		524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BC6211C83143E00470EF5 /* ViewControllerTests.swift */; };
 		524BC6261C8320C500470EF5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524BC6251C8320C500470EF5 /* CoreBluetooth.framework */; };
 		524C755A1C4C293500776597 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C75591C4C293500776597 /* ContactViewController.swift */; };
 		5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */; };
 		525F4CB31C6E70E200B7A356 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */; };
-		525F4CC11C71F06600B7A356 /* SMAlphaImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */; };
-		525F4CC21C71F06600B7A356 /* SMBasicSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */; };
-		525F4CC31C71F06600B7A356 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */; };
-		525F4CC41C71F06600B7A356 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB71C71F06600B7A356 /* SMSegment.swift */; };
-		525F4CC51C71F06600B7A356 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CB81C71F06600B7A356 /* SMSegmentView.swift */; };
-		525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */; };
-		525F4CC81C71F06600B7A356 /* SMSegmentView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */; };
 		526F46F41C2AE85E003DF05B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C4344D1C2ABB7C00D565BD /* libz.tbd */; };
 		526F46F61C2AE868003DF05B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F46F51C2AE868003DF05B /* libsqlite3.tbd */; };
+		527FB0471E416936009A7A35 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB0461E416936009A7A35 /* SMSegment.swift */; };
+		527FB0491E41693E009A7A35 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527FB0481E41693E009A7A35 /* SMSegmentView.swift */; };
+		5291A31D1E44471B008B686F /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291A31B1E44471B008B686F /* SMSegmentAppearance.swift */; };
+		5291A31E1E44471B008B686F /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291A31C1E44471B008B686F /* SMSegmentViewConstants.swift */; };
 		529AB4371C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */; };
 		529C8A5C1C48411100268B99 /* HitcherDriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */; };
 		52A4AA2D1C3ABFCD001D908F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4AA2C1C3ABFCD001D908F /* MapKit.framework */; };
@@ -106,24 +101,16 @@
 		52452D691C3D2680004FCB44 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		524839E81CBE96FE00D63420 /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GooglePlacesAutocomplete.xib; sourceTree = "<group>"; };
 		524BC6171C8313F600470EF5 /* hitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hitchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		524BC6191C8313F600470EF5 /* hitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hitchTests.swift; sourceTree = "<group>"; };
 		524BC61B1C8313F600470EF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		524BC6211C83143E00470EF5 /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		524BC6251C8320C500470EF5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		524C75591C4C293500776597 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		5257CC3E1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAutocomplete.swift; sourceTree = "<group>"; };
 		525F4CB21C6E70E200B7A356 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
-		525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMAlphaImageSegment.swift; path = SMSegmentViewController/SMSegmentView/SMAlphaImageSegment.swift; sourceTree = "<group>"; };
-		525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegment.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegment.swift; sourceTree = "<group>"; };
-		525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMBasicSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMBasicSegmentView.swift; sourceTree = "<group>"; };
-		525F4CB71C71F06600B7A356 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegment.swift; path = SMSegmentViewController/SMSegmentView/SMSegment.swift; sourceTree = "<group>"; };
-		525F4CB81C71F06600B7A356 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMSegmentView.swift; path = SMSegmentViewController/SMSegmentView/SMSegmentView.swift; sourceTree = "<group>"; };
-		525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = SMSegmentView.modulemap; sourceTree = "<group>"; };
-		525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SMSegmentView.xcconfig; sourceTree = "<group>"; };
-		525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMSegmentView-dummy.m"; sourceTree = "<group>"; };
-		525F4CBD1C71F06600B7A356 /* SMSegmentView-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-prefix.pch"; sourceTree = "<group>"; };
-		525F4CBE1C71F06600B7A356 /* SMSegmentView-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMSegmentView-umbrella.h"; sourceTree = "<group>"; };
 		526F46F51C2AE868003DF05B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		527FB0461E416936009A7A35 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
+		527FB0481E41693E009A7A35 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
+		5291A31B1E44471B008B686F /* SMSegmentAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentAppearance.swift; sourceTree = "<group>"; };
+		5291A31C1E44471B008B686F /* SMSegmentViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentViewConstants.swift; sourceTree = "<group>"; };
 		529AB4361C3D673800106FA6 /* GoogleMapSearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		529C8A5B1C48411100268B99 /* HitcherDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitcherDriverTableViewController.swift; sourceTree = "<group>"; };
 		52A4AA2C1C3ABFCD001D908F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -259,8 +246,6 @@
 		524BC6181C8313F600470EF5 /* hitchTests */ = {
 			isa = PBXGroup;
 			children = (
-				524BC6211C83143E00470EF5 /* ViewControllerTests.swift */,
-				524BC6191C8313F600470EF5 /* hitchTests.swift */,
 				524BC61B1C8313F600470EF5 /* Info.plist */,
 			);
 			path = hitchTests;
@@ -276,33 +261,6 @@
 				52CB89FA1C3F32720020959B /* OldCodeForFutureUse.swift */,
 			);
 			name = "Old files";
-			sourceTree = "<group>";
-		};
-		525F4CBF1C71F06600B7A356 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				525F4CBA1C71F06600B7A356 /* SMSegmentView.modulemap */,
-				525F4CBB1C71F06600B7A356 /* SMSegmentView.xcconfig */,
-				525F4CBC1C71F06600B7A356 /* SMSegmentView-dummy.m */,
-				525F4CBD1C71F06600B7A356 /* SMSegmentView-prefix.pch */,
-				525F4CBE1C71F06600B7A356 /* SMSegmentView-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SMSegmentView";
-			sourceTree = "<group>";
-		};
-		525F4CC01C71F06600B7A356 /* SMSegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				525F4CB41C71F06600B7A356 /* SMAlphaImageSegment.swift */,
-				525F4CB51C71F06600B7A356 /* SMBasicSegment.swift */,
-				525F4CB61C71F06600B7A356 /* SMBasicSegmentView.swift */,
-				525F4CB71C71F06600B7A356 /* SMSegment.swift */,
-				525F4CB81C71F06600B7A356 /* SMSegmentView.swift */,
-				525F4CBF1C71F06600B7A356 /* Support Files */,
-			);
-			name = SMSegmentView;
-			path = Pods/SMSegmentView;
 			sourceTree = "<group>";
 		};
 		52CB8A001C42F9C40020959B /* Modle's */ = {
@@ -358,8 +316,11 @@
 		52E317F91C29B3E500635E10 /* Extrafiles */ = {
 			isa = PBXGroup;
 			children = (
-				525F4CC01C71F06600B7A356 /* SMSegmentView */,
+				527FB0461E416936009A7A35 /* SMSegment.swift */,
+				527FB0481E41693E009A7A35 /* SMSegmentView.swift */,
 				52EC93911C28539C007CF8F4 /* ClassExtentions.swift */,
+				5291A31B1E44471B008B686F /* SMSegmentAppearance.swift */,
+				5291A31C1E44471B008B686F /* SMSegmentViewConstants.swift */,
 				5206AD941C273B3C00A1EFAD /* Assets.xcassets */,
 				5206AD991C273B3C00A1EFAD /* Info.plist */,
 			);
@@ -467,6 +428,7 @@
 					5206AD891C273B3C00A1EFAD = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = VAF4J635VX;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -476,6 +438,7 @@
 					524BC6161C8313F600470EF5 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = VAF4J635VX;
+						LastSwiftMigration = 0820;
 						TestTargetID = 5206AD891C273B3C00A1EFAD;
 					};
 				};
@@ -507,7 +470,6 @@
 				5206AD951C273B3C00A1EFAD /* Assets.xcassets in Resources */,
 				5206AD931C273B3C00A1EFAD /* Main.storyboard in Resources */,
 				5223121F1C3B0AB800AF218A /* LaunchScreen.storyboard in Resources */,
-				525F4CC71C71F06600B7A356 /* SMSegmentView.xcconfig in Resources */,
 				52CB8A061C46D8060020959B /* UserInfoWindow.xib in Resources */,
 				524839E91CBE96FE00D63420 /* GooglePlacesAutocomplete.xib in Resources */,
 				52CB89F51C3EBC400020959B /* CustomInfoWindow.xib in Resources */,
@@ -577,13 +539,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5257CC3F1C3DAD1200B85378 /* GooglePlacesAutocomplete.swift in Sources */,
-				525F4CC21C71F06600B7A356 /* SMBasicSegment.swift in Sources */,
 				52E135041C4BC9C6008684DB /* APIKeys.swift in Sources */,
 				522D20A31C580A4A009069DA /* UserRoutesViewController.swift in Sources */,
 				52E317FB1C29B48600635E10 /* ProfileTableViewController.swift in Sources */,
 				52E135021C4AEB45008684DB /* UserProfileData.swift in Sources */,
 				52EC93981C289CBA007CF8F4 /* FAQViewController.swift in Sources */,
 				524C755A1C4C293500776597 /* ContactViewController.swift in Sources */,
+				527FB0491E41693E009A7A35 /* SMSegmentView.swift in Sources */,
 				52E135011C4AEB45008684DB /* UserProfileData+CoreDataProperties.swift in Sources */,
 				52EC93921C28539C007CF8F4 /* ClassExtentions.swift in Sources */,
 				52E135061C4BCE5E008684DB /* FilterSelectionViewController.swift in Sources */,
@@ -591,10 +553,9 @@
 				52CB8A041C43C4D80020959B /* RetrieveDataFromBackEnd.swift in Sources */,
 				5206AD901C273B3C00A1EFAD /* ViewController.swift in Sources */,
 				529C8A5C1C48411100268B99 /* HitcherDriverTableViewController.swift in Sources */,
-				525F4CC31C71F06600B7A356 /* SMBasicSegmentView.swift in Sources */,
 				52452D6A1C3D2680004FCB44 /* GoogleMapsViewController.swift in Sources */,
+				5291A31E1E44471B008B686F /* SMSegmentViewConstants.swift in Sources */,
 				52EC93941C2853E1007CF8F4 /* FacebookLoginViewController.swift in Sources */,
-				525F4CC11C71F06600B7A356 /* SMAlphaImageSegment.swift in Sources */,
 				5206AD8E1C273B3C00A1EFAD /* AppDelegate.swift in Sources */,
 				52E2962E1C39BE1C00C493CC /* MapKitViewController.swift in Sources */,
 				52EEDF911C333BAF00C64EBF /* UploadDataToBackEnd.swift in Sources */,
@@ -608,11 +569,10 @@
 				525F4CB31C6E70E200B7A356 /* MenuTableViewController.swift in Sources */,
 				52CB89F71C3EC1C20020959B /* CustomInfoWindow.swift in Sources */,
 				52CB89FB1C3F32720020959B /* OldCodeForFutureUse.swift in Sources */,
-				525F4CC51C71F06600B7A356 /* SMSegmentView.swift in Sources */,
 				52CB89F91C3F09EB0020959B /* HtichOrDrivePopupViewController.swift in Sources */,
-				525F4CC41C71F06600B7A356 /* SMSegment.swift in Sources */,
-				525F4CC81C71F06600B7A356 /* SMSegmentView-dummy.m in Sources */,
+				527FB0471E416936009A7A35 /* SMSegment.swift in Sources */,
 				52AA7F3B1C28A5B50099352F /* MapViewController.swift in Sources */,
+				5291A31D1E44471B008B686F /* SMSegmentAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,8 +580,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524BC6221C83143E00470EF5 /* ViewControllerTests.swift in Sources */,
-				524BC61A1C8313F600470EF5 /* hitchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,10 +704,11 @@
 				INFOPLIST_FILE = hitch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch1;
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hitch/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -771,10 +730,11 @@
 				INFOPLIST_FILE = hitch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch1;
+				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -788,6 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "";
 			};
 			name = Debug;
@@ -800,6 +761,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = applegate.hitchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "";
 			};
 			name = Release;

@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import MK
+import Material
 
 // Edits description of error to display constraint id
 extension NSLayoutConstraint {
     
-    override public var description: String {
+    override open var description: String {
         let id = identifier ?? ""
         return "id: \(id), constant: \(constant)"
     }
@@ -24,38 +24,38 @@ extension UIViewController {
         return UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
     }
     // Adds side menu to view controllers
-    func addSideMenu(menuButton : UIBarButtonItem!) {
+    func addSideMenu(_ menuButton : UIBarButtonItem!) {
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
-            menuButton.action = Selector("revealToggle:")
+            menuButton.action = Selector(("revealToggle:"))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             self.revealViewController().rearViewRevealWidth = CGFloat(200)
             self.revealViewController().frontViewShadowRadius = CGFloat(50)
-            self.revealViewController().frontViewShadowOffset = CGSizeMake(CGFloat(0), CGFloat(5))
+            self.revealViewController().frontViewShadowOffset = CGSize(width: CGFloat(0), height: CGFloat(5))
             self.revealViewController().frontViewShadowOpacity = CGFloat(1)
-            self.revealViewController().frontViewShadowColor = UIColor.darkGrayColor()
+            self.revealViewController().frontViewShadowColor = UIColor.darkGray
             changeColorScheme()
         }
     }
     
     func changeColorScheme(){
         self.navigationController?.navigationBar.barTintColor = purple
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
 
     }
     
-    func runCodeAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(time, dispatch_get_main_queue(), block)
+    func runCodeAfterDelay(_ delay: TimeInterval, block: @escaping ()->()) {
+        let time = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: block)
     }
     
 }
 
 protocol SendDataBackProtocol {
     
-    func sendRouteBack(route : String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String)
+    func sendRouteBack(_ route : String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String)
     
 }
 
@@ -75,7 +75,7 @@ extension String {
 }
 
 extension Double {
-    func format(f: String) -> String {
+    func format(_ f: String) -> String {
         return String(format: "%.3f", f)
     }
 }

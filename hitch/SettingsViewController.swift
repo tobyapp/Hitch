@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import Whisper
 import Parse
 import ParseFacebookUtilsV4
-import MK
+import Material
 import CoreData
 import ASValueTrackingSlider
 
@@ -21,13 +21,13 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var ageSlider: ASValueTrackingSlider!
 
-    @IBAction func ageChanged(sender: ASValueTrackingSlider) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(round(sender.value), forKey: "AgePreference")
+    @IBAction func ageChanged(_ sender: ASValueTrackingSlider) {
+        let defaults = UserDefaults.standard
+        defaults.set(round(sender.value), forKey: "AgePreference")
     }
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     var userName: String?
     var profileData = [UserProfileData]()
     var segmentView: SMSegmentView!
@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         self.addSideMenu(menuButton)
 
@@ -46,11 +46,11 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         ageSlider.popUpViewCornerRadius = 25
         ageSlider.setMaxFractionDigitsDisplayed(0)
         ageSlider.popUpViewColor = purple
-        ageSlider.textColor = UIColor.whiteColor()
+        ageSlider.textColor = UIColor.white
         ageSlider.font = RobotoFont.mediumWithSize(50)
         
         //set value of slider
-        if let agePreference = Int(defaults.stringForKey("AgePreference")!) {
+        if let agePreference = Int(defaults.string(forKey: "AgePreference")!) {
             ageSlider.setValue(Float(agePreference), animated: false)
         }
         else {
@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
 
         fetchProfileData()
         
-        let frame = UIScreen.mainScreen().bounds
+        let frame = UIScreen.main.bounds
         let segmentFrame = CGRect(x: frame.minX + 20,
             y: frame.minY + 750,
             width: frame.width - 40,
@@ -67,23 +67,23 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         segmentView = SMSegmentView(frame: segmentFrame,
             separatorColour: purple,
             separatorWidth: 1.0,
-            segmentProperties: [keySegmentTitleFont : UIFont.systemFontOfSize(21.0),
-                keySegmentOnSelectionColour : UIColor.whiteColor(),
+            segmentProperties: [keySegmentTitleFont : UIFont.systemFont(ofSize: 21.0),
+                keySegmentOnSelectionColour : UIColor.white,
                 keySegmentOffSelectionColour : purple,
-                keyContentVerticalMargin : 5.0])
+                keyContentVerticalMargin : 5.0 as AnyObject])
         
         segmentView.segmentOnSelectionTextColour = purple
-        segmentView.segmentOffSelectionTextColour = UIColor.whiteColor()
+        segmentView.segmentOffSelectionTextColour = UIColor.white
         segmentView.addSegmentWithTitle("Male", onSelectionImage: UIImage(named: "male-purple"), offSelectionImage: UIImage(named: "male-white"))
         segmentView.addSegmentWithTitle("Female", onSelectionImage: UIImage(named: "female-purple"), offSelectionImage: UIImage(named: "female-white"))
         segmentView.addSegmentWithTitle("Either", onSelectionImage: nil, offSelectionImage: nil)
         segmentView.delegate = self
         segmentView.layer.cornerRadius = 10.0
-        segmentView.layer.borderColor = purple.CGColor
+        segmentView.layer.borderColor = purple.cgColor
         segmentView.layer.borderWidth = 1.0
         
         //set value of gender seelctor
-        if let genderPreference = defaults.stringForKey("GenderPreference") {
+        if let genderPreference = defaults.string(forKey: "GenderPreference") {
             switch genderPreference {
             case "male":
                 segmentView.selectSegmentAtIndex(0)
@@ -160,9 +160,9 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
     
     
     func fetchProfileData() {
-        let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileData")
         do {
-            profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+            profileData = try (managedObjectContext.fetch(fetchRequest) as? [UserProfileData])!
             let userData = profileData[0]
             self.userName = userData.userName!
         }
@@ -172,33 +172,33 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         }
     }
     
-    func logOutOfFb(sender: UIButton) {
+    func logOutOfFb(_ sender: UIButton) {
         let loginManager = FBSDKLoginManager()
         loginManager.logOut() // this is an instance function
         
         //segue to loging screen
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("loginView") as UIViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "loginView") as UIViewController
+        self.present(viewController, animated: true, completion: nil)
         
         //display logout message
         var murmur = Murmur(title: "\(userName!) logged out")
         show(whistle: murmur, action: .Show(0.5))
     }
     
-    func segmentView(segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
-        let defaults = NSUserDefaults.standardUserDefaults()
+    func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+        let defaults = UserDefaults.standard
         switch index {
         case 0:
-             defaults.setObject("male", forKey: "GenderPreference")
+             defaults.set("male", forKey: "GenderPreference")
              print("male")
         case 1:
-            defaults.setObject("female", forKey: "GenderPreference")
+            defaults.set("female", forKey: "GenderPreference")
             print("female")
         case 2:
-            defaults.setObject("either", forKey: "GenderPreference")
+            defaults.set("either", forKey: "GenderPreference")
             print("either")
         default:
-            defaults.setObject("either", forKey: "GenderPreference")
+            defaults.set("either", forKey: "GenderPreference")
             print("either")
         }
     }

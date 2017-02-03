@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
-import MK
+import Material
 
 // Shown after user selects either 'show driving routes' or 'show hitch'n routes'
 class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
@@ -36,7 +36,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         // To make the compas button viewable
         if let navBarHeight = self.navigationController?.navigationBar.frame.height
         {
-            let compasButtonHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+            let compasButtonHeight = UIApplication.shared.statusBarFrame.size.height
             mapView.padding = UIEdgeInsetsMake(navBarHeight+compasButtonHeight,0,0,0);
         }
         
@@ -45,7 +45,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         
         getRoutesAndDisplayThem()
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(FilterSelectionViewController.refreshMap))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(FilterSelectionViewController.refreshMap))
         navigationItem.rightBarButtonItem = refreshButton
 
     }
@@ -56,21 +56,21 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
     
     // handles when auth for locaiton is changed (see docs)
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .Denied {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .denied {
             manager.stopUpdatingLocation()
-            mapView.myLocationEnabled = false
+            mapView.isMyLocationEnabled = false
         }
             
-        else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+        else if status == .authorizedAlways || status == .authorizedWhenInUse {
             manager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
+            mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
     }
     
     // places view on users location
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
@@ -78,7 +78,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
 
     // Draws route on map (colour changes depending on user type)
-    func drawRoute(route: String, userType: String) {
+    func drawRoute(_ route: String, userType: String) {
         print("in draw route \(userType)")
 //        print("user type : \(userType)")
 //        print("userTypeFilter : \(userTypeFilter)")
@@ -88,17 +88,17 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             routePolyline.strokeWidth = 5.0
             switch userType {
                 case "driver":
-                    let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
+                    let driverLine = GMSStrokeStyle.solidColor(UIColor.green)
                     routePolyline.spans = [GMSStyleSpan(style: driverLine)]
                 case "hitcher":
                     let hitcherLine = GMSStrokeStyle.solidColor(purple)
                     routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
                 case "selected":
-                    let selectedLine = GMSStrokeStyle.solidColor(UIColor.redColor())
+                    let selectedLine = GMSStrokeStyle.solidColor(UIColor.red)
                     routePolyline.spans = [GMSStyleSpan(style: selectedLine)]
                     routePath = routePolyline
                 default:
-                    let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
+                    let standardline = GMSStrokeStyle.solidColor(UIColor.blue)
                     routePolyline.spans = [GMSStyleSpan(style: standardline)]
             }
             routePolyline.map = mapView
@@ -106,10 +106,11 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
 
  //Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
+    func placeMarker(_ coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
+     var userName = userName
         
         if userTypeFilter == userType {
-            let currentUser = PFUser.currentUser()?.valueForKey("userName")
+            let currentUser = PFUser.current()?.value(forKey: "userName")
     
             if userName == currentUser! as! String {
                 userName = "You"
@@ -119,26 +120,26 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             
             switch userType {
                 case "driver":
-                    locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
+                    locationMarker.icon = GMSMarker.markerImage(with: UIColor.green)
                     locationMarker.title = "Driver : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
                     locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
                 case "hitcher":
-                    locationMarker.icon = GMSMarker.markerImageWithColor(purple)
+                    locationMarker.icon = GMSMarker.markerImage(with: purple)
                     locationMarker.title = "Hitcher : \(userName)"
                     locationMarker.snippet = "\(timeOfRoute)"
                     locationMarker.userData = ["userID": userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
                 default:
-                    locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+                    locationMarker.icon = GMSMarker.markerImage(with: UIColor.blue)
                     locationMarker.title = "Driver/Hitcher : unkown"
             }
             locationMarker.map = mapView
         }
     }
     // Presents custom window info box above marker
-    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+    func mapView(_ mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
-        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+        let infoWindow: CustomInfoWindow = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self, options: nil)!.first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
         let routeData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
@@ -149,11 +150,11 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             infoWindow.frame.size.width = 300
             infoWindow.frame.size.height = 150
                 
-            let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
+            let extraInfoLabel = UILabel(frame: CGRect(x: 0, y: 50, width: infoWindow.frame.size.width , height: 100))
             extraInfoLabel.numberOfLines = 0
-            extraInfoLabel.textAlignment = .Center
+            extraInfoLabel.textAlignment = .center
             extraInfoLabel.text = "Extra info : \(routeData["extraRideInfo"])"
-            extraInfoLabel.textColor = UIColor.whiteColor()
+            extraInfoLabel.textColor = UIColor.white
             extraInfoLabel.layer.cornerRadius = 10
             infoWindow.addSubview(extraInfoLabel)
         }
@@ -164,17 +165,17 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
             infoWindow.frame.size.height = 75
         }
             
-        let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
-        userLabel.textAlignment = .Center
+        let userLabel = UILabel(frame: CGRect(x: 0, y: 0, width: infoWindow.frame.size.width , height: 50))
+        userLabel.textAlignment = .center
         userLabel.text = marker.title
-        userLabel.textColor = UIColor.whiteColor()
+        userLabel.textColor = UIColor.white
         userLabel.layer.cornerRadius = 10
         infoWindow.addSubview(userLabel)
             
-        let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
-        timeLabel.textAlignment = .Center
+        let timeLabel = UILabel(frame: CGRect(x: 0, y: 25, width: infoWindow.frame.size.width , height: 50))
+        timeLabel.textAlignment = .center
         timeLabel.text = "At : \(marker.snippet)"
-        timeLabel.textColor = UIColor.whiteColor()
+        timeLabel.textColor = UIColor.white
         timeLabel.layer.cornerRadius = 10
         infoWindow.addSubview(timeLabel)
         
@@ -197,7 +198,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
 
     // When user taps the map (not the info marker or anything)
-    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         if let routePath = routePath {
             // removes previously plotted line from the map
             routePath.map = nil
@@ -205,15 +206,15 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
 
     // executes when user taps custom window info above marker, presents PopooverViewController
-    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+    func mapView(_ mapView: GMSMapView!, didTapInfoWindowOf marker: GMSMarker!) {
         let routeData = marker.userData as! [String: AnyObject] //marker.userData["routePath"] as! String
         userID = "\(routeData["userID"])"
         routeId = "\(routeData["routeId"])"
-        performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+        performSegue(withIdentifier: "segueToUsersProfile", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if let destinationViewController = segue.destination as? HitcherDriverTableViewController {
             destinationViewController.userData = userID!
             if let routeId = routeId {
                 destinationViewController.routeId = routeId

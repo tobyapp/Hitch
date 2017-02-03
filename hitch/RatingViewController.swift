@@ -8,7 +8,7 @@
 
 import UIKit
 import Cosmos
-import MK
+import Material
 import Parse
 
 class RatingViewController: UIViewController {
@@ -18,7 +18,7 @@ class RatingViewController: UIViewController {
     @IBOutlet weak var ratingMessage: UILabel!
     
     
-    private var rating: Double?
+    fileprivate var rating: Double?
     var objectId: String?
     var routeId: String?
     var uploadData = UploadDataToBackEnd()
@@ -58,13 +58,13 @@ class RatingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func didFinishTouchingCosmos(userRating: Double){
+    func didFinishTouchingCosmos(_ userRating: Double){
         rating = userRating
     }
 
-    func rate(sender: UIButton) {
+    func rate(_ sender: UIButton) {
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
         if let rating = rating {
             uploadData.userReviewed(routeId!, userId: objectId!)
             uploadData.addRating(rating, userReviewed: objectId!)

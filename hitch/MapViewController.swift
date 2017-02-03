@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MK
+import Material
 import CoreLocation
 
 class MapViewController: UIViewController {
@@ -41,26 +41,26 @@ class MapViewController: UIViewController {
 
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
-            case .AuthorizedAlways, .AuthorizedWhenInUse:
+            case .authorizedAlways, .authorizedWhenInUse:
                 
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            case .NotDetermined:
+            case .notDetermined:
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
-            case .Restricted, .Denied:
+            case .restricted, .denied:
                 break
             }
         }
 
         self.addSideMenu(menuButton)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        guard let _ = defaults.stringForKey("AgePreference") else {
-            defaults.setObject(75, forKey: "AgePreference")
+        let defaults = UserDefaults.standard
+        guard let _ = defaults.string(forKey: "AgePreference") else {
+            defaults.set(75, forKey: "AgePreference")
             return
         }
-        guard let _ = defaults.stringForKey("GenderPreference") else {
-            defaults.setObject("either", forKey: "GenderPreference")
+        guard let _ = defaults.string(forKey: "GenderPreference") else {
+            defaults.set("either", forKey: "GenderPreference")
             return
         }
 
@@ -71,21 +71,21 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showDriverRoutes(sender: UIButton){
+    func showDriverRoutes(_ sender: UIButton){
         print("driver")
         userType = "driver"
-        performSegueWithIdentifier("filterSegue", sender: nil)
+        performSegue(withIdentifier: "filterSegue", sender: nil)
     }
     
-    func showHitchRoutes(sender: UIButton){
+    func showHitchRoutes(_ sender: UIButton){
         print("hitcher")
         userType = "hitcher"
-        performSegueWithIdentifier("filterSegue", sender: nil)
+        performSegue(withIdentifier: "filterSegue", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "filterSegue") {
-            if let destinationViewController = segue.destinationViewController as? FilterSelectionViewController {
+            if let destinationViewController = segue.destination as? FilterSelectionViewController {
                 destinationViewController.userTypeFilter = userType
             }
         }

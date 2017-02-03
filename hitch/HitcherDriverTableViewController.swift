@@ -20,14 +20,14 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
     var userDetails = [String]()
     var routeId : String?
     var showMatch : Bool?
-    let currentUser = "\((PFUser.currentUser()?.valueForKey("objectId"))!)"
+    let currentUser = "\((PFUser.current()?.value(forKey: "objectId"))!)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         
         if (userData! != currentUser && showMatch!) {
-            let matchButton = UIBarButtonItem(title: "Match!", style: .Done, target: self, action: #selector(HitcherDriverTableViewController.match))
+            let matchButton = UIBarButtonItem(title: "Match!", style: .done, target: self, action: #selector(HitcherDriverTableViewController.match))
             navigationItem.rightBarButtonItem = matchButton
         }
         
@@ -42,20 +42,20 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
                 
                 if let picture = results["userDisplayPicture"] as! UIImage? {
                     //reloads tableview on main thread
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.addParallaxWithImage(picture, andHeight: 450, andShadow: true)
+                    DispatchQueue.main.async {
+                        self.tableView.addParallax(with: picture, andHeight: 450, andShadow: true)
                         self.tableView.reloadData()
                     }
                 }
                 
                 let params = ["objectId" : userData]
-                PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+                PFCloud.callFunction(inBackground: "averageRating", withParameters: params) { ( response, error) -> Void in
                     if response != nil {
                         if error == nil {
                             self.userDetails.append("Hitch Rating  :  \(response!)")
                         }
                         else {
-                            print(error)
+                            print(error!)
                         }
                     }
                     else {
@@ -64,7 +64,7 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
                     }
                     
                     //reloads tableview on main thread
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 }
@@ -75,7 +75,7 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
     // Function activated from matchButton
     func match() {
         updateData.addMatchToRoute(routeId!, userId: userData!)
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,27 +85,27 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return userDetails.count
         
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("userCells", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCells", for: indexPath)
         
         // if current user loged in
         if (userData! == currentUser) {
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
         }
         else {
-            cell.userInteractionEnabled = true
-            cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+            cell.isUserInteractionEnabled = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.blue
         }
         
         cell.textLabel!.text = userDetails[indexPath.item] as String
@@ -115,11 +115,11 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
         return cell
     }
     
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (userData! != currentUser) {
             print("touched")
             print(indexPath.row)
@@ -132,12 +132,12 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
                 mc.setSubject("Your New Hitch Match!")
                 mc.setMessageBody("Hey we just matched!", isHTML: false)
                 mc.setToRecipients([(userDetails[indexPath.item])])
-                self.presentViewController(mc, animated: true, completion: nil)
+                self.present(mc, animated: true, completion: nil)
             }
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error:NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error:Error?) {
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue:
             print("Mail cancelled")
@@ -151,14 +151,14 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
             break
         }
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
-    func getAverageRating(usersObjectId : String) -> String? {
+    func getAverageRating(_ usersObjectId : String) -> String? {
         let params = ["objectId" : usersObjectId]
         var rating: String?
         
-        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+        PFCloud.callFunction(inBackground: "averageRating", withParameters: params) { ( response, error) -> Void in
             if response != nil {
                 if error == nil {
                     print("rating is : \(response!)")
@@ -176,11 +176,11 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
          return rating
     }
     
-    func parallaxView(view: APParallaxView!, willChangeFrame frame: CGRect) {
+    func parallaxView(_ view: APParallaxView!, willChangeFrame frame: CGRect) {
         print("will change")
     }
     
-    func parallaxView(view: APParallaxView!, didChangeFrame frame: CGRect) {
+    func parallaxView(_ view: APParallaxView!, didChangeFrame frame: CGRect) {
         print("did change")
     }
 

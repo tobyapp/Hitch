@@ -14,7 +14,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     @IBOutlet weak var mapView: MKMapView!
 
-    @IBAction func currentLocation(sender: AnyObject) {
+    @IBAction func currentLocation(_ sender: AnyObject) {
         let location = self.locationManager.location
         if let locationValue = location?.coordinate {
             let region = MKCoordinateRegion(center: locationValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -34,14 +34,14 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
-            case .AuthorizedAlways, .AuthorizedWhenInUse:
+            case .authorizedAlways, .authorizedWhenInUse:
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.startUpdatingLocation()
-            case .NotDetermined:
+            case .notDetermined:
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
-            case .Restricted, .Denied:
+            case .restricted, .denied:
                 showAlertController("Location services not enabled!", errorMessage: "Please enbale locaiotn services to Hitch!")
             }
         }
@@ -60,8 +60,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         // Dispose of any resources that can be recreated.
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
             manager.startUpdatingLocation()
             mapView.showsUserLocation = true
         }
@@ -75,28 +75,28 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, CLLocationManag
 //    }
     
     // Function to display an Alert Controller (for test purposes)
-    func showAlertController(errorTitle: String, errorMessage: String) {
+    func showAlertController(_ errorTitle: String, errorMessage: String) {
         let alertController = UIAlertController(
             title: errorTitle,
             message: errorMessage,
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "ok",
-            style: UIAlertActionStyle.Destructive,
+            style: UIAlertActionStyle.destructive,
             handler: nil)
         alertController.addAction(cancelAction)
         
         // Opens the phones settings application
         let openAction = UIAlertAction(
             title: "Open Settings",
-            style: .Default)
+            style: .default)
             { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
+                if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(url)
                 }
         }
         alertController.addAction(openAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     /*

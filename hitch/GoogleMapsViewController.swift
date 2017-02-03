@@ -9,14 +9,14 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
-import MK
+import Material
 import Parse
 
 class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, SendDataBackProtocol  {
 
     @IBOutlet weak var mapView: GMSMapView!
 
-    @IBAction func searchButton(sender: AnyObject) {
+    @IBAction func searchButton(_ sender: AnyObject) {
         presentSearchBar()
     }
     
@@ -46,7 +46,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // To make the compas button viewable
         if let navBarHeight = self.navigationController?.navigationBar.frame.height
         {
-            let compasButtonHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+            let compasButtonHeight = UIApplication.shared.statusBarFrame.size.height
             mapView.padding = UIEdgeInsetsMake(navBarHeight+compasButtonHeight,0,0,0);
         }
         
@@ -59,13 +59,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // handles location auth globally and locally (locally as in for app, globally as in for whole phone through locaiotnservicesenabled())
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
-            case .AuthorizedAlways, .AuthorizedWhenInUse:
+            case .authorizedAlways, .authorizedWhenInUse:
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            case .NotDetermined:
+            case .notDetermined:
                 locationManager.requestAlwaysAuthorization()
                 locationManager.requestWhenInUseAuthorization()
-            case .Restricted, .Denied:
+            case .restricted, .denied:
                 showAlertController("Location services not enabled!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
             }
         }
@@ -73,7 +73,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             showAlertController("Allow Hitch to access your location!", errorMessage: "Please enbale location services to Hitch!", showSettings: true, showProfile: false)
         }
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(refreshMap))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMap))
         navigationItem.rightBarButtonItem = refreshButton
     }
 
@@ -82,12 +82,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let gpaViewController = GooglePlacesAutocomplete (
             apiKey: keys.googlePlacesAPIKey,
-            placeType: .Address
+            placeType: .address
         )
         gpaViewController.placeDelegate = self
     }
@@ -96,32 +96,32 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     func presentSearchBar(){
         let gpaViewController = GooglePlacesAutocomplete (
             apiKey: keys.googlePlacesAPIKey,
-            placeType: .Address
+            placeType: .address
         )
         
-        gpaViewController.navigationBar.tintColor = UIColor.whiteColor()
+        gpaViewController.navigationBar.tintColor = UIColor.white
         gpaViewController.navigationBar.barTintColor = purple
-        gpaViewController.navigationBar.barStyle = UIBarStyle.Black
+        gpaViewController.navigationBar.barStyle = UIBarStyle.black
         gpaViewController.placeDelegate = self
-        presentViewController(gpaViewController, animated: true, completion: nil)
+        present(gpaViewController, animated: true, completion: nil)
     }
     
     // handles when auth for locaiton is changed (see docs)
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .Denied {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .denied {
             manager.stopUpdatingLocation()
-            mapView.myLocationEnabled = false
+            mapView.isMyLocationEnabled = false
         }
         
-        else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+        else if status == .authorizedAlways || status == .authorizedWhenInUse {
             manager.startUpdatingLocation()
-            mapView.myLocationEnabled = true
+            mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
     }
     
     // places view on users location
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let locValue:CLLocationCoordinate2D = manager.location!.coordinate {
             originLatitude = locValue.latitude
             originLongitude = locValue.longitude
@@ -163,15 +163,15 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     // Function to display an Alert Controller
-    func showAlertController(errorTitle: String, errorMessage: String, showSettings: Bool, showProfile: Bool) {
+    func showAlertController(_ errorTitle: String, errorMessage: String, showSettings: Bool, showProfile: Bool) {
         
         let alertController = UIAlertController(
             title: errorTitle,
             message: errorMessage,
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "Ok",
-            style: UIAlertActionStyle.Destructive,
+            style: UIAlertActionStyle.destructive,
             handler: nil)
         alertController.addAction(cancelAction)
         
@@ -179,10 +179,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             // Opens the phones settings application
             let openAction = UIAlertAction(
                 title: "Open Settings",
-                style: .Default)
+                style: .default)
                 { action in
-                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication().openURL(url)
+                    if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.shared.openURL(url)
                     }
                 }
             alertController.addAction(openAction)
@@ -192,15 +192,15 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             // Displays an action to user profile defined by userID 
             let profielAction = UIAlertAction(
                 title:"Show Profile",
-                style: .Default,
+                style: .default,
                 handler: { action in
-                    self.performSegueWithIdentifier("segueToUsersProfile", sender: self)
+                    self.performSegue(withIdentifier: "segueToUsersProfile", sender: self)
                 }
             )
             alertController.addAction(profielAction)
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            self.present(alertController, animated: true, completion: nil)
         })
     }
 
@@ -211,7 +211,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverPresentationControllerDelegate {
     
     // Allows user to search in search box from googlePlacesApi, when place is selected marker is placed
-    func placeSelected(place: Place) {
+    func placeSelected(_ place: Place) {
         place.getDetails { details in
             self.destinationLongitude = details.longitude
             self.destinationLatitude = details.latitude
@@ -223,23 +223,24 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D) {
+    func placeMarker(_ coordinate: CLLocationCoordinate2D) {
         if let routePath = routePath {
             // removes previously plotted line from the map
             routePath.map = nil
         }
         
         locationMarker = GMSMarker(position: coordinate)
-        locationMarker.icon = GMSMarker.markerImageWithColor(purple)
+        locationMarker.icon = GMSMarker.markerImage(with: purple)
         locationMarker.map = mapView
         locationMarker.userData = ["longitude" : coordinate.longitude, "latitude" : coordinate.latitude]
         plottedByUser = true
     }
     
     // Places marker on map when address is selected from searching, called from placeSelected()
-    func placeMarker(coordinate: CLLocationCoordinate2D, var userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
+    func placeMarker(_ coordinate: CLLocationCoordinate2D, userName: String, userType: String, userID: String, timeOfRoute: String, routeId : String, extraRideInfo: String, routePath: String) {
+        var userName = userName
         
-        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        let currentUser = PFUser.current()?.value(forKey: "objectId")
         
         if userID == currentUser! as! String {
             userName = "You"
@@ -249,30 +250,30 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         
         switch userType {
         case "driver":
-            locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
+            locationMarker.icon = GMSMarker.markerImage(with: UIColor.green)
             locationMarker.title = "Driver : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
             locationMarker.userData = ["userID" : userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         case "hitcher":
-            locationMarker.icon = GMSMarker.markerImageWithColor(purple)
+            locationMarker.icon = GMSMarker.markerImage(with: purple)
             locationMarker.title = "Hitcher : \(userName)"
             locationMarker.snippet = "\(timeOfRoute)"
             locationMarker.userData = ["userID" : userID, "routeId" : routeId, "extraRideInfo" : extraRideInfo, "routePath" : routePath ]
         default:
-            locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+            locationMarker.icon = GMSMarker.markerImage(with: UIColor.blue)
             locationMarker.title = "Driver/Hitcher : unkown"
         }
         locationMarker.map = mapView
     }
     
     func placeViewClosed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // Presents custom window info box above marker
-    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+    func mapView(_ mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
 
-        let infoWindow: CustomInfoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+        let infoWindow: CustomInfoWindow = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self, options: nil)!.first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
         infoWindow.layer.cornerRadius = 10
         
@@ -304,11 +305,11 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 infoWindow.frame.size.width = 300
                 infoWindow.frame.size.height = 150
                 
-                let extraInfoLabel = UILabel(frame: CGRectMake(0, 50, infoWindow.frame.size.width , 100))
+                let extraInfoLabel = UILabel(frame: CGRect(x: 0, y: 50, width: infoWindow.frame.size.width , height: 100))
                 extraInfoLabel.numberOfLines = 0
-                extraInfoLabel.textAlignment = .Center
+                extraInfoLabel.textAlignment = .center
                 extraInfoLabel.text = "Extra info : \((routeData["extraRideInfo"])!)"
-                extraInfoLabel.textColor = UIColor.whiteColor()
+                extraInfoLabel.textColor = UIColor.white
                 extraInfoLabel.layer.cornerRadius = 10
                 infoWindow.addSubview(extraInfoLabel)
             }
@@ -319,17 +320,17 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 infoWindow.frame.size.height = 75
             }
             
-            let userLabel = UILabel(frame: CGRectMake(0, 0, infoWindow.frame.size.width , 50))
-            userLabel.textAlignment = .Center
+            let userLabel = UILabel(frame: CGRect(x: 0, y: 0, width: infoWindow.frame.size.width , height: 50))
+            userLabel.textAlignment = .center
             userLabel.text = marker.title
-            userLabel.textColor = UIColor.whiteColor()
+            userLabel.textColor = UIColor.white
             userLabel.layer.cornerRadius = 10
             infoWindow.addSubview(userLabel)
             
-            let timeLabel = UILabel(frame: CGRectMake(0, 25, infoWindow.frame.size.width , 50))
-            timeLabel.textAlignment = .Center
+            let timeLabel = UILabel(frame: CGRect(x: 0, y: 25, width: infoWindow.frame.size.width , height: 50))
+            timeLabel.textAlignment = .center
             timeLabel.text = "At : \(marker.snippet)"
-            timeLabel.textColor = UIColor.whiteColor()
+            timeLabel.textColor = UIColor.white
             timeLabel.layer.cornerRadius = 10
             infoWindow.addSubview(timeLabel)
             
@@ -346,7 +347,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // When user taps the map (not the info marker or anything)
-    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: GMSMapView!, didTapAt coordinate: CLLocationCoordinate2D) {
 
         // removes previously plotted line from the map
         if let routePath = routePath {
@@ -372,19 +373,19 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
-    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+    func mapView(_ mapView: GMSMapView!, didTapInfoWindowOf marker: GMSMarker!) {
         
         let routeData = marker.userData as! [String: AnyObject]
         
         if plottedByUser {
-            performSegueWithIdentifier("segueToHitchOrDriveOption", sender: nil)
+            performSegue(withIdentifier: "segueToHitchOrDriveOption", sender: nil)
             marker.map = nil
         }
             
         else if !plottedByUser {
             if calledFromAlertController {
                 calledFromAlertController = false
-                performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                performSegue(withIdentifier: "segueToUsersProfile", sender: nil)
             }
                 
             else if !calledFromAlertController {
@@ -394,14 +395,14 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                 
                 userID = "\((routeData["userID"])!)"
                 routeId = "\(routeData["routeId"]!)"
-                performSegueWithIdentifier("segueToUsersProfile", sender: nil)
+                performSegue(withIdentifier: "segueToUsersProfile", sender: nil)
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "segueToUsersProfile") {
-            if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+            if let destinationViewController = segue.destination as? HitcherDriverTableViewController {
                 destinationViewController.userData = userID!
                 if let routeId = routeId {
                     destinationViewController.routeId = routeId
@@ -411,23 +412,23 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
         }
         
         if (segue.identifier == "segueToHitchOrDriveOption") {
-            if let destinationViewController = segue.destinationViewController as? HtichOrDrivePopupViewController {
+            if let destinationViewController = segue.destination as? HtichOrDrivePopupViewController {
                 destinationViewController.destinationLatitude = destinationLatitude
                 destinationViewController.destinationLongitude = destinationLongitude
                 destinationViewController.originLatitude = originLatitude
                 destinationViewController.originLongitude = originLongitude
-                let vc = segue.destinationViewController as! HtichOrDrivePopupViewController
+                let vc = segue.destination as! HtichOrDrivePopupViewController
                 vc.delegate = self
             }
         }
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .Popover
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .popover
     }
     
     // Recieves route back from the the PopoverVC (and from RouteCalculator.swift)
-    func sendRouteBack(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
+    func sendRouteBack(_ route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
         if route == "No directions found" {
             showAlertController("No route found", errorMessage: "No route found, please try another location", showSettings: false, showProfile: false)
             return
@@ -442,7 +443,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             
             //add marker to plotted route, may not need it
             let location = CLLocationCoordinate2D(latitude: destinationLatitude, longitude: destinationLongitude)
-            let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+            let currentUser = PFUser.current()?.value(forKey: "objectId")
             self.placeMarker(location, userName: "You", userType: userType, userID: "\(currentUser!)", timeOfRoute: timeOfRoute, routeId: "", extraRideInfo: "", routePath: route)
             
             plottedByUser = false
@@ -450,20 +451,20 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Calculate route proximity then present alert to show user that another user is trvaling to this location
-    func routeProximity(usersOriginLatitude : Double, usersOriginLongitude : Double, usersDestLatitude : Double, usersDestLongitude : Double) {
+    func routeProximity(_ usersOriginLatitude : Double, usersOriginLongitude : Double, usersDestLatitude : Double, usersDestLongitude : Double) {
         
         // co-ord params to pass to back end function "routeProximity" (see parse cloud code)
         let params = ["usersOriginLatitude" : usersOriginLatitude,  "usersOriginLongitude" : usersOriginLongitude, "usersDestLatitude" : usersDestLatitude,  "usersDestLongitude" : usersDestLongitude]
-        PFCloud.callFunctionInBackground("routeProximity", withParameters: params) { ( response, error) -> Void in
+        PFCloud.callFunction(inBackground: "routeProximity", withParameters: params) { ( response, error) -> Void in
 
             if response != nil {
                 if error == nil {
                     if let userObject = response as! PFObject? {
                         
-                        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+                        let currentUser = PFUser.current()?.value(forKey: "objectId")
                         let userName = userObject["userName"]
                         self.calledFromAlertController = true
-                        self.userID = ("\(userObject.valueForKey("objectId")!)")
+                        self.userID = ("\(userObject.value(forKey: "objectId")!)")
                         
                         if "\(currentUser!)" == self.userID! {
                             self.showAlertController("Your already going there!", errorMessage: "Your already going to a location in this vicinity!", showSettings: false, showProfile: false)
@@ -481,24 +482,24 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Draws route on map (colour changes depending on user type)
-    func drawRoute(route: String, userType: String) {
+    func drawRoute(_ route: String, userType: String) {
 
         let path: GMSPath = GMSPath(fromEncodedPath: route)!
         let routePolyline = GMSPolyline(path: path)
         routePolyline.strokeWidth = 5.0
         switch userType {
             case "driver":
-                let driverLine = GMSStrokeStyle.solidColor(UIColor.greenColor())
+                let driverLine = GMSStrokeStyle.solidColor(UIColor.green)
                 routePolyline.spans = [GMSStyleSpan(style: driverLine)]
             case "hitcher":
                 let hitcherLine = GMSStrokeStyle.solidColor(purple)
                 routePolyline.spans = [GMSStyleSpan(style: hitcherLine)]
             case "selected":
-                let selectedLine = GMSStrokeStyle.solidColor(UIColor.redColor())
+                let selectedLine = GMSStrokeStyle.solidColor(UIColor.red)
                 routePolyline.spans = [GMSStyleSpan(style: selectedLine)]
                 routePath = routePolyline
             default:
-                let standardline = GMSStrokeStyle.solidColor(UIColor.blueColor())
+                let standardline = GMSStrokeStyle.solidColor(UIColor.blue)
                 routePolyline.spans = [GMSStyleSpan(style: standardline)]
         }
         routePolyline.map = mapView

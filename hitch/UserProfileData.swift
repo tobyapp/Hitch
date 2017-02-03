@@ -14,8 +14,8 @@ class UserProfileData: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     
-    class func createInManagedObjectContext(moc: NSManagedObjectContext, userName: String, userAge: String, userGender: String, userEducation: String, userDisplayPicture: NSData) -> UserProfileData {
-        let newProfile = NSEntityDescription.insertNewObjectForEntityForName("UserProfileData", inManagedObjectContext: moc) as! UserProfileData
+    class func createInManagedObjectContext(_ moc: NSManagedObjectContext, userName: String, userAge: String, userGender: String, userEducation: String, userDisplayPicture: Data) -> UserProfileData {
+        let newProfile = NSEntityDescription.insertNewObject(forEntityName: "UserProfileData", into: moc) as! UserProfileData
         newProfile.userName = userName
         newProfile.userAge = userAge
         newProfile.userGender = userGender

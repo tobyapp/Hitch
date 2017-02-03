@@ -6,13 +6,13 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit' 
 
-pod 'Whisper', '~> 3.1.1'
+pod 'Whisper'
 
-pod 'SwiftyJSON', '~> 2.3.3'
+pod 'SwiftyJSON'
 
 pod 'SWRevealViewController'
 
-pod 'MK'
+pod 'Material' 
 
 pod 'Parse'
 pod 'ParseUI'
@@ -20,9 +20,9 @@ pod 'ParseFacebookUtilsV4'
 
 pod 'GoogleMaps'
 
-pod 'Alamofire', '~> 3.5.1'
+pod 'Alamofire'
 
-pod 'Cosmos', '~> 1.2.3'
+pod 'Cosmos'
 
 pod 'JVFloatLabeledTextField'
 
@@ -31,5 +31,15 @@ pod 'ASValueTrackingSlider'
 pod 'SMSegmentView'
 
 pod 'APParallaxHeader'
+
+
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+  end
+end
 
 end

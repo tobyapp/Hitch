@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MK
+import Material
 
 class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -29,15 +29,15 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView2.delegate = self
         tableView2.dataSource = self
         
-        self.tableView1.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table1Cells")
-        self.tableView2.registerClass(UITableViewCell.self, forCellReuseIdentifier: "table2Cells")
+        self.tableView1.register(UITableViewCell.self, forCellReuseIdentifier: "table1Cells")
+        self.tableView2.register(UITableViewCell.self, forCellReuseIdentifier: "table2Cells")
         
         // Changes colour scheme to purple to match rest of app, see class extentions for more details
         changeColorScheme()
         self.addSideMenu(menuButton)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.usersMatchedRoutes.removeAll()
         self.usersOwnRoutes.removeAll()
@@ -66,7 +66,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                             return
                         }
                         
-                        guard let country = locations.ISOcountryCode else {
+                        guard let country = locations.isoCountryCode else {
                             print ("no country at \(location)")
                             return
                         }
@@ -78,7 +78,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                     
                     //reloads tableview on main thread after all data is got
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.tableView1.reloadData()
                         self.activityIndicatorView.stopAnimating()
                         
@@ -109,7 +109,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                                 return
                             }
                             
-                            guard let country = locations.ISOcountryCode else {
+                            guard let country = locations.isoCountryCode else {
                                 print ("no country at \(location)")
                                 return
                             }
@@ -123,7 +123,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
                         }
                         
                         //reloads tableview on main thread after all data is got
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             self.activityIndicatorView.stopAnimating()
                             self.tableView2.reloadData()
                         }
@@ -140,12 +140,12 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Table view data source
     
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var numberOfRows: Int?
         
@@ -160,12 +160,12 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         return numberOfRows!
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell?
         
         if tableView == tableView1 {
-            cell = tableView.dequeueReusableCellWithIdentifier("table1Cells", forIndexPath: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "table1Cells", for: indexPath)
             
             let routeDict = usersOwnRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]
@@ -177,7 +177,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if tableView == tableView2 {
             tableView.rowHeight = UITableViewAutomaticDimension
-            cell = tableView.dequeueReusableCellWithIdentifier("table2Cells", forIndexPath: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "table2Cells", for: indexPath)
             
             let routeDict = usersMatchedRoutes[indexPath.row]
             cell!.textLabel!.text = routeDict["message"]//usersMatchedRoutes[indexPath.item]
@@ -189,11 +189,11 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell!
     }
     
-     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == tableView1 {
             let row = self.tableView1.indexPathForSelectedRow?.row
@@ -201,7 +201,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             let routeId = routeDict["routeId"]
             //uploadData.deleteUserRoute(routeId!)
             let routeTo = routeDict["routeTo"]
-            showAlertController(routeId!, routeTo: routeTo!, row: row!)
+            showAlertController(routeId: routeId!, routeTo: routeTo!, row: row!)
         }
         
         if tableView == tableView2 {
@@ -213,7 +213,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
             let userName = routeDict["userName"]
             
             if let reviewed = reviewBool {
-                showAlertController(userName!, reviewed: reviewed)
+                showAlertController(userName: userName!, reviewed: reviewed)
             }
         }
     }
@@ -223,28 +223,30 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         let alertController = UIAlertController(
             title: "Review or view the user \(userName)!",
             message: "You can either view thier profile or rate them (you can only do this one per trip!)",
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "Cancel",
-            style: UIAlertActionStyle.Cancel,
+            style: UIAlertActionStyle.cancel,
             handler: nil)
-        let showAction = UIAlertAction(
+        
+        let showAction = UIAlertAction (
             title: "Show Profile!",
-            style: UIAlertActionStyle.Default)
+            style: .default)
             { action in
-                self.performSegueWithIdentifier("segueToUsersProfile", sender: nil) }
-        let rateAction = UIAlertAction(
+                self.performSegue(withIdentifier: "segueToUsersProfile", sender: nil) }
+        
+        let rateAction: UIAlertAction = UIAlertAction (
             title: "Rate Hitcher!",
-            style: UIAlertActionStyle.Default)
+            style: .default)
             { action in
-                self.performSegueWithIdentifier("segueToRating", sender: nil) }
+                self.performSegue(withIdentifier: "segueToRating", sender: nil) }
         
         alertController.addAction(cancelAction)
         if !reviewed {
             alertController.addAction(rateAction)
         }
         alertController.addAction(showAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true)
     }
     
     // Function to display an Alert Controller to delete user route
@@ -252,20 +254,20 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         let alertController = UIAlertController(
             title: "Are you sure you want to delete this route to \(routeTo)?",
             message: "By pressing the button below you will be deleting the route from yourself and all other hitchers!",
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "Cancel",
-            style: UIAlertActionStyle.Cancel,
+            style: UIAlertActionStyle.cancel,
             handler: nil)
         let deleteAction = UIAlertAction(
             title: "Delete Route!",
-            style: UIAlertActionStyle.Destructive)
+            style: UIAlertActionStyle.destructive)
             { action in
                 self.uploadData.deleteUserRoute(routeId)
-                self.usersOwnRoutes.removeAtIndex(row)
+                self.usersOwnRoutes.remove(at: row)
                 
                 //reloads tableview on main thread
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView1.reloadData()
                     print("reloading")
                 }
@@ -273,17 +275,17 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
 
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         let row = self.tableView2.indexPathForSelectedRow?.row
         let routeDict = usersMatchedRoutes[row!]
         
         if segue.identifier == "segueToRating" {
-            if let destinationViewController = segue.destinationViewController as? RatingViewController {
+            if let destinationViewController = segue.destination as? RatingViewController {
                 // Gets the row seleted from the 2nd tableView and retireves the objectId corrisponding to that row from the routeDict
                 destinationViewController.objectId = routeDict["objectId"]!
                 destinationViewController.routeId = routeDict["routeId"]!
@@ -291,7 +293,7 @@ class UserRoutesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
             
         else if segue.identifier == "segueToUsersProfile" {
-            if let destinationViewController = segue.destinationViewController as? HitcherDriverTableViewController {
+            if let destinationViewController = segue.destination as? HitcherDriverTableViewController {
                 destinationViewController.userData = routeDict["UserID"]!
                 destinationViewController.routeId = routeDict["routeId"]!
                 destinationViewController.showMatch = false

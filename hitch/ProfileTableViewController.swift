@@ -16,7 +16,7 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
     var displayPicture: UIImageView?
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     var profileData = [UserProfileData]()
     var userDataArray: [String] = []
@@ -29,27 +29,27 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
     }
 
     func fetchProfileData() {
-        let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileData")
         do {
-            profileData = try (managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+            profileData = try (managedObjectContext.fetch(fetchRequest) as? [UserProfileData])!
             let userData = profileData[0]
             userDataArray += [userData.userName!, userData.userAge!, userData.userGender!, userData.userEducation!]
-            tableView.addParallaxWithImage(UIImage(data: userData.userDisplayPicture!), andHeight: 450, andShadow: true)
+            tableView.addParallax(with: UIImage(data: userData.userDisplayPicture! as Data), andHeight: 450, andShadow: true)
         }
             
         catch let error as NSError {
             print("Fetch failed: \(error.localizedDescription)")
         }
         
-        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        let currentUser = PFUser.current()?.value(forKey: "objectId")
         let params = ["objectId" : "\(currentUser)"]
-        PFCloud.callFunctionInBackground("averageRating", withParameters: params) { ( response, error) -> Void in
+        PFCloud.callFunction(inBackground: "averageRating", withParameters: params) { ( response, error) -> Void in
             if response != nil {
                 if error == nil {
                     self.userDataArray.append("Average User Rating  :  \(response!)")
                 }
                 else {
-                    print(error)
+                    print(error!)
                 }
             }
             else {
@@ -57,7 +57,7 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
             }
             
             //reloads tableview on main thread
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
                 
             }
@@ -71,18 +71,18 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return userDataArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("profileCells", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCells", for: indexPath)
 
         cell.textLabel!.text = userDataArray[indexPath.item]
         cell.textLabel!.textColor = purple
@@ -92,11 +92,11 @@ class ProfileTableViewController: UITableViewController, APParallaxViewDelegate 
     }
     
     
-    func parallaxView(view: APParallaxView!, willChangeFrame frame: CGRect) {
+    func parallaxView(_ view: APParallaxView!, willChangeFrame frame: CGRect) {
         print("will change")
     }
     
-    func parallaxView(view: APParallaxView!, didChangeFrame frame: CGRect) {
+    func parallaxView(_ view: APParallaxView!, didChangeFrame frame: CGRect) {
         print("did change")
     }
 

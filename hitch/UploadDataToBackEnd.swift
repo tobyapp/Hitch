@@ -19,7 +19,7 @@ class UploadDataToBackEnd {
     
     var facebookProfileData = ObtainFBData()
     var notUploadedData = true
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     //not sure if app delegate needs this for when a new user signs up
 //    init() {
@@ -38,13 +38,13 @@ class UploadDataToBackEnd {
                 if error != nil {
                     print("login error: \(error!.localizedDescription)")
                 }
-                let displayPicture = UIImage(data: pictureData!)
+                let displayPicture = UIImage(data: pictureData! as Data)
                 let imageData = UIImagePNGRepresentation(displayPicture!)
                 
                 // Fetches current object in CoreData
-                let fetchRequest = NSFetchRequest(entityName: "UserProfileData")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileData")
                 do {
-                   var profileData = try (self.managedObjectContext.executeFetchRequest(fetchRequest) as? [UserProfileData])!
+                   var profileData = try (self.managedObjectContext.fetch(fetchRequest) as? [UserProfileData])!
                     // If theres more then one object in CoreData, overwrite it with new user details
                     if profileData.count != 0 {
                         let managedObject = profileData[0]
@@ -88,12 +88,12 @@ class UploadDataToBackEnd {
                 print("login error: \(error!.localizedDescription)")
             }
 
-            PFUser.currentUser()!.setObject(nameData!, forKey: "userName")
-            PFUser.currentUser()!.setObject(Int(dobData!)!, forKey: "userAge")
-            PFUser.currentUser()!.setObject(genderData!, forKey: "userGender")
-            PFUser.currentUser()!.setObject(emailData!, forKey: "userEmailAddress")
-            PFUser.currentUser()!.setObject(educationData!, forKey: "userEducation")
-            PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+            PFUser.current()!.setObject(nameData!, forKey: "userName")
+            PFUser.current()!.setObject(Int(dobData!)!, forKey: "userAge")
+            PFUser.current()!.setObject(genderData!, forKey: "userGender")
+            PFUser.current()!.setObject(emailData!, forKey: "userEmailAddress")
+            PFUser.current()!.setObject(educationData!, forKey: "userEducation")
+            PFUser.current()!.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print("Save successful")
                 } else {
@@ -106,11 +106,11 @@ class UploadDataToBackEnd {
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
             }
-            let displayPicture = UIImage(data: pictureData!)
+            let displayPicture = UIImage(data: pictureData! as Data)
             let imageData = UIImagePNGRepresentation(displayPicture!)
             let imageFile = PFFile(name:"image.png", data:imageData!)
-            PFUser.currentUser()!.setObject(imageFile!, forKey: "UserDisplayPicture")
-            PFUser.currentUser()!.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+            PFUser.current()!.setObject(imageFile!, forKey: "UserDisplayPicture")
+            PFUser.current()!.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print("Save successful")
                 } else {
@@ -121,9 +121,9 @@ class UploadDataToBackEnd {
 
     }
     
-    func addLocationData(route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
+    func addLocationData(_ route: String, userType: String, originLatitude: Double, originLongitude: Double, destinationLatitude: Double, destinationLongitude: Double, timeOfRoute: String, extraRideInfo: String) {
         let query = PFObject(className: "UserRoutes")
-        let currentUser = PFUser.currentUser()
+        let currentUser = PFUser.current()
         query.setObject(route, forKey: "UserRoute")
         query.setObject(userType, forKey: "UserType")
         query.setObject(currentUser!, forKey: "User")
@@ -134,7 +134,7 @@ class UploadDataToBackEnd {
         query.setObject(timeOfRoute, forKey: "TimeOfRoute")
         query.setObject(extraRideInfo, forKey: "ExtraRideInfo")
         query.setObject(false, forKey: "Reviewed")
-        query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+        query.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
                 print("Save successful for adding locaiton data")
             } else {
@@ -143,10 +143,10 @@ class UploadDataToBackEnd {
         }
     }
     
-    func addMatchToRoute(routeId : String, userId : String) {
+    func addMatchToRoute(_ routeId : String, userId : String) {
         let query = PFQuery(className:"UserRoutes")
-        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
-        query.getObjectInBackgroundWithId(routeId) {
+        let currentUser = PFUser.current()?.value(forKey: "objectId")
+        query.getObjectInBackground(withId: routeId) {
             (route: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 print("Save failed: \(error!.localizedDescription)")
@@ -155,7 +155,7 @@ class UploadDataToBackEnd {
                 // create pointer to user object and store that in 'match' coloumn
                 let pointer = PFObject(withoutDataWithClassName: "_User", objectId: "\(currentUser!)")
                 route["match"] = pointer
-                route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                route.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
                     if succeeded {
                         print("Save successful")
                     } else {
@@ -166,15 +166,15 @@ class UploadDataToBackEnd {
         }
     }
     
-    func userReviewed(routeId : String, userId : String) {
+    func userReviewed(_ routeId : String, userId : String) {
         let query = PFQuery(className:"UserRoutes")
-        query.getObjectInBackgroundWithId(routeId) {
+        query.getObjectInBackground(withId: routeId) {
             (route: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 print("Save failed: \(error!.localizedDescription)")
             } else if let route = route {
                 route["Reviewed"] = true
-                route.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                route.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
                     if succeeded {
                         print("Save successful")
                     } else {
@@ -186,10 +186,10 @@ class UploadDataToBackEnd {
     }
 
     
-    func addRating(rating: Double, userReviewed: String) {
+    func addRating(_ rating: Double, userReviewed: String) {
         
         let query = PFObject(className:"Ratings")
-        let currentUser = PFUser.currentUser()
+        let currentUser = PFUser.current()
         
         print("you gave \(userReviewed) \(rating) our of 5")
         
@@ -198,7 +198,7 @@ class UploadDataToBackEnd {
 
         query.setObject(currentUser!, forKey: "WhoReviewedUser")
         query.setObject(rating, forKey:  "Rating")
-        query.saveInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+        query.saveInBackground{ (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
                 print("Save successful")
             } else {
@@ -208,14 +208,14 @@ class UploadDataToBackEnd {
     }
     
     
-    func deleteUserRoute(routeId : String){
+    func deleteUserRoute(_ routeId : String){
 
         let query = PFQuery(className:"UserRoutes")
         query.whereKey("objectId", equalTo: routeId)
-        query.findObjectsInBackgroundWithBlock {
+        query.findObjectsInBackground {
             (objects: [PFObject]?, error: NSError?) -> Void in
             for object in objects! {
-                object.deleteInBackgroundWithBlock{ (succeeded: Bool, error: NSError?) -> Void in
+                object.deleteInBackground{ (succeeded: Bool, error: NSError?) -> Void in
                     if succeeded {
                         print("Deletion successful")
                     } else {

@@ -18,6 +18,6 @@ extension UserProfileData {
     @NSManaged var userAge: String?
     @NSManaged var userGender: String?
     @NSManaged var userEducation: String?
-    @NSManaged var userDisplayPicture: NSData?
+    @NSManaged var userDisplayPicture: Data?
 
 }

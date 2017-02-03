@@ -15,7 +15,7 @@ class RouteCalculator {
     let keys = APIkeys()
     let baseURL = "https://maps.googleapis.com/maps/api/directions/json?"
     
-    func getDirectionsFromCoords(originLongitude: Double, originLatitude: Double, destinationLongitude: Double, destinationLatitude: Double, resultHandler: (directions: String?) -> ()) -> () {
+    func getDirectionsFromCoords(_ originLongitude: Double, originLatitude: Double, destinationLongitude: Double, destinationLatitude: Double, resultHandler: @escaping (_ directions: String?) -> ()) -> () {
         
         let requestURL = baseURL + "origin=" + "\(originLatitude),\(originLongitude)" + "&destination=" + "\(destinationLatitude),\(destinationLongitude)" + "&key=" + keys.googlePlacesAPIKey
         

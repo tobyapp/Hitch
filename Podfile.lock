@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.5.1)
+  - Alamofire (4.3.0)
   - APParallaxHeader (0.1.6)
   - ASValueTrackingSlider (0.12.1)
   - Bolts (1.8.4):
@@ -8,12 +8,12 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Cosmos (1.2.3)
-  - FBSDKCoreKit (4.18.0):
+  - Cosmos (8.0.2)
+  - FBSDKCoreKit (4.19.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.18.0):
+  - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.18.0):
+  - FBSDKShareKit (4.19.0):
     - FBSDKCoreKit
   - GoogleMaps (2.1.1):
     - GoogleMaps/Maps (= 2.1.1)
@@ -21,7 +21,9 @@ PODS:
   - GoogleMaps/Maps (2.1.1):
     - GoogleMaps/Base
   - JVFloatLabeledTextField (1.1.1)
-  - MK (1.27.14)
+  - Material (2.4.11):
+    - Material/Core (= 2.4.11)
+  - Material/Core (2.4.11)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - ParseFacebookUtilsV4 (1.11.1):
@@ -34,49 +36,49 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SMSegmentView (1.1)
-  - SwiftyJSON (2.3.3)
+  - SwiftyJSON (3.1.4)
   - SWRevealViewController (2.3.0)
-  - Whisper (3.1.1)
+  - Whisper (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5.1)
+  - Alamofire
   - APParallaxHeader
   - ASValueTrackingSlider
-  - Cosmos (~> 1.2.3)
+  - Cosmos
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - GoogleMaps
   - JVFloatLabeledTextField
-  - MK
+  - Material
   - Parse
   - ParseFacebookUtilsV4
   - ParseUI
   - SMSegmentView
-  - SwiftyJSON (~> 2.3.3)
+  - SwiftyJSON
   - SWRevealViewController
-  - Whisper (~> 3.1.1)
+  - Whisper
 
 SPEC CHECKSUMS:
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   ASValueTrackingSlider: 5261de3fcf00adb339efc93885e8f0bc99e703cd
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Cosmos: efddd01b729956ad6335bc58bc92e5735a1d12a3
-  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
-  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
+  Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  MK: a68c9ae628f625847bddf5921e7a208873d192c2
+  Material: 09b50565d8f824bd74881eba12d7c549b41f510d
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SMSegmentView: a99862f36ea73478558ae665c209cb80c0d4f059
-  SwiftyJSON: 0fd0a115a3c0c09b277d2ab801df154902b942c3
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
-  Whisper: 74decae53daf8caff5acf8628e24b92d3f05a453
+  Whisper: 08be92623311f8e53201e62e17f6d7b9599a4714
 
-PODFILE CHECKSUM: fa8aa5500f0f48c3faf31cfba3bc198a201247b2
+PODFILE CHECKSUM: d9d237bbca9a9db67ca88819c3c99377b6a4ad4b
 
 COCOAPODS: 1.1.1

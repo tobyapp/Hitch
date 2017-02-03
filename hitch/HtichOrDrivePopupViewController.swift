@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MK
+import Material
 import JVFloatLabeledTextField
 
 // Once user searches for point on map and selects it, this view will 'pop up' with option to either drive to the point, want to hitch to the point or cancel and go back to GoogleMapsViewController
@@ -17,13 +17,13 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var textField: JVFloatLabeledTextField!
     
-    @IBAction func datePickerAction(sender: AnyObject) {
-        let currentDate = NSDate()
-        datePicker.minimumDate = currentDate.dateByAddingTimeInterval(60)
-        datePicker.maximumDate = currentDate.dateByAddingTimeInterval(259200)
-        let dateFormatter = NSDateFormatter()
+    @IBAction func datePickerAction(_ sender: AnyObject) {
+        let currentDate = Date()
+        datePicker.minimumDate = currentDate.addingTimeInterval(60)
+        datePicker.maximumDate = currentDate.addingTimeInterval(259200)
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
-        let dateString = dateFormatter.stringFromDate(datePicker.date)
+        let dateString = dateFormatter.string(from: datePicker.date)
         self.dateString = dateString
     }
     
@@ -62,17 +62,17 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         view.addSubview(hitchinToButton)
         
         // Create notifications on when keyboard is displayed/hidden
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HtichOrDrivePopupViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func addPlaceHolderText(textField: UITextField, placeholderText: String) {
+    func addPlaceHolderText(_ textField: UITextField, placeholderText: String) {
         // make it look (initially) like a placeholder
-        textField.textColor = UIColor.lightGrayColor()
+        textField.textColor = UIColor.lightGray
         textField.text = placeholderText
     }
     
-    func textViewShouldBeginEditing(aTextView: UITextView) -> Bool {
+    func textViewShouldBeginEditing(_ aTextView: UITextView) -> Bool {
         if textField.text != nil {
             textField.text = ""
             textField.textColor = purple
@@ -82,7 +82,7 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     }
     
     // To dismiss keyboard when users finished typing
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //self.view.endEditing(true)
         textField.resignFirstResponder()
         return true
@@ -95,19 +95,19 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     
     // Go back to previous VC (google maps vc)
     func cancel() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // calculate route and return this to previous vc along with user type (driver)
-    func drivingTo(sender: UIButton) {
+    func drivingTo(_ sender: UIButton) {
         
         // If user does not change date then its nil as they have not interacted with it (so therefor will be nil), this changes that to current time
         if self.dateString == nil {
-            let currentDate = NSDate()
-            let dateFormatter = NSDateFormatter()
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
-           dateFormatter.stringFromDate(currentDate)
-            let dateString = dateFormatter.stringFromDate(currentDate)
+           dateFormatter.string(from: currentDate)
+            let dateString = dateFormatter.string(from: currentDate)
             self.dateString = dateString
         }
         
@@ -122,15 +122,15 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     }
     
     // calculate route and return this to previous vc along with user type (hitcher)
-    func hitchTo(sender: UIButton) {
+    func hitchTo(_ sender: UIButton) {
         
         // If user does not change date then its nil as they have not interacted with it (so therefor will be nil), this changes that to current time
         if self.dateString == nil {
-            let currentDate = NSDate()
-            let dateFormatter = NSDateFormatter()
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
-            dateFormatter.stringFromDate(currentDate)
-            let dateString = dateFormatter.stringFromDate(currentDate)
+            dateFormatter.string(from: currentDate)
+            let dateString = dateFormatter.string(from: currentDate)
             self.dateString = dateString
         }
         
@@ -144,16 +144,16 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
     }
     
     //Move UIView up when keyboard is displayed (shown)
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y -= keyboardSize.height
         }
         
     }
     
     //Move UIView down when keyboard is retracted (hidden)
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y += keyboardSize.height
         }
     }

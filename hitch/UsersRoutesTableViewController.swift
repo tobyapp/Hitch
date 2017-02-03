@@ -33,12 +33,12 @@ class UsersRoutesTableViewController: UITableViewController {
                             let place = "\(locations.thoroughfare!)"
                             let city =  "\(locations.locality!)"
                             let region = "\(locations.administrativeArea!)"
-                            let country = "\(locations.ISOcountryCode!)"
+                            let country = "\(locations.isoCountryCode!)"
 
                             self.userRoutesArray.append("Your Route to \(place), \(city), \(region), \(country) at \(results["TimeOfRoute"]!) as a \(results["UserType"]!)")
                             
                             //reloads tableview on main thread
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 self.tableView.reloadData()
                             }
 
@@ -63,19 +63,19 @@ class UsersRoutesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return userRoutesArray.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         cell.textLabel!.text = userRoutesArray[indexPath.item]
         cell.textLabel!.textColor = purple

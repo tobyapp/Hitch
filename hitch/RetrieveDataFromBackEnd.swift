@@ -12,41 +12,41 @@ import Parse
 class RetrieveDataFromBackEnd {
     
     // Retirve current logged in users own routes
-    func retrieveUsersOwnRoutes(resultHandler: (routeObjects: [String: AnyObject]) -> ()) {
+    func retrieveUsersOwnRoutes(_ resultHandler: @escaping (_ routeObjects: [String: AnyObject]) -> ()) {
         
         // Gets current logged in users objectId and uses that to compare retieved objects
-        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        let currentUser = PFUser.current()?.value(forKey: "objectId")
         let query = PFQuery(className:"UserRoutes")
         
         // Retirves all routes from Parse 
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackground {
+            (objects: [PFObject]?, error: Error?) -> Void? in
             if error == nil {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        let user = object.objectForKey("User")
+                        let user = object.object(forKey: "User")
                         let userQuery = object["User"] as! PFObject
                         
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
-                        userQuery.fetchIfNeededInBackgroundWithBlock {
+                        userQuery.fetchIfNeededInBackground {
                             (users: PFObject?, error: NSError?) -> Void in
                             let userName = user?["userName"]
-                            let userID = user!.valueForKey("objectId") //will act as objectID
+                            let userID = user!.value(forKey: "objectId") //will act as objectID
                             // Checks if the user's id from parse matches the id of the currently logged in user
                             if ("\(userID!)" == "\(currentUser!)") {
                                 
                                 var routeDict = [String: AnyObject]()
                                 
-                                routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
-                                routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
-                                routeDict["UserType"] = object.objectForKey("UserType")!
+                                routeDict["DestinationLatitude"] = object.object(forKey: "DestinationLatitude")!
+                                routeDict["DestinationLongitude"] = object.object(forKey: "DestinationLongitude")!
+                                routeDict["UserType"] = object.object(forKey: "UserType")!
                                 routeDict["UserName"] = userName!
-                                routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
+                                routeDict["TimeOfRoute"] = object.object(forKey: "TimeOfRoute")!
                                 routeDict["UserID"] = userID!
-                                routeDict["UserRoute"] = object.objectForKey("UserRoute")!
-                                routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
-                                routeDict["RouteId"] = object.valueForKey("objectId")!
+                                routeDict["UserRoute"] = object.object(forKey: "UserRoute")!
+                                routeDict["ExtraRideInfo"] = object.object(forKey: "ExtraRideInfo")!
+                                routeDict["RouteId"] = object.value(forKey: "objectId")!
                                 
                                 resultHandler(routeObjects: routeDict)
                             }
@@ -61,13 +61,13 @@ class RetrieveDataFromBackEnd {
     }
     
     // Retireves route's from users + info about each user
-    func retrieveRoutes(resultHandler: (routeObjects: [String: AnyObject]) -> ()) {
+    func retrieveRoutes(_ resultHandler: @escaping (_ routeObjects: [String: AnyObject]) -> ()) {
 
         let query = PFQuery(className:"UserRoutes")
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         // Retirves all routes from Parse
-        query.findObjectsInBackgroundWithBlock {
+        query.findObjectsInBackground {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -78,34 +78,34 @@ class RetrieveDataFromBackEnd {
                         // checkes to see if routes are already booked or not
                         if (object["match"] == nil) {
                             
-                            let user = object.objectForKey("User")
+                            let user = object.object(forKey: "User")
                             let userQuery = object["User"] as! PFObject
-                            let routeObjectId = object.valueForKey("objectId")
+                            let routeObjectId = object.value(forKey: "objectId")
 
                             // Querys FK in UserRoutes table and obtains user's details from who plotted the route
-                            userQuery.fetchIfNeededInBackgroundWithBlock {
+                            userQuery.fetchIfNeededInBackground {
                                 (users: PFObject?, error: NSError?) -> Void in
 
                                 let userName = user?["userName"]
-                                let userID = user!.valueForKey("objectId")
+                                let userID = user!.value(forKey: "objectId")
                                 
                                 var routeDict = [String: AnyObject]()
                                 
-                                let agePreference = Int(defaults.stringForKey("AgePreference")!)
-                                let genderPreference = defaults.stringForKey("GenderPreference")!
+                                let agePreference = Int(defaults.string(forKey: "AgePreference")!)
+                                let genderPreference = defaults.string(forKey: "GenderPreference")!
       
                                 // if users age is equal or less then users preffered age range of users and euqals the desired gender or either
                                 if (Int("\((user?["userAge"]!)!)")! <= agePreference! && ( "\((user?["userGender"]!)!)" == genderPreference || genderPreference == "either") ) {
                                 
-                                    routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
-                                    routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
-                                    routeDict["UserRoute"] = object.objectForKey("UserRoute")!
-                                    routeDict["UserType"] = object.objectForKey("UserType")!
+                                    routeDict["DestinationLatitude"] = object.object(forKey: "DestinationLatitude")!
+                                    routeDict["DestinationLongitude"] = object.object(forKey: "DestinationLongitude")!
+                                    routeDict["UserRoute"] = object.object(forKey: "UserRoute")!
+                                    routeDict["UserType"] = object.object(forKey: "UserType")!
                                     routeDict["UserName"] = userName!
-                                    routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
+                                    routeDict["TimeOfRoute"] = object.object(forKey: "TimeOfRoute")!
                                     routeDict["UserID"] = userID!
                                     routeDict["RoutId"] = routeObjectId!
-                                    routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
+                                    routeDict["ExtraRideInfo"] = object.object(forKey: "ExtraRideInfo")!
                                 
                                     // Returns objects in completion handler
                                     resultHandler(routeObjects: routeDict)
@@ -123,47 +123,47 @@ class RetrieveDataFromBackEnd {
 
     
     // Retireves route's from users + info about each user
-    func retrieveMatchedRoutes(resultHandler: (matchedDict: [String: AnyObject]) -> ()) {
+    func retrieveMatchedRoutes(_ resultHandler: @escaping (_ matchedDict: [String: AnyObject]) -> ()) {
         
         // Gets current logged in users objectId and uses that to compare retieved objects
-        let currentUser = PFUser.currentUser()?.valueForKey("objectId")
+        let currentUser = PFUser.current()?.value(forKey: "objectId")
         let query = PFQuery(className:"UserRoutes")
         
         // Retirves all routes from Parse
-        query.findObjectsInBackgroundWithBlock {
+        query.findObjectsInBackground {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 if let objects = objects {
                     // Iterates through each PFObject in the query results
                     for object in objects {
-                        let user = object.objectForKey("User")
+                        let user = object.object(forKey: "User")
                         let userQuery = object["User"] as! PFObject
                         
                         // Querys FK in UserRoutes table and obtains user's details from who plotted the route
-                        userQuery.fetchIfNeededInBackgroundWithBlock {
+                        userQuery.fetchIfNeededInBackground {
                             (users: PFObject?, error: NSError?) -> Void in
                             let userName = user?["userName"]
-                            let userID = user!.valueForKey("objectId") //will act as objectID
+                            let userID = user!.value(forKey: "objectId") //will act as objectID
                             
                             // if match isnt nil then get the value
-                            if let match = object.objectForKey("match") {
+                            if let match = object.object(forKey: "match") {
                                 
                                 // Check if match's objectId (as match = pointer to User object) = current logged in user
-                                if ("\(match.valueForKey("objectId")!)" == "\(currentUser!)") {
+                                if ("\(match.value(forKey: "objectId")!)" == "\(currentUser!)") {
                                     
                                     var routeDict = [String: AnyObject]()
-                                    let user = object.objectForKey("User")
+                                    let user = object.object(forKey: "User")
                                     
-                                    routeDict["DestinationLatitude"] = object.objectForKey("DestinationLatitude")!
-                                    routeDict["DestinationLongitude"] = object.objectForKey("DestinationLongitude")!
-                                    routeDict["UserType"] = object.objectForKey("UserType")!
+                                    routeDict["DestinationLatitude"] = object.object(forKey: "DestinationLatitude")!
+                                    routeDict["DestinationLongitude"] = object.object(forKey: "DestinationLongitude")!
+                                    routeDict["UserType"] = object.object(forKey: "UserType")!
                                     routeDict["UserName"] = userName!
-                                    routeDict["TimeOfRoute"] = object.objectForKey("TimeOfRoute")!
+                                    routeDict["TimeOfRoute"] = object.object(forKey: "TimeOfRoute")!
                                     routeDict["UserID"] = userID!
-                                    routeDict["ExtraRideInfo"] = object.objectForKey("ExtraRideInfo")!
-                                    routeDict["Reviewed"] = object.objectForKey("Reviewed")!
-                                    routeDict["RouteId"] = object.valueForKey("objectId")!
-                                    routeDict["UserID"] = user!.valueForKey("objectId")
+                                    routeDict["ExtraRideInfo"] = object.object(forKey: "ExtraRideInfo")!
+                                    routeDict["Reviewed"] = object.object(forKey: "Reviewed")!
+                                    routeDict["RouteId"] = object.value(forKey: "objectId")!
+                                    routeDict["UserID"] = user!.value(forKey: "objectId")
                                     
                                     resultHandler(matchedDict: routeDict)
                                 }
@@ -181,11 +181,11 @@ class RetrieveDataFromBackEnd {
     
     // Retrive users accoutn details (age, uni, genrder, name and dp) and return in completion handler
     // Needed to set return dict as Anyobject to include UIImage, else set to string
-    func retrieveUserDetails(userID: String, resultHandler: (userDetails: [String:AnyObject]) -> ()) {
+    func retrieveUserDetails(_ userID: String, resultHandler: @escaping (_ userDetails: [String:AnyObject]) -> ()) {
         
         // Searches User class on parse with User's ID
         let query = PFQuery(className:"_User")
-        query.getObjectInBackgroundWithId(userID) {
+        query.getObjectInBackground(withId: userID) {
             (objects: PFObject?, error: NSError?) -> Void in
             var userDetails = [String: AnyObject]()
             if error == nil {
@@ -199,8 +199,8 @@ class RetrieveDataFromBackEnd {
                     if let userDisplayPicture = objects["UserDisplayPicture"] as! PFFile? {
             
                         //get users display picture from Parse
-                        userDisplayPicture.getDataInBackgroundWithBlock {
-                            (imageData: NSData?, error: NSError?) -> Void in
+                        userDisplayPicture.getDataInBackground {
+                            (imageData: Data?, error: NSError?) -> Void in
                             if error == nil {
                                 let image = UIImage(data: imageData!)
                                 userDetails["userDisplayPicture"] = image

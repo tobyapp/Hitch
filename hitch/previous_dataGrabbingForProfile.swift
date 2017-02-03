@@ -33,7 +33,7 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
         // Used to display side menu (using SWRevealViewController)
         self.addSideMenu(menuButton)
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
+        if (FBSDKAccessToken.current() != nil)
         {
             displayFBButton()
         }
@@ -44,7 +44,7 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
                         print("login error: \(error!.localizedDescription)")
                     }
                     self.displayPictureView
-                        .image = UIImage(data: pictureData!)
+                        .image = UIImage(data: pictureData! as Data)
                 }
 
                 facebookProfileData.getUserDetails { (nameData, genderData, dobData, educationData, emailData, error) -> Void in
@@ -83,17 +83,17 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     // Facebook delegate method, check if user logged in successfully
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         //method only here to satisfy Facebook delegate method, when users at this vie wthey must have already logged in so dont care about login button
     }
     
     // Function to handle what happens when a user logs out
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
         
         //segue to loging screen
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("loginView") as UIViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "loginView") as UIViewController
+        self.present(viewController, animated: true, completion: nil)
         
         //display logout message
         let murmur = Murmur(title: "\(userName!) logged out")

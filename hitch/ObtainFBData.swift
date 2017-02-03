@@ -13,16 +13,16 @@ import SwiftyJSON
 class ObtainFBData {
     
     // managedObjectContext - Managed object to work with objects (Facebook data) in CoreData
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     // Function to obtain users Facebook profile picture
-    func getProfilePicture(completion: (pictureData: NSData?, error: NSError?) -> Void) {
+    func getProfilePicture(_ completion: @escaping (_ pictureData: Data?, _ error: NSError?) -> Void) {
         
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"picture.type(large)"])
         
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
-            var pictureData: NSData?
+            var pictureData: Data?
             
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
@@ -34,20 +34,20 @@ class ObtainFBData {
             let profilePicture = json["picture"]["data"]["url"].stringValue
             
             // Assigns users profile picture to varibale to be returned
-            if let url = NSURL(string: profilePicture) {
-                pictureData = NSData(contentsOfURL: url)
+            if let url = URL(string: profilePicture) {
+                pictureData = Data(contentsOfURL: url)
             }
             
             // Use completion handler to return variables on completion
-            completion(pictureData: pictureData, error: error)
+            completion(pictureData, error as NSError?)
         })
     }
     
     // Function to obtain users name form Facebook profile
-    func getUserDetails(completion: (nameData: String?, genderData: String?, dobData: String?, educationData: String?, emailData: String?, error: NSError?) -> Void) {
+    func getUserDetails(_ completion: @escaping (_ nameData: String?, _ genderData: String?, _ dobData: String?, _ educationData: String?, _ emailData: String?, _ error: NSError?) -> Void) {
         print("getting data form fb")
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, gender, birthday, education, email"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if error != nil {
                 print("login error: \(error!.localizedDescription)")
@@ -84,14 +84,14 @@ class ObtainFBData {
         })
     }
 
-    func calculateAge(dob: String?) -> String {
+    func calculateAge(_ dob: String?) -> String {
         if dob != nil {
-        let splitDOB  = dob!.componentsSeparatedByString("/")
+        let splitDOB  = dob!.components(separatedBy: "/")
         let formattedDOB = "\(splitDOB[2])-\(splitDOB[1])-\(splitDOB[0]) 00:00:00 +0000"
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        let formattedDate = dateFormatter.dateFromString(formattedDOB)
-        return "\(NSCalendar.currentCalendar().components(.Year, fromDate: formattedDate!, toDate: NSDate(), options: []).year)"
+        let formattedDate = dateFormatter.date(from: formattedDOB)
+        return "\((Calendar.current as NSCalendar).components(.year, from: formattedDate!, to: Date(), options: []).year)"
         }
         return ""
     }

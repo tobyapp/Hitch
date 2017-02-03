@@ -10,7 +10,7 @@ import UIKit
 import Whisper
 import Parse
 import ParseFacebookUtilsV4
-import MK
+import Material
 
 class FacebookLoginViewController: UIViewController {
 
@@ -19,23 +19,23 @@ class FacebookLoginViewController: UIViewController {
         
          // Adds image to background
 
-        let width = UIScreen.mainScreen().bounds.size.width
-        let height = UIScreen.mainScreen().bounds.size.height
-        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         
         imageViewBackground.image = UIImage(named: "Backpacker")
-        imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
+        imageViewBackground.contentMode = UIViewContentMode.scaleToFill
         
         self.view.addSubview(imageViewBackground)
-        self.view.sendSubviewToBack(imageViewBackground)
+        self.view.sendSubview(toBack: imageViewBackground)
         
         // Adds motion functionality to background image
         
-        let horizontalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
+        let horizontalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
         horizontalMotionEffect.minimumRelativeValue = -25
         horizontalMotionEffect.maximumRelativeValue = 25
         
-        let verticalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
+        let verticalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
         verticalMotionEffect.minimumRelativeValue = -25
         verticalMotionEffect.maximumRelativeValue = 25
         
@@ -100,24 +100,24 @@ class FacebookLoginViewController: UIViewController {
     }
     
     // Function to display an Alert Controller
-    func showAlertController(errorMessage: String) {
+    func showAlertController(_ errorMessage: String) {
         let alertController = UIAlertController(
             title: "Error in loggining in",
             message: errorMessage,
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "ok",
-            style: UIAlertActionStyle.Destructive,
+            style: UIAlertActionStyle.destructive,
             handler: nil)
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func loginToFb(sender: UIButton) {
+    func loginToFb(_ sender: UIButton) {
         let permissions = ["public_profile", "email", "user_about_me", "user_birthday", "user_education_history", "user_location", "user_work_history"]
         //let permissions = ["email"]
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) {
             (user: PFUser?, error: NSError?) -> Void in
             
             if ((error) != nil) {
@@ -133,22 +133,22 @@ class FacebookLoginViewController: UIViewController {
                         //initalises UserAccount class whihc grabs all the facebook data ready for the app
                         let user = UploadDataToBackEnd()
                         //uncomment when want to add data to Parse
-                        dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
+                        DispatchQueue.main.async(execute: { //puts data upload on another thread
                             user.upLoadData()
                         })
-                        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-                        self.presentViewController(viewController, animated: true, completion: nil)
+                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
+                        self.present(viewController, animated: true, completion: nil)
                         
                     } else {
                         print("User logged in through Facebook!")
                         //initalises UserAccount class whihc grabs all the facebook data ready for the app
                         let user = UploadDataToBackEnd()
                         //uncomment when want to add data to Parse
-                        dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
+                        DispatchQueue.main.async(execute: { //puts data upload on another thread
                             user.upLoadData()
                         })
-                        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("homePage") as UIViewController
-                        self.presentViewController(viewController, animated: true, completion: nil)
+                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
+                        self.present(viewController, animated: true, completion: nil)
                     }
                 } else {
                     print("Uh oh. The user cancelled the Facebook login.")
