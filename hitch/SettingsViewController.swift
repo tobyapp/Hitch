@@ -16,7 +16,7 @@ import CoreData
 import ASValueTrackingSlider
 
 
-class SettingsViewController: UIViewController, SMSegmentViewDelegate {
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var ageSlider: ASValueTrackingSlider!
@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         ageSlider.setMaxFractionDigitsDisplayed(0)
         ageSlider.popUpViewColor = purple
         ageSlider.textColor = UIColor.white
-        ageSlider.font = RobotoFont.mediumWithSize(50)
+        ageSlider.font = RobotoFont.medium(with: 50)//mediumWithSize(50)
         
         //set value of slider
         if let agePreference = Int(defaults.string(forKey: "AgePreference")!) {
@@ -64,92 +64,97 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
             y: frame.minY + 750,
             width: frame.width - 40,
             height: 65.0)
-        segmentView = SMSegmentView(frame: segmentFrame,
-            separatorColour: purple,
-            separatorWidth: 1.0,
-            segmentProperties: [keySegmentTitleFont : UIFont.systemFont(ofSize: 21.0),
-                keySegmentOnSelectionColour : UIColor.white,
-                keySegmentOffSelectionColour : purple,
-                keyContentVerticalMargin : 5.0 as AnyObject])
         
-        segmentView.segmentOnSelectionTextColour = purple
-        segmentView.segmentOffSelectionTextColour = UIColor.white
+        let appearance = SMSegmentAppearance()
+        appearance.segmentOnSelectionColour = UIColor.white
+        appearance.segmentOffSelectionColour = purple
+        appearance.contentVerticalMargin = 5.0
+        
+        segmentView = SMSegmentView(frame: segmentFrame,
+                                    dividerColour: UIColor.white,
+                                    dividerWidth: 1.0,
+                                    segmentAppearance: appearance
+        )
+        
+//        segmentView.segmentOnSelectionTextColour = purple
+//        segmentView.segmentOffSelectionTextColour = UIColor.white
         segmentView.addSegmentWithTitle("Male", onSelectionImage: UIImage(named: "male-purple"), offSelectionImage: UIImage(named: "male-white"))
         segmentView.addSegmentWithTitle("Female", onSelectionImage: UIImage(named: "female-purple"), offSelectionImage: UIImage(named: "female-white"))
         segmentView.addSegmentWithTitle("Either", onSelectionImage: nil, offSelectionImage: nil)
-        segmentView.delegate = self
+        //segmentView.delegate = self
         segmentView.layer.cornerRadius = 10.0
         segmentView.layer.borderColor = purple.cgColor
         segmentView.layer.borderWidth = 1.0
+        
+        self.segmentView.addTarget(self, action: #selector(selectSegmentInSegmentView(segmentView:)), for: .valueChanged)
         
         //set value of gender seelctor
         if let genderPreference = defaults.string(forKey: "GenderPreference") {
             switch genderPreference {
             case "male":
-                segmentView.selectSegmentAtIndex(0)
+                segmentView.selectedSegmentIndex = 0
             case "female":
-                segmentView.selectSegmentAtIndex(1)
+                segmentView.selectedSegmentIndex = 1
             case "either":
-                segmentView.selectSegmentAtIndex(2)
+                segmentView.selectedSegmentIndex = 2
             default:
-                segmentView.selectSegmentAtIndex(2)
+                segmentView.selectedSegmentIndex = 2
             }
         }
         else {
-            segmentView.selectSegmentAtIndex(2)
+            segmentView.selectedSegmentIndex = 2
         }
-
         
         view.addSubview(segmentView)
         
         // Create custom logout button for facebook
-        let cardView: CardView = CardView()
-        cardView.dividerInset.left = 0 // White line seperating loging button with text
-        cardView.titleLabelInset.left = 150 // Top line of text
-        cardView.detailLabelInset.left = 150 // Bottom line of text
-        cardView.backgroundColor  = MaterialColor.deepPurple.base
-        cardView.pulseColor = nil
-        cardView.pulseFill = false
-        cardView.pulseScale = false
+        let cardView = Card()
+//        cardView.dividerInset.left = 0 // White line seperating loging button with text
+//        cardView.titleLabelInset.left = 150 // Top line of text
+//        cardView.detailLabelInset.left = 150 // Bottom line of text
+        cardView.backgroundColor  = Color.deepPurple.base
+//        cardView.pulseColor = nil
+//        cardView.pulseFill = false
+//        cardView.pulseScale = false
         
         // Image.
         cardView.image = UIImage(named: "facebook-purple")
-        cardView.contentsGravity = .TopLeft
+//        cardView.contentsGravity = .TopLeft
         
         // Title label.
         let titleLabel: UILabel = UILabel()
         titleLabel.text = "Log Out"
-        titleLabel.font = RobotoFont.mediumWithSize(24)
-        titleLabel.textColor = MaterialColor.white
-        cardView.titleLabel = titleLabel
+        titleLabel.font = RobotoFont.medium(with: 24)//(24)
+        titleLabel.textColor = Color.white
+//        cardView.titleLabel = titleLabel
         
         // Detail label.
         let detailLabel: UILabel = UILabel()
         detailLabel.text = "Click the button to logout of Hitch!"
-        detailLabel.font = RobotoFont.mediumWithSize(20)
-        detailLabel.textColor = MaterialColor.white
+        detailLabel.font = RobotoFont.medium(with: 20)//mediumWithSize(20)
+        detailLabel.textColor = Color.white
         detailLabel.numberOfLines = 0
-        cardView.detailLabel = detailLabel
+//        cardView.detailLabel = detailLabel
         
         // LEARN MORE button.
         let loginButton: RaisedButton = RaisedButton()
-        loginButton.pulseColor = MaterialColor.deepPurple.base
-        loginButton.pulseFill = true
-        loginButton.pulseScale = true
-        loginButton.setTitle("Log Out", forState: .Normal)
-        loginButton.backgroundColor = MaterialColor.white
-        loginButton.setTitleColor(MaterialColor.deepPurple.base, forState: .Normal)
+        loginButton.pulseColor = Color.deepPurple.base
+        //loginButton.pulseFill = true
+//        loginButton.pulseScale = true
+//        loginButton.setTitle("Log Out", forState: .normal)
+        loginButton.backgroundColor = Color.white
+//        loginButton.setTitleColor(Color.deepPurple.base, forState: .Normal)
         
         // Add buttons to right side.
-        cardView.rightButtons = [loginButton]
+//        cardView.rightButtons = [loginButton]
         
-        loginButton.addTarget(self, action: #selector(SettingsViewController.logOutOfFb(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(SettingsViewController.logOutOfFb(_:)), for: UIControlEvents.touchUpInside)
         
         // To support orientation changes, use MaterialLayout.
         view.addSubview(cardView)
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        MaterialLayout.alignFromTop(view, child: cardView, top: 100)
-        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
+//        MaterialLayout.alignFromTop(view, child: cardView, top: 100)
+//        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
         
     }
 
@@ -181,13 +186,13 @@ class SettingsViewController: UIViewController, SMSegmentViewDelegate {
         self.present(viewController, animated: true, completion: nil)
         
         //display logout message
-        var murmur = Murmur(title: "\(userName!) logged out")
-        show(whistle: murmur, action: .Show(0.5))
+//        var murmur = Murmur(title: "\(userName!) logged out")
+//        show(murmur, sender: .Show(0.5))
     }
     
-    func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
+    func selectSegmentInSegmentView(segmentView: SMSegmentView) {
         let defaults = UserDefaults.standard
-        switch index {
+        switch segmentView.selectedSegmentIndex {
         case 0:
              defaults.set("male", forKey: "GenderPreference")
              print("male")

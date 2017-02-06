@@ -21,21 +21,21 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 700, 400, 60)) //CGRectMake(300, 475, 200, 30))
-        drivingToButton.setTitle("Show Driving Routes..", forState: .Normal)
-        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        drivingToButton.addTarget(self, action: #selector(MapViewController.showDriverRoutes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRect(x: 185, y: 700, width: 400, height: 60)) //CGRectMake(300, 475, 200, 30))
+        drivingToButton.setTitle("Show Driving Routes..", for: .normal)
+        drivingToButton.setTitleColor(Color.white, for: .normal)
+        drivingToButton.titleLabel!.font = RobotoFont.medium(with: 20)//mediumWithSize(20) //UIFont(name: "System", size: 15)
+        drivingToButton.addTarget(self, action: #selector(MapViewController.showDriverRoutes(_:)), for: UIControlEvents.touchUpInside)
+        drivingToButton.backgroundColor = Color.deepPurple.base
         //drivingToButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(drivingToButton)
         
-        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 850, 400, 60)) //CGRectMake(110, 550, 200, 30))
-        hitchinToButton.setTitle("Show Hitch'n Routes..", forState: .Normal)
-        hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        hitchinToButton.addTarget(self, action: #selector(MapViewController.showHitchRoutes(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
+        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRect(x: 185, y: 850, width: 400, height: 60)) //CGRectMake(185, 850, 400, 60)
+        hitchinToButton.setTitle("Show Hitch'n Routes..", for: .normal)
+        hitchinToButton.setTitleColor(Color.white, for: .normal)
+        hitchinToButton.titleLabel!.font = RobotoFont.medium(with: 20)//mediumWithSize(20) //UIFont(name: "System", size: 15)
+        hitchinToButton.addTarget(self, action: #selector(MapViewController.showHitchRoutes(_:)), for: UIControlEvents.touchUpInside)
+        hitchinToButton.backgroundColor = Color.deepPurple.base
         //hitchinToButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hitchinToButton)
 

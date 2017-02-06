@@ -83,8 +83,8 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     // Facebook delegate method, check if user logged in successfully
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        //method only here to satisfy Facebook delegate method, when users at this vie wthey must have already logged in so dont care about login button
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!){
+        //method only here to satisfy Facebook delegate method, when users at this view they must have already logged in so dont care about login button
     }
     
     // Function to handle what happens when a user logs out
@@ -96,8 +96,8 @@ class ProfileViewController2: UIViewController, FBSDKLoginButtonDelegate {
         self.present(viewController, animated: true, completion: nil)
         
         //display logout message
-        let murmur = Murmur(title: "\(userName!) logged out")
-        show(whistle: murmur, action: .Show(0.5))
+       // let murmur = Murmur(title: "\(userName!) logged out")
+        //show(murmur, sender: .Show(0.5))
         //Whistle(murmur)
     }
 }

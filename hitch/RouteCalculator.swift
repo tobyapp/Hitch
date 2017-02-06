@@ -19,10 +19,10 @@ class RouteCalculator {
         
         let requestURL = baseURL + "origin=" + "\(originLatitude),\(originLongitude)" + "&destination=" + "\(destinationLatitude),\(destinationLongitude)" + "&key=" + keys.googlePlacesAPIKey
         
-        Alamofire.request(.GET, requestURL, parameters: nil).responseJSON { response in
+        Alamofire.request(requestURL).responseJSON { response in
             switch response.result {
                 
-            case .Success(let data):
+            case .success(let data):
                 let json = JSON(data)
                 let errornum = json["error"]
             
@@ -40,19 +40,19 @@ class RouteCalculator {
                         if status != "ZERO_RESULTS" {
                         let overViewPolyLine = routes![0]["overview_polyline"]["points"].string
                         if overViewPolyLine != nil{
-                            resultHandler(directions: overViewPolyLine)
+                            resultHandler(overViewPolyLine)
                             }
                         }
                             
                         else {
                             print("ROUTE ERROR : \(status)")
-                            resultHandler(directions: "No directions found")
+                            resultHandler("No directions found")
                             return
                         }
                     }
                 }
                 
-            case .Failure(let error):
+            case .failure(let error):
                 print("Request failed with error: \(error)")
             }
         }

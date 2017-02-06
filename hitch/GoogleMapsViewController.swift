@@ -271,7 +271,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // Presents custom window info box above marker
-    func mapView(_ mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
 
         let infoWindow: CustomInfoWindow = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self, options: nil)!.first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple
@@ -284,12 +284,12 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
             infoWindow.frame.size.width = 200
             infoWindow.frame.size.height = 75
             
-            let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(0, 0, 200, 75))
-            drivingToButton.setTitle("Drive or Hitch here..", forState: .Normal)
-            drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
+            let drivingToButton: RaisedButton = RaisedButton(frame: CGRect(x: 0, y: 0, width: 200, height: 75))
+            drivingToButton.setTitle("Drive or Hitch here..", for: .normal)
+            drivingToButton.setTitleColor(Color.white, for: .normal)
             drivingToButton.titleLabel!.font = UIFont(name: "System", size: 7)
             drivingToButton.layer.cornerRadius = 10
-            drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+            drivingToButton.backgroundColor = Color.deepPurple.base
             infoWindow.addSubview(drivingToButton)
             plottedByUser = true
         }
@@ -347,7 +347,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // When user taps the map (not the info marker or anything)
-    func mapView(_ mapView: GMSMapView!, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 
         // removes previously plotted line from the map
         if let routePath = routePath {
@@ -373,7 +373,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
     }
     
     // executes when user taps custom window info above marker, presents PopooverViewController
-    func mapView(_ mapView: GMSMapView!, didTapInfoWindowOf marker: GMSMarker!) {
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
         let routeData = marker.userData as! [String: AnyObject]
         
@@ -475,7 +475,7 @@ extension GoogleMapsViewController: GooglePlacesAutocompleteDelegate, UIPopoverP
                     }
                 }
                 else {
-                    print(error)
+                    print(error!)
                 }
             }
         }

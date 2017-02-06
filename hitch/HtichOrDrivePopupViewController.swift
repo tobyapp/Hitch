@@ -44,21 +44,21 @@ class HtichOrDrivePopupViewController: UIViewController, UITextViewDelegate, UIT
         changeColorScheme()
         
         // Adds driving to button to view
-        let drivingToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 600, 400, 60)) //CGRectMake(110, 400, 200, 30)
-        drivingToButton.setTitle("I'm driving to..", forState: .Normal)
-        drivingToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        drivingToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        drivingToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.drivingTo(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        drivingToButton.backgroundColor = MaterialColor.deepPurple.base
+        let drivingToButton: RaisedButton = RaisedButton(frame: CGRect(x: 185, y: 600, width: 400, height: 60)) //CGRectMake(110, 400, 200, 30)
+        drivingToButton.setTitle("I'm driving to..", for: .normal)
+        drivingToButton.setTitleColor(Color.white, for: .normal)
+        drivingToButton.titleLabel!.font = RobotoFont.medium(with: 20)//mediumWithSize(20) //UIFont(name: "System", size: 15)
+        drivingToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.drivingTo(_:)), for: UIControlEvents.touchUpInside)
+        drivingToButton.backgroundColor = Color.deepPurple.base
         view.addSubview(drivingToButton)
         
         // Adds Hitch button to view
-        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 800, 400, 60)) //CGRectMake(110, 400, 200, 30)
-        hitchinToButton.setTitle("I'm Hitch'n to..", forState: .Normal)
-        hitchinToButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        hitchinToButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        hitchinToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.hitchTo(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        hitchinToButton.backgroundColor = MaterialColor.deepPurple.base
+        let hitchinToButton: RaisedButton = RaisedButton(frame: CGRect(x: 185, y: 800, width: 400, height: 60)) //CGRectMake(185, 800, 400, 60)
+        hitchinToButton.setTitle("I'm Hitch'n to..", for: .normal)
+        hitchinToButton.setTitleColor(Color.white, for: .normal)
+        hitchinToButton.titleLabel!.font = RobotoFont.medium(with: 20)//mediumWithSize(20) //UIFont(name: "System", size: 15)
+        hitchinToButton.addTarget(self, action: #selector(HtichOrDrivePopupViewController.hitchTo(_:)), for: UIControlEvents.touchUpInside)
+        hitchinToButton.backgroundColor = Color.deepPurple.base
         view.addSubview(hitchinToButton)
         
         // Create notifications on when keyboard is displayed/hidden

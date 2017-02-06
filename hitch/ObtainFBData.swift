@@ -34,8 +34,15 @@ class ObtainFBData {
             let profilePicture = json["picture"]["data"]["url"].stringValue
             
             // Assigns users profile picture to varibale to be returned
-            if let url = URL(string: profilePicture) {
-                pictureData = Data(contentsOfURL: url)
+//            if let url = URL(string: profilePicture) {
+//                pictureData = try! Data(contentsOfURL: url)
+//            }
+
+            do {
+                let url = try URL(string: profilePicture)
+
+            } catch {
+                // contents could not be loaded
             }
             
             // Use completion handler to return variables on completion
@@ -79,7 +86,7 @@ class ObtainFBData {
                 }
             }
             // Use completion handler to return variables on completion
-            completion(nameData: userName, genderData: userGender, dobData: userAge, educationData: userEducation, emailData: userEmail, error: error)
+            completion(userName, userGender, userAge, userEducation, userEmail, error as NSError?)
             }
         })
     }

@@ -44,53 +44,53 @@ class FacebookLoginViewController: UIViewController {
         
         imageViewBackground.addMotionEffect(motionEffectGroup)
 
-        let cardView: CardView = CardView()
-        cardView.dividerInset.left = 0 // White line seperating loging button with text
-        cardView.titleLabelInset.left = 150 // Top line of text
-        cardView.detailLabelInset.left = 150 // Bottom line of text
-        cardView.backgroundColor  = MaterialColor.deepPurple.base
-        cardView.pulseColor = nil
-        cardView.pulseFill = false
-        cardView.pulseScale = false
+        let cardView = Card() //CardView = CardView()
+//        cardView.divider.alignment//dividerInset.left = 0 // White line seperating loging button with text
+//        cardView.titleLabelInset.left = 150 // Top line of text
+//        cardView.detailLabelInset.left = 150 // Bottom line of text
+        cardView.backgroundColor  = Color.deepPurple.base
+//        cardView.pulseColor = nil
+//        cardView.pulse() //= false
+        //cardView.pulseScale = false
         
         // Image.
         cardView.image = UIImage(named: "facebook-purple")
-        cardView.contentsGravity = .TopLeft
+        //cardView.contentsGravity = .TopLeft
         
         // Title label.
         let titleLabel: UILabel = UILabel()
         titleLabel.text = "Facebook Log In"
-        titleLabel.font = RobotoFont.mediumWithSize(24)
-        titleLabel.textColor = MaterialColor.white
-        cardView.titleLabel = titleLabel
+        titleLabel.font = RobotoFont.medium(with: 24)//mediumWithSize(24)
+        titleLabel.textColor = Color.white
+//        cardView.titleLabel = titleLabel
         
         // Detail label.
         let detailLabel: UILabel = UILabel()
         detailLabel.text = "Click the button to login into Hitch!"
-        detailLabel.font = RobotoFont.mediumWithSize(20)
-        detailLabel.textColor = MaterialColor.white
+        detailLabel.font = RobotoFont.medium(with: 20)//medium(with: 20)//mediumWithSize(20)
+        detailLabel.textColor = Color.white
         detailLabel.numberOfLines = 0
-        cardView.detailLabel = detailLabel
+//        cardView.detailLabel = detailLabel
         
         // LEARN MORE button.
         let loginButton: RaisedButton = RaisedButton()
-        loginButton.pulseColor = MaterialColor.deepPurple.base
-        loginButton.pulseFill = true
-        loginButton.pulseScale = true
-        loginButton.setTitle("Log In", forState: .Normal)
-        loginButton.backgroundColor = MaterialColor.white
-        loginButton.setTitleColor(MaterialColor.deepPurple.base, forState: .Normal)
+        loginButton.pulseColor = Color.deepPurple.base
+        //loginButton.pulseFill = true
+//        loginButton.pulseScale = true
+        loginButton.setTitle("Log In", for: .normal)
+        loginButton.backgroundColor = Color.white
+        loginButton.setTitleColor(Color.deepPurple.base, for: .normal)
         
         // Add buttons to right side.
-        cardView.rightButtons = [loginButton]
+//        cardView.rightButtons = [loginButton]
 
-        loginButton.addTarget(self, action: #selector(FacebookLoginViewController.loginToFb(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(FacebookLoginViewController.loginToFb(_:)), for: UIControlEvents.touchUpInside)
 
         // To support orientation changes, use MaterialLayout.
         view.addSubview(cardView)
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        MaterialLayout.alignFromTop(view, child: cardView, top: 100)
-        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
+//        MaterialLayout.alignFromTop(view, child: cardView, top: 100)
+//        MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
         
         
     }
@@ -117,45 +117,47 @@ class FacebookLoginViewController: UIViewController {
     func loginToFb(_ sender: UIButton) {
         let permissions = ["public_profile", "email", "user_about_me", "user_birthday", "user_education_history", "user_location", "user_work_history"]
         //let permissions = ["email"]
-        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) {
-            (user: PFUser?, error: NSError?) -> Void in
-            
-            if ((error) != nil) {
-                print("Error : \(error)")
-                self.showAlertController("\(error)")
-                return
-            }
-                
-            else {
-                if let user = user {
-                    if user.isNew {
-                        print("User signed up and logged in through Facebook!")
-                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
-                        let user = UploadDataToBackEnd()
-                        //uncomment when want to add data to Parse
-                        DispatchQueue.main.async(execute: { //puts data upload on another thread
-                            user.upLoadData()
-                        })
-                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
-                        self.present(viewController, animated: true, completion: nil)
-                        
-                    } else {
-                        print("User logged in through Facebook!")
-                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
-                        let user = UploadDataToBackEnd()
-                        //uncomment when want to add data to Parse
-                        DispatchQueue.main.async(execute: { //puts data upload on another thread
-                            user.upLoadData()
-                        })
-                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
-                        self.present(viewController, animated: true, completion: nil)
-                    }
-                } else {
-                    print("Uh oh. The user cancelled the Facebook login.")
-                }
-            }
-        }
-    }
+//        PFFacebookUtils.logInInBackground(withReadPermissions: permissions) {
+//            (user: PFUser?, error: NSError?) -> Void in
+//            
+//            if ((error) != nil) {
+//                print("Error : \(error)")
+//                self.showAlertController("\(error)")
+//                return
+//            }
+//                
+//            else {
+//                if let user = user {
+//                    if user.isNew {
+//                        print("User signed up and logged in through Facebook!")
+//                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
+//                        let user = UploadDataToBackEnd()
+//                        //uncomment when want to add data to Parse
+//                        DispatchQueue.main.async(execute: { //puts data upload on another thread
+//                            user.upLoadData()
+//                        })
+//                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
+//                        self.present(viewController, animated: true, completion: nil)
+//                        
+//                    } else {
+//                        print("User logged in through Facebook!")
+//                        //initalises UserAccount class whihc grabs all the facebook data ready for the app
+//                        let user = UploadDataToBackEnd()
+//                        //uncomment when want to add data to Parse
+//                        DispatchQueue.main.async(execute: { //puts data upload on another thread
+//                            user.upLoadData()
+//                        })
+//                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "homePage") as UIViewController
+//                        self.present(viewController, animated: true, completion: nil)
+//                    }
+//                } else {
+//                    print("Uh oh. The user cancelled the Facebook login.")
+//                }
+//            }
+//        }
+ 
+    
+    } // dont comment out
     
     
     

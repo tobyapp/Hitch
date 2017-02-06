@@ -137,7 +137,7 @@ class FilterSelectionViewController: UIViewController, GMSMapViewDelegate, CLLoc
         }
     }
     // Presents custom window info box above marker
-    func mapView(_ mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         
         let infoWindow: CustomInfoWindow = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self, options: nil)!.first! as! CustomInfoWindow
         infoWindow.backgroundColor = purple

@@ -32,12 +32,12 @@ class RatingViewController: UIViewController {
         starRating.settings.minTouchRating = 0
         starRating.didFinishTouchingCosmos = didFinishTouchingCosmos
         
-        let rateButton: RaisedButton = RaisedButton(frame: CGRectMake(185, 700, 414, 60)) //CGRectMake(300, 475, 200, 30))
-        rateButton.setTitle("Rate!", forState: .Normal)
-        rateButton.setTitleColor(MaterialColor.white, forState: .Normal)
-        rateButton.titleLabel!.font = RobotoFont.mediumWithSize(20) //UIFont(name: "System", size: 15)
-        rateButton.addTarget(self, action: #selector(RatingViewController.rate(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        rateButton.backgroundColor = MaterialColor.deepPurple.base
+        let rateButton: RaisedButton = RaisedButton(frame: CGRect(x: 185, y: 700, width: 414, height: 60)) //CGRectMake(300, 475, 200, 30))
+        rateButton.setTitle("Rate!", for: .normal)
+        rateButton.setTitleColor(Color.white, for: .normal)
+        rateButton.titleLabel!.font = RobotoFont.medium(with: 20)//.mediumWithSize(20) //UIFont(name: "System", size: 15)
+        rateButton.addTarget(self, action: #selector(RatingViewController.rate(_:)), for: UIControlEvents.touchUpInside)
+        rateButton.backgroundColor = Color.deepPurple.base
         view.addSubview(rateButton)
 
         //get details of user, set these to global array then reload table view to show these

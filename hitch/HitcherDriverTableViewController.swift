@@ -138,14 +138,14 @@ class HitcherDriverTableViewController: UITableViewController, APParallaxViewDel
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error:Error?) {
-        switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
+        switch result {
+        case .cancelled:
             print("Mail cancelled")
-        case MFMailComposeResultSaved.rawValue:
+        case .saved:
             print("Mail saved")
-        case MFMailComposeResultSent.rawValue:
+        case .sent:
             print("Mail sent")
-        case MFMailComposeResultFailed.rawValue:
+        case .failed:
             print("Mail sent failure: %@", [error!.localizedDescription])
         default:
             break
