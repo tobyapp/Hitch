@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Parse.setApplicationId(keys.parseAppKey, clientKey: keys.parseClientKey)
-        PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
-        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+//        Parse.setApplicationId(keys.parseAppKey, clientKey: keys.parseClientKey)
+//        PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
+//        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
         GMSServices.provideAPIKey(keys.googleMapsKey)
     
@@ -42,10 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //initalises UserAccount class whihc grabs all the facebook data ready for the app
             let downloadFaceBookData = UploadDataToBackEnd()
             downloadFaceBookData.grabFacebookData()
-            //uncomment when want to add data to Parse
-//            dispatch_async(dispatch_get_main_queue(), { //puts data upload on another thread
-//            user.upLoadData()
-//                 })
+
             
             let vc = mainStoryboard.instantiateViewController(withIdentifier: "homePage") as! SWRevealViewController
             initialViewController = vc

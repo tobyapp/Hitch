@@ -38,8 +38,8 @@ class UploadDataToBackEnd {
                 if error != nil {
                     print("login error: \(error!.localizedDescription)")
                 }
-                let displayPicture = UIImage(data: pictureData! as Data)
-                let imageData = UIImagePNGRepresentation(displayPicture!)
+                //let displayPicture = UIImage(data: pictureData! as Data)
+                //let imageData = UIImagePNGRepresentation(displayPicture!)
                 
                 // Fetches current object in CoreData
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileData")
@@ -52,12 +52,12 @@ class UploadDataToBackEnd {
                         managedObject.setValue(dobData!, forKey: "userAge")
                         managedObject.setValue(genderData!, forKey: "userGender")
                         managedObject.setValue(educationData!, forKey: "userEducation")
-                        managedObject.setValue(imageData!, forKey: "userDisplayPicture")
+                        //managedObject.setValue(imageData!, forKey: "userDisplayPicture")
                         self.saveCoreData()
                     }
                     // If theres no objec tin coredata (first time apps been used), insert values and save
                     else if profileData.count == 0 {
-                        UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
+                        //UserProfileData.createInManagedObjectContext(moc, userName: nameData!, userAge: dobData!, userGender: genderData!, userEducation: educationData!, userDisplayPicture: imageData!)
                         self.saveCoreData()
 
                     }

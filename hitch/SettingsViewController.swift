@@ -168,8 +168,8 @@ class SettingsViewController: UIViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileData")
         do {
             profileData = try (managedObjectContext.fetch(fetchRequest) as? [UserProfileData])!
-            let userData = profileData[0]
-            self.userName = userData.userName!
+//            let userData = profileData[0]
+            self.userName = "test"
         }
             
         catch let error as NSError {
